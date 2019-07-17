@@ -119,6 +119,9 @@ EOF
 	# Go CDK
 	go get gocloud.dev
 
+	# RxGo
+	go get -u github.com/reactivex/rxgo
+
         sudo chown -R root:wheel /opt/go-packages
 	sudo chmod -R u+rwX,go+rwX,o-w /opt/go-packages
 }
