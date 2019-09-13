@@ -119,8 +119,12 @@ EOF
 	# Go CDK
 	go get gocloud.dev
 
-	# RxGo
-	go get -u github.com/reactivex/rxgo
+	# Go Protobuf
+	go get -u github.com/golang/protobuf/proto
+	go get -u github.com/golang/protobuf/protoc-gen-go
+
+	# Go gRPC
+	go get google.golang.org/grpc
 
         sudo chown -R root:wheel /opt/go-packages
 	sudo chmod -R u+rwX,go+rwX,o-w /opt/go-packages
@@ -135,14 +139,14 @@ function vscode_package() {
 }
 
 function android-studio_package() {
-	ANDROID_STUDIO_RELEASE=3.4.0.18
-	ANDROID_STUDIO_VERSION=183.5452501
+	ANDROID_STUDIO_RELEASE=3.5.0.21
+	ANDROID_STUDIO_VERSION=191.5791312
 	sudo rm -rf /opt/android-studio
 	sudo  mkdir -p /opt/android-studio
 
 	wget -c https://dl.google.com/dl/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -P ./cache
 
-	sudo tar zxfv ${SOURCE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -C /opt/android-studio
+	sudo tar zxfv ${SOURCE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -C /opt/
 	sudo chown -R root:wheel /opt/android-studio
 	sudo chmod -R u+rwX,go+rwX,o-w /opt/android-studio
 
