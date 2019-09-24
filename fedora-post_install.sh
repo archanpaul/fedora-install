@@ -1,5 +1,6 @@
 
 SOURCE=`pwd`/cache
+HOSTNAME="arpo"
 
 function fedora_upgrade() {
 	#sudo echo 'keepcache=1' | sudo tee -a /etc/dnf/dnf.conf
@@ -7,54 +8,46 @@ function fedora_upgrade() {
 	sudo dnf -y upgrade
 }
 
-function httpd_service() {
-        sudo mkdir /home/public
-        sudo chmod 775 /home/public
-        sudo ln -s /home/public /var/www/html/public
-        sudo chcon -R --reference=/var/www/html /home/public
-        sudo systemctl enable httpd
-        sudo systemctl restart httpd
+function update_hostname() {
+	hostnamectl set-hostname --static ${HOSTNAME}
 }
 
-function misc_package() {
-	sudo dnf -y install mc
-	sudo dnf -y install vim emacs
+function systools_package() {
+	sudo dnf -y install mc vim
+	sudo dnf -y install sysstat htop glances
+	sudo dnf -y install nmap traceroute
+}
 
-	sudo dnf -y install gnome-tweaks
-	sudo dnf -y install gnome-shell-extension-dash-to-dock
-
-
+function devtools_package() {
 	sudo dnf -y install autoconf automake make patch pkgconf libtool
+	sudo dnf -y install strace byacc elfutils ltrace strace oprofile valgrind 
+
 	sudo dnf -y install binutils bison flex gcc gcc-c++ gdb
 	sudo dnf -y install clang
-	sudo dnf -y install strace byacc elfutils ltrace strace oprofile valgrind 
-	sudo dnf -y install git
 	sudo dnf -y install golang
+
 	sudo dnf -y install glibc-devel libstdc++-devel kernel-devel
 	sudo dnf -y install protobuf protobuf-compiler
 
+    sudo dnf -y install git
+
+  	sudo dnf -y install java-openjdk-devel
+}
+
+function server_package() {
 	sudo dnf -y install docker kubernetes
-
 	##sudo dnf -y install mongodb
-	sudo dnf -y install couchdb
-	
-	sudo dnf -y install nmap traceroute
+	##sudo dnf -y install couchdb
+}
 
+function graphics_package() {
 	sudo dnf -y install gimp inkscape blender
+}
+
+function internet_package() {
 	sudo dnf -y install chromium thunderbird transmission
-	sudo dnf -y install gnome-books
 
-	sudo dnf -y install x264
-
-	sudo dnf -y install java-openjdk-devel
-}
-
-#RPMFusion
-function rpmfusion_source() {
-	sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-}
-function rpmfusion_packages() {
-	sudo dnf -y install x264
+	sudo dnf -y install youtube-dl
 }
 
 function go_packages() {
@@ -126,7 +119,7 @@ EOF
 	# Go gRPC
 	go get google.golang.org/grpc
 
-        sudo chown -R root:wheel /opt/go-packages
+    sudo chown -R root:wheel /opt/go-packages
 	sudo chmod -R u+rwX,go+rwX,o-w /opt/go-packages
 }
 
@@ -213,28 +206,59 @@ EOF
 	source /etc/profile.d/flutter-sdk.sh
 }
 
-function gnome_themes() {
-	#sudo dnf -y copr enable daniruiz/flat-remix
-	#sudo dnf -y install flat-remix
-	sudo dnf -y install gtk-murrine-engine gtk2-engines
+function python-packages() {
+	sudo dnf -y install python3-numpy
+	sudo dnf -y install python3-matplotlib
 }
 
-function docker() {
+function gnome_packages() {
+    sudo dnf -y install gnome-tweaks
+    sudo dnf -y install gnome-shell-extension-dash-to-dock
+	sudo dnf -y install gnome-books
+    sudo dnf -y install gtk-murrine-engine gtk2-engines
+}
+
+function docker_setings() {
 	sudo groupadd docker 
 	sudo gpasswd -a ${USER} docker 
 	sudo systemctl restart docker
 }
 
+#RPMFusion
+function rpmfusion_source() {
+	sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+}
+function rpmfusion_packages() {
+	sudo dnf -y install gstreamer1-libav
+}
+
+function httpd_service() {
+        sudo mkdir /home/public
+        sudo chmod 775 /home/public
+        sudo ln -s /home/public /var/www/html/public
+        sudo chcon -R --reference=/var/www/html /home/public
+        sudo systemctl enable httpd
+        sudo systemctl restart httpd
+}
+
+
+# update_hostname
+
 # fedora_upgrade
-# misc_package
 
+# systools_package
+# devtools_package
+# server_package
+# graphics_package
+# internet_package
+# python_packages
+# gnome_packages
 # rpmfusion_source
-## rpmfusion_packages
-
+# rpmfusion_packages
 # vscode_package
 # android-studio_package
 # dart-sdk_package
 # flutter-sdk_package
 # go_packages
-# gnome_themes
-# docker
+# docker_settings
+# httpd_service
