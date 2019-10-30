@@ -137,6 +137,9 @@ function vscode_package() {
 	dnf check-update
 	sudo dnf -y install code
 	#code --list-extensions | xargs -L 1 echo code --install-extension
+	
+	#sudo echo 'fs.inotify.max_user_watches=524288' | sudo tee -a /etc/sysctl.conf
+	#sudo sysctl -p
 }
 
 function android-studio_package() {
