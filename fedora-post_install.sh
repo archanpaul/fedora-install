@@ -1,9 +1,12 @@
-
-SOURCE=`pwd`/cache
+CACHE=`pwd`/cache
 HOSTNAME="arpo"
+
+mkdir -p ${CACHE}
 
 function fedora_upgrade() {
 	#sudo echo 'keepcache=1' | sudo tee -a /etc/dnf/dnf.conf
+	#sudo echo 'fastestmirror=True' | sudo tee -a /etc/dnf/dnf.conf
+	#dnf install fedora-workstation-repositories
 	sudo dnf -y upgrade --downloadonly
 	sudo dnf -y upgrade
 }
@@ -20,16 +23,15 @@ function systools_package() {
 
 function devtools_package() {
 	sudo dnf -y install autoconf automake make patch pkgconf libtool
-	sudo dnf -y install strace byacc elfutils ltrace strace oprofile valgrind 
+	sudo dnf -y install strace byacc elfutils ltrace strace valgrind 
 
 	sudo dnf -y install binutils bison flex gcc gcc-c++ gdb
 	sudo dnf -y install clang
-	sudo dnf -y install golang
 
 	sudo dnf -y install glibc-devel libstdc++-devel kernel-devel
 	sudo dnf -y install protobuf protobuf-compiler
 
-    sudo dnf -y install git
+	sudo dnf -y install git
 
   	sudo dnf -y install java-openjdk-devel
 }
@@ -46,8 +48,14 @@ function graphics_package() {
 
 function internet_package() {
 	sudo dnf -y install chromium thunderbird transmission
-
 	sudo dnf -y install youtube-dl
+
+	#dnf config-manager --set-enabled google-chrome
+	dnf install google-chrome-stable
+
+	## Enable widevine in Google-Chrome
+	# cp libwidevinecdm.so /usr/lib64/chromium-plugins/
+	# cp libwidevinecdmadapter.so /usr/lib64/chromium-plugins/
 }
 
 function go_packages() {
@@ -119,7 +127,7 @@ EOF
 	# Go gRPC
 	go get google.golang.org/grpc
 
-    sudo chown -R root:wheel /opt/go-packages
+	sudo chown -R root:wheel /opt/go-packages
 	sudo chmod -R u+rwX,go+rwX,o-w /opt/go-packages
 }
 
@@ -132,18 +140,19 @@ function vscode_package() {
 }
 
 function android-studio_package() {
-	ANDROID_STUDIO_RELEASE=3.5.0.21
-	ANDROID_STUDIO_VERSION=191.5791312
+	ANDROID_STUDIO_RELEASE=3.5.1.0
+        ANDROID_STUDIO_VERSION=191.5900203
+
 	sudo rm -rf /opt/android-studio
 	sudo  mkdir -p /opt/android-studio
 
-	wget -c https://dl.google.com/dl/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -P ./cache
+	wget -c https://dl.google.com/dl/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -P ${CACHE}
 
-	sudo tar zxfv ${SOURCE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -C /opt/
+	sudo tar zxfv ${CACHE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -C /opt/
 	sudo chown -R root:wheel /opt/android-studio
 	sudo chmod -R u+rwX,go+rwX,o-w /opt/android-studio
 
-	        cat <<EOF | sudo tee /opt/android-studio/android-studio.desktop
+	cat <<EOF | sudo tee /opt/android-studio/android-studio.desktop
 [Desktop Entry]
 Type=Application
 Name=Android Studio
@@ -170,10 +179,10 @@ EOF
 }
 
 function dart-sdk_package() {
-	wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/2.4.0/sdk/dartsdk-linux-x64-release.zip -P ./cache
+	wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/2.4.0/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
 	sudo rm -rf /opt/dart-sdk
 
-	sudo unzip ${SOURCE}/dartsdk-linux-x64-release.zip -d /opt/
+	sudo unzip ${CACHE}/dartsdk-linux-x64-release.zip -d /opt/
 	sudo mkdir /opt/dart-sdk/pub_cache
 	sudo chown -R root:wheel /opt/dart-sdk
 	sudo chmod -R u+rwX,go+rwX,o-w /opt/dart-sdk
@@ -204,29 +213,34 @@ export ENABLE_FLUTTER_DESKTOP=true
 export PATH=\$PATH:\$FLUTTER_ROOT/bin:\$PUB_CACHE/bin
 EOF
 	source /etc/profile.d/flutter-sdk.sh
+
+	#flutter doctor
+	#flutter precache
 }
 
 function python-packages() {
+	sudo dnf -y install python3-virtualenv
 	sudo dnf -y install python3-numpy
 	sudo dnf -y install python3-matplotlib
 }
 
 function gnome_packages() {
-    sudo dnf -y install gnome-tweaks
-    sudo dnf -y install gnome-shell-extension-dash-to-dock
+	sudo dnf -y install gnome-tweaks
+	sudo dnf -y install gnome-shell-extension-dash-to-dock
 	sudo dnf -y install gnome-books
-    sudo dnf -y install gtk-murrine-engine gtk2-engines
+	sudo dnf -y install gtk-murrine-engine gtk2-engines
 }
 
-function docker_setings() {
+function docker_config() {
 	sudo groupadd docker 
 	sudo gpasswd -a ${USER} docker 
-	sudo systemctl restart docker
+	# sudo systemctl restart docker
 }
 
 #RPMFusion
 function rpmfusion_source() {
-	sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+	sudo dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+	sudo dnf -y install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 }
 function rpmfusion_packages() {
 	sudo dnf -y install gstreamer1-libav
@@ -241,24 +255,23 @@ function httpd_service() {
         sudo systemctl restart httpd
 }
 
-
 # update_hostname
 
-# fedora_upgrade
+## fedora_upgrade
 
-# systools_package
-# devtools_package
-# server_package
-# graphics_package
-# internet_package
-# python_packages
-# gnome_packages
-# rpmfusion_source
-# rpmfusion_packages
-# vscode_package
-# android-studio_package
-# dart-sdk_package
-# flutter-sdk_package
-# go_packages
-# docker_settings
-# httpd_service
+## systools_package
+## devtools_package
+## server_package
+## graphics_package
+## internet_package
+## python_packages
+## gnome_packages
+## rpmfusion_source
+## rpmfusion_packages
+## vscode_package
+## android-studio_package
+## dart-sdk_package
+## flutter-sdk_package
+## go_packages
+## docker_config
+## httpd_service
