@@ -19,6 +19,8 @@ function systools_package() {
 	sudo dnf -y install mc vim
 	sudo dnf -y install sysstat htop glances
 	sudo dnf -y install nmap traceroute
+
+	sudo dnf -y install mesa-vulkan-drivers vulkan-tools
 }
 
 function devtools_package() {
@@ -221,7 +223,7 @@ EOF
 	#flutter precache
 }
 
-function python-packages() {
+function python_packages() {
 	sudo dnf -y install python3-virtualenv
 	sudo dnf -y install python3-numpy
 	sudo dnf -y install python3-matplotlib
