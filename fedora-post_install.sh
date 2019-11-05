@@ -249,6 +249,7 @@ function rpmfusion_source() {
 }
 function rpmfusion_packages() {
 	sudo dnf -y install gstreamer1-libav
+	sudo dnf -y install ffmpeg
 }
 
 function httpd_service() {
