@@ -97,7 +97,6 @@ EOF
 	go get -u -v github.com/cespare/reflex
 	go get -u -v golang.org/x/...
 	go get -u -v golang.org/x/tools/...
-	go get -u -v golang.org/x/tools/...
 	go get -u -v golang.org/x/tools/cmd/...
 	#go get -u -v golang.org/x/tools/cmd/gorename
 	#go get -u -v golang.org/x/tools/cmd/goimports
@@ -109,28 +108,25 @@ EOF
 	## HTTP
 	go get -u -v github.com/gin-gonic/gin
 	go get -u -v github.com/gin-gonic/contrib/...
-	#go get -u -v github.com/dgrijalva/jwt-go
+	go get -u -v github.com/dgrijalva/jwt-go
 	## goNum
 	go get -u -v -t gonum.org/v1/gonum/...
 	## DB
-	go get -u -v gopkg.in/mgo.v2
+	go get go.mongodb.org/mongo-driver/mongo
+	go get go.mongodb.org/mongo-driver/mongo/options
 	go get github.com/lib/pq
 	## protobuf
 	go get -u github.com/golang/protobuf/protoc-gen-go
 	## gRPC
 	go get -u google.golang.org/grpc
-	## Update
-	#go get -u -v all
-
-	# Go CDK
-	go get gocloud.dev
-
 	# Go Protobuf
 	go get -u github.com/golang/protobuf/proto
 	go get -u github.com/golang/protobuf/protoc-gen-go
+	# Go CDK
+	go get gocloud.dev
 
-	# Go gRPC
-	go get google.golang.org/grpc
+	## Update
+	#go get -u -v all
 
 	sudo chown -R root:wheel /opt/go-packages
 	sudo chmod -R u+rwX,go+rwX,o-w /opt/go-packages
@@ -187,7 +183,7 @@ EOF
 }
 
 function dart-sdk_package() {
-	wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/2.4.0/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
+	wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/2.6.0/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
 	sudo rm -rf /opt/dart-sdk
 
 	sudo unzip ${CACHE}/dartsdk-linux-x64-release.zip -d /opt/
