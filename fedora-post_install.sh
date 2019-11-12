@@ -76,7 +76,9 @@ EOF
         source /etc/profile.d/go-packages.sh
 
 	## VSCode go plugin dependency
-	go get -u -v github.com/mdempsky/gocode
+	#go get -u -v github.com/mdempsky/gocode
+	go clean -i -n github.com/mdempsky/gocode...
+	go get -u -v github.com/stamblerre/gocode
 	go get -u -v github.com/uudashr/gopkgs/cmd/gopkgs
 	go get -u -v github.com/mdempsky/gocode
 	go get -u -v github.com/ramya-rao-a/go-outline
