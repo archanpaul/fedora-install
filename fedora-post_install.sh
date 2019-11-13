@@ -143,6 +143,41 @@ function vscode_package() {
 	
 	#sudo echo 'fs.inotify.max_user_watches=524288' | sudo tee -a /etc/sysctl.conf
 	#sudo sysctl -p
+
+	#code --list-extensions | xargs -L 1 echo code --install-extension
+	##code --install-extension azemoh.one-monokai
+	##code --install-extension Dart-Code.dart-code
+	##code --install-extension Dart-Code.flutter
+	##code --install-extension ms-azuretools.vscode-docker
+	##code --install-extension ms-python.python
+	##code --install-extension ms-vscode.cpptools
+	##code --install-extension ms-vscode.Go
+	##code --install-extension msjsdiag.debugger-for-chrome
+	##code --install-extension Nash.awesome-flutter-snippets
+	##code --install-extension plex.vscode-protolint
+	##code --install-extension thenikso.github-plus-theme
+	##code --install-extension VisualStudioExptTeam.vscodeintellicode
+	##code --install-extension zxh404.vscode-proto3
+
+	## Settings
+	# {
+	#    "workbench.startupEditor": "newUntitledFile",
+	#    "editor.suggestSelection": "first",
+	#    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+	#    "workbench.colorTheme": "One Monokai",
+	#    "files.autoSave": "afterDelay",
+	#    "files.autoSaveDelay": 10000,
+	#    "editor.fontFamily": "'Fira Code Medium','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+	#    "editor.wordWrap": "on",
+	#    "editor.formatOnSave": true,
+	#    "editor.formatOnType": true,
+	#    "go.formatTool": "goimports",
+	#    "window.titleBarStyle": "custom",
+	#    "telemetry.enableCrashReporter": false,
+	#    "telemetry.enableTelemetry": false,
+	#    "editor.minimap.enabled": false
+	# }
+
 }
 
 function android-studio_package() {
