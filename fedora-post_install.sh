@@ -31,7 +31,7 @@ function devtools_package() {
 	sudo dnf -y install clang
 
 	sudo dnf -y install glibc-devel libstdc++-devel kernel-devel
-	sudo dnf -y install protobuf protobuf-compiler
+	sudo dnf -y install protobuf protobuf-compiler protobuf-devel
 
 	sudo dnf -y install git
 
@@ -185,7 +185,7 @@ EOF
 }
 
 function dart-sdk_package() {
-	wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/2.6.0/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
+	wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/2.6.1/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
 	sudo rm -rf /opt/dart-sdk
 
 	sudo unzip ${CACHE}/dartsdk-linux-x64-release.zip -d /opt/
@@ -198,6 +198,7 @@ function dart-sdk_package() {
 export PATH=\$PATH:/opt/dart-sdk/bin
 EOF
 	source /etc/profile.d/dart-sdk.sh
+	pub global activate protoc_plugin
 }
 
 function flutter-sdk_package() {
@@ -222,6 +223,7 @@ EOF
 
 	#flutter doctor
 	#flutter precache
+	#pub global activate protoc_plugin
 }
 
 function python_packages() {
