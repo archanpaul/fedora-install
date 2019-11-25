@@ -126,6 +126,10 @@ EOF
 	go get -u github.com/golang/protobuf/protoc-gen-go
 	# Go CDK
 	go get gocloud.dev
+	# UUID
+	go get github.com/google/uuid
+	# Embedded DB
+	go get go.etcd.io/bbolt/...
 
 	## Update
 	#go get -u -v all
