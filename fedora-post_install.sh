@@ -131,6 +131,7 @@ EOF
 	go get github.com/google/uuid
 	# Embedded DB
 	go get go.etcd.io/bbolt/...
+	go get github.com/dgraph-io/badger/...
 
 	## Update
 	#go get -u -v all
