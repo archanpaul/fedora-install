@@ -39,7 +39,8 @@ function devtools_package() {
 }
 
 function server_package() {
-	sudo dnf -y install docker kubernetes
+	sudo dnf -y install kubernetes
+	sudo dnf -y install podman podman-compose
 	##sudo dnf -y install mongodb
 	##sudo dnf -y install couchdb
 }
