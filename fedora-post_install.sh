@@ -115,7 +115,8 @@ EOF
 	## goNum
 	go get -u -v -t gonum.org/v1/gonum/...
 	## DB
-	go get -u -v github.com/dgraph-io/dgo/v2
+	export GO111MODULE=on
+	go get github.com/dgraph-io/dgo/v2
 	#go get go.mongodb.org/mongo-driver/mongo
 	#go get go.mongodb.org/mongo-driver/mongo/options
 	go get github.com/lib/pq
