@@ -280,6 +280,7 @@ function gnome_packages() {
 	sudo dnf -y install gnome-shell-extension-dash-to-dock
 	sudo dnf -y install gnome-books
 	sudo dnf -y install gtk-murrine-engine gtk2-engines
+	sudo dnf -y install foliate
 }
 
 function docker_config() {
