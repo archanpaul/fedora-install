@@ -119,9 +119,9 @@ EOF
 	go get -u -v -t gonum.org/v1/gonum/...
 	## DB
 	export GO111MODULE=on
-	go get github.com/dgraph-io/dgo/v2
-	go get go.mongodb.org/mongo-driver
-	go get github.com/lib/pq
+	go get -u github.com/dgraph-io/dgo/v2
+	go get -u go.mongodb.org/mongo-driver
+	go get -u github.com/lib/pq
 	## protobuf
 	go get -u github.com/golang/protobuf/protoc-gen-go
 	## gRPC
@@ -129,13 +129,18 @@ EOF
 	# Go Protobuf
 	go get -u github.com/golang/protobuf/proto
 	go get -u github.com/golang/protobuf/protoc-gen-go
+	# NATS
+	go get -u github.com/nats-io/nats.go
+	##go get -u github.com/nats-io/nats-server
+	##go get -u github.com/nats-io/nats-streaming-server
 	# Go CDK
-	go get gocloud.dev
+	go get -u gocloud.dev
 	# UUID
-	go get github.com/google/uuid
+	go get -u github.com/google/uuid
+	go get -u github.com/nats-io/nuid
 	# Embedded DB
-	go get go.etcd.io/bbolt/...
-	go get github.com/dgraph-io/badger/...
+	go get -u go.etcd.io/bbolt/...
+	go get -u github.com/dgraph-io/badger/...
 
 	## Update
 	#go get -u -v all
