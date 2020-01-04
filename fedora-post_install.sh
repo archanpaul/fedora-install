@@ -43,6 +43,9 @@ function server_package() {
 	sudo dnf -y install podman podman-compose
 	##sudo dnf -y install mongodb
 	##sudo dnf -y install couchdb
+
+	sudo dnf -y install nats-server
+	sudo dnf -y install golang-github-nats-io-streaming-server
 }
 
 function graphics_package() {
@@ -117,8 +120,7 @@ EOF
 	## DB
 	export GO111MODULE=on
 	go get github.com/dgraph-io/dgo/v2
-	#go get go.mongodb.org/mongo-driver/mongo
-	#go get go.mongodb.org/mongo-driver/mongo/options
+	go get go.mongodb.org/mongo-driver
 	go get github.com/lib/pq
 	## protobuf
 	go get -u github.com/golang/protobuf/protoc-gen-go
@@ -283,12 +285,6 @@ function gnome_packages() {
 	sudo dnf -y install foliate
 }
 
-function docker_config() {
-	sudo groupadd docker 
-	sudo gpasswd -a ${USER} docker 
-	# sudo systemctl restart docker
-}
-
 #RPMFusion
 function rpmfusion_source() {
 	sudo dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
@@ -300,7 +296,7 @@ function rpmfusion_packages() {
 }
 
 function httpd_service() {
-        sudo mkdir /home/public
+        sudo mkdir -p /home/public
         sudo chmod 775 /home/public
         sudo ln -s /home/public /var/www/html/public
         sudo chcon -R --reference=/var/www/html /home/public
@@ -326,5 +322,4 @@ fedora_upgrade
 ## dart-sdk_package
 ## flutter-sdk_package
 ## go_packages
-## docker_config
 ## httpd_service
