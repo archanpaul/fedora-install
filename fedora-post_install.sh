@@ -80,33 +80,30 @@ EOF
         source /etc/profile.d/go-packages.sh
 
 	## VSCode go plugin dependency
-	#go get -u -v github.com/mdempsky/gocode
-	go clean -i -n github.com/mdempsky/gocode...
-	go get -u -v github.com/stamblerre/gocode
-	go get -u -v github.com/uudashr/gopkgs/cmd/gopkgs
-	go get -u -v github.com/mdempsky/gocode
-	go get -u -v github.com/ramya-rao-a/go-outline
-	go get -u -v github.com/uudashr/gopkgs/cmd/gopkgs
+	go get -u -v github.com/stamblerre/gocode/...
 	go get -u -v github.com/ramya-rao-a/go-outline
 	go get -u -v github.com/acroca/go-symbols
+	go get -u -v github.com/uudashr/gopkgs
 	go get -u -v golang.org/x/tools/cmd/guru
 	go get -u -v golang.org/x/tools/cmd/gorename
-	go get -u -v github.com/go-delve/delve/cmd/dlv 
-	go get -u -v github.com/stamblerre/gocode
-	go get -u -v github.com/rogpeppe/godef
-	go get -u -v github.com/sqs/goreturns
+	go get -u -v golang.org/x/tools/cmd/goimports
+	go get -u -v github.com/zmb3/gogetdoc
 	go get -u -v golang.org/x/lint/golint
-	go get -u -v github.com/stamblerre/gocode
-	go get -u -v github.com/stamblerre/gocode
+	go get -u -v github.com/derekparker/delve/tree/master/cmd/dlv
+	go get -u -v github.com/fatih/gomodifytags
+	go get -u -v github.com/haya14busa/goplay/...
+	go get -u -v github.com/josharian/impl
+	go get -u -v github.com/tylerb/gotype-live
+	go get -u -v github.com/cweill/gotests/...
+	go get -u -v github.com/davidrjenni/reftools/tree/master/cmd/fillstruct
+
 
 	## Dev tools
 	go get -u -v github.com/cespare/reflex
 	go get -u -v golang.org/x/...
 	go get -u -v golang.org/x/tools/...
 	go get -u -v golang.org/x/tools/cmd/...
-	#go get -u -v golang.org/x/tools/cmd/gorename
-	#go get -u -v golang.org/x/tools/cmd/goimports
-	#go get -u -v golang.org/x/tools/gopls
+	go get -u -v golang.org/x/tools/gopls
 	#go get -u -v golang.org/x/tools/go/analysis/...
 	## goMobile
 	go get -u -v golang.org/x/mobile/cmd/gobind
@@ -213,8 +210,7 @@ function android-studio_package() {
 Type=Application
 Name=Android Studio
 Icon=/opt/android-studio/bin/studio.png
-Exec=env _JAVA_OPTIONS=-Djava.io.tmpdir=/var/tmp \
-/opt/android-studio/bin/studio.sh
+Exec=env _JAVA_OPTIONS=-Djava.io.tmpdir=/var/tmp /opt/android-studio/bin/studio.sh
 Terminal=false
 Categories=Development;IDE;
 EOF
