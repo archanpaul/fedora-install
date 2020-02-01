@@ -80,6 +80,7 @@ EOF
         source /etc/profile.d/go-packages.sh
 
 	## VSCode go plugin dependency
+	go get -u -v github.com/stamblerre/gocode
 	go get -u -v github.com/stamblerre/gocode/...
 	go get -u -v github.com/ramya-rao-a/go-outline
 	go get -u -v github.com/acroca/go-symbols
@@ -96,7 +97,9 @@ EOF
 	go get -u -v github.com/tylerb/gotype-live
 	go get -u -v github.com/cweill/gotests/...
 	go get -u -v github.com/davidrjenni/reftools/tree/master/cmd/fillstruct
-
+	go get -v github.com/rogpeppe/godef
+	go get -v github.com/uudashr/gopkgs/cmd/gopkgs
+	go get -v github.com/sqs/goreturns
 
 	## Dev tools
 	go get -u -v github.com/cespare/reflex
@@ -118,6 +121,8 @@ EOF
 	export GO111MODULE=on
 	go get -u github.com/dgraph-io/dgo/v2
 	go get -u go.mongodb.org/mongo-driver
+	go get -u go.mongodb.org/mongo-driver/bson 
+	go get -u go.mongodb.org/mongo-driver/mongo/options
 	go get -u github.com/lib/pq
 	## protobuf
 	go get -u github.com/golang/protobuf/protoc-gen-go
@@ -157,39 +162,46 @@ function vscode_package() {
 	#sudo sysctl -p
 
 	#code --list-extensions | xargs -L 1 echo code --install-extension
-	##code --install-extension azemoh.one-monokai
-	##code --install-extension Dart-Code.dart-code
-	##code --install-extension Dart-Code.flutter
-	##code --install-extension ms-azuretools.vscode-docker
-	##code --install-extension ms-python.python
-	##code --install-extension ms-vscode.cpptools
-	##code --install-extension ms-vscode.Go
-	##code --install-extension msjsdiag.debugger-for-chrome
-	##code --install-extension Nash.awesome-flutter-snippets
-	##code --install-extension plex.vscode-protolint
-	##code --install-extension thenikso.github-plus-theme
-	##code --install-extension VisualStudioExptTeam.vscodeintellicode
-	##code --install-extension zxh404.vscode-proto3
+	#code --install-extension Dart-Code.dart-code
+	#code --install-extension Dart-Code.flutter
+	#code --install-extension humao.rest-client
+	#code --install-extension ms-azuretools.vscode-docker
+	#code --install-extension ms-vscode.Go
+	#code --install-extension Nash.awesome-flutter-snippets
+	#code --install-extension thenikso.github-plus-theme
 
 	## Settings
-	# {
-	#    "workbench.startupEditor": "newUntitledFile",
-	#    "editor.suggestSelection": "first",
-	#    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-	#    "workbench.colorTheme": "One Monokai",
-	#    "files.autoSave": "afterDelay",
-	#    "files.autoSaveDelay": 10000,
-	#    "editor.fontFamily": "'Fira Code Medium','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-	#    "editor.wordWrap": "on",
-	#    "editor.formatOnSave": true,
-	#    "editor.formatOnType": true,
-	#    "go.formatTool": "goimports",
-	#    "window.titleBarStyle": "custom",
-	#    "telemetry.enableCrashReporter": false,
-	#    "telemetry.enableTelemetry": false,
-	#    "editor.minimap.enabled": false
-	# }
-
+	#{
+    		#"telemetry.enableTelemetry": false,
+    		#"telemetry.enableCrashReporter": false,
+		#"workbench.colorTheme": "One Monokai",
+    		#"files.autoSave": "afterDelay",
+    		#"files.autoSaveDelay": 10000,
+    		#"editor.fontFamily": "'Fira Code Medium','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    		#"editor.formatOnPaste": true,
+    		#"editor.formatOnSave": true,
+    		#"editor.formatOnType": true,
+    		#"window.titleBarStyle": "custom",
+    		#"workbench.startupEditor": "newUntitledFile",
+    		#"go.autocompleteUnimportedPackages": true,
+    		#"go.coverOnSingleTest": false,
+    		#"go.gotoSymbol.includeGoroot": true,
+    		#"go.gotoSymbol.includeImports": true,
+    		#"go.useLanguageServer": false,
+    		#"go.buildFlags": [
+    		#    "-v"
+    		#],
+    		#"go.vetFlags": [
+    		#    "-composites=false"
+    		#],
+    		#"terminal.integrated.copyOnSelection": true,
+    		#"terminal.integrated.cursorStyle": "underline",
+    		#"terminal.integrated.cursorBlinking": true,
+    		#"terminal.integrated.fontSize": 12,
+    		#"editor.minimap.enabled": false,
+    		#"window.zoomLevel": 0,
+    		#//"window.menuBarVisibility": "toggle"
+	#}
 }
 
 function android-studio_package() {
