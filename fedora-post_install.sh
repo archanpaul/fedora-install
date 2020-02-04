@@ -97,9 +97,9 @@ EOF
 	go get -u -v github.com/tylerb/gotype-live
 	go get -u -v github.com/cweill/gotests/...
 	go get -u -v github.com/davidrjenni/reftools/tree/master/cmd/fillstruct
-	go get -v github.com/rogpeppe/godef
-	go get -v github.com/uudashr/gopkgs/cmd/gopkgs
-	go get -v github.com/sqs/goreturns
+	go get -u -v github.com/rogpeppe/godef
+	go get -u -v github.com/uudashr/gopkgs/cmd/gopkgs
+	go get -u -v github.com/sqs/goreturns
 
 	## Dev tools
 	go get -u -v github.com/cespare/reflex
@@ -119,30 +119,30 @@ EOF
 	go get -u -v -t gonum.org/v1/gonum/...
 	## DB
 	export GO111MODULE=on
-	go get -u github.com/dgraph-io/dgo/v2
-	go get -u go.mongodb.org/mongo-driver
-	go get -u go.mongodb.org/mongo-driver/bson 
-	go get -u go.mongodb.org/mongo-driver/mongo/options
-	go get -u github.com/lib/pq
+	go get -u -v github.com/dgraph-io/dgo/v2
+	go get -u -v go.mongodb.org/mongo-driver
+	go get -u -v go.mongodb.org/mongo-driver/bson 
+	go get -u -v go.mongodb.org/mongo-driver/mongo/options
+	go get -u -v github.com/lib/pq
 	## protobuf
-	go get -u github.com/golang/protobuf/protoc-gen-go
+	go get -u -v github.com/golang/protobuf/protoc-gen-go
 	## gRPC
-	go get -u google.golang.org/grpc
+	go get -u -v google.golang.org/grpc
 	# Go Protobuf
-	go get -u github.com/golang/protobuf/proto
-	go get -u github.com/golang/protobuf/protoc-gen-go
+	go get -u -v github.com/golang/protobuf/proto
+	go get -u -v github.com/golang/protobuf/protoc-gen-go
 	# NATS
-	go get -u github.com/nats-io/nats.go
-	##go get -u github.com/nats-io/nats-server
-	##go get -u github.com/nats-io/nats-streaming-server
+	go get -u -v github.com/nats-io/nats.go
+	##go get -u -v github.com/nats-io/nats-server
+	##go get -u -v github.com/nats-io/nats-streaming-server
 	# Go CDK
-	go get -u gocloud.dev
+	go get -u -v gocloud.dev
 	# UUID
-	go get -u github.com/google/uuid
-	go get -u github.com/nats-io/nuid
+	go get -u -v github.com/google/uuid
+	go get -u -v github.com/nats-io/nuid
 	# Embedded DB
-	go get -u go.etcd.io/bbolt/...
-	go get -u github.com/dgraph-io/badger/...
+	go get -u -v go.etcd.io/bbolt/...
+	go get -u -v github.com/dgraph-io/badger/...
 
 	## Update
 	#go get -u -v all
