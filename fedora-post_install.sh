@@ -162,13 +162,21 @@ function vscode_package() {
 	#sudo sysctl -p
 
 	#code --list-extensions | xargs -L 1 echo code --install-extension
+	#code --install-extension azemoh.one-monokai
 	#code --install-extension Dart-Code.dart-code
 	#code --install-extension Dart-Code.flutter
 	#code --install-extension humao.rest-client
+	#code --install-extension mhutchie.git-graph
 	#code --install-extension ms-azuretools.vscode-docker
+	#code --install-extension ms-python.python
+	#code --install-extension ms-vscode-remote.remote-ssh-edit
+	#code --install-extension ms-vscode.cpptools
 	#code --install-extension ms-vscode.Go
 	#code --install-extension Nash.awesome-flutter-snippets
+	#code --install-extension PKief.material-icon-theme
+	#code --install-extension redhat.java
 	#code --install-extension thenikso.github-plus-theme
+	#code --install-extension VisualStudioExptTeam.vscodeintellicode
 
 	## Settings
 	#{
@@ -295,7 +303,6 @@ function gnome_packages() {
 	sudo dnf -y install gnome-shell-extension-dash-to-dock
 	sudo dnf -y install gnome-books
 	sudo dnf -y install gtk-murrine-engine gtk2-engines
-	sudo dnf -y install arc-theme breeze-gtk cros-adapta
 	sudo dnf -y install foliate
 }
 
