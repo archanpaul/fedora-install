@@ -161,7 +161,6 @@ function vscode_package() {
 	#sudo echo 'fs.inotify.max_user_watches=524288' | sudo tee -a /etc/sysctl.conf
 	#sudo sysctl -p
 
-	#code --list-extensions | xargs -L 1 echo code --install-extension
 	#code --install-extension azemoh.one-monokai
 	#code --install-extension Dart-Code.dart-code
 	#code --install-extension Dart-Code.flutter
@@ -172,6 +171,7 @@ function vscode_package() {
 	#code --install-extension ms-vscode-remote.remote-ssh-edit
 	#code --install-extension ms-vscode.cpptools
 	#code --install-extension ms-vscode.Go
+	#code --install-extension msjsdiag.debugger-for-chrome
 	#code --install-extension Nash.awesome-flutter-snippets
 	#code --install-extension PKief.material-icon-theme
 	#code --install-extension redhat.java
