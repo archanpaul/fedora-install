@@ -41,11 +41,15 @@ function devtools_package() {
 function server_package() {
 	sudo dnf -y install kubernetes
 	sudo dnf -y install podman podman-compose
-	##sudo dnf -y install mongodb
-	##sudo dnf -y install couchdb
 
-	sudo dnf -y install nats-server
-	sudo dnf -y install golang-github-nats-io-streaming-server
+	# Minicube
+	MINIKUBE_RELEASE=1.7.2
+	wget -c https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_RELEASE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm -P ${CACHE}
+	wget -c https://github.com/kubernetes/minikube/releases/download/v${MINICUBE_RELEASE}/docker-machine-driver-kvm2 -P ${CACHE}
+	sudo rpm -ivh ${CACHE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm
+
+	#sudo dnf -y install nats-server
+	#sudo dnf -y install golang-github-nats-io-streaming-server
 }
 
 function graphics_package() {
@@ -132,9 +136,10 @@ EOF
 	go get -u -v github.com/golang/protobuf/proto
 	go get -u -v github.com/golang/protobuf/protoc-gen-go
 	# NATS
-	go get -u -v github.com/nats-io/nats.go
+	##go get -u -v github.com/nats-io/nats.go
 	##go get -u -v github.com/nats-io/nats-server
 	##go get -u -v github.com/nats-io/nats-streaming-server
+	go get github.com/liftbridge-io/go-liftbridge
 	# Go CDK
 	go get -u -v gocloud.dev
 	# UUID
@@ -177,6 +182,7 @@ function vscode_package() {
 	#code --install-extension redhat.java
 	#code --install-extension thenikso.github-plus-theme
 	#code --install-extension VisualStudioExptTeam.vscodeintellicode
+	#code --install-extension zxh404.vscode-proto3
 
 	## Settings
 	#{
@@ -327,7 +333,7 @@ function httpd_service() {
 
 # update_hostname
 
-fedora_upgrade
+## fedora_upgrade
 
 ## systools_package
 ## devtools_package
