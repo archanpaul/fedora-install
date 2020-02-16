@@ -44,16 +44,16 @@ function container_package() {
 	sudo systemctl restart libvirtd
 	# sudo gpasswd -a $USER libvirt
 
-	sudo dnf -y install kubernetes
-	sudo dnf -y install podman podman-compose libvirt-client
+	sudo dnf -y install libvirt-client
+	sudo dnf -y install podman podman-compose podman-docker
 
 	# Minicube
 	MINIKUBE_RELEASE=1.7.2
 	wget -c https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_RELEASE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm -P ${CACHE}
 	sudo rpm -ivh ${CACHE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm
-	##wget -c https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_RELEASE}/docker-machine-driver-kvm2 -P ${CACHE} -O docker-machine-driver-kvm2_v${MINIKUBE_RELEASE}
-	##sudo cp ${CACHE}/docker-machine-driver-kvm2_v${MINIKUBE_RELEASE} /usr/local/bin/
-	##sudo chmod +x /usr/local/bin/docker-machine-driver-kvm2_v${MINIKUBE_RELEASE}
+
+	# Kind
+	GO111MODULE="on" go get sigs.k8s.io/kind@v0.7.0
 }
 
 function server_package() {
