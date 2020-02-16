@@ -38,17 +38,26 @@ function devtools_package() {
   	sudo dnf -y install java-openjdk-devel
 }
 
-function server_package() {
+function container_package() {
+	sudo dnf -y install @virtualization
+	sudo systemctl enable libvirtd
+	sudo systemctl restart libvirtd
+	# sudo gpasswd -a $USER libvirt
+
 	sudo dnf -y install kubernetes
-	sudo dnf -y install podman podman-compose
+	sudo dnf -y install podman podman-compose libvirt-client
 
 	# Minicube
 	MINIKUBE_RELEASE=1.7.2
 	wget -c https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_RELEASE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm -P ${CACHE}
-	wget -c https://github.com/kubernetes/minikube/releases/download/v${MINICUBE_RELEASE}/docker-machine-driver-kvm2 -P ${CACHE}
 	sudo rpm -ivh ${CACHE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm
+	##wget -c https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_RELEASE}/docker-machine-driver-kvm2 -P ${CACHE} -O docker-machine-driver-kvm2_v${MINIKUBE_RELEASE}
+	##sudo cp ${CACHE}/docker-machine-driver-kvm2_v${MINIKUBE_RELEASE} /usr/local/bin/
+	##sudo chmod +x /usr/local/bin/docker-machine-driver-kvm2_v${MINIKUBE_RELEASE}
+}
 
-	#sudo dnf -y install nats-server
+function server_package() {
+	sudo dnf -y install nats-server
 	#sudo dnf -y install golang-github-nats-io-streaming-server
 }
 
@@ -338,6 +347,7 @@ function httpd_service() {
 ## systools_package
 ## devtools_package
 ## server_package
+## container_package
 ## graphics_package
 ## internet_package
 ## python_packages
