@@ -259,7 +259,8 @@ export ANDROID_NDK_ROOT=\$ANDROID_HOME/ndk-bundle
 export PATH=\$PATH:\$ANDROID_HOME/platform-tools/
 EOF
 
-        sudo ln -sf /opt/android-studio/android-studio.desktop /usr/share/applications/android-studio.desktop
+        #sudo ln -sf /opt/android-studio/android-studio.desktop /usr/share/applications/android-studio.desktop
+        sudo cp /opt/android-studio/android-studio.desktop /usr/share/applications/android-studio.desktop
 	source /etc/profile.d/android-sdk.sh
 }
 
