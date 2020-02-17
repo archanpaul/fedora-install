@@ -61,9 +61,6 @@ function container_package() {
 	MINIKUBE_RELEASE=1.7.2
 	wget -c https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_RELEASE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm -P ${CACHE}
 	sudo rpm -ivh ${CACHE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm
-
-	# Kind
-	## GO111MODULE="on" go get sigs.k8s.io/kind@v0.7.0
 }
 
 function server_package() {
@@ -103,26 +100,15 @@ EOF
         source /etc/profile.d/go-packages.sh
 
 	## VSCode go plugin dependency
-	go get -u -v github.com/stamblerre/gocode
-	go get -u -v github.com/stamblerre/gocode/...
-	go get -u -v github.com/ramya-rao-a/go-outline
-	go get -u -v github.com/acroca/go-symbols
-	go get -u -v github.com/uudashr/gopkgs
-	go get -u -v golang.org/x/tools/cmd/guru
-	go get -u -v golang.org/x/tools/cmd/gorename
-	go get -u -v golang.org/x/tools/cmd/goimports
-	go get -u -v github.com/zmb3/gogetdoc
-	go get -u -v golang.org/x/lint/golint
-	go get -u -v github.com/derekparker/delve/tree/master/cmd/dlv
-	go get -u -v github.com/fatih/gomodifytags
-	go get -u -v github.com/haya14busa/goplay/...
-	go get -u -v github.com/josharian/impl
-	go get -u -v github.com/tylerb/gotype-live
-	go get -u -v github.com/cweill/gotests/...
-	go get -u -v github.com/davidrjenni/reftools/tree/master/cmd/fillstruct
-	go get -u -v github.com/rogpeppe/godef
-	go get -u -v github.com/uudashr/gopkgs/cmd/gopkgs
-	go get -u -v github.com/sqs/goreturns
+	go get -v github.com/ramya-rao-a/go-outline
+	go get -v github.com/mdempsky/gocode
+	go get -v github.com/stamblerre/gocode
+	go get -v github.com/uudashr/gopkgs/cmd/gopkgs
+	go get -v github.com/ramya-rao-a/go-outline
+	go get -v github.com/rogpeppe/godef
+	go get -v github.com/sqs/goreturns
+	go get -v golang.org/x/lint/golint
+	go get -v golang.org/x/tools/gopls
 
 	## Dev tools
 	go get -u -v github.com/cespare/reflex
@@ -146,7 +132,6 @@ EOF
 	go get -u -v go.mongodb.org/mongo-driver
 	go get -u -v go.mongodb.org/mongo-driver/bson 
 	go get -u -v go.mongodb.org/mongo-driver/mongo/options
-	go get -u -v github.com/lib/pq
 	## protobuf
 	go get -u -v github.com/golang/protobuf/protoc-gen-go
 	## gRPC
@@ -158,7 +143,7 @@ EOF
 	##go get -u -v github.com/nats-io/nats.go
 	##go get -u -v github.com/nats-io/nats-server
 	##go get -u -v github.com/nats-io/nats-streaming-server
-	go get github.com/liftbridge-io/go-liftbridge
+	#go get github.com/liftbridge-io/go-liftbridge
 	# Go CDK
 	go get -u -v gocloud.dev
 	# UUID
@@ -232,9 +217,12 @@ function vscode_package() {
     		#"terminal.integrated.cursorBlinking": true,
     		#"terminal.integrated.fontSize": 12,
     		#"editor.minimap.enabled": false,
-    		#"window.zoomLevel": 0,
+    		#"window.zoomLevel": 0
     		#//"window.menuBarVisibility": "toggle"
 	#}
+
+	#sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
+	#sudo sysctl -p
 }
 
 function android-studio_package() {
@@ -313,6 +301,8 @@ EOF
 	source /etc/profile.d/flutter-sdk.sh
 
 	#flutter doctor
+	#flutter doctor --android-licenses
+	#flutter config --no-analytics
 	#flutter precache
 	#pub global activate protoc_plugin
 }
