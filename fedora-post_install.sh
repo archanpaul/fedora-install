@@ -16,6 +16,8 @@ function update_hostname() {
 }
 
 function systools_package() {
+	sudo dnf -y install grubby
+
 	sudo dnf -y install mc vim
 	sudo dnf -y install sysstat htop glances
 	sudo dnf -y install nmap traceroute
@@ -44,8 +46,16 @@ function container_package() {
 	sudo systemctl restart libvirtd
 	# sudo gpasswd -a $USER libvirt
 
+	sudo dnf -y install kubernetes
+	sudo dnf -y install kubernetes-client
 	sudo dnf -y install libvirt-client
-	sudo dnf -y install podman podman-compose podman-docker
+	sudo dnf -y install podman podman-compose
+
+	# switch cgroup v1 to use docker via moby-engine
+	## sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
+	## # sudo grubby --update-kernel=ALL --remove-args="systemd.unified_cgroup_hierarchy=0"
+	## sudo systemctl enable -now docker
+	## sudo chmod 666 /var/run/docker.sock
 
 	# Minicube
 	MINIKUBE_RELEASE=1.7.2
@@ -53,7 +63,7 @@ function container_package() {
 	sudo rpm -ivh ${CACHE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm
 
 	# Kind
-	GO111MODULE="on" go get sigs.k8s.io/kind@v0.7.0
+	## GO111MODULE="on" go get sigs.k8s.io/kind@v0.7.0
 }
 
 function server_package() {
@@ -69,8 +79,8 @@ function internet_package() {
 	sudo dnf -y install chromium thunderbird transmission
 	sudo dnf -y install youtube-dl
 
-	#dnf config-manager --set-enabled google-chrome
-	dnf install google-chrome-stable
+	dnf config-manager --set-enabled google-chrome
+	sudo dnf -y install google-chrome-stable
 
 	## Enable widevine in Google-Chrome
 	# cp libwidevinecdm.so /usr/lib64/chromium-plugins/
@@ -315,20 +325,26 @@ function python_packages() {
 
 function gnome_packages() {
 	sudo dnf -y install gnome-tweaks
-	sudo dnf -y install gnome-shell-extension-dash-to-dock
 	sudo dnf -y install gnome-books
 	sudo dnf -y install gtk-murrine-engine gtk2-engines
 	sudo dnf -y install foliate
+
+	sudo dnf -y install gnome-shell-extension-dash-to-dock
+	sudo dnf -y install gnome-shell-extension-gsconnect
+	sudo dnf -y install gnome-shell-extension-screenshot-window-sizer
+	sudo dnf -y install gnome-shell-theme-flat-remix
 }
 
-#RPMFusion
-function rpmfusion_source() {
-	sudo dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-	sudo dnf -y install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+function font_packages() {
+	sudo dnf -y install google-roboto-fonts
+	sudo dnf -y install google-roboto-mono
+	sudo dnf -y install google-roboto-slab
+	sudo dnf -y install google-roboto-condensed-fonts
 }
-function rpmfusion_packages() {
-	sudo dnf -y install gstreamer1-libav
-	sudo dnf -y install ffmpeg
+
+function codec_packages() {
+	sudo dnf -y install openh264
+	sudo dnf -y install gstreamer1-plugin-openh264 mozilla-openh264
 }
 
 function httpd_service() {
@@ -338,6 +354,17 @@ function httpd_service() {
         sudo chcon -R --reference=/var/www/html /home/public
         sudo systemctl enable httpd
         sudo systemctl restart httpd
+}
+
+function firewall_service() {
+	sudo dnf -y install firewalld
+
+	sudo firewall-cmd --add-port=80/tcp --permanent
+	sudo firewall-cmd --add-port=8080/tcp --permanent
+	sudo firewall-cmd --reload
+
+	sudo systemctl enable firewalld
+	sudo systemctl restart firewalld
 }
 
 # update_hostname
@@ -352,11 +379,12 @@ function httpd_service() {
 ## internet_package
 ## python_packages
 ## gnome_packages
-## rpmfusion_source
-## rpmfusion_packages
 ## vscode_package
 ## android-studio_package
 ## dart-sdk_package
 ## flutter-sdk_package
 ## go_packages
+## font_packages
+## codec_packages
 ## httpd_service
+## firewall_service
