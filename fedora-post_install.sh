@@ -49,7 +49,7 @@ function container_package() {
 	sudo dnf -y install kubernetes
 	sudo dnf -y install kubernetes-client
 	sudo dnf -y install libvirt-client
-	sudo dnf -y install podman
+	sudo dnf -y install podman slirp4netns
 	sudo dnf -y install buildah skopeo runc
 	sudo dnf -y install podman-compose
 
