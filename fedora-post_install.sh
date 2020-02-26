@@ -41,15 +41,18 @@ function devtools_package() {
 }
 
 function container_package() {
-	sudo dnf -y install @virtualization
-	sudo systemctl enable libvirtd
-	sudo systemctl restart libvirtd
-	# sudo gpasswd -a $USER libvirt
+	## sudo dnf -y install @virtualization
+	## sudo systemctl enable libvirtd
+	## sudo systemctl restart libvirtd
+	## sudo gpasswd -a $USER libvirt
 
 	sudo dnf -y install kubernetes
 	sudo dnf -y install kubernetes-client
 	sudo dnf -y install libvirt-client
-	sudo dnf -y install podman podman-compose
+	sudo dnf -y install podman
+	sudo dnf -y install buildah skopeo runc
+	sudo dnf -y install podman-compose
+
 
 	# switch cgroup v1 to use docker via moby-engine
 	## sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
@@ -58,9 +61,9 @@ function container_package() {
 	## sudo chmod 666 /var/run/docker.sock
 
 	# Minicube
-	MINIKUBE_RELEASE=1.7.2
-	wget -c https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_RELEASE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm -P ${CACHE}
-	sudo rpm -ivh ${CACHE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm
+	## MINIKUBE_RELEASE=1.7.2
+	## wget -c https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_RELEASE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm -P ${CACHE}
+	## sudo rpm -ivh ${CACHE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm
 }
 
 function server_package() {
