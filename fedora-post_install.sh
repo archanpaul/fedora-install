@@ -350,7 +350,7 @@ function httpd_service() {
         sudo systemctl restart httpd
 }
 
-function firewall_service() {
+function security_service() {
 	sudo dnf -y install firewalld
 
 	sudo firewall-cmd --add-port=80/tcp --permanent
@@ -359,6 +359,15 @@ function firewall_service() {
 
 	sudo systemctl enable firewalld
 	sudo systemctl restart firewalld
+
+	sudo dnf -y install aide
+	sudo aide --init
+	#sudo aide --update
+	#sudo mv /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
+	#sudo aide --check
+
+	## /etc/crontab
+	## 05 4 * * * root /usr/sbin/aide --check
 }
 
 # update_hostname
@@ -381,4 +390,4 @@ function firewall_service() {
 ## font_packages
 ## codec_packages
 ## httpd_service
-## firewall_service
+## security_service
