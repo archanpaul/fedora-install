@@ -53,6 +53,10 @@ function container_package() {
 	sudo dnf -y install buildah skopeo runc
 	sudo dnf -y install podman-compose
 
+	# Minicube
+	MINIKUBE_RELEASE=1.7.3
+	wget -c https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_RELEASE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm -P ${CACHE}
+	sudo rpm -ivh ${CACHE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm
 
 	# switch cgroup v1 to use docker via moby-engine
 	## sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
@@ -60,10 +64,6 @@ function container_package() {
 	## sudo systemctl enable -now docker
 	## sudo chmod 666 /var/run/docker.sock
 
-	# Minicube
-	## MINIKUBE_RELEASE=1.7.2
-	## wget -c https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_RELEASE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm -P ${CACHE}
-	## sudo rpm -ivh ${CACHE}/minikube-${MINIKUBE_RELEASE}-0.x86_64.rpm
 }
 
 function server_package() {
@@ -322,6 +322,7 @@ function gnome_packages() {
 	sudo dnf -y install gnome-books
 	sudo dnf -y install gtk-murrine-engine gtk2-engines
 	sudo dnf -y install foliate
+	sudo dnf -y install fondo
 
 	sudo dnf -y install gnome-shell-extension-dash-to-dock
 	sudo dnf -y install gnome-shell-extension-gsconnect
