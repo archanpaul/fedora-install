@@ -41,7 +41,7 @@ function devtools_package() {
 }
 
 function container_package() {
-	## sudo dnf -y install @virtualization
+	sudo dnf -y group install virtualization
 	## sudo systemctl enable libvirtd
 	## sudo systemctl restart libvirtd
 	## sudo gpasswd -a $USER libvirt
