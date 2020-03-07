@@ -46,16 +46,29 @@ function container_package() {
     ## sudo systemctl restart libvirtd
     ## sudo gpasswd -a $USER libvirt
 
-    sudo dnf -y install kubernetes
-    sudo dnf -y install podman 
-    #sudo dnf -y install slirp4netns buildah skopeo runc
-    #sudo dnf -y install podman-compose
+    _kubernetes_packages
+    _vagrant_packages
 
     # switch cgroup v1 to use docker via moby-engine
     ## sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
     ## # sudo grubby --update-kernel=ALL --remove-args="systemd.unified_cgroup_hierarchy=0"
     ## sudo systemctl enable -now docker
     ## sudo chmod 666 /var/run/docker.sock
+}
+
+function _kubernetes_packages() {
+    sudo dnf -y install kubernetes
+    sudo dnf -y install podman 
+    #sudo dnf -y install slirp4netns buildah skopeo runc
+    #sudo dnf -y install podman-compose
+}
+
+function _vagrant_packages() {
+    VAGRANT_VERSION=2.2.7
+    sudo rpm -ivh https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.rpm
+    sudo dnf -y install libvirt-devel ruby-devel
+
+    # vagrant plugin install vagrant-libvirt
 }
 
 function server_package() {
