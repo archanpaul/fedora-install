@@ -42,12 +42,13 @@ function devtools_package() {
 
 function container_package() {
     sudo dnf -y install @virtualization
+    sudo dnf -y install libvirt-devel
     ## sudo systemctl enable libvirtd
     ## sudo systemctl restart libvirtd
     ## sudo gpasswd -a $USER libvirt
 
     _kubernetes_packages
-    _vagrant_packages
+    #_vagrant_packages
 
     # switch cgroup v1 to use docker via moby-engine
     ## sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
@@ -64,10 +65,12 @@ function _kubernetes_packages() {
 }
 
 function _vagrant_packages() {
+    sudo dnf install libvirt vagrant vagrant-libvirt vagrant-sshfs
+
+    ## custom
     VAGRANT_VERSION=2.2.7
     sudo rpm -ivh https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.rpm
     sudo dnf -y install libvirt-devel ruby-devel
-
     # vagrant plugin install vagrant-libvirt
 }
 
@@ -190,6 +193,7 @@ function vscode_package() {
     # code --install-extension humao.rest-client
     # code --install-extension mhutchie.git-graph
     # code --install-extension ms-azuretools.vscode-docker
+    # code --install-extension ms-python.python
     # code --install-extension ms-vscode-remote.remote-containers
     # code --install-extension ms-vscode-remote.remote-ssh
     # code --install-extension ms-vscode-remote.remote-ssh-edit
@@ -200,35 +204,36 @@ function vscode_package() {
     # code --install-extension thenikso.github-plus-theme
     # code --install-extension zxh404.vscode-proto3
 
+
     ## Settings
     # {
-    # 	"workbench.startupEditor": "newUntitledFile",
-    # 	"telemetry.enableCrashReporter": false,
-    # 	"telemetry.enableTelemetry": false,
-    # 	"files.autoSave": "afterDelay",
-    # 	"files.autoSaveDelay": 10000,
-    # 	"workbench.colorTheme": "One Monokai",
-    # 	"editor.fontFamily": "'Fire Code Medium','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    # 	"editor.wordWrap": "on",
-    # 	"editor.minimap.maxColumn": 40,
-    # 	"editor.formatOnPaste": true,
-    # 	"editor.formatOnSave": true,
-    # 	"editor.formatOnType": true,
-    # 	"go.autocompleteUnimportedPackages": true,
-    # 	"go.coverOnSingleTestFile": true,
-    # 	"go.gotoSymbol.includeImports": true,
-    # 	"go.buildFlags": [
-    # 		"-v"
-    # 	],
-    # 	"go.testFlags": [
-    # 		"-count=1"
-    # 	],
-    # 	"go.vetFlags": [
-    # 		"-composites=false"
-    # 	],
-    # 	"go.formatTool": "goimports",
-    # 	"terminal.integrated.copyOnSelection": true,
-    # 	"terminal.integrated.fontSize": 12
+    #         "workbench.startupEditor": "newUntitledFile",
+    #         "telemetry.enableCrashReporter": false,
+    #         "telemetry.enableTelemetry": false,
+    #         "files.autoSave": "afterDelay",
+    #         "files.autoSaveDelay": 10000,
+    #         "workbench.colorTheme": "GitHub Plus",
+    #         "editor.fontFamily": "'Fira Code Medium','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    #         "editor.wordWrap": "on",
+    #         "editor.minimap.maxColumn": 40,
+    #         "editor.formatOnPaste": true,
+    #         "editor.formatOnSave": true,
+    #         "editor.formatOnType": true,
+    #         "go.autocompleteUnimportedPackages": true,
+    #         "go.coverOnSingleTestFile": true,
+    #         "go.gotoSymbol.includeImports": true,
+    #         "go.buildFlags": [
+    #                 "-v"
+    #         ],
+    #         "go.testFlags": [
+    #                 "-count=1"
+    #         ],
+    #         "go.vetFlags": [
+    #                 "-composites=false"
+    #         ],
+    #         "go.formatTool": "goimports",
+    #         "terminal.integrated.copyOnSelection": true,
+    #         "terminal.integrated.fontSize": 12
     # }
 
     #sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
@@ -320,6 +325,7 @@ EOF
 
 function python_packages() {
     sudo dnf -y install python3-virtualenv
+    sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy
     sudo dnf -y install python3-matplotlib
 }
