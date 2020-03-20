@@ -356,6 +356,25 @@ function codec_packages() {
     sudo dnf -y install gstreamer1-plugin-openh264 mozilla-openh264
 }
 
+function gcloud_package() {
+    sudo rm -rf /opt/google-cloud-sdk
+    sudo mkdir -p /opt/google-cloud-sdk
+
+    GOOGLE_CLOUD_SDK_RELEASE="285.0.1"
+    wget -c https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${GOOGLE_CLOUD_SDK_RELEASE}-linux-x86_64.tar.gz -P ${CACHE}
+
+    sudo tar zxfv ${CACHE}/google-cloud-sdk-${GOOGLE_CLOUD_SDK_RELEASE}-linux-x86_64.tar.gz -C /opt/
+
+    sudo chown -R root:wheel /opt/google-cloud-sdk
+    sudo chmod -R u+rwX,go+rwX,o-w /opt/google-cloud-sdk
+
+    cat <<EOF | sudo tee /etc/profile.d/google-cloud-sdk.sh
+export PATH=\$PATH:/opt/google-cloud-sdk/bin
+EOF
+
+    source /etc/profile.d/google-cloud-sdk.sh
+}
+
 function httpd_service() {
         sudo mkdir -p /home/public
         sudo chmod 775 /home/public
@@ -405,5 +424,6 @@ function security_service() {
 ## go_tools_libs_packages
 ## font_packages
 ## codec_packages
+gcloud_package
 ## httpd_service
 ## security_service
