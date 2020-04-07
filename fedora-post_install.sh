@@ -207,13 +207,13 @@ function vscode_package() {
 
     ## Settings
     # {
-    #         "workbench.startupEditor": "newUntitledFile",
     #         "telemetry.enableCrashReporter": false,
     #         "telemetry.enableTelemetry": false,
     #         "files.autoSave": "afterDelay",
     #         "files.autoSaveDelay": 10000,
-    #         "workbench.colorTheme": "GitHub Plus",
-    #         "editor.fontFamily": "'Fira Code Medium','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    #         "workbench.colorTheme": "One Monokai",
+    #         "editor.fontFamily": "'Fira Code Medium','Droid Sans Mono'",
+    #         "editor.fontLigatures": true,
     #         "editor.wordWrap": "on",
     #         "editor.minimap.maxColumn": 40,
     #         "editor.formatOnPaste": true,
@@ -270,7 +270,7 @@ EOF
     cat <<EOF | sudo tee /etc/profile.d/android-sdk.sh
 export ANDROID_HOME=/opt/android-sdk/
 export ANDROID_SDK_ROOT=\$ANDROID_HOME
-export ANDROID_NDK_ROOT=\$ANDROID_HOME/ndk-bundle
+export ANDROID_NDK_ROOT=\$ANDROID_HOME/ndk
 export PATH=\$PATH:\$ANDROID_HOME/platform-tools/
 EOF
 
@@ -406,7 +406,7 @@ function security_service() {
 
 # update_hostname
 
-## fedora_upgrade
+fedora_upgrade
 
 ## systools_package
 ## devtools_package
@@ -424,6 +424,6 @@ function security_service() {
 ## go_tools_libs_packages
 ## font_packages
 ## codec_packages
-gcloud_package
+## gcloud_package
 ## httpd_service
 ## security_service
