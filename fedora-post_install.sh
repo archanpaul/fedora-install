@@ -37,7 +37,11 @@ function devtools_package() {
 
     sudo dnf -y install git
 
-      sudo dnf -y install java-openjdk-devel
+    sudo dnf -y install java-openjdk-devel
+}
+
+function jdk_package() {
+    sudo dnf -y install java-latest-openjdk java-latest-openjdk-devel
 }
 
 function container_package() {
@@ -410,6 +414,7 @@ fedora_upgrade
 
 ## systools_package
 ## devtools_package
+## jdk_package
 ## server_package
 ## container_package
 ## graphics_package
