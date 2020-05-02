@@ -245,8 +245,8 @@ function vscode_package() {
 }
 
 function android-studio_package() {
-    ANDROID_STUDIO_RELEASE=3.6.1.0
-    ANDROID_STUDIO_VERSION=192.6241897
+    ANDROID_STUDIO_RELEASE=3.6.3.0
+    ANDROID_STUDIO_VERSION=192.6392135
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -284,7 +284,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/2.7.0/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
+    wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/2.7.2/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
     sudo rm -rf /opt/dart-sdk
 
     sudo unzip ${CACHE}/dartsdk-linux-x64-release.zip -d /opt/
@@ -344,7 +344,6 @@ function gnome_packages() {
     sudo dnf -y install gnome-shell-extension-dash-to-dock
     sudo dnf -y install gnome-shell-extension-gsconnect
     sudo dnf -y install gnome-shell-extension-screenshot-window-sizer
-    sudo dnf -y install gnome-shell-theme-flat-remix
 }
 
 function font_packages() {
@@ -352,6 +351,14 @@ function font_packages() {
     sudo dnf -y install google-roboto-mono
     sudo dnf -y install google-roboto-slab
     sudo dnf -y install google-roboto-condensed-fonts
+}
+
+function libreoffice_packages() {
+    sudo dnf -y install libreoffice-writer
+    sudo dnf -y install libreoffice-calc
+    sudo dnf -y install libreoffice-impress
+    sudo dnf -y install libreoffice-draw
+    sudo dnf -y install libreoffice-math
 }
 
 function codec_packages() {
@@ -430,5 +437,6 @@ fedora_upgrade
 ## font_packages
 ## codec_packages
 ## gcloud_package
+## libreoffice_packages
 ## httpd_service
 ## security_service
