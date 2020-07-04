@@ -340,6 +340,9 @@ function gnome_packages() {
     sudo dnf -y install gtk-murrine-engine gtk2-engines
     sudo dnf -y install foliate
     sudo dnf -y install fondo
+    sudo dnf -y install shotwell
+    sudo dnf -y install gnome-sound-recorder easytag
+    sudo dnf -y install pitivi snappy
 
     sudo dnf -y install gnome-shell-extension-dash-to-dock
     sudo dnf -y install gnome-shell-extension-gsconnect
@@ -384,6 +387,21 @@ export PATH=\$PATH:/opt/google-cloud-sdk/bin
 EOF
 
     source /etc/profile.d/google-cloud-sdk.sh
+}
+
+function mongodb_package() {
+	  MONGODB_VERSION="4.2"
+    cat <<EOF | sudo tee /etc/yum.repos.d/mongodb.repo
+[mongodb-org-${MONGODB_VERSION}]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/${MONGODB_VERSION}/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-${MONGODB_VERSION}.asc
+EOF
+	  sudo dnf -y install mongodb-org
+		# sudo systemctl enable mongod.service
+		# sudo systemctl start mongod.service
 }
 
 function httpd_service() {
@@ -438,5 +456,6 @@ fedora_upgrade
 ## codec_packages
 ## gcloud_package
 ## libreoffice_packages
+## mongodb_package
 ## httpd_service
 ## security_service
