@@ -399,9 +399,16 @@ gpgcheck=1
 enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-${MONGODB_VERSION}.asc
 EOF
-	  sudo dnf -y install mongodb-org
-		# sudo systemctl enable mongod.service
-		# sudo systemctl start mongod.service
+    sudo dnf -y install mongodb-org
+    
+    ## for changing dbPath
+    sudo cp /etc/mongo.conf /etc/mongo.conf.orig
+    ## update dbPath at /etc/mongo.conf
+    # mkdir -p /home/databases/mongo/
+    # chown -R mongod:mongod /home/databases/mongo/
+    # chcon -Rv --type=mongod_var_lib_t /home/databases/mongo
+    # sudo systemctl enable mongod.service
+    # sudo systemctl start mongod.service
 }
 
 function httpd_service() {
