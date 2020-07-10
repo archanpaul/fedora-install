@@ -211,34 +211,45 @@ function vscode_package() {
 
     ## Settings
     # {
-    #         "telemetry.enableCrashReporter": false,
-    #         "telemetry.enableTelemetry": false,
-    #         "files.autoSave": "afterDelay",
-    #         "files.autoSaveDelay": 10000,
-    #         "workbench.colorTheme": "One Monokai",
-    #         "editor.fontFamily": "'Fira Code Medium','Droid Sans Mono'",
-    #         "editor.fontLigatures": true,
-    #         "editor.wordWrap": "on",
-    #         "editor.minimap.maxColumn": 40,
-    #         "editor.formatOnPaste": true,
-    #         "editor.formatOnSave": true,
-    #         "editor.formatOnType": true,
-    #         "go.autocompleteUnimportedPackages": true,
-    #         "go.coverOnSingleTestFile": true,
-    #         "go.gotoSymbol.includeImports": true,
-    #         "go.buildFlags": [
-    #                 "-v"
-    #         ],
-    #         "go.testFlags": [
-    #                 "-count=1"
-    #         ],
-    #         "go.vetFlags": [
-    #                 "-composites=false"
-    #         ],
-    #         "go.formatTool": "goimports",
-    #         "terminal.integrated.copyOnSelection": true,
-    #         "terminal.integrated.fontSize": 12
-    # }
+	#     "telemetry.enableCrashReporter": false,
+	#     "telemetry.enableTelemetry": false,
+	#     "files.autoSave": "afterDelay",
+	#     "files.autoSaveDelay": 10000,
+	#     "workbench.colorTheme": "One Monokai",
+	#     "editor.fontFamily": "'Fira Code Medium','Droid Sans Mono'",
+	#     "editor.fontLigatures": true,
+	#     "editor.wordWrap": "on",
+	#     "editor.minimap.maxColumn": 40,
+	#     "editor.formatOnPaste": true,
+	#     "editor.formatOnSave": true,
+	#     "editor.formatOnType": true,
+	#     "editor.rulers": [
+	#         80
+	#     ],
+	#     "terminal.integrated.copyOnSelection": true,
+	#     "terminal.integrated.fontSize": 12,
+	#     "debug.openDebug": "openOnDebugBreak",
+	#     "go.autocompleteUnimportedPackages": true,
+	#     "go.coverOnSingleTestFile": true,
+	#     "go.gotoSymbol.includeImports": true,
+	#     "go.buildFlags": [
+	#         "-v"
+	#     ],
+	#     "go.testFlags": [
+	#         "-count=1"
+	#     ],
+	#     "go.vetFlags": [
+	#         "-composites=false"
+	#     ],
+	#     "go.formatTool": "goimports",
+	#     "[dart]": {
+	#         "editor.selectionHighlight": false,
+	#         "editor.suggest.snippetsPreventQuickSuggestions": false,
+	#         "editor.suggestSelection": "first",
+	#         "editor.tabCompletion": "onlySnippets",
+	#         "editor.wordBasedSuggestions": false,
+	#     }
+	# }
 
     #sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
     #sudo sysctl -p
