@@ -256,8 +256,8 @@ function vscode_package() {
 }
 
 function android-studio_package() {
-    ANDROID_STUDIO_RELEASE=3.6.3.0
-    ANDROID_STUDIO_VERSION=192.6392135
+    ANDROID_STUDIO_RELEASE=4.0.0.16
+    ANDROID_STUDIO_VERSION=193.6514223
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -454,7 +454,7 @@ function security_service() {
 
 # update_hostname
 
-fedora_upgrade
+## fedora_upgrade
 
 ## systools_package
 ## devtools_package
