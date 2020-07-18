@@ -452,6 +452,34 @@ function security_service() {
     ## 05 4 * * * root /usr/sbin/aide --check
 }
 
+function chroot_os() {
+    sudo dnf -y install schroot debootstrap
+    
+    CHROOT_FOLDER=/home/chroot_env/
+    
+    sudo mkdir -p ${CHROOT_FOLDER}
+    sudo chmod 755 ${CHROOT_FOLDER}  
+    sudo chown -R root:wheel ${CHROOT_FOLDER}
+
+    # Ubuntu
+    UBUNTU_DISTRO=focal
+    UBUNTU_DISTRO_FOLDER=${CHROOT_FOLDER}/ubuntu_${UBUNTU_DISTRO}
+    sudo mkdir -p ${UBUNTU_DISTRO_FOLDER}
+    sudo chmod 755 ${UBUNTU_DISTRO_FOLDER}
+    cat <<EOF | sudo tee /etc/schroot/chroot.d/${UBUNTU_DISTRO}.conf
+[${UBUNTU_DISTRO}]
+description=Ubuntu ${UBUNTU_DISTRO}
+directory=${UBUNTU_DISTRO_FOLDER}
+type=directory
+users=arp
+groups=wheel
+root-groups=wheel
+EOF
+
+    sudo debootstrap --arch=amd64 focal ${UBUNTU_DISTRO_FOLDER}
+    # schroot -c focal -u root
+}
+
 # update_hostname
 
 ## fedora_upgrade
@@ -478,3 +506,4 @@ function security_service() {
 ## mongodb_package
 ## httpd_service
 ## security_service
+## chroot_os
