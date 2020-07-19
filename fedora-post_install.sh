@@ -296,7 +296,9 @@ EOF
 
 function dart-sdk_package() {
     DART_VERSION="2.8.4"
-    wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/i${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
+    
+    sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
+    wget https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
     sudo rm -rf /opt/dart-sdk
 
     sudo unzip ${CACHE}/dartsdk-linux-x64-release.zip -d /opt/
