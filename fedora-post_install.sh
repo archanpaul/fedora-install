@@ -191,65 +191,60 @@ function vscode_package() {
     # code --list-extensions | xargs -L 1 echo code --install-extension
 
     ## vscode install extensions
-    # code --install-extension azemoh.one-monokai
     # code --install-extension Dart-Code.dart-code
     # code --install-extension Dart-Code.flutter
-    # code --install-extension humao.rest-client
+    # code --install-extension GitHub.github-vscode-theme
+    # code --install-extension GitHub.vscode-pull-request-github
+    # code --install-extension golang.go
     # code --install-extension mhutchie.git-graph
-    # code --install-extension ms-azuretools.vscode-docker
     # code --install-extension ms-python.python
-    # code --install-extension ms-vscode-remote.remote-containers
-    # code --install-extension ms-vscode-remote.remote-ssh
-    # code --install-extension ms-vscode-remote.remote-ssh-edit
-    # code --install-extension ms-vscode-remote.remote-wsl
-    # code --install-extension ms-vscode-remote.vscode-remote-extensionpack
-    # code --install-extension ms-vscode.Go
+    # code --install-extension ms-vscode.cpptools
     # code --install-extension Nash.awesome-flutter-snippets
-    # code --install-extension thenikso.github-plus-theme
-    # code --install-extension zxh404.vscode-proto3
-
 
     ## Settings
     # {
-	#     "telemetry.enableCrashReporter": false,
-	#     "telemetry.enableTelemetry": false,
-	#     "files.autoSave": "afterDelay",
-	#     "files.autoSaveDelay": 10000,
-	#     "workbench.colorTheme": "One Monokai",
-	#     "editor.fontFamily": "'Fira Code Medium','Droid Sans Mono'",
-	#     "editor.fontLigatures": true,
-	#     "editor.wordWrap": "on",
-	#     "editor.minimap.maxColumn": 40,
-	#     "editor.formatOnPaste": true,
-	#     "editor.formatOnSave": true,
-	#     "editor.formatOnType": true,
-	#     "editor.rulers": [
-	#         80
-	#     ],
-	#     "terminal.integrated.copyOnSelection": true,
-	#     "terminal.integrated.fontSize": 12,
-	#     "debug.openDebug": "openOnDebugBreak",
-	#     "go.autocompleteUnimportedPackages": true,
-	#     "go.coverOnSingleTestFile": true,
-	#     "go.gotoSymbol.includeImports": true,
-	#     "go.buildFlags": [
-	#         "-v"
-	#     ],
-	#     "go.testFlags": [
-	#         "-count=1"
-	#     ],
-	#     "go.vetFlags": [
-	#         "-composites=false"
-	#     ],
-	#     "go.formatTool": "goimports",
-	#     "[dart]": {
-	#         "editor.selectionHighlight": false,
-	#         "editor.suggest.snippetsPreventQuickSuggestions": false,
-	#         "editor.suggestSelection": "first",
-	#         "editor.tabCompletion": "onlySnippets",
-	#         "editor.wordBasedSuggestions": false,
-	#     }
-	# }
+    #     "workbench.startupEditor": "newUntitledFile",
+    #     "telemetry.enableCrashReporter": false,
+    #     "telemetry.enableTelemetry": false,
+    #     "files.autoSave": "afterDelay",
+    #     "files.autoSaveDelay": 10000,
+    #     "workbench.colorTheme": "GitHub Dark",
+    #     "editor.fontFamily": "'Fira Code Medium','Droid Sans Mono'",
+    #     "editor.lineHeight": 20,
+    #     "editor.fontSize": 15,
+    #     "editor.fontLigatures": true,
+    #     "editor.wordWrap": "on",
+    #     "editor.minimap.maxColumn": 40,
+    #     "editor.formatOnPaste": true,
+    #     "editor.formatOnSave": true,
+    #     "editor.formatOnType": true,
+    #     "editor.rulers": [
+    #         80
+    #     ],
+    #     "terminal.integrated.copyOnSelection": true,
+    #     "terminal.integrated.fontSize": 12,
+    #     "debug.openDebug": "openOnDebugBreak",
+    #     "go.autocompleteUnimportedPackages": true,
+    #     "go.coverOnSingleTestFile": true,
+    #     "go.gotoSymbol.includeImports": true,
+    #     "go.buildFlags": [
+    #         "-v"
+    #     ],
+    #     "go.testFlags": [
+    #         "-count=1"
+    #     ],
+    #     "go.vetFlags": [
+    #         "-composites=false"
+    #     ],
+    #     "go.formatTool": "goimports",
+    #     "[dart]": {
+    #         "editor.selectionHighlight": false,
+    #         "editor.suggest.snippetsPreventQuickSuggestions": false,
+    #         "editor.suggestSelection": "first",
+    #         "editor.tabCompletion": "onlySnippets",
+    #         "editor.wordBasedSuggestions": false,
+    #     }
+    # }
 
     #sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
     #sudo sysctl -p
