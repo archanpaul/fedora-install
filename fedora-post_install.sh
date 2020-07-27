@@ -26,7 +26,7 @@ function systools_package() {
 }
 
 function devtools_package() {
-    sudo dnf -y install autoconf automake make patch pkgconf libtool
+    sudo dnf -y install autoconf automake make cmake patch pkgconf libtool
     sudo dnf -y install strace byacc elfutils ltrace strace valgrind 
 
     sudo dnf -y install binutils bison flex gcc gcc-c++ gdb
