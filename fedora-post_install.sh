@@ -15,6 +15,10 @@ function update_hostname() {
     hostnamectl set-hostname --static ${HOSTNAME}
 }
 
+function rpmfusion_repo() {
+    sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+}
+
 function systools_package() {
     sudo dnf -y install grubby
 
@@ -194,15 +198,14 @@ function vscode_package() {
     # code --install-extension Dart-Code.dart-code
     # code --install-extension Dart-Code.flutter
     # code --install-extension GitHub.github-vscode-theme
-    # code --install-extension GitHub.vscode-pull-request-github
     # code --install-extension golang.go
     # code --install-extension mhutchie.git-graph
     # code --install-extension ms-python.python
     # code --install-extension ms-vscode.cpptools
-    # code --install-extension Nash.awesome-flutter-snippets
 
     ## Settings
     # {
+    #     "window.titleBarStyle": "custom",
     #     "workbench.startupEditor": "newUntitledFile",
     #     "telemetry.enableCrashReporter": false,
     #     "telemetry.enableTelemetry": false,
@@ -420,6 +423,51 @@ EOF
     # sudo systemctl start mongod.service
 }
 
+function tizen_sdk() {
+    TIZEN_VERSION="3.7"
+    sudo dnf -y install expect libgnome qemu-user webkit2gtk3 libpng12
+    wget -c http://singapore.sdk-dl.tizen.org/web-ide_Tizen_Studio_${TIZEN_VERSION}_singapore_ubuntu-64.bin -P ${CACHE}
+    export TIZEN_HOME=${HOME}/workspace/cache/tizen.cache/tizen-studio
+    export PATH=${PATH}:${TIZEN_HOME}/ide:${TIZEN_HOME}/tools
+
+    ## diff
+# 62c62
+# <       INSTALLATION_CHECK="procps-ng gettext dbus-libs libcurl expect gtk2 grep zip make libgnome qemu-user webkitgtk libpng12"
+# ---
+# >       INSTALLATION_CHECK="procps-ng gettext dbus-libs libcurl expect gtk2 grep zip make libgnome qemu-user webkit2gtk3 libpng12"
+# 126,132c126,132
+# < OUT_FILE_md5sum=`cat "$OUT_PATH/checksum" | awk '{ print $1 }'`
+# < if [ "${OUT_FILE_md5sum}" != "${ORI_FILE_md5sum}" ]; then
+# <       echo "$CE The download file appears to be corrupted. "
+# <       echo " Please do not attempt to install this archive file. $CN"
+# <       rm -rf ${OUT_PATH}
+# <       exit 1
+# < fi
+# ---
+# > #OUT_FILE_md5sum=`cat "$OUT_PATH/checksum" | awk '{ print $1 }'`
+# > #if [ "${OUT_FILE_md5sum}" != "${ORI_FILE_md5sum}" ]; then
+# > #     echo "$CE The download file appears to be corrupted. "
+# > #     echo " Please do not attempt to install this archive file. $CN"
+# > #     rm -rf ${OUT_PATH}
+# > #     exit 1
+# > #fi
+# 135,139c135,139
+# < if [[ ! -d "${HOME}/.package-manager/jdk" ]]; then
+# <       echo "setting up jdk at ${HOME}/.package-manager/jdk"
+# <       mkdir -p "${HOME}/.package-manager/jdk"
+# <       "${OUT_PATH}/unzip" -qq -a "${OUT_PATH}/tizen-sdk.zip" "jdk/*" -d "${HOME}/.package-manager"
+# < fi
+# ---
+# > #if [[ ! -d "${HOME}/.package-manager/jdk" ]]; then
+# > #     echo "setting up jdk at ${HOME}/.package-manager/jdk"
+# > #     mkdir -p "${HOME}/.package-manager/jdk"
+# > #     "${OUT_PATH}/unzip" -qq -a "${OUT_PATH}/tizen-sdk.zip" "jdk/*" -d "${HOME}/.package-manager"
+# > #fi
+ 
+	export TIZEN_HOME=${HOME}/workspace/cache/tizen.cache/tizen-studio
+	export PATH=$PATH:$TIZEN_HOME/ide:$TIZEN_HOME/tools:$TIZEN_HOME/package-manager
+}
+
 function httpd_service() {
         sudo mkdir -p /home/public
         sudo chmod 775 /home/public
@@ -478,8 +526,9 @@ EOF
 }
 
 # update_hostname
+# rpmfusion_repo
 
-## fedora_upgrade
+# fedora_upgrade
 
 ## systools_package
 ## devtools_package
