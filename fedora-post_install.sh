@@ -44,6 +44,10 @@ function devtools_package() {
     sudo dnf -y install java-openjdk-devel
 }
 
+function rpm_devtools_package() {
+    sudo dnf -y install fedora-packager fedora-review
+}
+
 function jdk_package() {
     sudo dnf -y install java-latest-openjdk java-latest-openjdk-devel
 }
@@ -425,7 +429,7 @@ EOF
 
 function tizen_sdk() {
     TIZEN_VERSION="3.7"
-    sudo dnf -y install expect libgnome qemu-user webkit2gtk3 libpng12
+    sudo dnf -y install expect libgnome qemu-user webkit2gtk3 libpng12 SDL
     wget -c http://singapore.sdk-dl.tizen.org/web-ide_Tizen_Studio_${TIZEN_VERSION}_singapore_ubuntu-64.bin -P ${CACHE}
     export TIZEN_HOME=${HOME}/workspace/cache/tizen.cache/tizen-studio
     export PATH=${PATH}:${TIZEN_HOME}/ide:${TIZEN_HOME}/tools
@@ -532,6 +536,7 @@ EOF
 
 ## systools_package
 ## devtools_package
+## rpm_devtools_package
 ## jdk_package
 ## server_package
 ## container_package
