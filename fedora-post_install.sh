@@ -429,10 +429,12 @@ EOF
 
 function tizen_sdk() {
     TIZEN_VERSION="3.7"
-    sudo dnf -y install expect libgnome qemu-user webkit2gtk3 libpng12 SDL
-    wget -c http://singapore.sdk-dl.tizen.org/web-ide_Tizen_Studio_${TIZEN_VERSION}_singapore_ubuntu-64.bin -P ${CACHE}
-    export TIZEN_HOME=${HOME}/workspace/cache/tizen.cache/tizen-studio
-    export PATH=${PATH}:${TIZEN_HOME}/ide:${TIZEN_HOME}/tools
+    sudo dnf -y install expect libgnome qemu-user webkit2gtk3 libpng12 SDL compat-readline6
+    # ln -s /usr/lib64/libbz2.so.1 /usr/lib64/libbz2.so.1.0
+
+    wget -c http://download.tizen.org/sdk/Installer/tizen-studio_${TIZEN_VERSION}/web-cli_Tizen_Studio_${TIZEN_VERSION}_ubuntu-64.bin
+    export TIZEN_HOME=~/workspace/cache/tizen.cache/tizen/
+    export PATH=$PATH:$TIZEN_HOME/tools:$TIZEN_HOME/tools/ide/bin:$TIZEN_HOME/tizen/ide
 
     ## diff
 # 62c62
