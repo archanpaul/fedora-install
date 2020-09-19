@@ -436,6 +436,9 @@ function tizen_sdk() {
     export TIZEN_HOME=~/workspace/cache/tizen.cache/tizen/
     export PATH=$PATH:$TIZEN_HOME/tools:$TIZEN_HOME/tools/ide/bin:$TIZEN_HOME/tizen/ide
 
+    # Fix kvm permission denied issue
+    sudo setfacl -m u:$USER:rwx /dev/kvm
+
     ## diff
 # 62c62
 # <       INSTALLATION_CHECK="procps-ng gettext dbus-libs libcurl expect gtk2 grep zip make libgnome qemu-user webkitgtk libpng12"
