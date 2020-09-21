@@ -180,6 +180,9 @@ function go_tools_libs_packages() {
     # Embedded DB
     go get -u -v go.etcd.io/bbolt/...
     go get -u -v github.com/dgraph-io/badger/...
+    # Firebase
+    go get -u -v firebase.google.com/go
+
 
     ## Update
     #go get -u -v all
