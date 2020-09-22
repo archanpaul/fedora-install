@@ -300,7 +300,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="2.8.4"
+    DART_VERSION="2.9.3"
     
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
@@ -554,7 +554,7 @@ EOF
 ## gnome_packages
 ## vscode_package
 ## android-studio_package
-## dart-sdk_package
+##  dart-sdk_package
 ## flutter-sdk_package
 ## go_packages
 ## go_tools_libs_packages
