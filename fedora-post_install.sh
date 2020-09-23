@@ -160,6 +160,7 @@ function go_tools_libs_packages() {
     go get -u -v go.mongodb.org/mongo-driver
     go get -u -v go.mongodb.org/mongo-driver/bson 
     go get -u -v go.mongodb.org/mongo-driver/mongo/options
+    go get -u -v go.mongodb.org/mongo-driver/mongo/readpref
     ## protobuf
     go get -u -v github.com/golang/protobuf/protoc-gen-go
     ## gRPC
@@ -241,7 +242,8 @@ function vscode_package() {
     #         "-v"
     #     ],
     #     "go.testFlags": [
-    #         "-count=1"
+    #         "-count=1",
+    #         "-v"
     #     ],
     #     "go.vetFlags": [
     #         "-composites=false"
@@ -554,7 +556,7 @@ EOF
 ## gnome_packages
 ## vscode_package
 ## android-studio_package
-##  dart-sdk_package
+## dart-sdk_package
 ## flutter-sdk_package
 ## go_packages
 ## go_tools_libs_packages
