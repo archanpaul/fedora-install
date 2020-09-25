@@ -208,56 +208,62 @@ function vscode_package() {
     # code --install-extension GitHub.github-vscode-theme
     # code --install-extension golang.go
     # code --install-extension mhutchie.git-graph
+    # code --install-extension mongodb.mongodb-vscode
     # code --install-extension ms-python.python
     # code --install-extension ms-vscode.cpptools
+    # code --install-extension redhat.java
+    # code --install-extension VisualStudioExptTeam.vscodeintellicode
 
     ## Settings
-    # {
-    #     "window.titleBarStyle": "custom",
-    #     "workbench.startupEditor": "newUntitledFile",
-    #     "telemetry.enableCrashReporter": false,
-    #     "telemetry.enableTelemetry": false,
-    #     "files.autoSave": "afterDelay",
-    #     "files.autoSaveDelay": 10000,
-    #     "workbench.colorTheme": "GitHub Dark",
-    #     "editor.fontFamily": "'Fira Code Medium','Droid Sans Mono'",
-    #     "editor.lineHeight": 20,
-    #     "editor.fontSize": 15,
-    #     "editor.fontLigatures": true,
-    #     "editor.wordWrap": "on",
-    #     "editor.minimap.maxColumn": 40,
-    #     "editor.formatOnPaste": true,
-    #     "editor.formatOnSave": true,
-    #     "editor.formatOnType": true,
-    #     "editor.rulers": [
-    #         80
-    #     ],
-    #     "terminal.integrated.copyOnSelection": true,
-    #     "terminal.integrated.fontSize": 12,
-    #     "debug.openDebug": "openOnDebugBreak",
-    #     "go.autocompleteUnimportedPackages": true,
-    #     "go.coverOnSingleTestFile": true,
-    #     "go.gotoSymbol.includeImports": true,
-    #     "go.buildFlags": [
-    #         "-v"
-    #     ],
-    #     "go.testFlags": [
-    #         "-count=1",
-    #         "-v"
-    #     ],
-    #     "go.vetFlags": [
-    #         "-composites=false"
-    #     ],
-    #     "go.formatTool": "goimports",
-    #     "[dart]": {
-    #         "editor.selectionHighlight": false,
-    #         "editor.suggest.snippetsPreventQuickSuggestions": false,
-    #         "editor.suggestSelection": "first",
-    #         "editor.tabCompletion": "onlySnippets",
-    #         "editor.wordBasedSuggestions": false,
-    #     }
-    # }
-
+#{
+#    "window.titleBarStyle": "custom",
+#    "workbench.startupEditor": "newUntitledFile",
+#    "telemetry.enableCrashReporter": false,
+#    "telemetry.enableTelemetry": false,
+#    "files.autoSave": "afterDelay",
+#    "files.autoSaveDelay": 10000,
+#    "workbench.colorTheme": "GitHub Light",
+#    "editor.fontFamily": "'IBM Plex Mono Medium','Fira Code Medium','Droid Sans Mono'",
+#    // "editor.lineHeight": 22,
+#    "editor.fontSize": 16,
+#    "editor.fontLigatures": true,
+#    // "editor.fontWeight": 600,
+#    "editor.wordWrap": "on",
+#    "editor.minimap.maxColumn": 40,
+#    "editor.formatOnPaste": true,
+#    "editor.formatOnSave": true,
+#    "editor.formatOnType": true,
+#    // "editor.formatOnSaveMode": "modifications",
+#    "editor.rulers": [
+#        80
+#    ],
+#    "terminal.integrated.copyOnSelection": true,
+#    "terminal.integrated.fontSize": 12,
+#    "debug.openDebug": "openOnDebugBreak",
+#    "go.autocompleteUnimportedPackages": true,
+#    "go.coverOnSingleTestFile": true,
+#    "go.gotoSymbol.includeImports": true,
+#    "go.buildFlags": [
+#        "-v"
+#    ],
+#    "go.testFlags": [
+#        "-count=1",
+#        "-v"
+#    ],
+#    "go.vetFlags": [
+#        "-composites=false"
+#    ],
+#    "go.formatTool": "goimports",
+#    "[dart]": {
+#        "editor.selectionHighlight": false,
+#        "editor.suggest.snippetsPreventQuickSuggestions": false,
+#        "editor.suggestSelection": "first",
+#        "editor.tabCompletion": "onlySnippets",
+#        "editor.wordBasedSuggestions": false,
+#    },
+#    "editor.suggestSelection": "first",
+#    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+#}
     #sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
     #sudo sysctl -p
 }
