@@ -239,6 +239,10 @@ function vscode_package() {
 #    ],
 #    "terminal.integrated.copyOnSelection": true,
 #    "terminal.integrated.fontSize": 12,
+#    "terminal.integrated.cursorBlinking": true,
+#    "[Log]": {
+#        "editor.wordWrap": "on" // "off", "bounded", "wordWrapColumn"
+#    },
 #    "debug.openDebug": "openOnDebugBreak",
 #    "go.autocompleteUnimportedPackages": true,
 #    "go.coverOnSingleTestFile": true,
