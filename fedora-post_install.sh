@@ -40,8 +40,6 @@ function devtools_package() {
     sudo dnf -y install protobuf protobuf-compiler protobuf-devel
 
     sudo dnf -y install git
-
-    sudo dnf -y install java-openjdk-devel
 }
 
 function rpm_devtools_package() {
@@ -110,10 +108,10 @@ function internet_package() {
 function go_packages() {
     sudo dnf -y install golang
 
-        sudo rm -rf /opt/go-packages
-        sudo mkdir /opt/go-packages
+    sudo rm -rf /opt/go-packages
+    sudo mkdir /opt/go-packages
 
-        sudo chown -R root:wheel /opt/go-packages
+    sudo chown -R root:wheel /opt/go-packages
     sudo chmod -R u+rwX,go+rwX,o-w /opt/go-packages
 
         cat <<EOF | sudo tee /etc/profile.d/go-packages.sh
@@ -187,6 +185,10 @@ function go_tools_libs_packages() {
 
     ## Update
     #go get -u -v all
+}
+
+function npm_packages() {
+    sudo dnf -y install npm
 }
 
 function vscode_package() {
@@ -273,8 +275,8 @@ function vscode_package() {
 }
 
 function android-studio_package() {
-    ANDROID_STUDIO_RELEASE=4.0.0.16
-    ANDROID_STUDIO_VERSION=193.6514223
+    ANDROID_STUDIO_RELEASE=4.1.0.19
+    ANDROID_STUDIO_VERSION=201.6858069
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -312,7 +314,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="2.9.3"
+    DART_VERSION="2.10.3"
     
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
@@ -570,6 +572,7 @@ EOF
 ## flutter-sdk_package
 ## go_packages
 ## go_tools_libs_packages
+## npm_packages
 ## font_packages
 ## codec_packages
 ## gcloud_package
@@ -577,4 +580,3 @@ EOF
 ## mongodb_package
 ## httpd_service
 ## security_service
-## chroot_os
