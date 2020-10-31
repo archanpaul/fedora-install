@@ -108,10 +108,10 @@ function internet_package() {
 function go_packages() {
     sudo dnf -y install golang
 
-        sudo rm -rf /opt/go-packages
-        sudo mkdir /opt/go-packages
+    sudo rm -rf /opt/go-packages
+    sudo mkdir /opt/go-packages
 
-        sudo chown -R root:wheel /opt/go-packages
+    sudo chown -R root:wheel /opt/go-packages
     sudo chmod -R u+rwX,go+rwX,o-w /opt/go-packages
 
         cat <<EOF | sudo tee /etc/profile.d/go-packages.sh
@@ -185,6 +185,10 @@ function go_tools_libs_packages() {
 
     ## Update
     #go get -u -v all
+}
+
+function npm_packages() {
+    sudo dnf -y install npm
 }
 
 function vscode_package() {
@@ -568,6 +572,7 @@ EOF
 ## flutter-sdk_package
 ## go_packages
 ## go_tools_libs_packages
+## npm_packages
 ## font_packages
 ## codec_packages
 ## gcloud_package
@@ -575,4 +580,3 @@ EOF
 ## mongodb_package
 ## httpd_service
 ## security_service
-## chroot_os
