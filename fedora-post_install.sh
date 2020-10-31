@@ -40,8 +40,6 @@ function devtools_package() {
     sudo dnf -y install protobuf protobuf-compiler protobuf-devel
 
     sudo dnf -y install git
-
-    sudo dnf -y install java-openjdk-devel
 }
 
 function rpm_devtools_package() {
@@ -268,13 +266,13 @@ function vscode_package() {
 #    "editor.suggestSelection": "first",
 #    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 #}
-    #sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
-    #sudo sysctl -p
+    sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
+    sudo sysctl -p
 }
 
 function android-studio_package() {
-    ANDROID_STUDIO_RELEASE=4.0.0.16
-    ANDROID_STUDIO_VERSION=193.6514223
+    ANDROID_STUDIO_RELEASE=4.1.0.19
+    ANDROID_STUDIO_VERSION=201.6858069
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -312,7 +310,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="2.9.3"
+    DART_VERSION="2.10.3"
     
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
@@ -421,7 +419,7 @@ EOF
 }
 
 function mongodb_package() {
-	  MONGODB_VERSION="4.2"
+	  MONGODB_VERSION="4.4"
     cat <<EOF | sudo tee /etc/yum.repos.d/mongodb.repo
 [mongodb-org-${MONGODB_VERSION}]
 name=MongoDB Repository
