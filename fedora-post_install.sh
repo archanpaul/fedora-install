@@ -308,9 +308,13 @@ export ANDROID_NDK_ROOT=\$ANDROID_HOME/ndk
 export PATH=\$PATH:\$ANDROID_HOME/platform-tools/
 EOF
 
-        #sudo ln -sf /opt/android-studio/android-studio.desktop /usr/share/applications/android-studio.desktop
-        sudo cp /opt/android-studio/android-studio.desktop /usr/share/applications/android-studio.desktop
+    # sudo ln -sf /opt/android-studio/android-studio.desktop /usr/share/applications/android-studio.desktop
+    sudo cp /opt/android-studio/android-studio.desktop /usr/share/applications/android-studio.desktop
     source /etc/profile.d/android-sdk.sh
+
+    sudo dnf copr enable zeno/scrcpy
+    # rpmfusion_repo
+    sudo dnf install ffmpeg scrcpy
 }
 
 function dart-sdk_package() {
