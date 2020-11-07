@@ -315,6 +315,8 @@ EOF
     sudo dnf copr enable zeno/scrcpy
     # rpmfusion_repo
     sudo dnf install ffmpeg scrcpy
+    # remove android-tools to use SDK's tools
+    sudo rpm -e android-tools --nodeps
 }
 
 function dart-sdk_package() {
