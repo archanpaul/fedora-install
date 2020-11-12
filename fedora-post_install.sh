@@ -413,7 +413,7 @@ function gcloud_package() {
     sudo rm -rf /opt/google-cloud-sdk
     sudo mkdir -p /opt/google-cloud-sdk
 
-    GOOGLE_CLOUD_SDK_RELEASE="285.0.1"
+    GOOGLE_CLOUD_SDK_RELEASE="318.0.0"
     wget -c https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${GOOGLE_CLOUD_SDK_RELEASE}-linux-x86_64.tar.gz -P ${CACHE}
 
     sudo tar zxfv ${CACHE}/google-cloud-sdk-${GOOGLE_CLOUD_SDK_RELEASE}-linux-x86_64.tar.gz -C /opt/
