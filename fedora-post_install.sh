@@ -118,13 +118,15 @@ function go_packages() {
 export GOPATH=/opt/go-packages
 export PATH=\$PATH:\$GOPATH/bin
 EOF
-        source /etc/profile.d/go-packages.sh
+    source /etc/profile.d/go-packages.sh
 
     sudo chown -R root:wheel /opt/go-packages
     sudo chmod -R u+rwX,go+rwX,o-w /opt/go-packages
 }
 
 function go_tools_libs_packages() {
+    source /etc/profile.d/go-packages.sh
+
     ## VSCode go plugin dependency
     go get -v github.com/ramya-rao-a/go-outline
     go get -v github.com/mdempsky/gocode
@@ -275,8 +277,8 @@ function vscode_package() {
 }
 
 function android-studio_package() {
-    ANDROID_STUDIO_RELEASE=4.1.0.19
-    ANDROID_STUDIO_VERSION=201.6858069
+    ANDROID_STUDIO_RELEASE=4.1.1.0
+    ANDROID_STUDIO_VERSION=201.6953283
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -320,7 +322,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="2.10.3"
+    DART_VERSION="2.10.4"
     
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
@@ -441,7 +443,7 @@ EOF
     sudo dnf -y install mongodb-org
     
     ## for changing dbPath
-    sudo cp /etc/mongo.conf /etc/mongo.conf.orig
+    sudo cp /etc/mongod.conf /etc/mongod.conf.orig
     ## update dbPath at /etc/mongo.conf
     # mkdir -p /home/databases/mongo/
     # chown -R mongod:mongod /home/databases/mongo/
@@ -562,27 +564,27 @@ EOF
 
 # fedora_upgrade
 
-## systools_package
-## devtools_package
-## rpm_devtools_package
-## jdk_package
-## server_package
-## container_package
-## graphics_package
-## internet_package
-## python_packages
-## gnome_packages
-## vscode_package
-## android-studio_package
-## dart-sdk_package
-## flutter-sdk_package
-## go_packages
-## go_tools_libs_packages
-## npm_packages
-## font_packages
-## codec_packages
-## gcloud_package
-## libreoffice_packages
-## mongodb_package
+# systools_package
+# devtools_package
+# rpm_devtools_package
+# jdk_package
+# server_package
+# container_package
+# graphics_package
+# internet_package
+# python_packages
+# gnome_packages
+# vscode_package
+# android-studio_package
+# dart-sdk_package
+# flutter-sdk_package
+# go_packages
+# go_tools_libs_packages
+# npm_packages
+# font_packages
+# codec_packages
+# gcloud_package
+# libreoffice_packages
+# mongodb_package
 ## httpd_service
-## security_service
+# security_service
