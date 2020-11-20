@@ -129,7 +129,6 @@ function go_tools_libs_packages() {
 
     ## VSCode go plugin dependency
     go get -v github.com/ramya-rao-a/go-outline
-    go get -v github.com/mdempsky/gocode
     go get -v github.com/stamblerre/gocode
     go get -v github.com/uudashr/gopkgs/cmd/gopkgs
     go get -v github.com/ramya-rao-a/go-outline
@@ -207,71 +206,73 @@ function vscode_package() {
     # code --list-extensions | xargs -L 1 echo code --install-extension
 
     ## vscode install extensions
-    # code --install-extension Dart-Code.dart-code
-    # code --install-extension Dart-Code.flutter
-    # code --install-extension GitHub.github-vscode-theme
-    # code --install-extension golang.go
-    # code --install-extension mhutchie.git-graph
-    # code --install-extension mongodb.mongodb-vscode
-    # code --install-extension ms-python.python
-    # code --install-extension ms-vscode.cpptools
-    # code --install-extension redhat.java
-    # code --install-extension VisualStudioExptTeam.vscodeintellicode
+# code --install-extension Dart-Code.dart-code
+# code --install-extension Dart-Code.flutter
+# code --install-extension GitHub.github-vscode-theme
+# code --install-extension golang.go
+# code --install-extension mhutchie.git-graph
+# code --install-extension ms-vscode.cpptools
+# code --install-extension redhat.java
+# code --install-extension VisualStudioExptTeam.vscodeintellicode
+# code --install-extension yzane.markdown-pdf
 
     ## Settings
-#{
-#    "window.titleBarStyle": "custom",
-#    "workbench.startupEditor": "newUntitledFile",
-#    "telemetry.enableCrashReporter": false,
-#    "telemetry.enableTelemetry": false,
-#    "files.autoSave": "afterDelay",
-#    "files.autoSaveDelay": 10000,
-#    "workbench.colorTheme": "GitHub Light",
-#    "editor.fontFamily": "'IBM Plex Mono Medium','Fira Code Medium','Droid Sans Mono'",
-#    // "editor.lineHeight": 22,
-#    "editor.fontSize": 16,
-#    "editor.fontLigatures": true,
-#    // "editor.fontWeight": 600,
-#    "editor.wordWrap": "on",
-#    "editor.minimap.maxColumn": 40,
-#    "editor.formatOnPaste": true,
-#    "editor.formatOnSave": true,
-#    "editor.formatOnType": true,
-#    // "editor.formatOnSaveMode": "modifications",
-#    "editor.rulers": [
-#        80
-#    ],
-#    "terminal.integrated.copyOnSelection": true,
-#    "terminal.integrated.fontSize": 12,
-#    "terminal.integrated.cursorBlinking": true,
-#    "[Log]": {
-#        "editor.wordWrap": "on" // "off", "bounded", "wordWrapColumn"
-#    },
-#    "debug.openDebug": "openOnDebugBreak",
-#    "go.autocompleteUnimportedPackages": true,
-#    "go.coverOnSingleTestFile": true,
-#    "go.gotoSymbol.includeImports": true,
-#    "go.buildFlags": [
-#        "-v"
-#    ],
-#    "go.testFlags": [
-#        "-count=1",
-#        "-v"
-#    ],
-#    "go.vetFlags": [
-#        "-composites=false"
-#    ],
-#    "go.formatTool": "goimports",
-#    "[dart]": {
-#        "editor.selectionHighlight": false,
-#        "editor.suggest.snippetsPreventQuickSuggestions": false,
-#        "editor.suggestSelection": "first",
-#        "editor.tabCompletion": "onlySnippets",
-#        "editor.wordBasedSuggestions": false,
-#    },
-#    "editor.suggestSelection": "first",
-#    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
-#}
+# {
+#     "window.titleBarStyle": "custom",
+#     "workbench.startupEditor": "newUntitledFile",
+#     "telemetry.enableCrashReporter": false,
+#     "telemetry.enableTelemetry": false,
+#     "files.autoSave": "afterDelay",
+#     "files.autoSaveDelay": 10000,
+#     "workbench.colorTheme": "GitHub Dark",
+#     "editor.fontFamily": "'Fira Code Medium', 'Roboto Mono Medium', 'Monospace'",
+#     // "editor.lineHeight": 22,
+#     "editor.fontSize": 16,
+#     "editor.fontLigatures": true,
+#     // "editor.fontWeight": 600,
+#     "editor.wordWrap": "on",
+#     "editor.minimap.maxColumn": 40,
+#     "editor.formatOnPaste": true,
+#     "editor.formatOnSave": true,
+#     "editor.formatOnType": true,
+#     // "editor.formatOnSaveMode": "modifications",
+#     "editor.rulers": [
+#         80
+#     ],
+#     "terminal.integrated.copyOnSelection": true,
+#     "terminal.integrated.fontSize": 14,
+#     "terminal.integrated.cursorBlinking": true,
+#     "[Log]": {
+#         "editor.wordWrap": "on" // "off", "bounded", "wordWrapColumn"
+#     },
+#     "debug.openDebug": "openOnDebugBreak",
+#     "go.autocompleteUnimportedPackages": true,
+#     "go.coverOnSingleTestFile": true,
+#     "go.gotoSymbol.includeImports": true,
+#     "go.buildFlags": [
+#         "-v"
+#     ],
+#     "go.testFlags": [
+#         "-count=1",
+#         "-v"
+#     ],
+#     "go.vetFlags": [
+#         "-composites=false"
+#     ],
+#     "go.formatTool": "goimports",
+#     "go.useLanguageServer": true,
+#     "go.testTimeout": "180s",
+#     "[dart]": {
+#         "editor.selectionHighlight": false,
+#         "editor.suggest.snippetsPreventQuickSuggestions": false,
+#         "editor.suggestSelection": "first",
+#         "editor.tabCompletion": "onlySnippets",
+#         "editor.wordBasedSuggestions": false,
+#     },
+#     "editor.suggestSelection": "first",
+#     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+# }
+
     sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
     sudo sysctl -p
 }
@@ -392,8 +393,8 @@ function gnome_packages() {
 
 function font_packages() {
     sudo dnf -y install google-roboto-fonts
-    sudo dnf -y install google-roboto-mono
-    sudo dnf -y install google-roboto-slab
+    sudo dnf -y install google-roboto-mono-fonts
+    sudo dnf -y install google-roboto-slab-fonts
     sudo dnf -y install google-roboto-condensed-fonts
 }
 
