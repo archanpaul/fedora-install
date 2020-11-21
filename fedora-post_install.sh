@@ -433,6 +433,9 @@ EOF
 
 function mongodb_package() {
 	  MONGODB_VERSION="4.4"
+	  MONGODB_COMPASS_VERSION="1.23.0"
+
+
     cat <<EOF | sudo tee /etc/yum.repos.d/mongodb.repo
 [mongodb-org-${MONGODB_VERSION}]
 name=MongoDB Repository
@@ -451,6 +454,9 @@ EOF
     # chcon -Rv --type=mongod_var_lib_t /home/databases/mongo
     # sudo systemctl enable mongod.service
     # sudo systemctl start mongod.service
+
+    wget -c https://downloads.mongodb.com/compass/mongodb-compass-${MONGODB_COMPASS_VERSION}.x86_64.rpm -P ${CACHE}
+    sudo yum install ${CACHE}/mongodb-compass-${MONGODB_COMPASS_VERSION}.x86_64.rpm
 }
 
 function tizen_sdk() {
