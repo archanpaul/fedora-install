@@ -206,15 +206,19 @@ function vscode_package() {
     # code --list-extensions | xargs -L 1 echo code --install-extension
 
     ## vscode install extensions
+# code --install-extension atlassian.atlascode
 # code --install-extension Dart-Code.dart-code
 # code --install-extension Dart-Code.flutter
 # code --install-extension GitHub.github-vscode-theme
 # code --install-extension golang.go
 # code --install-extension mhutchie.git-graph
+# code --install-extension ms-vscode-remote.remote-ssh
+# code --install-extension ms-vscode-remote.remote-ssh-edit
 # code --install-extension ms-vscode.cpptools
+# code --install-extension PKief.material-icon-theme
 # code --install-extension redhat.java
+# code --install-extension redhat.vscode-yaml
 # code --install-extension VisualStudioExptTeam.vscodeintellicode
-# code --install-extension yzane.markdown-pdf
 
     ## Settings
 # {
@@ -224,7 +228,7 @@ function vscode_package() {
 #     "telemetry.enableTelemetry": false,
 #     "files.autoSave": "afterDelay",
 #     "files.autoSaveDelay": 10000,
-#     "workbench.colorTheme": "GitHub Dark",
+#     "workbench.colorTheme": "GitHub Light",
 #     "editor.fontFamily": "'Fira Code Medium', 'Roboto Mono Medium', 'Monospace'",
 #     // "editor.lineHeight": 22,
 #     "editor.fontSize": 16,
