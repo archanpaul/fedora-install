@@ -206,10 +206,10 @@ function vscode_package() {
     # code --list-extensions | xargs -L 1 echo code --install-extension
 
     ## vscode install extensions
-# code --install-extension atlassian.atlascode
 # code --install-extension Dart-Code.dart-code
 # code --install-extension Dart-Code.flutter
 # code --install-extension GitHub.github-vscode-theme
+# code --install-extension GitHub.vscode-pull-request-github
 # code --install-extension golang.go
 # code --install-extension mhutchie.git-graph
 # code --install-extension ms-vscode-remote.remote-ssh
@@ -229,11 +229,11 @@ function vscode_package() {
 #     "files.autoSave": "afterDelay",
 #     "files.autoSaveDelay": 10000,
 #     "workbench.colorTheme": "GitHub Light",
-#     "editor.fontFamily": "'Fira Code Medium', 'Roboto Mono Medium', 'Monospace'",
-#     // "editor.lineHeight": 22,
+#     "editor.fontFamily": "'Monaco', 'Fira Code Medium', 'Roboto Mono Medium', 'Monospace'",
+#     "editor.lineHeight": 24,
 #     "editor.fontSize": 16,
 #     "editor.fontLigatures": true,
-#     // "editor.fontWeight": 600,
+#     "editor.fontWeight": 900,
 #     "editor.wordWrap": "on",
 #     "editor.minimap.maxColumn": 40,
 #     "editor.formatOnPaste": true,
@@ -274,7 +274,10 @@ function vscode_package() {
 #         "editor.wordBasedSuggestions": false,
 #     },
 #     "editor.suggestSelection": "first",
-#     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+#     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+#     "workbench.iconTheme": "vs-seti",
+#     "dart.devToolsBrowser": "default",
+#     "terminal.integrated.fontFamily": "monospace"
 # }
 
     sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
@@ -400,6 +403,10 @@ function font_packages() {
     sudo dnf -y install google-roboto-mono-fonts
     sudo dnf -y install google-roboto-slab-fonts
     sudo dnf -y install google-roboto-condensed-fonts
+
+    sudo mkdir -p /usr/share/fonts/truetype/ttf-monaco
+    sudo wget https://gist.github.com/rogerleite/b50866eb7f7b5950da01ae8927c5bd61/raw/862b6c9437f534d5899e4e68d60f9bf22f356312/mfont.ttf -O /usr/share/fonts/truetype/ttf-monaco/Monaco_Linux.ttf
+    sudo fc-cache
 }
 
 function libreoffice_packages() {
