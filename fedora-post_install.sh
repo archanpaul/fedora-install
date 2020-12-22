@@ -105,6 +105,10 @@ function internet_package() {
     # cp libwidevinecdmadapter.so /usr/lib64/chromium-plugins/
 }
 
+function swift_packages() {
+    sudo dnf -y install swift-lang
+}
+
 function go_packages() {
     sudo dnf -y install golang
 
@@ -596,6 +600,7 @@ EOF
 # android-studio_package
 # dart-sdk_package
 # flutter-sdk_package
+# swift_packages
 # go_packages
 # go_tools_libs_packages
 # npm_packages
