@@ -96,8 +96,10 @@ function graphics_package() {
 function internet_package() {
     sudo dnf -y install chromium thunderbird transmission
     sudo dnf -y install youtube-dl
+    sudo dnf -y install vgrive
 
-    dnf config-manager --set-enabled google-chrome
+    sudo dnf config-manager --set-enabled google-chrome
+    sudo dnf check-update
     sudo dnf -y install google-chrome-stable
 
     ## Enable widevine in Google-Chrome
@@ -407,10 +409,16 @@ function font_packages() {
     sudo dnf -y install google-roboto-mono-fonts
     sudo dnf -y install google-roboto-slab-fonts
     sudo dnf -y install google-roboto-condensed-fonts
-
-    sudo mkdir -p /usr/share/fonts/truetype/ttf-monaco
-    sudo wget https://gist.github.com/rogerleite/b50866eb7f7b5950da01ae8927c5bd61/raw/862b6c9437f534d5899e4e68d60f9bf22f356312/mfont.ttf -O /usr/share/fonts/truetype/ttf-monaco/Monaco_Linux.ttf
-    sudo fc-cache
+    sudo dnf -y install google-arimo-fonts
+    sudo dnf -y install google-cousine-fonts
+    sudo dnf -y install google-carlito-fonts
+    sudo dnf -y install google-arimo-fonts
+    sudo dnf -y install google-go-fonts
+    sudo dnf -y install google-go-mono--fonts
+    sudo dnf -y install google-go-smallcaps-fonts
+    sudo dnf -y install google-tinos-fonts
+    sudo dnf -y install mozilla-fira-sans-fonts
+    sudo dnf -y install mozilla-fira-mono-fonts
 }
 
 function libreoffice_packages() {
@@ -581,33 +589,33 @@ EOF
     # schroot -c focal -u root
 }
 
-# update_hostname
-# rpmfusion_repo
+## update_hostname
+## rpmfusion_repo
 
-# fedora_upgrade
+## fedora_upgrade
 
-# systools_package
-# devtools_package
-# rpm_devtools_package
-# jdk_package
-# server_package
-# container_package
-# graphics_package
-# internet_package
-# python_packages
-# gnome_packages
-# vscode_package
-# android-studio_package
-# dart-sdk_package
-# flutter-sdk_package
-# swift_packages
-# go_packages
+## systools_package
+## devtools_package
+## rpm_devtools_package
+## jdk_package
+## server_package
+## container_package
+## graphics_package
+## internet_package
+## python_packages
+## gnome_packages
+## vscode_package
+## android-studio_package
+## dart-sdk_package
+## flutter-sdk_package
+## swift_packages
+## go_packages
 # go_tools_libs_packages
-# npm_packages
-# font_packages
-# codec_packages
-# gcloud_package
-# libreoffice_packages
-# mongodb_package
+## npm_packages
+font_packages
+## codec_packages
+## gcloud_package
+## libreoffice_packages
+## mongodb_package
 ## httpd_service
-# security_service
+## security_service
