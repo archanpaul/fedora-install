@@ -27,6 +27,9 @@ function systools_package() {
     sudo dnf -y install nmap traceroute
 
     sudo dnf -y install mesa-vulkan-drivers vulkan-tools
+
+    # sudo dnf -y install inxi
+    # sudo inxi --admin --verbosity=7 --filter --no-host
 }
 
 function devtools_package() {
@@ -419,6 +422,7 @@ function font_packages() {
     sudo dnf -y install google-tinos-fonts
     sudo dnf -y install mozilla-fira-sans-fonts
     sudo dnf -y install mozilla-fira-mono-fonts
+    sudo dnf -y install fira-code-fonts
 }
 
 function libreoffice_packages() {
