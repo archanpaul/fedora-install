@@ -160,6 +160,10 @@ function go_tools_libs_packages() {
     go get -u -v github.com/gin-gonic/gin
     go get -u -v github.com/gin-gonic/contrib/...
     go get -u -v github.com/dgrijalva/jwt-go
+    go get -v -v github.com/go-chi/chi
+    go get -v -v github.com/go-chi/cors
+    ## Log
+    go get -v -v go.uber.org/zap
     ## goNum
     go get -u -v -t gonum.org/v1/gonum/...
     ## DB
@@ -176,11 +180,12 @@ function go_tools_libs_packages() {
     # Go Protobuf
     go get -u -v github.com/golang/protobuf/proto
     go get -u -v github.com/golang/protobuf/protoc-gen-go
-    # NATS
+    # Messaging
     go get -u -v github.com/nats-io/nats.go
     ##go get -u -v github.com/nats-io/nats-server
     ##go get -u -v github.com/nats-io/nats-streaming-server
     #go get github.com/liftbridge-io/go-liftbridge
+    go get -u -v github.com/ThreeDotsLabs/watermill
     # Go CDK
     go get -u -v gocloud.dev
     # UUID
@@ -191,6 +196,7 @@ function go_tools_libs_packages() {
     go get -u -v github.com/dgraph-io/badger/...
     # Firebase
     go get -u -v firebase.google.com/go
+
 
 
     ## Update
