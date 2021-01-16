@@ -57,17 +57,19 @@ function jdk_package() {
 
 function container_package() {
     sudo dnf -y install @virtualization
+
     sudo dnf -y install libvirt-devel
-    ## sudo systemctl enable libvirtd
-    ## sudo systemctl restart libvirtd
-    ## sudo gpasswd -a $USER libvirt
+    # sudo systemctl enable libvirtd
+    # sudo systemctl restart libvirtd
+    # sudo usermod -aG libvirt $USER
 
     _docker_packages
-    # _kubernetes_packages
-    # _vagrant_packages
+    _kubernetes_packages
+    _podman_packages
 }
 
 function _docker_packages() {
+    sudo rpm --import https://download.docker.com/linux/fedora/gpg
     sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
     sudo dnf remove docker \
         docker-client \
@@ -79,25 +81,17 @@ function _docker_packages() {
         docker-selinux \
         docker-engine-selinux \
         docker-engine
-    sudo dnf install docker-ce docker-ce-cli containerd.io
+    sudo dnf install docker-ce docker-ce-cli docker-ce-rootless-extras containerd.io
     # sudo usermod -aG docker $USER
 }
 
 function _kubernetes_packages() {
     sudo dnf -y install kubernetes
-    sudo dnf -y install podman 
-    #sudo dnf -y install slirp4netns buildah skopeo runc
-    #sudo dnf -y install podman-compose
 }
 
-function _vagrant_packages() {
-    sudo dnf install libvirt vagrant vagrant-libvirt vagrant-sshfs
-
-    ## custom
-    VAGRANT_VERSION=2.2.7
-    sudo rpm -ivh https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.rpm
-    sudo dnf -y install libvirt-devel ruby-devel
-    # vagrant plugin install vagrant-libvirt
+function _podman_packages() {
+    sudo dnf -y install podman podman-compose
+    sudo dnf -y install slirp4netns buildah skopeo runc
 }
 
 function server_package() {
