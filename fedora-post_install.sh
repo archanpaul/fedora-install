@@ -87,6 +87,10 @@ function _docker_packages() {
 
 function _kubernetes_packages() {
     sudo dnf -y install kubernetes
+
+    # Minikube
+    wget -c https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm -P ${CACHE}
+    sudo rpm -ivh ${CACHE}/minikube-latest.x86_64.rpm
 }
 
 function _podman_packages() {
