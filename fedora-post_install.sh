@@ -30,6 +30,8 @@ function systools_package() {
 
     # sudo dnf -y install inxi
     # sudo inxi --admin --verbosity=7 --filter --no-host
+
+    sudo dnf -y install dnf-plugins-core
 }
 
 function devtools_package() {
@@ -60,14 +62,25 @@ function container_package() {
     ## sudo systemctl restart libvirtd
     ## sudo gpasswd -a $USER libvirt
 
-    _kubernetes_packages
-    #_vagrant_packages
+    _docker_packages
+    # _kubernetes_packages
+    # _vagrant_packages
+}
 
-    # switch cgroup v1 to use docker via moby-engine
-    ## sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
-    ## # sudo grubby --update-kernel=ALL --remove-args="systemd.unified_cgroup_hierarchy=0"
-    ## sudo systemctl enable -now docker
-    ## sudo chmod 666 /var/run/docker.sock
+function _docker_packages() {
+    sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+    sudo dnf remove docker \
+        docker-client \
+        docker-client-latest \
+        docker-common \
+        docker-latest \
+        docker-latest-logrotate \
+        docker-logrotate \
+        docker-selinux \
+        docker-engine-selinux \
+        docker-engine
+    sudo dnf install docker-ce docker-ce-cli containerd.io
+    # sudo usermod -aG docker $USER
 }
 
 function _kubernetes_packages() {
@@ -137,14 +150,16 @@ function go_tools_libs_packages() {
     source /etc/profile.d/go-packages.sh
 
     ## VSCode go plugin dependency
+    go get -v github.com/uudashr/gopkgs/v2/cmd/gopkgs
     go get -v github.com/ramya-rao-a/go-outline
-    go get -v github.com/stamblerre/gocode
-    go get -v github.com/uudashr/gopkgs/cmd/gopkgs
-    go get -v github.com/ramya-rao-a/go-outline
-    go get -v github.com/rogpeppe/godef
-    go get -v github.com/sqs/goreturns
+    go get -v github.com/cweill/gotests/...
+    go get -v github.com/fatih/gomodifytags
+    go get -v github.com/josharian/impl
+    go get -v github.com/haya14busa/goplay/cmd/goplay
+    go get -v github.com/go-delve/delve/cmd/dlv
     go get -v golang.org/x/lint/golint
     go get -v golang.org/x/tools/gopls
+
 
     ## Dev tools
     go get -u -v github.com/cespare/reflex
