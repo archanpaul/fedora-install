@@ -61,7 +61,8 @@ function container_package() {
     sudo dnf -y install libvirt-devel
     # sudo systemctl enable libvirtd
     # sudo systemctl restart libvirtd
-    # sudo usermod -aG libvirt $USER
+    sudo usermod -a -G libvirt $(whoami)
+    newgrp libvirt
 
     _docker_packages
     _kubernetes_packages
@@ -82,7 +83,8 @@ function _docker_packages() {
         docker-engine-selinux \
         docker-engine
     sudo dnf install docker-ce docker-ce-cli docker-ce-rootless-extras containerd.io
-    # sudo usermod -aG docker $USER
+    sudo usermod -a -G docker $(whoami)
+    newgrp docker
 }
 
 function _kubernetes_packages() {
@@ -155,6 +157,7 @@ function go_tools_libs_packages() {
     go get -v github.com/josharian/impl
     go get -v github.com/haya14busa/goplay/cmd/goplay
     go get -v github.com/go-delve/delve/cmd/dlv
+    go get -v github.com/stamblerre/gocode
     go get -v golang.org/x/lint/golint
     go get -v golang.org/x/tools/gopls
 
@@ -187,30 +190,26 @@ function go_tools_libs_packages() {
     go get -u -v go.mongodb.org/mongo-driver/mongo/options
     go get -u -v go.mongodb.org/mongo-driver/mongo/readpref
     ## protobuf
+    go get -u -v github.com/golang/protobuf/proto
     go get -u -v github.com/golang/protobuf/protoc-gen-go
     ## gRPC
     go get -u -v google.golang.org/grpc
-    # Go Protobuf
-    go get -u -v github.com/golang/protobuf/proto
-    go get -u -v github.com/golang/protobuf/protoc-gen-go
-    # Messaging
-    go get -u -v github.com/nats-io/nats.go
-    ##go get -u -v github.com/nats-io/nats-server
-    ##go get -u -v github.com/nats-io/nats-streaming-server
+    ## Messaging
+    #go get -u -v github.com/nats-io/nats.go
+    #go get -u -v github.com/nats-io/nats-server
+    #go get -u -v github.com/nats-io/nats-streaming-server
     #go get github.com/liftbridge-io/go-liftbridge
-    go get -u -v github.com/ThreeDotsLabs/watermill
+    #go get -u -v github.com/ThreeDotsLabs/watermill
     # Go CDK
-    go get -u -v gocloud.dev
+    #go get -u -v gocloud.dev
     # UUID
     go get -u -v github.com/google/uuid
-    go get -u -v github.com/nats-io/nuid
     # Embedded DB
     go get -u -v go.etcd.io/bbolt/...
     go get -u -v github.com/dgraph-io/badger/...
     # Firebase
     go get -u -v firebase.google.com/go
-
-
+    go get -u -v firebase.google.com/go/auth
 
     ## Update
     #go get -u -v all
@@ -633,9 +632,9 @@ EOF
 ## flutter-sdk_package
 ## swift_packages
 ## go_packages
-# go_tools_libs_packages
+## go_tools_libs_packages
 ## npm_packages
-font_packages
+## font_packages
 ## codec_packages
 ## gcloud_package
 ## libreoffice_packages
