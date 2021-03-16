@@ -117,6 +117,7 @@ function internet_package() {
     sudo dnf config-manager --set-enabled google-chrome
     sudo dnf check-update
     sudo dnf -y install google-chrome-stable
+    sudo dnf -y install chrome-remote-desktop
 
     ## Enable widevine in Google-Chrome
     # cp libwidevinecdm.so /usr/lib64/chromium-plugins/
@@ -382,8 +383,9 @@ function flutter-sdk_package() {
     sudo rm -rf /opt/flutter-sdk
     sudo mkdir -p /opt/flutter-sdk
 
-    #sudo git clone -b stable --single-branch https://github.com/flutter/flutter.git /opt/flutter-sdk --depth=1
-    sudo git clone -b master https://github.com/flutter/flutter.git /opt/flutter-sdk 
+    sudo git clone -b stable --single-branch https://github.com/flutter/flutter.git /opt/flutter-sdk --depth=1
+    # sudo git clone -b master https://github.com/flutter/flutter.git /opt/flutter-sdk
+
     sudo mkdir /opt/flutter-sdk/pub_cache
     sudo chown -R root:wheel /opt/flutter-sdk
     sudo chmod -R u+rwX,go+rwX,o-w /opt/flutter-sdk
