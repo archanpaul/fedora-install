@@ -64,8 +64,8 @@ function container_package() {
     sudo usermod -a -G libvirt $(whoami)
     newgrp libvirt
 
-    _docker_packages
-    _kubernetes_packages
+    #_docker_packages
+    #_kubernetes_packages
     _podman_packages
 }
 
@@ -119,6 +119,8 @@ function internet_package() {
     sudo dnf -y install google-chrome-stable
     sudo dnf -y install chrome-remote-desktop
 
+    sudo dnf -y install torbrowser-launcher
+
     ## Enable widevine in Google-Chrome
     # cp libwidevinecdm.so /usr/lib64/chromium-plugins/
     # cp libwidevinecdmadapter.so /usr/lib64/chromium-plugins/
@@ -162,7 +164,6 @@ function go_tools_libs_packages() {
     go get -v golang.org/x/lint/golint
     go get -v golang.org/x/tools/gopls
 
-
     ## Dev tools
     go get -u -v github.com/cespare/reflex
     go get -u -v golang.org/x/...
@@ -177,8 +178,8 @@ function go_tools_libs_packages() {
     go get -u -v github.com/gin-gonic/gin
     go get -u -v github.com/gin-gonic/contrib/...
     go get -u -v github.com/dgrijalva/jwt-go
-    go get -v -v github.com/go-chi/chi
-    go get -v -v github.com/go-chi/cors
+    #go get -v -v github.com/go-chi/chi
+    #go get -v -v github.com/go-chi/cors
     ## Log
     go get -v -v go.uber.org/zap
     ## goNum
@@ -313,13 +314,13 @@ function vscode_package() {
 }
 
 function android-studio_package() {
-    ANDROID_STUDIO_RELEASE=4.1.1.0
-    ANDROID_STUDIO_VERSION=201.6953283
+    ANDROID_STUDIO_RELEASE=4.1.3.0
+    ANDROID_STUDIO_VERSION=201.7199119
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
 
-    wget -c https://dl.google.com/dl/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -P ${CACHE}
+    wget -c https://redirector.gvt1.com/edgedl/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -P ${cache}
 
     sudo tar zxfv ${CACHE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -C /opt/
     sudo chown -R root:wheel /opt/android-studio
@@ -358,10 +359,10 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="2.10.4"
+    DART_VERSION="2.12.4"
     
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
-    wget https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
+    wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
     sudo rm -rf /opt/dart-sdk
 
     sudo unzip ${CACHE}/dartsdk-linux-x64-release.zip -d /opt/
@@ -422,7 +423,8 @@ function gnome_packages() {
     sudo dnf -y install gnome-sound-recorder easytag
     sudo dnf -y install pitivi snappy
 
-    sudo dnf -y install gnome-shell-extension-dash-to-dock
+    sudo dnf -y install gnome-extensions-app
+    # sudo dnf -y install gnome-shell-extension-dash-to-dock
     sudo dnf -y install gnome-shell-extension-gsconnect
     sudo dnf -y install gnome-shell-extension-screenshot-window-sizer
 }
@@ -464,8 +466,8 @@ function gcloud_package() {
     sudo mkdir -p /opt/google-cloud-sdk
 
     GOOGLE_CLOUD_SDK_RELEASE="318.0.0"
+    
     wget -c https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${GOOGLE_CLOUD_SDK_RELEASE}-linux-x86_64.tar.gz -P ${CACHE}
-
     sudo tar zxfv ${CACHE}/google-cloud-sdk-${GOOGLE_CLOUD_SDK_RELEASE}-linux-x86_64.tar.gz -C /opt/
 
     sudo chown -R root:wheel /opt/google-cloud-sdk
@@ -614,32 +616,32 @@ EOF
 }
 
 ## update_hostname
-## rpmfusion_repo
+# rpmfusion_repo
 
-## fedora_upgrade
+# fedora_upgrade
 
-## systools_package
-## devtools_package
-## rpm_devtools_package
-## jdk_package
-## server_package
-## container_package
-## graphics_package
-## internet_package
-## python_packages
-## gnome_packages
-## vscode_package
-## android-studio_package
-## dart-sdk_package
-## flutter-sdk_package
-## swift_packages
-## go_packages
-## go_tools_libs_packages
-## npm_packages
-## font_packages
-## codec_packages
+# systools_package
+# devtools_package
+# rpm_devtools_package
+# jdk_package
+# server_package
+# container_package
+# graphics_package
+# internet_package
+# python_packages
+# gnome_packages
+# vscode_package
+# android-studio_package
+# dart-sdk_package
+# flutter-sdk_package
+# swift_packages
+# go_packages
+# go_tools_libs_packages
+# npm_packages
+# font_packages
+# codec_packages
 ## gcloud_package
-## libreoffice_packages
+# libreoffice_packages
 ## mongodb_package
-## httpd_service
-## security_service
+# httpd_service
+# security_service
