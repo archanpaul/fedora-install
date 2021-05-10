@@ -409,7 +409,7 @@ EOF
 function python_packages() {
     sudo dnf -y install python3-virtualenv
     sudo dnf -y install python3-pylint python3-autopep8
-    sudo dnf -y install python3-numpy
+    sudo dnf -y install python3-numpy python3-scipy
     sudo dnf -y install python3-matplotlib
 }
 
