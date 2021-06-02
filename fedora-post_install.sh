@@ -16,7 +16,7 @@ function update_hostname() {
 }
 
 function rpmfusion_repo() {
-    sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+    sudo dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 }
 
 function systools_package() {
@@ -57,22 +57,21 @@ function jdk_package() {
 
 function container_package() {
     sudo dnf -y install @virtualization
+    sudo dnf -y install podman podman-compose
+    sudo dnf -y install slirp4netns buildah skopeo runc
+    sudo dnf -y install toolbox
 
     sudo dnf -y install libvirt-devel
     # sudo systemctl enable libvirtd
     # sudo systemctl restart libvirtd
-    sudo usermod -a -G libvirt $(whoami)
-    newgrp libvirt
-
-    #_docker_packages
-    #_kubernetes_packages
-    _podman_packages
+    # sudo usermod -a -G libvirt $(whoami)
+    # newgrp libvirt
 }
 
-function _docker_packages() {
+function docker_packages() {
     sudo rpm --import https://download.docker.com/linux/fedora/gpg
     sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-    sudo dnf remove docker \
+    sudo dnf -y remove docker \
         docker-client \
         docker-client-latest \
         docker-common \
@@ -82,22 +81,18 @@ function _docker_packages() {
         docker-selinux \
         docker-engine-selinux \
         docker-engine
-    sudo dnf install docker-ce docker-ce-cli docker-ce-rootless-extras containerd.io
+    sudo dnf -y install docker-ce docker-ce-cli docker-ce-rootless-extras containerd.io
+    sudo dnf -y install docker-compose
     sudo usermod -a -G docker $(whoami)
     newgrp docker
 }
 
-function _kubernetes_packages() {
+function kubernetes_packages() {
     sudo dnf -y install kubernetes
 
     # Minikube
     wget -c https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm -P ${CACHE}
     sudo rpm -ivh ${CACHE}/minikube-latest.x86_64.rpm
-}
-
-function _podman_packages() {
-    sudo dnf -y install podman podman-compose
-    sudo dnf -y install slirp4netns buildah skopeo runc
 }
 
 function server_package() {
@@ -163,6 +158,7 @@ function go_tools_libs_packages() {
     go get -v github.com/stamblerre/gocode
     go get -v golang.org/x/lint/golint
     go get -v golang.org/x/tools/gopls
+    go get -v honnef.co/go/tools/cmd/staticcheck
 
     ## Dev tools
     go get -u -v github.com/cespare/reflex
@@ -314,13 +310,13 @@ function vscode_package() {
 }
 
 function android-studio_package() {
-    ANDROID_STUDIO_RELEASE=4.1.3.0
-    ANDROID_STUDIO_VERSION=201.7199119
+    ANDROID_STUDIO_RELEASE=4.2.1.0
+    ANDROID_STUDIO_VERSION=202.7351085
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
 
-    wget -c https://redirector.gvt1.com/edgedl/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -P ${cache}
+    wget -c https://redirector.gvt1.com/edgedl/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -P ${CACHE}
 
     sudo tar zxfv ${CACHE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -C /opt/
     sudo chown -R root:wheel /opt/android-studio
@@ -353,7 +349,7 @@ EOF
 
     sudo dnf copr enable zeno/scrcpy
     # rpmfusion_repo
-    sudo dnf install ffmpeg scrcpy
+    sudo dnf -y install ffmpeg scrcpy
     # remove android-tools to use SDK's tools
     sudo rpm -e android-tools --nodeps
 }
@@ -407,7 +403,7 @@ EOF
 }
 
 function python_packages() {
-    sudo dnf -y install python3-virtualenv
+    sudo dnf -y install python3-virtualenv virtualenvwrapper
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy
     sudo dnf -y install python3-matplotlib
@@ -520,6 +516,7 @@ function tizen_sdk() {
     # Fix kvm permission denied issue
     sudo setfacl -m u:$USER:rwx /dev/kvm
 
+
     ## diff
 # 62c62
 # <       INSTALLATION_CHECK="procps-ng gettext dbus-libs libcurl expect gtk2 grep zip make libgnome qemu-user webkitgtk libpng12"
@@ -556,6 +553,7 @@ function tizen_sdk() {
  
 	export TIZEN_HOME=${HOME}/workspace/cache/tizen.cache/tizen-studio
 	export PATH=$PATH:$TIZEN_HOME/ide:$TIZEN_HOME/tools:$TIZEN_HOME/package-manager
+
 }
 
 function httpd_service() {
