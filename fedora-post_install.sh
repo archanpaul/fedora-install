@@ -69,6 +69,7 @@ function container_package() {
 }
 
 function docker_packages() {
+    sudo dnf -y install fuse-overlayfs iptables
     sudo rpm --import https://download.docker.com/linux/fedora/gpg
     sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
     sudo dnf -y remove docker \
@@ -85,6 +86,14 @@ function docker_packages() {
     sudo dnf -y install docker-compose
     sudo usermod -a -G docker $(whoami)
     newgrp docker
+
+    ## for dockerd-rootless-setuptool
+    # sudo systemctl disable --now docker.service docker.socket
+    # dockerd-rootless-setuptool.sh install
+    # vim ~/.bashrc
+    # systemctl --user start docker
+    # sudo loginctl enable-linger $(whoami)
+
 }
 
 function kubernetes_packages() {
@@ -477,9 +486,8 @@ EOF
 }
 
 function mongodb_package() {
-	  MONGODB_VERSION="4.4"
-	  MONGODB_COMPASS_VERSION="1.26.1"
-
+    MONGODB_VERSION="4.4"
+    MONGODB_COMPASS_VERSION="1.26.1"
 
     cat <<EOF | sudo tee /etc/yum.repos.d/mongodb.repo
 [mongodb-org-${MONGODB_VERSION}]
@@ -502,6 +510,19 @@ EOF
 
     wget -c https://downloads.mongodb.com/compass/mongodb-compass-${MONGODB_COMPASS_VERSION}.x86_64.rpm -P ${CACHE}
     sudo yum install ${CACHE}/mongodb-compass-${MONGODB_COMPASS_VERSION}.x86_64.rpm
+}
+
+function embedded_dev() {
+    ## arm-none-eabi toolchain
+    sudo dnf -y install arm-none-eabi-binutils-cs arm-none-eabi-gcc-cs arm-none-eabi-gcc-cs-c++
+    sudo dnf -y install arm-none-eabi-newlib
+
+    ## Renode
+    RENODE_VERSION="1.12.0"
+    RENODE_SUBVERSION="1"
+    wget -c https://github.com/renode/renode/releases/download/v${RENODE_VERSION}/renode-${RENODE_VERSION}-${RENODE_SUBVERSION}.f23.x86_64.rpm -P ${CACHE}
+    sudo rpm -ivh ${CACHE}/renode-${RENODE_VERSION}-${RENODE_SUBVERSION}.f23.x86_64.rpm
+    sudo dnf -y install PackageKit-gtk3-module
 }
 
 function tizen_sdk() {
@@ -640,6 +661,7 @@ EOF
 # codec_packages
 ## gcloud_package
 # libreoffice_packages
+# embedded_dev
 ## mongodb_package
 # httpd_service
 # security_service
