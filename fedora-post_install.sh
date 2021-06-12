@@ -3,16 +3,18 @@ HOSTNAME="arpo"
 
 mkdir -p ${CACHE}
 
-function fedora_upgrade() {
-    #sudo echo 'keepcache=1' | sudo tee -a /etc/dnf/dnf.conf
-    #sudo echo 'fastestmirror=True' | sudo tee -a /etc/dnf/dnf.conf
-    #dnf install fedora-workstation-repositories
-    sudo dnf -y upgrade --downloadonly
-    sudo dnf -y upgrade
-}
-
 function update_hostname() {
     hostnamectl set-hostname --static ${HOSTNAME}
+}
+
+function fedora_upgrade() {
+    sudo echo 'keepcache=True' | sudo tee -a /etc/dnf/dnf.conf
+    sudo echo 'deltarpm=True' | sudo tee -a /etc/dnf/dnf.conf
+    sudo echo 'fastestmirror=True' | sudo tee -a /etc/dnf/dnf.conf
+    sudo echo 'max_parallel_downloads=20' | sudo tee -a /etc/dnf/dnf.conf
+    dnf install fedora-workstation-repositories
+    sudo dnf -y upgrade --downloadonly
+    sudo dnf -y upgrade
 }
 
 function rpmfusion_repo() {
@@ -349,6 +351,7 @@ EOF
 export ANDROID_HOME=/opt/android-sdk/
 export ANDROID_SDK_ROOT=\$ANDROID_HOME
 export ANDROID_NDK_ROOT=\$ANDROID_HOME/ndk
+export ANDROID_NDK_HOME=\$ANDROID_NDK_ROOT
 export PATH=\$PATH:\$ANDROID_HOME/platform-tools/
 EOF
 
@@ -356,7 +359,7 @@ EOF
     sudo cp /opt/android-studio/android-studio.desktop /usr/share/applications/android-studio.desktop
     source /etc/profile.d/android-sdk.sh
 
-    sudo dnf copr enable zeno/scrcpy
+    sudo dnf -y copr enable zeno/scrcpy
     # rpmfusion_repo
     sudo dnf -y install ffmpeg scrcpy
     # remove android-tools to use SDK's tools
@@ -425,6 +428,7 @@ function gnome_packages() {
     sudo dnf -y install foliate
     sudo dnf -y install fondo
     sudo dnf -y install shotwell
+    sudo dnf -y install gnome-boxes
     sudo dnf -y install gnome-sound-recorder easytag
     sudo dnf -y install pitivi snappy
 
@@ -634,9 +638,8 @@ EOF
     # schroot -c focal -u root
 }
 
-## update_hostname
+# update_hostname
 # rpmfusion_repo
-
 # fedora_upgrade
 
 # systools_package
@@ -659,9 +662,9 @@ EOF
 # npm_packages
 # font_packages
 # codec_packages
-## gcloud_package
+# gcloud_package
 # libreoffice_packages
 # embedded_dev
-## mongodb_package
+# mongodb_package
 # httpd_service
 # security_service
