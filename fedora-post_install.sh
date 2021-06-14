@@ -25,6 +25,8 @@ function systools_package() {
     sudo dnf -y install grubby
 
     sudo dnf -y install cronie
+    sudo systemctl enable crond.service
+
     sudo dnf -y install mc vim
     sudo dnf -y install sysstat htop glances
     sudo dnf -y install nmap traceroute
