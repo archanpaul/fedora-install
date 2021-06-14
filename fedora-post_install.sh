@@ -24,6 +24,7 @@ function rpmfusion_repo() {
 function systools_package() {
     sudo dnf -y install grubby
 
+    sudo dnf -y install cronie
     sudo dnf -y install mc vim
     sudo dnf -y install sysstat htop glances
     sudo dnf -y install nmap traceroute
