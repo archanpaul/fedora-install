@@ -12,7 +12,7 @@ function fedora_upgrade() {
     sudo echo 'deltarpm=True' | sudo tee -a /etc/dnf/dnf.conf
     sudo echo 'fastestmirror=True' | sudo tee -a /etc/dnf/dnf.conf
     sudo echo 'max_parallel_downloads=20' | sudo tee -a /etc/dnf/dnf.conf
-    dnf install fedora-workstation-repositories
+    sudo dnf -y install fedora-workstation-repositories
     sudo dnf -y upgrade --downloadonly
     sudo dnf -y upgrade
 }
@@ -115,7 +115,8 @@ function server_package() {
 }
 
 function graphics_package() {
-    sudo dnf -y install gimp inkscape blender
+    sudo dnf -y install gimp inkscape
+    sudo dnf -y install blender openshot
 }
 
 function internet_package() {
@@ -642,8 +643,8 @@ EOF
 }
 
 # update_hostname
-# rpmfusion_repo
 # fedora_upgrade
+# rpmfusion_repo
 
 # systools_package
 # devtools_package
