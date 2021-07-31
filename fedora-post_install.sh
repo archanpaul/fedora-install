@@ -116,7 +116,7 @@ function server_package() {
 
 function graphics_package() {
     sudo dnf -y install gimp inkscape
-    sudo dnf -y install blender openshot
+    sudo dnf -y install blender pitivi
 }
 
 function internet_package() {
@@ -411,10 +411,18 @@ export PATH=\$PATH:\$FLUTTER_ROOT/bin:\$PUB_CACHE/bin
 EOF
     source /etc/profile.d/flutter-sdk.sh
 
+    ## Linux app development dependencies.
+    sudo dnf -y install ninja-build
+    sudo dnf -y install gtk3-devel
+
     #flutter doctor
     #flutter doctor --android-licenses
     #flutter config --no-analytics
     #flutter precache
+    #flutter config --enable-linux-desktop
+    #flutter config --enable-windows-desktop
+    #flutter config --enable-windows-uwp-desktop
+    #flutter config --enable-macos-desktop
     #pub global activate protoc_plugin
 }
 
