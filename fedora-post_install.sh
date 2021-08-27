@@ -23,6 +23,7 @@ function rpmfusion_repo() {
 
 function systools_package() {
     sudo dnf -y install grubby
+    sudo dnf -y install ecryptfs-utils
 
     sudo dnf -y install cronie
     sudo systemctl enable crond.service
