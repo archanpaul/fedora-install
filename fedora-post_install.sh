@@ -661,6 +661,7 @@ EOF
 # jdk_package
 # server_package
 # container_package
+# docker_packages
 # graphics_package
 # internet_package
 # python_packages
