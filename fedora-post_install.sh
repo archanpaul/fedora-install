@@ -511,8 +511,8 @@ EOF
 }
 
 function mongodb_package() {
-    MONGODB_VERSION="4.4"
-    MONGODB_COMPASS_VERSION="1.26.1"
+    MONGODB_VERSION="5.0"
+    MONGODB_COMPASS_VERSION="1.28.4"
 
     cat <<EOF | sudo tee /etc/yum.repos.d/mongodb.repo
 [mongodb-org-${MONGODB_VERSION}]
