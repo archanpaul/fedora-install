@@ -7,12 +7,15 @@ function update_hostname() {
     hostnamectl set-hostname --static ${HOSTNAME}
 }
 
-function fedora_upgrade() {
+function dnf_conf_update() {
     sudo echo 'keepcache=True' | sudo tee -a /etc/dnf/dnf.conf
     sudo echo 'deltarpm=True' | sudo tee -a /etc/dnf/dnf.conf
     sudo echo 'fastestmirror=True' | sudo tee -a /etc/dnf/dnf.conf
     sudo echo 'max_parallel_downloads=20' | sudo tee -a /etc/dnf/dnf.conf
     sudo dnf -y install fedora-workstation-repositories
+}
+
+function fedora_upgrade() {
     sudo dnf -y upgrade --downloadonly
     sudo dnf -y upgrade
 }
@@ -96,8 +99,13 @@ function docker_packages() {
     ## for dockerd-rootless-setuptool
     # sudo systemctl disable --now docker.service docker.socket
     # dockerd-rootless-setuptool.sh install
-    # vim ~/.bashrc
+
+    ## update vim ~/.bashrc
+    # echo 'export PATH=/usr/bin:\$PATH' | sudo tee -a ~/.bashrc
+    # echo 'export DOCKER_HOST=unix:///run/user/1000/docker.sock' | sudo tee -a ~/.bashrc
+
     # systemctl --user start docker
+
     # sudo loginctl enable-linger $(whoami)
 
 }
@@ -326,15 +334,16 @@ function vscode_package() {
 }
 
 function android-studio_package() {
-    ANDROID_STUDIO_RELEASE=4.2.1.0
-    ANDROID_STUDIO_VERSION=202.7351085
+    ANDROID_STUDIO_RELEASE=2020.3.1.23
+
+    https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2020.3.1.23/android-studio-2020.3.1.23-linux.tar.gz
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
 
-    wget -c https://redirector.gvt1.com/edgedl/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -P ${CACHE}
+    wget -c https://redirector.gvt1.com/edgedl/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-${ANDROID_STUDIO_RELEASE}-linux.tar.gz -P ${CACHE}
 
-    sudo tar zxfv ${CACHE}/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -C /opt/
+    sudo tar zxfv ${CACHE}/android-studio-${ANDROID_STUDIO_RELEASE}-linux.tar.gz -C /opt/
     sudo chown -R root:wheel /opt/android-studio
     sudo chmod -R u+rwX,go+rwX,o-w /opt/android-studio
 
@@ -360,7 +369,6 @@ export ANDROID_NDK_HOME=\$ANDROID_NDK_ROOT
 export PATH=\$PATH:\$ANDROID_HOME/platform-tools/
 EOF
 
-    # sudo ln -sf /opt/android-studio/android-studio.desktop /usr/share/applications/android-studio.desktop
     sudo cp /opt/android-studio/android-studio.desktop /usr/share/applications/android-studio.desktop
     source /etc/profile.d/android-sdk.sh
 
@@ -372,7 +380,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="2.12.4"
+    DART_VERSION="2.13.4"
     
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
@@ -652,7 +660,8 @@ EOF
 }
 
 # update_hostname
-# fedora_upgrade
+# dnf_conf_update
+ fedora_upgrade
 # rpmfusion_repo
 
 # systools_package
@@ -661,6 +670,7 @@ EOF
 # jdk_package
 # server_package
 # container_package
+# docker_packages
 # graphics_package
 # internet_package
 # python_packages
