@@ -172,6 +172,8 @@ function go_tools_libs_packages() {
     source /etc/profile.d/go-packages.sh
 
     ## VSCode go plugin dependency
+    export GO111MODULE=on
+
     go get -v github.com/uudashr/gopkgs/v2/cmd/gopkgs
     go get -v github.com/ramya-rao-a/go-outline
     go get -v github.com/cweill/gotests/...
@@ -205,7 +207,6 @@ function go_tools_libs_packages() {
     ## goNum
     go get -u -v -t gonum.org/v1/gonum/...
     ## DB
-    export GO111MODULE=on
     go get -u -v github.com/dgraph-io/dgo/v2
     go get -u -v go.mongodb.org/mongo-driver
     go get -u -v go.mongodb.org/mongo-driver/bson 
@@ -251,83 +252,100 @@ function vscode_package() {
     #sudo echo 'fs.inotify.max_user_watches=524288' | sudo tee -a /etc/sysctl.conf
     #sudo sysctl -p
 
+    sudo dnf -y install pandoc
+
     ## vscode list extensions
     # code --list-extensions | xargs -L 1 echo code --install-extension
 
     ## vscode install extensions
-# code --install-extension Dart-Code.dart-code
-# code --install-extension Dart-Code.flutter
-# code --install-extension GitHub.github-vscode-theme
-# code --install-extension GitHub.vscode-pull-request-github
-# code --install-extension golang.go
-# code --install-extension mhutchie.git-graph
-# code --install-extension ms-vscode-remote.remote-ssh
-# code --install-extension ms-vscode-remote.remote-ssh-edit
-# code --install-extension ms-vscode.cpptools
-# code --install-extension PKief.material-icon-theme
-# code --install-extension redhat.java
-# code --install-extension redhat.vscode-yaml
-# code --install-extension VisualStudioExptTeam.vscodeintellicode
+    # code --install-extension Dart-Code.dart-code
+    # code --install-extension Dart-Code.flutter
+    # code --install-extension GitHub.github-vscode-theme
+    # code --install-extension golang.go
+    # code --install-extension mhutchie.git-graph
+    # code --install-extension ms-azuretools.vscode-docker
+    # code --install-extension ms-python.python
+    # code --install-extension ms-python.vscode-pylance
+    # code --install-extension ms-toolsai.jupyter
+    # code --install-extension ms-toolsai.jupyter-keymap
+    # code --install-extension ms-vscode.cpptools
+    # code --install-extension ms-vsliveshare.vsliveshare
+    # code --install-extension redhat.java
+    # code --install-extension VisualStudioExptTeam.vscodeintellicode
+    # code --install-extension vscjava.vscode-java-debug
 
     ## Settings
-# {
-#     "window.titleBarStyle": "custom",
-#     "workbench.startupEditor": "newUntitledFile",
-#     "telemetry.enableCrashReporter": false,
-#     "telemetry.enableTelemetry": false,
-#     "files.autoSave": "afterDelay",
-#     "files.autoSaveDelay": 10000,
-#     "workbench.colorTheme": "GitHub Light",
-#     "editor.fontFamily": "'Monaco', 'Fira Code Medium', 'Roboto Mono Medium', 'Monospace'",
-#     "editor.lineHeight": 24,
-#     "editor.fontSize": 16,
-#     "editor.fontLigatures": true,
-#     "editor.fontWeight": 900,
-#     "editor.wordWrap": "on",
-#     "editor.minimap.maxColumn": 40,
-#     "editor.formatOnPaste": true,
-#     "editor.formatOnSave": true,
-#     "editor.formatOnType": true,
-#     // "editor.formatOnSaveMode": "modifications",
-#     "editor.rulers": [
-#         80
-#     ],
-#     "terminal.integrated.copyOnSelection": true,
-#     "terminal.integrated.fontSize": 14,
-#     "terminal.integrated.cursorBlinking": true,
-#     "[Log]": {
-#         "editor.wordWrap": "on" // "off", "bounded", "wordWrapColumn"
-#     },
-#     "debug.openDebug": "openOnDebugBreak",
-#     "go.autocompleteUnimportedPackages": true,
-#     "go.coverOnSingleTestFile": true,
-#     "go.gotoSymbol.includeImports": true,
-#     "go.buildFlags": [
-#         "-v"
-#     ],
-#     "go.testFlags": [
-#         "-count=1",
-#         "-v"
-#     ],
-#     "go.vetFlags": [
-#         "-composites=false"
-#     ],
-#     "go.formatTool": "goimports",
-#     "go.useLanguageServer": true,
-#     "go.testTimeout": "180s",
-#     "[dart]": {
-#         "editor.selectionHighlight": false,
-#         "editor.suggest.snippetsPreventQuickSuggestions": false,
-#         "editor.suggestSelection": "first",
-#         "editor.tabCompletion": "onlySnippets",
-#         "editor.wordBasedSuggestions": false,
-#     },
-#     "editor.suggestSelection": "first",
-#     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-#     "workbench.iconTheme": "vs-seti",
-#     "dart.devToolsBrowser": "default",
-#     "terminal.integrated.fontFamily": "monospace"
-# }
+#{
+#    "window.titleBarStyle": "custom",
+#    "workbench.startupEditor": "newUntitledFile",
+#    "telemetry.enableCrashReporter": false,
+#    "editor.minimap.maxColumn": 40,
+#    "files.autoSave": "afterDelay",
+#    "files.autoSaveDelay": 10000,
+#    "editor.fontFamily": "'Fira Code Medium','Roboto Mono Medium','Droid Sans Mono', 'Monaco', 'monospace', monospace, 'Droid Sans Fallback'",
+#    "editor.fontSize": 16,
+#    "editor.fontLigatures": true,
+#    "editor.wordWrap": "on",
+#    "editor.formatOnPaste": true,
+#    "editor.formatOnSave": true,
+#    "editor.formatOnType": true,
+#    "editor.suggest.showStatusBar": true,
+#    "editor.suggest.insertMode": "insert",
+#    "terminal.integrated.copyOnSelection": true,
+#    "terminal.integrated.cursorBlinking": true,
+#    "[Log]": {
+#        "editor.wordWrap": "on"
+#    },
+#    "go.autocompleteUnimportedPackages": true,
+#    "go.coverOnSingleTestFile": true,
+#    "go.gotoSymbol.includeImports": true,
+#    //"go.buildFlags": [
+#    //    "-v"
+#    //],
+#    "go.testFlags": [
+#        "-count=1",
+#        "-v"
+#    ],
+#    "go.vetFlags": [
+#        "-composites=false"
+#    ],
+#    "go.formatTool": "goimports",
+#    "go.useLanguageServer": true,
+#    "go.testTimeout": "5m",
+#    "dart.lineLength": 150,
+#    "[dart]": {
+#        "editor.rulers": [
+#            120
+#        ],
+#        "editor.selectionHighlight": false,
+#        "editor.suggest.snippetsPreventQuickSuggestions": false,
+#        "editor.suggestSelection": "first",
+#        "editor.tabCompletion": "onlySnippets",
+#        "editor.wordBasedSuggestions": false,
+#    },
+#    "dart.devToolsBrowser": "default",
+#    "dart.checkForSdkUpdates": false,
+#    "workbench.sideBar.location": "left",
+#    "go.toolsManagement.autoUpdate": true,
+#    "dart.debugExternalLibraries": false,
+#    "dart.debugSdkLibraries": false,
+#    "dart.openDevTools": "flutter",
+#    "workbench.editorAssociations": {
+#        "*.ipynb": "jupyter.notebook.ipynb"
+#    },
+#    "json.maxItemsComputed": 200000,
+#    "python.terminal.executeInFileDir": true,
+#    "python.languageServer": "Pylance",
+#    "diffEditor.ignoreTrimWhitespace": false,
+#    "C_Cpp.formatting": "Disabled",
+#    "terminal.integrated.cursorWidth": 2,
+#    "telemetry.enableTelemetry": false,
+#    "workbench.colorTheme": "GitHub Dark Dimmed",
+#    "markdown.preview.fontSize": 18,
+#    "redhat.telemetry.enabled": false,
+#    "editor.suggestSelection": "first",
+#    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+#}
 
     sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
     sudo sysctl -p
@@ -438,8 +456,9 @@ EOF
 function python_packages() {
     sudo dnf -y install python3-virtualenv virtualenvwrapper
     sudo dnf -y install python3-pylint python3-autopep8
-    sudo dnf -y install python3-numpy python3-scipy
+    sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
+    sudo dnf -y install python3-ipykernel
 }
 
 function gnome_packages() {
@@ -629,6 +648,10 @@ function security_service() {
 
     ## /etc/crontab
     ## 05 4 * * * root /usr/sbin/aide --check
+}
+
+function matlab_dep() {
+    sudo dnf -y install libxcrypt-compat libnsl
 }
 
 function chroot_os() {
