@@ -41,6 +41,8 @@ function systools_package() {
     # sudo inxi --admin --verbosity=7 --filter --no-host
 
     sudo dnf -y install dnf-plugins-core
+
+    sudo dnf -y install unrar
 }
 
 function devtools_package() {
@@ -116,6 +118,10 @@ function kubernetes_packages() {
     # Minikube
     wget -c https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm -P ${CACHE}
     sudo rpm -ivh ${CACHE}/minikube-latest.x86_64.rpm
+
+    ## For usermode docker enable docker configuration
+    # minikube start --driver=docker --container-runtime=containerd
+    # minikube kubectl -- get pods -A
 }
 
 function server_package() {
@@ -693,6 +699,7 @@ EOF
 # jdk_package
 # server_package
 # container_package
+# kubernetes_packages
 # docker_packages
 # graphics_package
 # internet_package
