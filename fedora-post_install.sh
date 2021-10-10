@@ -513,7 +513,7 @@ function libreoffice_packages() {
 function codec_packages() {
     sudo dnf config-manager --set-enabled fedora-cisco-openh264
     sudo dnf -y install openh264
-    sudo dnf -y install gstreamer1-plugin-openh264 mozilla-openh264
+    sudo dnf -y install gstreamer1-plugin-openh264 mozilla-openh264 gstreamer1-libav
 }
 
 function gcloud_package() {
