@@ -34,6 +34,7 @@ function systools_package() {
     sudo dnf -y install mc vim
     sudo dnf -y install sysstat htop glances
     sudo dnf -y install nmap traceroute
+    sudo dnf -y install wget aria2
 
     sudo dnf -y install mesa-vulkan-drivers vulkan-tools
 
