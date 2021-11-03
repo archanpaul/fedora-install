@@ -478,7 +478,7 @@ function gnome_packages() {
     sudo dnf -y install pitivi snappy
 
     sudo dnf -y install gnome-extensions-app
-    # sudo dnf -y install gnome-shell-extension-dash-to-dock
+    sudo dnf -y install gnome-shell-extension-dash-to-dock
     sudo dnf -y install gnome-shell-extension-gsconnect
     sudo dnf -y install gnome-shell-extension-screenshot-window-sizer
 }
