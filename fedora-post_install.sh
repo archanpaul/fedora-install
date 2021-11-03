@@ -359,9 +359,7 @@ function vscode_package() {
 }
 
 function android-studio_package() {
-    ANDROID_STUDIO_RELEASE=2020.3.1.23
-
-    https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2020.3.1.23/android-studio-2020.3.1.23-linux.tar.gz
+    ANDROID_STUDIO_RELEASE=2020.3.1.25
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -405,7 +403,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="2.13.4"
+    DART_VERSION="2.14.4"
     
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
@@ -569,11 +567,11 @@ function embedded_dev() {
     sudo dnf -y install arm-none-eabi-newlib
 
     ## Renode
-    RENODE_VERSION="1.12.0"
-    RENODE_SUBVERSION="1"
-    wget -c https://github.com/renode/renode/releases/download/v${RENODE_VERSION}/renode-${RENODE_VERSION}-${RENODE_SUBVERSION}.f23.x86_64.rpm -P ${CACHE}
-    sudo rpm -ivh ${CACHE}/renode-${RENODE_VERSION}-${RENODE_SUBVERSION}.f23.x86_64.rpm
-    sudo dnf -y install PackageKit-gtk3-module
+    # RENODE_VERSION="1.12.0"
+    # RENODE_SUBVERSION="1"
+    # wget -c https://github.com/renode/renode/releases/download/v${RENODE_VERSION}/renode-${RENODE_VERSION}-${RENODE_SUBVERSION}.f23.x86_64.rpm -P ${CACHE}
+    # sudo rpm -ivh ${CACHE}/renode-${RENODE_VERSION}-${RENODE_SUBVERSION}.f23.x86_64.rpm
+    # sudo dnf -y install PackageKit-gtk3-module
 }
 
 function tizen_sdk() {
@@ -691,7 +689,7 @@ EOF
 
 # update_hostname
 # dnf_conf_update
- fedora_upgrade
+# fedora_upgrade
 # rpmfusion_repo
 
 # systools_package
@@ -700,8 +698,8 @@ EOF
 # jdk_package
 # server_package
 # container_package
-# kubernetes_packages
-# docker_packages
+## kubernetes_packages
+## docker_packages
 # graphics_package
 # internet_package
 # python_packages
@@ -712,13 +710,13 @@ EOF
 # flutter-sdk_package
 # swift_packages
 # go_packages
-# go_tools_libs_packages
+## go_tools_libs_packages
 # npm_packages
 # font_packages
 # codec_packages
-# gcloud_package
+## gcloud_package
 # libreoffice_packages
 # embedded_dev
-# mongodb_package
+## mongodb_package
 # httpd_service
 # security_service
