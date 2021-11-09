@@ -459,7 +459,7 @@ EOF
 }
 
 function python_packages() {
-    sudo dnf -y install python3-virtualenv virtualenvwrapper
+    sudo dnf -y install conda python3-virtualenv virtualenvwrapper
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
@@ -476,6 +476,7 @@ function gnome_packages() {
     sudo dnf -y install gnome-boxes
     sudo dnf -y install gnome-sound-recorder easytag
     sudo dnf -y install pitivi snappy
+    sudo dnf -y install evince xournalpp
 
     sudo dnf -y install gnome-extensions-app
     sudo dnf -y install gnome-shell-extension-dash-to-dock
