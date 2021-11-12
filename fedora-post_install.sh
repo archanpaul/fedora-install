@@ -140,6 +140,10 @@ function internet_package() {
     sudo dnf -y install youtube-dl
     sudo dnf -y install vgrive
 
+    sudo dnf -y install firefox
+    sudo dnf -y install firefox-wayland
+    sudo dnf -y install mozilla-noscript mozilla-ublock-origin 
+
     sudo dnf config-manager --set-enabled google-chrome
     sudo dnf check-update
     sudo dnf -y install google-chrome-stable
