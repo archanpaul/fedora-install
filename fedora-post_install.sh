@@ -468,6 +468,8 @@ function python_packages() {
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
     sudo dnf -y install python3-ipykernel
+
+    sudo dnf -y install certbot
 }
 
 function gnome_packages() {
