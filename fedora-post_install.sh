@@ -363,7 +363,7 @@ function vscode_package() {
 }
 
 function android-studio_package() {
-    ANDROID_STUDIO_RELEASE=2020.3.1.25
+    ANDROID_STUDIO_RELEASE=2020.3.1.26
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
