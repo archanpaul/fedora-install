@@ -463,13 +463,22 @@ EOF
 }
 
 function python_packages() {
-    sudo dnf -y install conda python3-virtualenv virtualenvwrapper
+    sudo dnf -y install python3-virtualenv virtualenvwrapper
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
     sudo dnf -y install python3-ipykernel
 
     sudo dnf -y install certbot
+
+    # conda
+    sudo dnf -y install conda
+    ## conda create --name py39conda python=3.9
+    ## conda activate py39conda
+    ## conda install anaconda
+    ## conda install scikit-learn-intelex
+    ## conda install tensorflow
+    ## conda install -c conda-forge opencv
 }
 
 function gnome_packages() {
