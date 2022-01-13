@@ -244,6 +244,8 @@ function go_tools_libs_packages() {
     # Firebase
     go get -u -v firebase.google.com/go
     go get -u -v firebase.google.com/go/auth
+    # opencv
+    go get -u -d gocv.io/x/gocv
 
     ## Update
     #go get -u -v all
