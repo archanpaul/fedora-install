@@ -533,23 +533,27 @@ function codec_packages() {
     sudo dnf -y install gstreamer1-plugin-openh264 mozilla-openh264 gstreamer1-libav
 }
 
+function buildtools_bazel() {
+    sudo dnf -y install dnf-plugins-core
+    sudo dnf copr enable vbatts/bazel
+    sudo dnf -y install bazel4
+}
+
 function gcloud_package() {
-    sudo rm -rf /opt/google-cloud-sdk
-    sudo mkdir -p /opt/google-cloud-sdk
-
-    GOOGLE_CLOUD_SDK_RELEASE="318.0.0"
-    
-    wget -c https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${GOOGLE_CLOUD_SDK_RELEASE}-linux-x86_64.tar.gz -P ${CACHE}
-    sudo tar zxfv ${CACHE}/google-cloud-sdk-${GOOGLE_CLOUD_SDK_RELEASE}-linux-x86_64.tar.gz -C /opt/
-
-    sudo chown -R root:wheel /opt/google-cloud-sdk
-    sudo chmod -R u+rwX,go+rwX,o-w /opt/google-cloud-sdk
-
-    cat <<EOF | sudo tee /etc/profile.d/google-cloud-sdk.sh
-export PATH=\$PATH:/opt/google-cloud-sdk/bin
+    cat <<EOF | sudo tee /etc/yum.repos.d/google-cloud-sdk.repo
+[google-cloud-sdk]
+name=Google Cloud SDK
+baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el8-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=0
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+       https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 EOF
 
-    source /etc/profile.d/google-cloud-sdk.sh
+   sudo dnf -y install libxcrypt-compat.x86_64
+   sudo dnf -y install google-cloud-sdk
+
 }
 
 function mongodb_package() {
@@ -734,6 +738,7 @@ EOF
 # codec_packages
 ## gcloud_package
 # libreoffice_packages
+# buildtools_bazel
 # embedded_dev
 ## mongodb_package
 # httpd_service
