@@ -536,7 +536,12 @@ function codec_packages() {
 function buildtools_bazel() {
     sudo dnf -y install dnf-plugins-core
     sudo dnf copr enable vbatts/bazel
-    sudo dnf -y install bazel4
+    sudo dnf -y install bazel
+    
+    # bazel_buildtools
+    go install github.com/bazelbuild/buildtools/buildifier@latest
+    go install github.com/bazelbuild/buildtools/buildozer@latest
+    go get github.com/bazelbuild/buildtools/unused_deps
 }
 
 function gcloud_package() {
