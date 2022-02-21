@@ -55,6 +55,7 @@ function devtools_package() {
 
     sudo dnf -y install glibc-devel libstdc++-devel kernel-devel
     sudo dnf -y install protobuf protobuf-compiler protobuf-devel
+    sudo dnf -y install boost-devel
 
     sudo dnf -y install git
 }
