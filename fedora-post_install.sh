@@ -394,7 +394,7 @@ EOF
     cat <<EOF | sudo tee /etc/profile.d/android-sdk.sh
 export ANDROID_HOME=/opt/android-sdk/
 export ANDROID_SDK_ROOT=\$ANDROID_HOME
-export ANDROID_NDK_ROOT=\$ANDROID_HOME/ndk
+export ANDROID_NDK_ROOT=\$ANDROID_HOME/ndk/21.1.6352462
 export ANDROID_NDK_HOME=\$ANDROID_NDK_ROOT
 export PATH=\$PATH:\$ANDROID_HOME/platform-tools/
 EOF
