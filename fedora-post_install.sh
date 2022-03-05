@@ -261,105 +261,155 @@ function vscode_package() {
     sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
     dnf check-update
     sudo dnf -y install code
-    #code --list-extensions | xargs -L 1 echo code --install-extension
-    
-    #sudo echo 'fs.inotify.max_user_watches=524288' | sudo tee -a /etc/sysctl.conf
-    #sudo sysctl -p
-
     sudo dnf -y install pandoc
+
+    # sudo echo 'fs.inotify.max_user_watches=524288' | sudo tee -a /etc/sysctl.conf
+    # sudo sysctl -p
 
     ## vscode list extensions
     # code --list-extensions | xargs -L 1 echo code --install-extension
 
     ## vscode install extensions
+    # code --install-extension BazelBuild.vscode-bazel
     # code --install-extension Dart-Code.dart-code
     # code --install-extension Dart-Code.flutter
+    # code --install-extension dendron.dendron
+    # code --install-extension dendron.dendron-markdown-links
+    # code --install-extension dendron.dendron-markdown-preview-enhanced
+    # code --install-extension dendron.dendron-markdown-shortcuts
+    # code --install-extension dendron.dendron-paste-image
+    # code --install-extension eamodio.gitlens
     # code --install-extension GitHub.github-vscode-theme
+    # code --install-extension GitHub.vscode-pull-request-github
     # code --install-extension golang.go
+    # code --install-extension mathiasfrohlich.Kotlin
     # code --install-extension mhutchie.git-graph
     # code --install-extension ms-azuretools.vscode-docker
     # code --install-extension ms-python.python
     # code --install-extension ms-python.vscode-pylance
     # code --install-extension ms-toolsai.jupyter
     # code --install-extension ms-toolsai.jupyter-keymap
+    # code --install-extension ms-toolsai.jupyter-renderers
+    # code --install-extension ms-vscode-remote.remote-containers
+    # code --install-extension ms-vscode-remote.remote-ssh
+    # code --install-extension ms-vscode-remote.remote-ssh-edit
+    # code --install-extension ms-vscode-remote.remote-wsl
+    # code --install-extension ms-vscode.cmake-tools
     # code --install-extension ms-vscode.cpptools
-    # code --install-extension ms-vsliveshare.vsliveshare
+    # code --install-extension ms-vscode.cpptools-extension-pack
+    # code --install-extension ms-vscode.cpptools-themes
     # code --install-extension redhat.java
+    # code --install-extension redhat.vscode-yaml
     # code --install-extension VisualStudioExptTeam.vscodeintellicode
     # code --install-extension vscjava.vscode-java-debug
+    # code --install-extension zxh404.vscode-proto3
+
+
 
     ## Settings
-#{
-#    "window.titleBarStyle": "custom",
-#    "workbench.startupEditor": "newUntitledFile",
-#    "telemetry.enableCrashReporter": false,
-#    "editor.minimap.maxColumn": 40,
-#    "files.autoSave": "afterDelay",
-#    "files.autoSaveDelay": 10000,
-#    "editor.fontFamily": "'Fira Code Medium','Roboto Mono Medium','Droid Sans Mono', 'Monaco', 'monospace', monospace, 'Droid Sans Fallback'",
-#    "editor.fontSize": 16,
-#    "editor.fontLigatures": true,
-#    "editor.wordWrap": "on",
-#    "editor.formatOnPaste": true,
-#    "editor.formatOnSave": true,
-#    "editor.formatOnType": true,
-#    "editor.suggest.showStatusBar": true,
-#    "editor.suggest.insertMode": "insert",
-#    "terminal.integrated.copyOnSelection": true,
-#    "terminal.integrated.cursorBlinking": true,
-#    "[Log]": {
-#        "editor.wordWrap": "on"
-#    },
-#    "go.autocompleteUnimportedPackages": true,
-#    "go.coverOnSingleTestFile": true,
-#    "go.gotoSymbol.includeImports": true,
-#    //"go.buildFlags": [
-#    //    "-v"
-#    //],
-#    "go.testFlags": [
-#        "-count=1",
-#        "-v"
-#    ],
-#    "go.vetFlags": [
-#        "-composites=false"
-#    ],
-#    "go.formatTool": "goimports",
-#    "go.useLanguageServer": true,
-#    "go.testTimeout": "5m",
-#    "dart.lineLength": 150,
-#    "[dart]": {
-#        "editor.rulers": [
-#            120
-#        ],
-#        "editor.selectionHighlight": false,
-#        "editor.suggest.snippetsPreventQuickSuggestions": false,
-#        "editor.suggestSelection": "first",
-#        "editor.tabCompletion": "onlySnippets",
-#        "editor.wordBasedSuggestions": false,
-#    },
-#    "dart.devToolsBrowser": "default",
-#    "dart.checkForSdkUpdates": false,
-#    "workbench.sideBar.location": "left",
-#    "go.toolsManagement.autoUpdate": true,
-#    "dart.debugExternalLibraries": false,
-#    "dart.debugSdkLibraries": false,
-#    "dart.openDevTools": "flutter",
-#    "workbench.editorAssociations": {
-#        "*.ipynb": "jupyter.notebook.ipynb"
-#    },
-#    "json.maxItemsComputed": 200000,
-#    "python.terminal.executeInFileDir": true,
-#    "python.languageServer": "Pylance",
-#    "diffEditor.ignoreTrimWhitespace": false,
-#    "C_Cpp.formatting": "Disabled",
-#    "terminal.integrated.cursorWidth": 2,
-#    "telemetry.enableTelemetry": false,
-#    "workbench.colorTheme": "GitHub Dark Dimmed",
-#    "markdown.preview.fontSize": 18,
-#    "redhat.telemetry.enabled": false,
-#    "editor.suggestSelection": "first",
-#    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
-#}
+
+    # {
+    #     "workbench.colorTheme": "GitHub Light Default",
+    #     "window.titleBarStyle": "custom",
+    #     "workbench.startupEditor": "none",
+    #     "editor.minimap.enabled": true,
+    #     "editor.minimap.maxColumn": 40,
+    #     "files.autoSave": "afterDelay",
+    #     "files.autoSaveDelay": 10000,
+    #     "files.exclude": {
+    #         "**/.classpath": true,
+    #         "**/.project": true,
+    #         "**/.settings": true,
+    #         "**/.factorypath": true
+    #     },
+    #     "editor.fontFamily": "'Fira Code Medium','Roboto Mono Medium','Droid Sans Mono', 'Monaco', 'monospace', monospace, 'Droid Sans Fallback'",
+    #     "editor.fontSize": 16,
+    #     "editor.fontLigatures": true,
+    #     "editor.wordWrap": "on",
+    #     "editor.formatOnPaste": true,
+    #     "editor.formatOnSave": true,
+    #     "editor.formatOnType": true,
+    #     "editor.suggest.showStatusBar": true,
+    #     "editor.suggestSelection": "first",
+    #     "editor.suggest.insertMode": "insert",
+    #     "editor.formatOnSaveMode": "modificationsIfAvailable",
+    #     "diffEditor.ignoreTrimWhitespace": false,
+    #     "terminal.integrated.copyOnSelection": true,
+    #     "terminal.integrated.cursorBlinking": true,
+    #     "terminal.integrated.cursorWidth": 2,
+    #     "terminal.integrated.inheritEnv": true,
+    #     "markdown.preview.fontSize": 20,
+    #     "markdown.preview.typographer": true,
+    #     "telemetry.telemetryLevel": "off",
+    #     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    #     // "C_Cpp.formatting": "Disabled",
+    #     "[Log]": {
+    #         "editor.wordWrap": "on"
+    #     },
+    #     "go.autocompleteUnimportedPackages": true,
+    #     "go.coverOnSingleTestFile": true,
+    #     "go.gotoSymbol.includeImports": true,
+    #     // "go.buildFlags": [
+    #     //     "-v"
+    #     // ],
+    #     "go.testFlags": [
+    #         "-count=1",
+    #         "-v"
+    #     ],
+    #     "go.vetFlags": [
+    #         "-composites=false"
+    #     ],
+    #     "go.formatTool": "goimports",
+    #     "go.useLanguageServer": true,
+    #     "go.testTimeout": "5m",
+    #     "go.toolsManagement.autoUpdate": true,
+    #     "dart.lineLength": 150,
+    #     "[dart]": {
+    #         "editor.rulers": [
+    #             120
+    #         ],
+    #         "editor.selectionHighlight": false,
+    #         "editor.suggest.snippetsPreventQuickSuggestions": false,
+    #         "editor.suggestSelection": "first",
+    #         "editor.tabCompletion": "onlySnippets",
+    #         "editor.wordBasedSuggestions": false,
+    #     },
+    #     "dart.devToolsBrowser": "default",
+    #     "dart.checkForSdkUpdates": false,
+    #     "workbench.sideBar.location": "left",
+    #     "dart.debugSdkLibraries": false,
+    #     "dart.openDevTools": "flutter",
+    #     "json.maxItemsComputed": 200000,
+    #     "workbench.editorAssociations": {
+    #         "*.ipynb": "jupyter.notebook.ipynb"
+    #     },
+    #     "python.terminal.executeInFileDir": true,
+    #     "python.languageServer": "Pylance",
+    #     "python.formatting.autopep8Args": [
+    #         "--ignore",
+    #         "E402"
+    #     ],
+    #     "python.analysis.completeFunctionParens": true,
+    #     "python.defaultInterpreterPath": "/home/arp/.conda/envs/py39conda/bin/python",
+    #     "python.formatting.provider": "black",
+    #     // "python.analysis.typeCheckingMode": "basic"
+    #     "notebook.lineNumbers": "on",
+    #     "notebook.cellToolbarLocation": {
+    #         "default": "left"
+    #     },
+    #     "notebook.cellToolbarVisibility": "hover",
+    #     "notebook.globalToolbarShowLabel": "dynamic",
+    #     "notebook.consolidatedRunButton": true,
+    #     "jupyter.runStartupCommands": [
+    #         "%load_ext autoreload",
+    #         "%autoreload 2"
+    #     ],
+    #     "jupyter.askForKernelRestart": false,
+    #     "jupyter.generateSVGPlots": true,
+    #     "jupyter.exportWithOutputEnabled": true,
+    #     "jupyter.jupyterServerType": "local",
+    #     "jupyter.pylanceHandlesNotebooks": true,
+    # }
 
     sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
     sudo sysctl -p
