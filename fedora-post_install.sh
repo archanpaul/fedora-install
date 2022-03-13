@@ -550,6 +550,8 @@ function gnome_packages() {
     sudo dnf -y install gnome-shell-extension-dash-to-dock
     sudo dnf -y install gnome-shell-extension-gsconnect
     sudo dnf -y install gnome-shell-extension-screenshot-window-sizer
+
+    sudo dnf -y install celluloid vlc
 }
 
 function font_packages() {
