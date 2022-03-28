@@ -43,7 +43,7 @@ function systools_package() {
 
     sudo dnf -y install dnf-plugins-core
 
-    sudo dnf -y install unrar
+    sudo dnf -y install unrar 
 }
 
 function devtools_package() {
@@ -514,6 +514,14 @@ EOF
     #flutter config --enable-windows-uwp-desktop
     #flutter config --enable-macos-desktop
     #pub global activate protoc_plugin
+}
+
+
+function nrf-dev-dep_package() {
+    # device-tree-compiler
+    sudo dnf -y install dtc
+    sudo dnf -y install gperf ccache dfu-util
+    sudo dnf -y install ninja-build
 }
 
 function python_packages() {
