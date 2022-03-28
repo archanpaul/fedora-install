@@ -517,11 +517,26 @@ EOF
 }
 
 
-function nrf-dev-dep_package() {
+function nrf-dev-dep_packages() {
     # device-tree-compiler
     sudo dnf -y install dtc
+    sudo dnf -y install ncurses-devel
     sudo dnf -y install gperf ccache dfu-util
     sudo dnf -y install ninja-build
+
+    # pip3 install --user west
+    # export GNUARMEMB_TOOLCHAIN_PATH=/home/repos.arp/workspace/nrf_workspace/toolchain/gcc-arm-none-eabi-9-2019-q4-major/
+    # export PATH="${PATH}:$(python3 -c 'import site; print(site.USER_BASE)')/bin"
+    ## nrf_sdk
+    # mkdir ncs
+    # cd ncs
+    # west init -m https://github.com/nrfconnect/sdk-nrf
+    # west update
+    # west zephyr-export
+    # pip3 install --user -r zephyr/scripts/requirements.txt
+    # pip3 install --user -r nrf/scripts/requirements.txt
+    # pip3 install --user -r bootloader/mcuboot/scripts/requirements.txt
+
 }
 
 function python_packages() {
@@ -654,6 +669,8 @@ function embedded_dev() {
     ## arm-none-eabi toolchain
     sudo dnf -y install arm-none-eabi-binutils-cs arm-none-eabi-gcc-cs arm-none-eabi-gcc-cs-c++
     sudo dnf -y install arm-none-eabi-newlib
+
+    nrf-dev-dep_packages
 
     ## Renode
     # RENODE_VERSION="1.12.0"
