@@ -555,6 +555,11 @@ function python_packages() {
 
     sudo dnf -y install certbot
 
+    # virtualenv
+    ## virtualenv3 -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
+    ## source ~/.virtualenvs/venv_py311/bin/activate
+
+
     # conda
     sudo dnf -y install conda
     ## conda init bash
