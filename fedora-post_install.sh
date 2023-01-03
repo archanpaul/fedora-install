@@ -31,6 +31,8 @@ function systools_package() {
     sudo dnf -y install cronie
     sudo systemctl enable crond.service
 
+    sudo dnf -y install nvme-cli
+
     sudo dnf -y install mc vim
     sudo dnf -y install sysstat htop glances
     sudo dnf -y install nmap traceroute
@@ -119,8 +121,8 @@ function kubernetes_packages() {
     sudo dnf -y install kubernetes
 
     # Minikube
-    wget -c https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm -P ${CACHE}
-    sudo rpm -ivh ${CACHE}/minikube-latest.x86_64.rpm
+    # wget -c https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm -P ${CACHE}
+    # sudo rpm -ivh ${CACHE}/minikube-latest.x86_64.rpm
 
     ## For usermode docker enable docker configuration
     # minikube start --driver=docker --container-runtime=containerd
@@ -140,7 +142,6 @@ function graphics_package() {
 function internet_package() {
     sudo dnf -y install chromium thunderbird transmission
     sudo dnf -y install youtube-dl
-    sudo dnf -y install vgrive
 
     sudo dnf -y install firefox
     sudo dnf -y install firefox-wayland
@@ -416,7 +417,7 @@ function vscode_package() {
     sudo sysctl -p
 }
 
-function android-studio_package() {
+function android-studio_package(){
     ANDROID_STUDIO_RELEASE=2020.3.1.26
 
     sudo rm -rf /opt/android-studio
@@ -638,6 +639,13 @@ EOF
 
 }
 
+function database_packages() {
+   # Postgres
+   sudo dnf -y install postgresql-server postgresql
+
+   # mongodb_package
+}
+
 function mongodb_package() {
     MONGODB_VERSION="5.0"
     MONGODB_COMPASS_VERSION="1.28.4"
@@ -793,37 +801,42 @@ EOF
     # schroot -c focal -u root
 }
 
-# update_hostname
-# dnf_conf_update
-# fedora_upgrade
-# rpmfusion_repo
+function install_all_modules() {
+	# update_hostname
+	# dnf_conf_update
+	# fedora_upgrade
+	# rpmfusion_repo
 
-# systools_package
-# devtools_package
-# rpm_devtools_package
-# jdk_package
-# server_package
-# container_package
-## kubernetes_packages
-## docker_packages
-# graphics_package
-# internet_package
-# python_packages
-# gnome_packages
-# vscode_package
-# android-studio_package
-# dart-sdk_package
-# flutter-sdk_package
-# swift_packages
-# go_packages
-## go_tools_libs_packages
-# npm_packages
-# font_packages
-# codec_packages
-## gcloud_package
-# libreoffice_packages
-# buildtools_bazel
-# embedded_dev
-## mongodb_package
-# httpd_service
-# security_service
+	# systools_package
+	# devtools_package
+	# rpm_devtools_package
+	# jdk_package
+	# server_package
+	# container_package
+	# kubernetes_packages
+	## docker_packages
+	# graphics_package
+	# internet_package
+	# python_packages
+	# gnome_packages
+	# vscode_package
+	# android-studio_package
+	# dart-sdk_package
+	# flutter-sdk_package
+	# swift_packages
+	# go_packages
+	## go_tools_libs_packages
+	# npm_packages
+	# font_packages
+	# codec_packages
+	# gcloud_package
+	# libreoffice_packages
+	## buildtools_bazel
+	# embedded_dev
+	database_packages
+
+	# httpd_service
+	# security_service
+}
+
+install_all_modules 2>&1 | tee fedora_install.log
