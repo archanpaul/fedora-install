@@ -45,12 +45,12 @@ function systools_package() {
 
     sudo dnf -y install dnf-plugins-core
 
-    sudo dnf -y install unrar 
+    sudo dnf -y install unrar
 }
 
 function devtools_package() {
     sudo dnf -y install autoconf automake make cmake patch pkgconf libtool
-    sudo dnf -y install strace byacc elfutils ltrace strace valgrind 
+    sudo dnf -y install strace byacc elfutils ltrace strace valgrind
 
     sudo dnf -y install binutils bison flex gcc gcc-c++ gdb
     sudo dnf -y install clang clang-tools-extra clang-devel
@@ -145,7 +145,7 @@ function internet_package() {
 
     sudo dnf -y install firefox
     sudo dnf -y install firefox-wayland
-    sudo dnf -y install mozilla-noscript mozilla-ublock-origin 
+    sudo dnf -y install mozilla-noscript mozilla-ublock-origin
 
     sudo dnf config-manager --set-enabled google-chrome
     sudo dnf check-update
@@ -223,7 +223,7 @@ function go_tools_libs_packages() {
     ## DB
     go get -u -v github.com/dgraph-io/dgo/v2
     go get -u -v go.mongodb.org/mongo-driver
-    go get -u -v go.mongodb.org/mongo-driver/bson 
+    go get -u -v go.mongodb.org/mongo-driver/bson
     go get -u -v go.mongodb.org/mongo-driver/mongo/options
     go get -u -v go.mongodb.org/mongo-driver/mongo/readpref
     ## protobuf
@@ -265,89 +265,115 @@ function vscode_package() {
     sudo dnf -y install code
     sudo dnf -y install pandoc
 
-    # sudo echo 'fs.inotify.max_user_watches=524288' | sudo tee -a /etc/sysctl.conf
-    # sudo sysctl -p
-
     ## vscode list extensions
     # code --list-extensions | xargs -L 1 echo code --install-extension
 
     ## vscode install extensions
-    # code --install-extension BazelBuild.vscode-bazel
+
+    # code --install-extension ckolkman.vscode-postgres
     # code --install-extension Dart-Code.dart-code
     # code --install-extension Dart-Code.flutter
-    # code --install-extension dendron.dendron
-    # code --install-extension dendron.dendron-markdown-links
-    # code --install-extension dendron.dendron-markdown-preview-enhanced
-    # code --install-extension dendron.dendron-markdown-shortcuts
-    # code --install-extension dendron.dendron-paste-image
-    # code --install-extension eamodio.gitlens
+    # code --install-extension GitHub.codespaces
     # code --install-extension GitHub.github-vscode-theme
-    # code --install-extension GitHub.vscode-pull-request-github
+    # code --install-extension GitHub.remotehub
     # code --install-extension golang.go
-    # code --install-extension mathiasfrohlich.Kotlin
     # code --install-extension mhutchie.git-graph
     # code --install-extension ms-azuretools.vscode-docker
+    # code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+    # code --install-extension ms-python.isort
     # code --install-extension ms-python.python
     # code --install-extension ms-python.vscode-pylance
     # code --install-extension ms-toolsai.jupyter
     # code --install-extension ms-toolsai.jupyter-keymap
     # code --install-extension ms-toolsai.jupyter-renderers
+    # code --install-extension ms-toolsai.vscode-jupyter-cell-tags
+    # code --install-extension ms-toolsai.vscode-jupyter-slideshow
     # code --install-extension ms-vscode-remote.remote-containers
     # code --install-extension ms-vscode-remote.remote-ssh
     # code --install-extension ms-vscode-remote.remote-ssh-edit
     # code --install-extension ms-vscode-remote.remote-wsl
-    # code --install-extension ms-vscode.cmake-tools
+    # code --install-extension ms-vscode-remote.vscode-remote-extensionpack
     # code --install-extension ms-vscode.cpptools
-    # code --install-extension ms-vscode.cpptools-extension-pack
-    # code --install-extension ms-vscode.cpptools-themes
-    # code --install-extension redhat.java
+    # code --install-extension ms-vscode.hexeditor
+    # code --install-extension ms-vscode.makefile-tools
+    # code --install-extension ms-vscode.remote-explorer
+    # code --install-extension ms-vscode.remote-repositories
     # code --install-extension redhat.vscode-yaml
     # code --install-extension VisualStudioExptTeam.vscodeintellicode
-    # code --install-extension vscjava.vscode-java-debug
     # code --install-extension zxh404.vscode-proto3
-
-
 
     ## Settings
 
     # {
-    #     "workbench.colorTheme": "GitHub Light Default",
-    #     "window.titleBarStyle": "custom",
+    #     "workbench.sideBar.location": "left",
     #     "workbench.startupEditor": "none",
-    #     "editor.minimap.enabled": true,
-    #     "editor.minimap.maxColumn": 40,
+    #     "workbench.colorTheme": "GitHub Light Default",
+    #     "workbench.preferredLightColorTheme": "GitHub Light Default",
+    #     "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
+    #     "window.autoDetectColorScheme": true,
+    #     "window.menuBarVisibility": "compact",
+    #     "window.titleBarStyle": "custom",
+    #     "telemetry.telemetryLevel": "off",
+    #     "redhat.telemetry.enabled": false,
     #     "files.autoSave": "afterDelay",
-    #     "files.autoSaveDelay": 10000,
-    #     "files.exclude": {
-    #         "**/.classpath": true,
-    #         "**/.project": true,
-    #         "**/.settings": true,
-    #         "**/.factorypath": true
-    #     },
-    #     "editor.fontFamily": "'Fira Code Medium','Roboto Mono Medium','Droid Sans Mono', 'Monaco', 'monospace', monospace, 'Droid Sans Fallback'",
-    #     "editor.fontSize": 16,
-    #     "editor.fontLigatures": true,
     #     "editor.wordWrap": "on",
+    #     "editor.bracketPairColorization.enabled": true,
+    #     "editor.tabCompletion": "on",
+    #     "editor.cursorSmoothCaretAnimation": false,
+    #     "editor.fontFamily": "'Fira Code Medium','Roboto Mono Medium','Droid Sans Mono', 'monospace', monospace",
+    #     "editor.lineHeight": 24,
+    #     "explorer.decorations.badges": false,
+    #     "editor.fontLigatures": true,
+    #     "editor.fontSize": 16,
     #     "editor.formatOnPaste": true,
     #     "editor.formatOnSave": true,
     #     "editor.formatOnType": true,
     #     "editor.suggest.showStatusBar": true,
     #     "editor.suggestSelection": "first",
     #     "editor.suggest.insertMode": "insert",
-    #     "editor.formatOnSaveMode": "modificationsIfAvailable",
+    #     "editor.minimap.enabled": true,
+    #     "editor.minimap.maxColumn": 40,
+    #     "diffEditor.codeLens": true,
     #     "diffEditor.ignoreTrimWhitespace": false,
     #     "terminal.integrated.copyOnSelection": true,
     #     "terminal.integrated.cursorBlinking": true,
     #     "terminal.integrated.cursorWidth": 2,
     #     "terminal.integrated.inheritEnv": true,
+    #     "terminal.integrated.fontFamily": "'Roboto Mono','Droid Sans Mono', 'monospace', monospace",
+    #     "terminal.integrated.fontSize": 14,
+    #     "files.autoSaveDelay": 10000,
+    #     "files.trimFinalNewlines": true,
+    #     "files.insertFinalNewline": true,
+    #     "files.trimTrailingWhitespace": true,
+    #     "files.exclude": {
+    #         // "**/.classpath": true,
+    #         "**/.project": true,
+    #         "**/.settings": true,
+    #     },
+    #     "python.terminal.executeInFileDir": true,
+    #     "python.formatting.autopep8Args": [
+    #         "--ignore",
+    #         "E402"
+    #     ],
+    #     "python.analysis.completeFunctionParens": true,
+    #     "python.formatting.provider": "autopep8",
+    #     // "python.analysis.typeCheckingMode": "basic",
+    #     "notebook.cellToolbarLocation": {
+    #         "default": "left"
+    #     },
+    #     "notebook.cellToolbarVisibility": "hover",
+    #     "notebook.globalToolbarShowLabel": "dynamic",
+    #     "notebook.lineNumbers": "on",
+    #     "notebook.markup.fontSize": 16,
+    #     "jupyter.runStartupCommands": [
+    #         "%load_ext autoreload",
+    #         "%autoreload 2"
+    #     ],
+    #     "jupyter.askForKernelRestart": false,
+    #     "jupyter.generateSVGPlots": true,
+    #     "jupyter.exportWithOutputEnabled": true,
     #     "markdown.preview.fontSize": 20,
     #     "markdown.preview.typographer": true,
-    #     "telemetry.telemetryLevel": "off",
-    #     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    #     // "C_Cpp.formatting": "Disabled",
-    #     "[Log]": {
-    #         "editor.wordWrap": "on"
-    #     },
     #     "go.autocompleteUnimportedPackages": true,
     #     "go.coverOnSingleTestFile": true,
     #     "go.gotoSymbol.includeImports": true,
@@ -367,6 +393,8 @@ function vscode_package() {
     #     "go.toolsManagement.autoUpdate": true,
     #     "dart.lineLength": 150,
     #     "[dart]": {
+    #         "editor.formatOnSave": true,
+    #         "editor.formatOnType": true,
     #         "editor.rulers": [
     #             120
     #         ],
@@ -374,43 +402,21 @@ function vscode_package() {
     #         "editor.suggest.snippetsPreventQuickSuggestions": false,
     #         "editor.suggestSelection": "first",
     #         "editor.tabCompletion": "onlySnippets",
-    #         "editor.wordBasedSuggestions": false,
+    #         "editor.wordBasedSuggestions": false
     #     },
     #     "dart.devToolsBrowser": "default",
     #     "dart.checkForSdkUpdates": false,
-    #     "workbench.sideBar.location": "left",
     #     "dart.debugSdkLibraries": false,
     #     "dart.openDevTools": "flutter",
     #     "json.maxItemsComputed": 200000,
-    #     "workbench.editorAssociations": {
-    #         "*.ipynb": "jupyter.notebook.ipynb"
+    #     // "cmake.configureOnOpen": false,
+    #     // "C_Cpp.intelliSenseEngine": "Disabled",
+    #     // "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    #     // "C_Cpp.formatting": "Disabled",
+    #     "[Log]": {
+    #         "editor.wordWrap": "on"
     #     },
-    #     "python.terminal.executeInFileDir": true,
-    #     "python.languageServer": "Pylance",
-    #     "python.formatting.autopep8Args": [
-    #         "--ignore",
-    #         "E402"
-    #     ],
-    #     "python.analysis.completeFunctionParens": true,
-    #     "python.defaultInterpreterPath": "/home/arp/.conda/envs/py39conda/bin/python",
-    #     "python.formatting.provider": "black",
-    #     // "python.analysis.typeCheckingMode": "basic"
-    #     "notebook.lineNumbers": "on",
-    #     "notebook.cellToolbarLocation": {
-    #         "default": "left"
-    #     },
-    #     "notebook.cellToolbarVisibility": "hover",
-    #     "notebook.globalToolbarShowLabel": "dynamic",
-    #     "notebook.consolidatedRunButton": true,
-    #     "jupyter.runStartupCommands": [
-    #         "%load_ext autoreload",
-    #         "%autoreload 2"
-    #     ],
-    #     "jupyter.askForKernelRestart": false,
-    #     "jupyter.generateSVGPlots": true,
-    #     "jupyter.exportWithOutputEnabled": true,
-    #     "jupyter.jupyterServerType": "local",
-    #     "jupyter.pylanceHandlesNotebooks": true,
+    #     "git.repositoryScanMaxDepth": -1,
     # }
 
     sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
@@ -463,7 +469,7 @@ EOF
 
 function dart-sdk_package() {
     DART_VERSION="2.14.4"
-    
+
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
     sudo rm -rf /opt/dart-sdk
@@ -551,12 +557,17 @@ function python_packages() {
 
     # conda
     sudo dnf -y install conda
-    ## conda create --name py39conda python=3.9
-    ## conda activate py39conda
-    ## conda install anaconda
-    ## conda install scikit-learn-intelex
-    ## conda install tensorflow
-    ## conda install -c conda-forge opencv
+    ## conda init bash
+    ## conda config --set report_errors false
+    ## conda config --set auto_activate_base false
+    ## conda create --name py310conda python=3.10
+    ## source ~/.bashrc
+    ## conda activate py310conda
+    ## conda install --yes ipykernel autopep8
+    ## conda install --yes tensorflow scikit-learn-intelex
+    ## conda install --yes pytorch
+    ## conda install --yes -c conda-forge opencv
+    ## pip install mediapipe
 }
 
 function gnome_packages() {
@@ -615,7 +626,7 @@ function buildtools_bazel() {
     sudo dnf -y install dnf-plugins-core
     sudo dnf copr enable vbatts/bazel
     sudo dnf -y install bazel
-    
+
     # bazel_buildtools
     go install github.com/bazelbuild/buildtools/buildifier@latest
     go install github.com/bazelbuild/buildtools/buildozer@latest
@@ -659,7 +670,7 @@ enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-${MONGODB_VERSION}.asc
 EOF
     sudo dnf -y install mongodb-org
-    
+
     ## for changing dbPath
     sudo cp /etc/mongod.conf /etc/mongod.conf.orig
     ## update dbPath at /etc/mongo.conf
@@ -734,7 +745,7 @@ function tizen_sdk() {
 # > #     mkdir -p "${HOME}/.package-manager/jdk"
 # > #     "${OUT_PATH}/unzip" -qq -a "${OUT_PATH}/tizen-sdk.zip" "jdk/*" -d "${HOME}/.package-manager"
 # > #fi
- 
+
 	export TIZEN_HOME=${HOME}/workspace/cache/tizen.cache/tizen-studio
 	export PATH=$PATH:$TIZEN_HOME/ide:$TIZEN_HOME/tools:$TIZEN_HOME/package-manager
 
@@ -775,11 +786,11 @@ function matlab_dep() {
 
 function chroot_os() {
     sudo dnf -y install schroot debootstrap
-    
+
     CHROOT_FOLDER=/home/chroot_env/
-    
+
     sudo mkdir -p ${CHROOT_FOLDER}
-    sudo chmod 755 ${CHROOT_FOLDER}  
+    sudo chmod 755 ${CHROOT_FOLDER}
     sudo chown -R root:wheel ${CHROOT_FOLDER}
 
     # Ubuntu
