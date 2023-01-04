@@ -157,6 +157,11 @@ function internet_package() {
     ## Enable widevine in Google-Chrome
     # cp libwidevinecdm.so /usr/lib64/chromium-plugins/
     # cp libwidevinecdmadapter.so /usr/lib64/chromium-plugins/
+
+    ## Microsoft Edge
+    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+    sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
+    sudo dnf -y install microsoft-edge-stable
 }
 
 function swift_packages() {
@@ -424,7 +429,7 @@ function vscode_package() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2020.3.1.26
+    ANDROID_STUDIO_RELEASE=2021.3.1.17
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -468,7 +473,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="2.14.4"
+    DART_VERSION="2.18.6"
 
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
@@ -512,39 +517,19 @@ EOF
     sudo dnf -y install ninja-build
     sudo dnf -y install gtk3-devel
 
-    #flutter doctor
-    #flutter doctor --android-licenses
-    #flutter config --no-analytics
-    #flutter precache
-    #flutter config --enable-linux-desktop
-    #flutter config --enable-windows-desktop
-    #flutter config --enable-windows-uwp-desktop
-    #flutter config --enable-macos-desktop
-    #pub global activate protoc_plugin
-}
-
-
-function nrf-dev-dep_packages() {
-    # device-tree-compiler
-    sudo dnf -y install dtc
-    sudo dnf -y install ncurses-devel
-    sudo dnf -y install gperf ccache dfu-util
-    sudo dnf -y install ninja-build
-
-    # pip3 install --user west
-    # export GNUARMEMB_TOOLCHAIN_PATH=/home/repos.arp/workspace/nrf_workspace/toolchain/gcc-arm-none-eabi-9-2019-q4-major/
-    # export PATH="${PATH}:$(python3 -c 'import site; print(site.USER_BASE)')/bin"
-    ## nrf_sdk
-    # mkdir ncs
-    # cd ncs
-    # west init -m https://github.com/nrfconnect/sdk-nrf
-    # west update
-    # west zephyr-export
-    # pip3 install --user -r zephyr/scripts/requirements.txt
-    # pip3 install --user -r nrf/scripts/requirements.txt
-    # pip3 install --user -r bootloader/mcuboot/scripts/requirements.txt
+    # git config --global --add safe.directory /opt/flutter-sdk
+    # flutter doctor
+    # flutter doctor --android-licenses
+    # flutter config --no-analytics
+    # flutter precache
+    # flutter config --enable-linux-desktop
+    # flutter config --enable-windows-desktop
+    # flutter config --enable-macos-desktop
+    # dart --disable-analytics
+    # dart pub global activate protoc_plugin
 
 }
+
 
 function python_packages() {
     sudo dnf -y install python3-virtualenv virtualenvwrapper
@@ -553,15 +538,18 @@ function python_packages() {
     sudo dnf -y install python3-matplotlib
     sudo dnf -y install python3-ipykernel
 
-    sudo dnf -y install certbot
+    ## virtualenv
+    # virtualenv3 -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
+    # source ~/.virtualenvs/venv_py311/bin/activate
+    # pip3 install ipykernel autopep8 pylint
+    # pip3 install numpy scipy matplotlib pandas
+    # pip3 install opencv-python
+    # pip3 install keras tensorflow
+    # pip3 install mediapipe
+    # pip3 install pytorch torchvision
 
-    # virtualenv
-    ## virtualenv3 -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
-    ## source ~/.virtualenvs/venv_py311/bin/activate
-
-
-    # conda
-    sudo dnf -y install conda
+    ## conda
+    # sudo dnf -y install conda
     ## conda init bash
     ## conda config --set report_errors false
     ## conda config --set auto_activate_base false
@@ -571,6 +559,7 @@ function python_packages() {
     ## conda install --yes ipykernel autopep8
     ## conda install --yes tensorflow scikit-learn-intelex
     ## conda install --yes pytorch
+    ## conda install --yes torchvision -c pytorch
     ## conda install --yes -c conda-forge opencv
     ## pip install mediapipe
 }
@@ -693,67 +682,6 @@ function embedded_dev() {
     ## arm-none-eabi toolchain
     sudo dnf -y install arm-none-eabi-binutils-cs arm-none-eabi-gcc-cs arm-none-eabi-gcc-cs-c++
     sudo dnf -y install arm-none-eabi-newlib
-
-    nrf-dev-dep_packages
-
-    ## Renode
-    # RENODE_VERSION="1.12.0"
-    # RENODE_SUBVERSION="1"
-    # wget -c https://github.com/renode/renode/releases/download/v${RENODE_VERSION}/renode-${RENODE_VERSION}-${RENODE_SUBVERSION}.f23.x86_64.rpm -P ${CACHE}
-    # sudo rpm -ivh ${CACHE}/renode-${RENODE_VERSION}-${RENODE_SUBVERSION}.f23.x86_64.rpm
-    # sudo dnf -y install PackageKit-gtk3-module
-}
-
-function tizen_sdk() {
-    TIZEN_VERSION="3.7"
-    sudo dnf -y install expect libgnome qemu-user webkit2gtk3 libpng12 SDL compat-readline6
-    # ln -s /usr/lib64/libbz2.so.1 /usr/lib64/libbz2.so.1.0
-
-    wget -c http://download.tizen.org/sdk/Installer/tizen-studio_${TIZEN_VERSION}/web-cli_Tizen_Studio_${TIZEN_VERSION}_ubuntu-64.bin
-    export TIZEN_HOME=~/workspace/cache/tizen.cache/tizen/
-    export PATH=$PATH:$TIZEN_HOME/tools:$TIZEN_HOME/tools/ide/bin:$TIZEN_HOME/tizen/ide
-
-    # Fix kvm permission denied issue
-    sudo setfacl -m u:$USER:rwx /dev/kvm
-
-
-    ## diff
-# 62c62
-# <       INSTALLATION_CHECK="procps-ng gettext dbus-libs libcurl expect gtk2 grep zip make libgnome qemu-user webkitgtk libpng12"
-# ---
-# >       INSTALLATION_CHECK="procps-ng gettext dbus-libs libcurl expect gtk2 grep zip make libgnome qemu-user webkit2gtk3 libpng12"
-# 126,132c126,132
-# < OUT_FILE_md5sum=`cat "$OUT_PATH/checksum" | awk '{ print $1 }'`
-# < if [ "${OUT_FILE_md5sum}" != "${ORI_FILE_md5sum}" ]; then
-# <       echo "$CE The download file appears to be corrupted. "
-# <       echo " Please do not attempt to install this archive file. $CN"
-# <       rm -rf ${OUT_PATH}
-# <       exit 1
-# < fi
-# ---
-# > #OUT_FILE_md5sum=`cat "$OUT_PATH/checksum" | awk '{ print $1 }'`
-# > #if [ "${OUT_FILE_md5sum}" != "${ORI_FILE_md5sum}" ]; then
-# > #     echo "$CE The download file appears to be corrupted. "
-# > #     echo " Please do not attempt to install this archive file. $CN"
-# > #     rm -rf ${OUT_PATH}
-# > #     exit 1
-# > #fi
-# 135,139c135,139
-# < if [[ ! -d "${HOME}/.package-manager/jdk" ]]; then
-# <       echo "setting up jdk at ${HOME}/.package-manager/jdk"
-# <       mkdir -p "${HOME}/.package-manager/jdk"
-# <       "${OUT_PATH}/unzip" -qq -a "${OUT_PATH}/tizen-sdk.zip" "jdk/*" -d "${HOME}/.package-manager"
-# < fi
-# ---
-# > #if [[ ! -d "${HOME}/.package-manager/jdk" ]]; then
-# > #     echo "setting up jdk at ${HOME}/.package-manager/jdk"
-# > #     mkdir -p "${HOME}/.package-manager/jdk"
-# > #     "${OUT_PATH}/unzip" -qq -a "${OUT_PATH}/tizen-sdk.zip" "jdk/*" -d "${HOME}/.package-manager"
-# > #fi
-
-	export TIZEN_HOME=${HOME}/workspace/cache/tizen.cache/tizen-studio
-	export PATH=$PATH:$TIZEN_HOME/ide:$TIZEN_HOME/tools:$TIZEN_HOME/package-manager
-
 }
 
 function httpd_service() {
@@ -830,7 +758,6 @@ function install_all_modules() {
 	# server_package
 	# container_package
 	# kubernetes_packages
-	## docker_packages
 	# graphics_package
 	# internet_package
 	# python_packages
@@ -849,7 +776,7 @@ function install_all_modules() {
 	# libreoffice_packages
 	## buildtools_bazel
 	# embedded_dev
-	database_packages
+	# database_packages
 
 	# httpd_service
 	# security_service

@@ -8,5 +8,5 @@ function restore_gnome_config() {
 }
 
 
-backup_gnome_config() 
-# restore_gnome_config()
+backup_gnome_config
+# restore_gnome_config
