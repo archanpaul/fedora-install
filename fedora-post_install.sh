@@ -193,17 +193,12 @@ function go_tools_libs_packages() {
     ## VSCode go plugin dependency
     export GO111MODULE=on
 
-    go get -v github.com/uudashr/gopkgs/v2/cmd/gopkgs
-    go get -v github.com/ramya-rao-a/go-outline
-    go get -v github.com/cweill/gotests/...
-    go get -v github.com/fatih/gomodifytags
-    go get -v github.com/josharian/impl
-    go get -v github.com/haya14busa/goplay/cmd/goplay
-    go get -v github.com/go-delve/delve/cmd/dlv
-    go get -v github.com/stamblerre/gocode
-    go get -v golang.org/x/lint/golint
-    go get -v golang.org/x/tools/gopls
-    go get -v honnef.co/go/tools/cmd/staticcheck
+    go install -v golang.org/x/tools/gopls@latest
+    go install -v github.com/ramya-rao-a/go-outline@latest
+    go install -v golang.org/x/lint/golint@latest
+    go install -v golang.org/x/tools/cmd/goimports@latest
+    #go install -v honnef.co/go/tools/cmd/staticcheck@latest
+    go install github.com/go-delve/delve/cmd/dlv@latest
 
     ## Dev tools
     go get -u -v github.com/cespare/reflex
@@ -429,7 +424,7 @@ function vscode_package() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2021.3.1.17
+    ANDROID_STUDIO_RELEASE=2022.1.1.20
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -539,7 +534,7 @@ function python_packages() {
     sudo dnf -y install python3-ipykernel
 
     ## virtualenv
-    # virtualenv3 -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
+    # virtualenv -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
     # source ~/.virtualenvs/venv_py311/bin/activate
     # pip3 install ipykernel autopep8 pylint
     # pip3 install numpy scipy matplotlib pandas
