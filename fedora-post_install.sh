@@ -468,7 +468,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="2.18.6"
+    DART_VERSION="2.19.2"
 
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
@@ -531,7 +531,7 @@ function python_packages() {
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
-    sudo dnf -y install python3-ipykernel
+    sudo dnf -y install python3-ipykernel python3-notebook
 
     ## virtualenv
     # virtualenv -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311

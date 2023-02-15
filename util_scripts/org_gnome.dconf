@@ -94,11 +94,6 @@ titlebar-font='Roboto Medium 11'
 [evolution-data-server]
 migrated=true
 
-[login-screen]
-enable-fingerprint-authentication=true
-enable-password-authentication=true
-enable-smartcard-authentication=false
-
 [mutter]
 center-new-windows=true
 dynamic-workspaces=false
