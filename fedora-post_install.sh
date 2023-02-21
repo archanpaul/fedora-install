@@ -141,7 +141,7 @@ function graphics_package() {
 
 function internet_package() {
     sudo dnf -y install chromium thunderbird transmission
-    sudo dnf -y install youtube-dl
+    sudo dnf -y install yt-dlp youtube-dl
 
     sudo dnf -y install firefox
     sudo dnf -y install firefox-wayland
@@ -205,7 +205,6 @@ function go_tools_libs_packages() {
     go get -u -v golang.org/x/...
     go get -u -v golang.org/x/tools/...
     go get -u -v golang.org/x/tools/cmd/...
-    go get -u -v golang.org/x/tools/gopls
     #go get -u -v golang.org/x/tools/go/analysis/...
     ## goMobile
     go get -u -v golang.org/x/mobile/cmd/gobind
