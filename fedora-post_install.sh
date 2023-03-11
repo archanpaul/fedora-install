@@ -185,20 +185,20 @@ EOF
 
     sudo chown -R root:wheel /opt/go-packages
     sudo chmod -R u+rwX,go+rwX,o-w /opt/go-packages
-}
 
-function go_tools_libs_packages() {
-    source /etc/profile.d/go-packages.sh
-
-    ## VSCode go plugin dependency
+    ## VSCode go plugin dependencies
     export GO111MODULE=on
-
     go install -v golang.org/x/tools/gopls@latest
     go install -v github.com/ramya-rao-a/go-outline@latest
     go install -v golang.org/x/lint/golint@latest
     go install -v golang.org/x/tools/cmd/goimports@latest
-    #go install -v honnef.co/go/tools/cmd/staticcheck@latest
+    go install -v honnef.co/go/tools/cmd/staticcheck@latest
     go install github.com/go-delve/delve/cmd/dlv@latest
+}
+
+function go_tools_libs_packages() {
+    source /etc/profile.d/go-packages.sh
+    export GO111MODULE=on
 
     ## Dev tools
     go get -u -v github.com/cespare/reflex
@@ -318,10 +318,10 @@ function vscode_package() {
     #     "editor.wordWrap": "on",
     #     "editor.bracketPairColorization.enabled": true,
     #     "editor.tabCompletion": "on",
-    #     "editor.cursorSmoothCaretAnimation": false,
+    #     "editor.cursorSmoothCaretAnimation": "off",
     #     "editor.fontFamily": "'Fira Code Medium','Roboto Mono Medium','Droid Sans Mono', 'monospace', monospace",
     #     "editor.lineHeight": 24,
-    #     "explorer.decorations.badges": false,
+    #     "explorer.decorations.badges": true,
     #     "editor.fontLigatures": true,
     #     "editor.fontSize": 16,
     #     "editor.formatOnPaste": true,
@@ -356,6 +356,8 @@ function vscode_package() {
     #     ],
     #     "python.analysis.completeFunctionParens": true,
     #     "python.formatting.provider": "autopep8",
+    #     "python.testing.pytestEnabled": true,
+    #     "python.testing.autoTestDiscoverOnSaveEnabled": true,
     #     // "python.analysis.typeCheckingMode": "basic",
     #     "notebook.cellToolbarLocation": {
     #         "default": "left"
@@ -381,15 +383,18 @@ function vscode_package() {
     #     // ],
     #     "go.testFlags": [
     #         "-count=1",
-    #         "-v"
+    #         "-v",
     #     ],
     #     "go.vetFlags": [
     #         "-composites=false"
     #     ],
-    #     "go.formatTool": "goimports",
     #     "go.useLanguageServer": true,
     #     "go.testTimeout": "5m",
     #     "go.toolsManagement.autoUpdate": true,
+    #     "[go]": {
+    #         "editor.formatOnSave": true,
+    #         "editor.defaultFormatter": "golang.go"
+    #     },
     #     "dart.lineLength": 150,
     #     "[dart]": {
     #         "editor.formatOnSave": true,
@@ -401,7 +406,7 @@ function vscode_package() {
     #         "editor.suggest.snippetsPreventQuickSuggestions": false,
     #         "editor.suggestSelection": "first",
     #         "editor.tabCompletion": "onlySnippets",
-    #         "editor.wordBasedSuggestions": false
+    #         "editor.wordBasedSuggestions": false,
     #     },
     #     "dart.devToolsBrowser": "default",
     #     "dart.checkForSdkUpdates": false,
