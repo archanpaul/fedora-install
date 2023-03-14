@@ -155,11 +155,6 @@ window-state=(1096, 881, 26, 23)
 col-6-visible=true
 col-6-width=0
 
-[login-screen]
-enable-fingerprint-authentication=true
-enable-password-authentication=true
-enable-smartcard-authentication=false
-
 [mutter]
 center-new-windows=true
 dynamic-workspaces=false

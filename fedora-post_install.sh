@@ -581,6 +581,7 @@ function gnome_packages() {
     sudo dnf -y install gnome-shell-extension-screenshot-window-sizer
 
     sudo dnf -y install celluloid vlc
+    sudo dnf -y install os-studio
 }
 
 function font_packages() {
