@@ -428,7 +428,7 @@ function vscode_package() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2022.1.1.20
+    ANDROID_STUDIO_RELEASE=2022.1.1.21
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
