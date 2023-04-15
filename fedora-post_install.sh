@@ -488,7 +488,7 @@ function dart-sdk_package() {
 export PATH=\$PATH:/opt/dart-sdk/bin
 EOF
     source /etc/profile.d/dart-sdk.sh
-    pub global activate protoc_plugin
+    dart pub global activate protoc_plugin
 }
 
 function flutter-sdk_package() {
@@ -529,13 +529,13 @@ EOF
 
 }
 
-
 function python_packages() {
     sudo dnf -y install python3-virtualenv virtualenvwrapper
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
     sudo dnf -y install python3-ipykernel python3-notebook
+    sudo dnf -y install python3-virtualenv
 
     ## virtualenv
     # virtualenv -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
@@ -574,6 +574,7 @@ function gnome_packages() {
     sudo dnf -y install gnome-sound-recorder easytag
     sudo dnf -y install pitivi snappy
     sudo dnf -y install evince xournalpp
+    sudo dnf -y install gnome-firmware
 
     sudo dnf -y install gnome-extensions-app
     sudo dnf -y install gnome-shell-extension-dash-to-dock
