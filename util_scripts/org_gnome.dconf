@@ -56,7 +56,7 @@ name='suse-yast.directory'
 translate=true
 
 [desktop/app-folders/folders/a59b354b-f46d-40ac-aa97-822a6af85329]
-apps=['java-19-openjdk-19.0.2.0.7-1.rolling.fc37.x86_64-jconsole.desktop', 'cgnscalc.desktop', 'cgnsnodes.desktop', 'cgnsplot.desktop', 'unitconv.desktop', 'cgnsview.desktop', 'scrcpy-console.desktop', 'yelp.desktop', 'scrcpy.desktop', 'java-19-openjdk-19.0.2.0.7-5.rolling.fc37.x86_64-jconsole.desktop']
+apps=['java-19-openjdk-19.0.2.0.7-1.rolling.fc37.x86_64-jconsole.desktop', 'cgnscalc.desktop', 'cgnsnodes.desktop', 'cgnsplot.desktop', 'unitconv.desktop', 'cgnsview.desktop', 'scrcpy-console.desktop', 'yelp.desktop', 'scrcpy.desktop', 'java-19-openjdk-19.0.2.0.7-5.rolling.fc37.x86_64-jconsole.desktop', 'firefox.desktop']
 name='Misc'
 translate=false
 
@@ -109,7 +109,7 @@ application-id='org.gnome.Software.desktop'
 application-id='org.gnome.Terminal.desktop'
 
 [desktop/peripherals/keyboard]
-numlock-state=false
+numlock-state=true
 
 [desktop/peripherals/mouse]
 speed=0.32751091703056767
@@ -146,7 +146,7 @@ num-workspaces=1
 titlebar-font='Roboto Medium 11'
 
 [evince/default]
-window-ratio=(1.5800653594771241, 1.5353535353535352)
+window-ratio=(1.5802961275626424, 1.5345570481751414)
 
 [evolution-data-server]
 migrated=true
@@ -176,7 +176,7 @@ default-zoom-level='medium'
 
 [nautilus/preferences]
 click-policy='double'
-default-folder-viewer='icon-view'
+default-folder-viewer='list-view'
 migrated-gtk-settings=true
 search-filter-time-type='last_modified'
 search-view='list-view'
@@ -188,7 +188,7 @@ maximized=false
 
 [settings-daemon/plugins/color]
 night-light-enabled=false
-night-light-last-coordinates=(26.343198560115191, 89.4495)
+night-light-last-coordinates=(26.334199280057593, 89.4495)
 night-light-temperature=uint32 4700
 
 [settings-daemon/plugins/power]
@@ -196,7 +196,7 @@ sleep-inactive-ac-timeout=3600
 sleep-inactive-ac-type='nothing'
 
 [shell]
-app-picker-layout=[{'org.gnome.Contacts.desktop': <{'position': <0>}>, 'android-studio.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Calendar.desktop': <{'position': <4>}>, 'org.gnome.Maps.desktop': <{'position': <5>}>, 'org.gnome.Photos.desktop': <{'position': <6>}>, 'org.gnome.Totem.desktop': <{'position': <7>}>, 'org.gnome.eog.desktop': <{'position': <8>}>, 'io.github.celluloid_player.Celluloid.desktop': <{'position': <9>}>, 'org.gnome.Evince.desktop': <{'position': <10>}>, 'simple-scan.desktop': <{'position': <11>}>, 'Utilities': <{'position': <12>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <13>}>, 'microsoft-edge.desktop': <{'position': <14>}>, 'chromium-browser.desktop': <{'position': <15>}>, 'mozilla-thunderbird.desktop': <{'position': <16>}>, 'com.github.calo001.fondo.desktop': <{'position': <17>}>, 'gimp.desktop': <{'position': <18>}>, 'org.inkscape.Inkscape.desktop': <{'position': <19>}>, 'transmission-gtk.desktop': <{'position': <20>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <21>}>, 'org.gnome.Boxes.desktop': <{'position': <22>}>, 'virt-manager.desktop': <{'position': <23>}>}, {'blender.desktop': <{'position': <0>}>, 'htop.desktop': <{'position': <1>}>, 'libreoffice-calc.desktop': <{'position': <2>}>, 'libreoffice-draw.desktop': <{'position': <3>}>, 'libreoffice-impress.desktop': <{'position': <4>}>, 'libreoffice-math.desktop': <{'position': <5>}>, 'libreoffice-writer.desktop': <{'position': <6>}>, 'org.pitivi.Pitivi.desktop': <{'position': <7>}>, 'remote-viewer.desktop': <{'position': <8>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <9>}>, 'org.gnome.Shotwell.desktop': <{'position': <10>}>, 'org.gnome.Shotwell-Profile-Browser.desktop': <{'position': <11>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <12>}>, 'torbrowser.desktop': <{'position': <13>}>, 'torbrowser-settings.desktop': <{'position': <14>}>, 'easytag.desktop': <{'position': <15>}>, 'firefox.desktop': <{'position': <16>}>, 'org.gnome.Cheese.desktop': <{'position': <17>}>, 'vlc.desktop': <{'position': <18>}>, 'org.gnome.Tour.desktop': <{'position': <19>}>, 'org.gnome.Software.desktop': <{'position': <20>}>, 'com.obsproject.Studio.desktop': <{'position': <21>}>, 'jupyter-notebook.desktop': <{'position': <22>}>, 'a59b354b-f46d-40ac-aa97-822a6af85329': <{'position': <23>}>}]
+app-picker-layout=[{'org.gnome.Contacts.desktop': <{'position': <0>}>, 'android-studio.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Calendar.desktop': <{'position': <4>}>, 'org.gnome.Maps.desktop': <{'position': <5>}>, 'org.gnome.Photos.desktop': <{'position': <6>}>, 'org.gnome.Totem.desktop': <{'position': <7>}>, 'org.gnome.eog.desktop': <{'position': <8>}>, 'io.github.celluloid_player.Celluloid.desktop': <{'position': <9>}>, 'org.gnome.Evince.desktop': <{'position': <10>}>, 'simple-scan.desktop': <{'position': <11>}>, 'Utilities': <{'position': <12>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <13>}>, 'microsoft-edge.desktop': <{'position': <14>}>, 'chromium-browser.desktop': <{'position': <15>}>, 'mozilla-thunderbird.desktop': <{'position': <16>}>, 'com.github.calo001.fondo.desktop': <{'position': <17>}>, 'gimp.desktop': <{'position': <18>}>, 'org.inkscape.Inkscape.desktop': <{'position': <19>}>, 'transmission-gtk.desktop': <{'position': <20>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <21>}>, 'org.gnome.Boxes.desktop': <{'position': <22>}>, 'virt-manager.desktop': <{'position': <23>}>}, {'blender.desktop': <{'position': <0>}>, 'htop.desktop': <{'position': <1>}>, 'libreoffice-calc.desktop': <{'position': <2>}>, 'libreoffice-draw.desktop': <{'position': <3>}>, 'libreoffice-impress.desktop': <{'position': <4>}>, 'libreoffice-math.desktop': <{'position': <5>}>, 'libreoffice-writer.desktop': <{'position': <6>}>, 'org.pitivi.Pitivi.desktop': <{'position': <7>}>, 'remote-viewer.desktop': <{'position': <8>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <9>}>, 'org.gnome.Shotwell.desktop': <{'position': <10>}>, 'org.gnome.Shotwell-Profile-Browser.desktop': <{'position': <11>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <12>}>, 'torbrowser.desktop': <{'position': <13>}>, 'torbrowser-settings.desktop': <{'position': <14>}>, 'easytag.desktop': <{'position': <15>}>, 'org.gnome.Cheese.desktop': <{'position': <16>}>, 'vlc.desktop': <{'position': <17>}>, 'org.gnome.Tour.desktop': <{'position': <18>}>, 'org.gnome.Software.desktop': <{'position': <19>}>, 'com.obsproject.Studio.desktop': <{'position': <20>}>, 'jupyter-notebook.desktop': <{'position': <21>}>, 'a59b354b-f46d-40ac-aa97-822a6af85329': <{'position': <22>}>}]
 disabled-extensions=['places-menu@gnome-shell-extensions.gcampax.github.com']
 enabled-extensions=['background-logo@fedorahosted.org', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com']
 favorite-apps=['gnome-system-monitor.desktop', 'org.gnome.Terminal.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.TextEditor.desktop', 'google-chrome.desktop', 'firefox-wayland.desktop']
@@ -241,11 +241,12 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1681559941
+check-timestamp=int64 1682055362
 first-run=false
 install-timestamp=int64 1681035870
 online-updates-timestamp=int64 1678166237
 update-notification-timestamp=int64 1681559878
+upgrade-notification-timestamp=int64 1681962029
 
 [system/location]
 enabled=true

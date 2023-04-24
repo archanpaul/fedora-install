@@ -74,8 +74,8 @@ function jdk_package() {
 function container_package() {
     sudo dnf -y install @virtualization
     sudo dnf -y install podman podman-compose
-    sudo dnf -y install slirp4netns buildah skopeo runc
-    sudo dnf -y install toolbox
+    # sudo dnf -y install slirp4netns buildah skopeo runc
+    # sudo dnf -y install toolbox
 
     sudo dnf -y install libvirt-devel
     # sudo systemctl enable libvirtd
@@ -129,14 +129,14 @@ function kubernetes_packages() {
     # minikube kubectl -- get pods -A
 }
 
-function server_package() {
-    sudo dnf -y install nats-server
-    #sudo dnf -y install golang-github-nats-io-streaming-server
+function graphics_packages() {
+    sudo dnf -y install gimp inkscape
+    sudo dnf -y install blender
 }
 
-function graphics_package() {
-    sudo dnf -y install gimp inkscape
-    sudo dnf -y install blender pitivi
+function graphics_dev_packages() {
+    sudo dnf -y install gtk3-devel
+    sudo dnf -y install opencv opencv-contrib opencv-devel
 }
 
 function internet_package() {
@@ -428,7 +428,7 @@ function vscode_package() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2022.1.1.21
+    ANDROID_STUDIO_RELEASE=2022.2.1.18
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -472,7 +472,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="2.19.2"
+    DART_VERSION="2.19.6"
 
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
@@ -536,6 +536,7 @@ function python_packages() {
     sudo dnf -y install python3-matplotlib
     sudo dnf -y install python3-ipykernel python3-notebook
     sudo dnf -y install python3-virtualenv
+    sudo dnf -y install python3-opencv
 
     ## virtualenv
     # virtualenv -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
@@ -756,17 +757,14 @@ function install_all_modules() {
 	# devtools_package
 	# rpm_devtools_package
 	# jdk_package
-	# server_package
 	# container_package
 	# kubernetes_packages
-	# graphics_package
+	# graphics_packages
+        # graphics_dev_packages
 	# internet_package
 	# python_packages
 	# gnome_packages
 	# vscode_package
-	# android-studio_package
-	# dart-sdk_package
-	# flutter-sdk_package
 	# swift_packages
 	# go_packages
 	## go_tools_libs_packages
@@ -781,6 +779,10 @@ function install_all_modules() {
 
 	# httpd_service
 	# security_service
+
+	# android-studio_package
+	# dart-sdk_package
+	# flutter-sdk_package
 }
 
 install_all_modules 2>&1 | tee fedora_install.log
