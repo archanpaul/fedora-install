@@ -65,6 +65,9 @@ application-id='org.freedesktop.problems.applet.desktop'
 [desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
 
+[desktop/peripherals/keyboard]
+numlock-state=true
+
 [desktop/peripherals/mouse]
 speed=0.49433962264150932
 
@@ -140,7 +143,7 @@ dot-color-unfocused-different=false
 dot-position='BOTTOM'
 dot-size=1
 dot-style-unfocused='DASHES'
-focus-highlight=true
+focus-highlight=false
 focus-highlight-dominant=false
 focus-highlight-opacity=25
 group-apps=true
