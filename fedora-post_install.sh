@@ -530,7 +530,8 @@ EOF
 }
 
 function python_packages() {
-    sudo dnf -y install python3-virtualenv virtualenvwrapper
+    sudo dnf -y install python3-virtualenv 
+    # sudo dnf -y install python3-virtualenvwrapper
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
@@ -566,7 +567,6 @@ function python_packages() {
 
 function gnome_packages() {
     sudo dnf -y install gnome-tweaks
-    sudo dnf -y install gnome-books
     sudo dnf -y install gtk-murrine-engine gtk2-engines
     sudo dnf -y install foliate
     sudo dnf -y install fondo
@@ -582,8 +582,8 @@ function gnome_packages() {
     sudo dnf -y install gnome-shell-extension-gsconnect
     sudo dnf -y install gnome-shell-extension-screenshot-window-sizer
 
-    sudo dnf -y install celluloid vlc
-    sudo dnf -y install os-studio
+    # sudo dnf -y install celluloid vlc
+    sudo dnf -y install --allowerasing obs-studio
 }
 
 function font_packages() {
