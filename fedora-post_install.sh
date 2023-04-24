@@ -468,7 +468,8 @@ EOF
 
     sudo dnf -y copr enable zeno/scrcpy
     # rpmfusion_repo
-    sudo dnf -y install ffmpeg scrcpy
+    sudo dnf -y install ffmpeg-free
+    sudo dnf -y install scrcpy
     # remove android-tools to use SDK's tools
     sudo rpm -e android-tools --nodeps
 }
@@ -583,6 +584,7 @@ function gnome_packages() {
     sudo dnf -y install gnome-shell-extension-dash-to-dock
     sudo dnf -y install gnome-shell-extension-gsconnect
     sudo dnf -y install gnome-shell-extension-screenshot-window-sizer
+    sudo dnf -y install gnome-shell-extension-dash-to-panel.noarch
 
     # sudo dnf -y install celluloid vlc
     # sudo dnf -y install --allowerasing obs-studio
