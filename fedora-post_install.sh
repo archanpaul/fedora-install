@@ -194,21 +194,23 @@ EOF
     go install -v golang.org/x/tools/cmd/goimports@latest
     go install -v honnef.co/go/tools/cmd/staticcheck@latest
     go install github.com/go-delve/delve/cmd/dlv@latest
+
+    ## Dev tools
+    go install -v github.com/cespare/reflex@latest
+    # gomobile
+    go install -v golang.org/x/mobile/cmd/gobind@latest
+    go install -v golang.org/x/mobile/cmd/gomobile@latest
 }
 
-function go_tools_libs_packages() {
+function go_libs_packages() {
     source /etc/profile.d/go-packages.sh
     export GO111MODULE=on
 
-    ## Dev tools
-    go get -u -v github.com/cespare/reflex
+    ## Dev
     go get -u -v golang.org/x/...
     go get -u -v golang.org/x/tools/...
     go get -u -v golang.org/x/tools/cmd/...
     #go get -u -v golang.org/x/tools/go/analysis/...
-    ## goMobile
-    go get -u -v golang.org/x/mobile/cmd/gobind
-    go get -u -v golang.org/x/mobile/cmd/gomobile
     ## HTTP
     go get -u -v github.com/gin-gonic/gin
     go get -u -v github.com/gin-gonic/contrib/...
@@ -583,7 +585,7 @@ function gnome_packages() {
     sudo dnf -y install gnome-shell-extension-screenshot-window-sizer
 
     # sudo dnf -y install celluloid vlc
-    sudo dnf -y install --allowerasing obs-studio
+    # sudo dnf -y install --allowerasing obs-studio
 }
 
 function font_packages() {
@@ -767,7 +769,7 @@ function install_all_modules() {
 	# vscode_package
 	# swift_packages
 	# go_packages
-	## go_tools_libs_packages
+	## go_libs_packages
 	# npm_packages
 	# font_packages
 	# codec_packages
