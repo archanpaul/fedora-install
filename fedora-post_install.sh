@@ -271,17 +271,12 @@ function vscode_package() {
 
     ## vscode install extensions
 
-    # code --install-extension ckolkman.vscode-postgres
     # code --install-extension Dart-Code.dart-code
     # code --install-extension Dart-Code.flutter
-    # code --install-extension GitHub.codespaces
     # code --install-extension GitHub.github-vscode-theme
-    # code --install-extension GitHub.remotehub
     # code --install-extension golang.go
     # code --install-extension mhutchie.git-graph
     # code --install-extension ms-azuretools.vscode-docker
-    # code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
-    # code --install-extension ms-python.isort
     # code --install-extension ms-python.python
     # code --install-extension ms-python.vscode-pylance
     # code --install-extension ms-toolsai.jupyter
@@ -289,59 +284,40 @@ function vscode_package() {
     # code --install-extension ms-toolsai.jupyter-renderers
     # code --install-extension ms-toolsai.vscode-jupyter-cell-tags
     # code --install-extension ms-toolsai.vscode-jupyter-slideshow
-    # code --install-extension ms-vscode-remote.remote-containers
-    # code --install-extension ms-vscode-remote.remote-ssh
-    # code --install-extension ms-vscode-remote.remote-ssh-edit
-    # code --install-extension ms-vscode-remote.remote-wsl
-    # code --install-extension ms-vscode-remote.vscode-remote-extensionpack
+    # code --install-extension ms-vscode.cmake-tools
     # code --install-extension ms-vscode.cpptools
-    # code --install-extension ms-vscode.hexeditor
     # code --install-extension ms-vscode.makefile-tools
-    # code --install-extension ms-vscode.remote-explorer
-    # code --install-extension ms-vscode.remote-repositories
-    # code --install-extension redhat.vscode-yaml
+    # code --install-extension ms-vsliveshare.vsliveshare
+    # code --install-extension twxs.cmake
     # code --install-extension VisualStudioExptTeam.vscodeintellicode
-    # code --install-extension zxh404.vscode-proto3
+    # code --install-extension vscjava.vscode-gradle
 
     ## Settings
 
     # {
-    #     "workbench.sideBar.location": "left",
-    #     "workbench.startupEditor": "none",
-    #     "workbench.colorTheme": "GitHub Light Default",
-    #     "workbench.preferredLightColorTheme": "GitHub Light Default",
-    #     "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
-    #     "window.autoDetectColorScheme": true,
-    #     "window.menuBarVisibility": "compact",
-    #     "window.titleBarStyle": "custom",
-    #     "telemetry.telemetryLevel": "off",
-    #     "redhat.telemetry.enabled": false,
-    #     "files.autoSave": "afterDelay",
-    #     "editor.wordWrap": "on",
-    #     "editor.bracketPairColorization.enabled": true,
-    #     "editor.tabCompletion": "on",
-    #     "editor.cursorSmoothCaretAnimation": "off",
-    #     "editor.fontFamily": "'Fira Code Medium','Roboto Mono Medium','Droid Sans Mono', 'monospace', monospace",
-    #     "editor.lineHeight": 24,
-    #     "explorer.decorations.badges": true,
-    #     "editor.fontLigatures": true,
+    #     "workbench.colorTheme": "GitHub Dark Dimmed",
+    #     "editor.fontFamily": "'Fira Code Medium', 'Droid Sans Mono', 'monospace', monospace",
     #     "editor.fontSize": 16,
+    #     "editor.wordWrap": "on",
+    #     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
     #     "editor.formatOnPaste": true,
     #     "editor.formatOnSave": true,
     #     "editor.formatOnType": true,
+    #     "editor.tabCompletion": "on",
+    #     "editor.cursorSmoothCaretAnimation": "off",
+    #     "editor.lineHeight": 24,
+    #     "explorer.decorations.badges": true,
+    #     "editor.fontLigatures": true,
     #     "editor.suggest.showStatusBar": true,
     #     "editor.suggestSelection": "first",
     #     "editor.suggest.insertMode": "insert",
     #     "editor.minimap.enabled": true,
     #     "editor.minimap.maxColumn": 40,
-    #     "diffEditor.codeLens": true,
-    #     "diffEditor.ignoreTrimWhitespace": false,
-    #     "terminal.integrated.copyOnSelection": true,
-    #     "terminal.integrated.cursorBlinking": true,
-    #     "terminal.integrated.cursorWidth": 2,
-    #     "terminal.integrated.inheritEnv": true,
-    #     "terminal.integrated.fontFamily": "'Roboto Mono','Droid Sans Mono', 'monospace', monospace",
-    #     "terminal.integrated.fontSize": 14,
+    #     "window.titleBarStyle": "custom",
+    #     "window.commandCenter": true,
+    #     "terminal.integrated.fontFamily": "'Fira Mono Medium'",
+    #     "editor.minimap.autohide": true,
+    #     "editor.formatOnSaveMode": "modificationsIfAvailable",
     #     "files.autoSaveDelay": 10000,
     #     "files.trimFinalNewlines": true,
     #     "files.insertFinalNewline": true,
@@ -351,6 +327,26 @@ function vscode_package() {
     #         "**/.project": true,
     #         "**/.settings": true,
     #     },
+    #     "[go]": {
+    #         "editor.formatOnSave": true,
+    #         "editor.defaultFormatter": "golang.go"
+    #     },
+    #     "go.autocompleteUnimportedPackages": true,
+    #     "go.coverOnSingleTestFile": true,
+    #     "go.gotoSymbol.includeImports": true,
+    #     "go.buildFlags": [
+    #         "-v"
+    #     ],
+    #     "go.testFlags": [
+    #         "-count=1",
+    #         "-v",
+    #     ],
+    #     "go.vetFlags": [
+    #         "-composites=false"
+    #     ],
+    #     "go.useLanguageServer": true,
+    #     "go.testTimeout": "3m",
+    #     "go.toolsManagement.autoUpdate": true,
     #     "python.terminal.executeInFileDir": true,
     #     "python.formatting.autopep8Args": [
     #         "--ignore",
@@ -373,30 +369,9 @@ function vscode_package() {
     #         "%autoreload 2"
     #     ],
     #     "jupyter.askForKernelRestart": false,
-    #     "jupyter.generateSVGPlots": true,
     #     "jupyter.exportWithOutputEnabled": true,
     #     "markdown.preview.fontSize": 20,
     #     "markdown.preview.typographer": true,
-    #     "go.autocompleteUnimportedPackages": true,
-    #     "go.coverOnSingleTestFile": true,
-    #     "go.gotoSymbol.includeImports": true,
-    #     // "go.buildFlags": [
-    #     //     "-v"
-    #     // ],
-    #     "go.testFlags": [
-    #         "-count=1",
-    #         "-v",
-    #     ],
-    #     "go.vetFlags": [
-    #         "-composites=false"
-    #     ],
-    #     "go.useLanguageServer": true,
-    #     "go.testTimeout": "5m",
-    #     "go.toolsManagement.autoUpdate": true,
-    #     "[go]": {
-    #         "editor.formatOnSave": true,
-    #         "editor.defaultFormatter": "golang.go"
-    #     },
     #     "dart.lineLength": 150,
     #     "[dart]": {
     #         "editor.formatOnSave": true,
@@ -422,7 +397,9 @@ function vscode_package() {
     #     "[Log]": {
     #         "editor.wordWrap": "on"
     #     },
-    #     "git.repositoryScanMaxDepth": -1,
+    #     "dart.debugExternalPackageLibraries": false,
+    #     "git.openRepositoryInParentFolders": "always",
+    #     // "git.repositoryScanMaxDepth": -1,
     # }
 
     sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
@@ -430,7 +407,7 @@ function vscode_package() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2022.2.1.18
+    ANDROID_STUDIO_RELEASE=2022.2.1.19
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -533,7 +510,7 @@ EOF
 }
 
 function python_packages() {
-    sudo dnf -y install python3-virtualenv 
+    sudo dnf -y install python3-virtualenv
     # sudo dnf -y install python3-virtualenvwrapper
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
@@ -545,6 +522,7 @@ function python_packages() {
     ## virtualenv
     # virtualenv -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
     # source ~/.virtualenvs/venv_py311/bin/activate
+    # pip install --upgrade pip
     # pip3 install ipykernel autopep8 pylint
     # pip3 install numpy scipy matplotlib pandas
     # pip3 install opencv-python
