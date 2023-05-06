@@ -49,10 +49,10 @@ name='Unnamed Folder'
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2023-04-28-09-06-47-50173.jpg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2023-04-28-09-06-47-50173.jpg'
-primary-color='#000000000000'
-secondary-color='#000000000000'
+picture-uri='file:///usr/share/backgrounds/gnome/adwaita-l.webp'
+picture-uri-dark='file:///usr/share/backgrounds/gnome/adwaita-d.webp'
+primary-color='#3071AE'
+secondary-color='#000000'
 
 [desktop/calendar]
 show-weekdate=true
@@ -115,9 +115,9 @@ report-technical-problems=false
 color-shading-type='solid'
 lock-delay=uint32 30
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2023-04-28-09-06-47-50173.jpg'
-primary-color='#000000000000'
-secondary-color='#000000000000'
+picture-uri='file:///usr/share/backgrounds/gnome/adwaita-l.webp'
+primary-color='#3071AE'
+secondary-color='#000000'
 
 [desktop/search-providers]
 sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Nautilus.desktop']
@@ -152,7 +152,7 @@ initial-size=(890, 550)
 
 [settings-daemon/plugins/color]
 night-light-enabled=false
-night-light-last-coordinates=(22.524821335884596, 88.383200000000002)
+night-light-last-coordinates=(26.329269534007196, 89.4495)
 night-light-temperature=uint32 4700
 
 [shell]
@@ -170,7 +170,7 @@ current-workspace-only=true
 animate-appicon-hover-animation-extent={'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}
 appicon-margin=2
 appicon-padding=2
-available-monitors=[1, 0]
+available-monitors=[0, 1]
 dot-color-dominant=false
 dot-color-override=false
 dot-color-unfocused-different=false
@@ -189,11 +189,11 @@ leftbox-padding=-1
 leftbox-size=0
 overview-click-to-exit=true
 panel-anchors='{"0":"MIDDLE","1":"MIDDLE"}'
-panel-element-positions='{"0":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}],"1":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'
+panel-element-positions='{"0":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}],"1":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'
 panel-element-positions-monitors-sync=false
-panel-lengths='{"0":40,"1":50}'
+panel-lengths='{"0":46,"1":40}'
 panel-sizes='{"0":32,"1":32}'
-primary-monitor=1
+primary-monitor=0
 progress-show-count=true
 show-apps-icon-file=''
 show-apps-icon-side-padding=4
@@ -214,7 +214,7 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1682649146
+check-timestamp=int64 1683095006
 first-run=false
 flatpak-purge-timestamp=int64 1682659307
 install-timestamp=int64 1682335240

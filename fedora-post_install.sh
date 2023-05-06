@@ -72,12 +72,13 @@ function jdk_package() {
 }
 
 function container_package() {
-    sudo dnf -y install @virtualization
+    #sudo dnf -y install @virtualization
     sudo dnf -y install podman podman-compose
+    sudo dnf -y install podman-plugins podman-remote
     # sudo dnf -y install slirp4netns buildah skopeo runc
     # sudo dnf -y install toolbox
 
-    sudo dnf -y install libvirt-devel
+    # sudo dnf -y install libvirt-devel
     # sudo systemctl enable libvirtd
     # sudo systemctl restart libvirtd
     # sudo usermod -a -G libvirt $(whoami)
@@ -266,8 +267,9 @@ function vscode_package() {
     sudo dnf -y install code
     sudo dnf -y install pandoc
 
-    ## vscode list extensions
+    ## vscode list/remove extensions
     # code --list-extensions | xargs -L 1 echo code --install-extension
+    # code --list-extensions | xargs -L 1 code --uninstall-extension
 
     ## vscode install extensions
 
