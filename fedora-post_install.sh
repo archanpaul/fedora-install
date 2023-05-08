@@ -467,10 +467,10 @@ function dart-sdk_package() {
 
     cat <<EOF | sudo tee /etc/profile.d/dart-sdk.sh
 #export PUB_CACHE=/opt/dart-sdk/pub_cache
-export PATH=\$PATH:/opt/dart-sdk/bin
+#export PATH=\$PATH:/opt/dart-sdk/bin
 EOF
     source /etc/profile.d/dart-sdk.sh
-    dart pub global activate protoc_plugin
+    #dart pub global activate protoc_plugin
 }
 
 function flutter-sdk_package() {
@@ -605,7 +605,7 @@ function codec_packages() {
 function buildtools_bazel() {
     sudo dnf -y install dnf-plugins-core
     sudo dnf copr enable vbatts/bazel
-    sudo dnf -y install bazel
+    sudo dnf -y install bazel5
 
     # bazel_buildtools
     go install github.com/bazelbuild/buildtools/buildifier@latest

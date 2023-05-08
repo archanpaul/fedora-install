@@ -82,10 +82,10 @@ function create_app_cache() {
 	rm -rf ~/.mozilla
 	ln -sfn ${CACHE}/firefox.cache ~/.mozilla
 
-	mkdir -p ${CACHE}/gnome-boxes.cache/gnome-boxes_cache ${CACHE}/gnome-boxes.cache/gnome-boxes_config ${CACHE}/gnome-boxes.cache/gnome-boxes_local_share
-	ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_cache ~/.cache/gnome-boxes
-	ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_config ~/.config/gnome-boxes
-	ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_local_share ~/.local/share/gnome-boxes
+	# mkdir -p ${CACHE}/gnome-boxes.cache/gnome-boxes_cache ${CACHE}/gnome-boxes.cache/gnome-boxes_config ${CACHE}/gnome-boxes.cache/gnome-boxes_local_share
+	# ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_cache ~/.cache/gnome-boxes
+	# ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_config ~/.config/gnome-boxes
+	# ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_local_share ~/.local/share/gnome-boxes
 
 	# mkdir -p ${CACHE}/conda.cache
 	# ln -sfn ${CACHE}/conda.cache ~/.conda

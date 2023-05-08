@@ -24,7 +24,7 @@ target-units='radian'
 word-size=64
 
 [control-center]
-last-panel='background'
+last-panel='display'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -49,10 +49,10 @@ name='Unnamed Folder'
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///usr/share/backgrounds/gnome/adwaita-l.webp'
-picture-uri-dark='file:///usr/share/backgrounds/gnome/adwaita-d.webp'
-primary-color='#3071AE'
-secondary-color='#000000'
+picture-uri='file:///home/arp/.local/share/backgrounds/2023-05-08-16-23-57-izabel-ouwdw--XNzo-unsplash.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2023-05-08-16-23-57-izabel-ouwdw--XNzo-unsplash.jpg'
+primary-color='#000000000000'
+secondary-color='#000000000000'
 
 [desktop/calendar]
 show-weekdate=true
@@ -115,9 +115,9 @@ report-technical-problems=false
 color-shading-type='solid'
 lock-delay=uint32 30
 picture-options='zoom'
-picture-uri='file:///usr/share/backgrounds/gnome/adwaita-l.webp'
-primary-color='#3071AE'
-secondary-color='#000000'
+picture-uri='file:///home/arp/.local/share/backgrounds/2023-05-08-16-23-57-izabel-ouwdw--XNzo-unsplash.jpg'
+primary-color='#000000000000'
+secondary-color='#000000000000'
 
 [desktop/search-providers]
 sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Nautilus.desktop']
@@ -156,11 +156,12 @@ night-light-last-coordinates=(26.329269534007196, 89.4495)
 night-light-temperature=uint32 4700
 
 [shell]
-app-picker-layout=[{'android-studio.desktop': <{'position': <0>}>, 'org.gnome.Contacts.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'org.gnome.Logs.desktop': <{'position': <5>}>, 'org.gnome.Evince.desktop': <{'position': <6>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <7>}>, 'blender.desktop': <{'position': <8>}>, 'org.gnome.Photos.desktop': <{'position': <9>}>, 'org.gnome.Totem.desktop': <{'position': <10>}>, 'org.gnome.Calendar.desktop': <{'position': <11>}>, 'microsoft-edge.desktop': <{'position': <12>}>, 'chromium-browser.desktop': <{'position': <13>}>, 'Utilities': <{'position': <14>}>, 'gimp.desktop': <{'position': <15>}>, 'org.inkscape.Inkscape.desktop': <{'position': <16>}>, 'libreoffice-writer.desktop': <{'position': <17>}>, 'libreoffice-calc.desktop': <{'position': <18>}>, 'libreoffice-impress.desktop': <{'position': <19>}>, 'libreoffice-math.desktop': <{'position': <20>}>, 'libreoffice-draw.desktop': <{'position': <21>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <22>}>, 'transmission-gtk.desktop': <{'position': <23>}>}, {'com.github.calo001.fondo.desktop': <{'position': <0>}>, 'org.pitivi.Pitivi.desktop': <{'position': <1>}>, 'easytag.desktop': <{'position': <2>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <3>}>, 'torbrowser.desktop': <{'position': <4>}>, 'mozilla-thunderbird.desktop': <{'position': <5>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <6>}>, 'java-20-openjdk-20.0.0.0.36-1.rolling.fc38.x86_64-jconsole.desktop': <{'position': <7>}>, 'htop.desktop': <{'position': <8>}>, 'remote-viewer.desktop': <{'position': <9>}>, 'scrcpy.desktop': <{'position': <10>}>, 'org.gnome.Shotwell.desktop': <{'position': <11>}>, 'virt-manager.desktop': <{'position': <12>}>, 'org.gnome.Boxes.desktop': <{'position': <13>}>, 'org.gnome.Cheese.desktop': <{'position': <14>}>, 'ed1fd4b0-c5a0-4618-a708-5c0107614b89': <{'position': <15>}>, 'org.gnome.Software.desktop': <{'position': <16>}>}]
+app-picker-layout=[{'android-studio.desktop': <{'position': <0>}>, 'org.gnome.Contacts.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'org.gnome.Logs.desktop': <{'position': <5>}>, 'org.gnome.Evince.desktop': <{'position': <6>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <7>}>, 'blender.desktop': <{'position': <8>}>, 'org.gnome.Photos.desktop': <{'position': <9>}>, 'org.gnome.Totem.desktop': <{'position': <10>}>, 'org.gnome.Calendar.desktop': <{'position': <11>}>, 'microsoft-edge.desktop': <{'position': <12>}>, 'chromium-browser.desktop': <{'position': <13>}>, 'Utilities': <{'position': <14>}>, 'gimp.desktop': <{'position': <15>}>, 'org.inkscape.Inkscape.desktop': <{'position': <16>}>, 'libreoffice-writer.desktop': <{'position': <17>}>, 'libreoffice-calc.desktop': <{'position': <18>}>, 'libreoffice-impress.desktop': <{'position': <19>}>, 'libreoffice-math.desktop': <{'position': <20>}>, 'libreoffice-draw.desktop': <{'position': <21>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <22>}>, 'transmission-gtk.desktop': <{'position': <23>}>}, {'com.github.calo001.fondo.desktop': <{'position': <0>}>, 'org.pitivi.Pitivi.desktop': <{'position': <1>}>, 'easytag.desktop': <{'position': <2>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <3>}>, 'torbrowser.desktop': <{'position': <4>}>, 'mozilla-thunderbird.desktop': <{'position': <5>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <6>}>, 'java-20-openjdk-20.0.0.0.36-1.rolling.fc38.x86_64-jconsole.desktop': <{'position': <7>}>, 'htop.desktop': <{'position': <8>}>, 'scrcpy.desktop': <{'position': <9>}>, 'org.gnome.Shotwell.desktop': <{'position': <10>}>, 'org.gnome.Boxes.desktop': <{'position': <11>}>, 'org.gnome.Cheese.desktop': <{'position': <12>}>, 'ed1fd4b0-c5a0-4618-a708-5c0107614b89': <{'position': <13>}>, 'org.gnome.Software.desktop': <{'position': <14>}>}]
 command-history=['scrcpy']
 disabled-extensions=['dash-to-dock@micxgx.gmail.com']
 enabled-extensions=['background-logo@fedorahosted.org', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com']
 favorite-apps=['gnome-system-monitor.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'code.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop', 'firefox-wayland.desktop', 'google-chrome.desktop']
+last-selected-power-profile='power-saver'
 welcome-dialog-last-shown-version='44.0'
 
 [shell/app-switcher]
@@ -214,7 +215,7 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1683095006
+check-timestamp=int64 1683543265
 first-run=false
 flatpak-purge-timestamp=int64 1682659307
 install-timestamp=int64 1682335240
