@@ -75,6 +75,7 @@ function container_package() {
     #sudo dnf -y install @virtualization
     sudo dnf -y install podman podman-compose
     sudo dnf -y install podman-plugins podman-remote
+    sudo dnf -y install podman podman-docker
     # sudo dnf -y install slirp4netns buildah skopeo runc
     # sudo dnf -y install toolbox
 
@@ -277,7 +278,6 @@ function vscode_package() {
     # code --install-extension Dart-Code.flutter
     # code --install-extension GitHub.github-vscode-theme
     # code --install-extension golang.go
-    # code --install-extension mhutchie.git-graph
     # code --install-extension ms-azuretools.vscode-docker
     # code --install-extension ms-python.python
     # code --install-extension ms-python.vscode-pylance
@@ -286,13 +286,10 @@ function vscode_package() {
     # code --install-extension ms-toolsai.jupyter-renderers
     # code --install-extension ms-toolsai.vscode-jupyter-cell-tags
     # code --install-extension ms-toolsai.vscode-jupyter-slideshow
+    # code --install-extension ms-vscode-remote.remote-containers
     # code --install-extension ms-vscode.cmake-tools
     # code --install-extension ms-vscode.cpptools
-    # code --install-extension ms-vscode.makefile-tools
-    # code --install-extension ms-vsliveshare.vsliveshare
     # code --install-extension twxs.cmake
-    # code --install-extension VisualStudioExptTeam.vscodeintellicode
-    # code --install-extension vscjava.vscode-gradle
 
     ## Settings
 
@@ -308,18 +305,17 @@ function vscode_package() {
     #     "editor.tabCompletion": "on",
     #     "editor.cursorSmoothCaretAnimation": "off",
     #     "editor.lineHeight": 24,
-    #     "explorer.decorations.badges": true,
+    #     "editor.minimap.autohide": true,
     #     "editor.fontLigatures": true,
     #     "editor.suggest.showStatusBar": true,
     #     "editor.suggestSelection": "first",
     #     "editor.suggest.insertMode": "insert",
     #     "editor.minimap.enabled": true,
     #     "editor.minimap.maxColumn": 40,
+    #     "explorer.decorations.badges": true,
     #     "window.titleBarStyle": "custom",
     #     "window.commandCenter": true,
     #     "terminal.integrated.fontFamily": "'Fira Mono Medium'",
-    #     "editor.minimap.autohide": true,
-    #     "editor.formatOnSaveMode": "modificationsIfAvailable",
     #     "files.autoSaveDelay": 10000,
     #     "files.trimFinalNewlines": true,
     #     "files.insertFinalNewline": true,
@@ -401,6 +397,7 @@ function vscode_package() {
     #     },
     #     "dart.debugExternalPackageLibraries": false,
     #     "git.openRepositoryInParentFolders": "always",
+    #     "workbench.startupEditor": "none"
     #     // "git.repositoryScanMaxDepth": -1,
     # }
 
