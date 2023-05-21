@@ -13,6 +13,7 @@ function dnf_conf_update() {
     sudo echo 'fastestmirror=True' | sudo tee -a /etc/dnf/dnf.conf
     sudo echo 'max_parallel_downloads=20' | sudo tee -a /etc/dnf/dnf.conf
     sudo dnf -y install fedora-workstation-repositories
+    sudo dnf -y install dnf-plugins-core
 }
 
 function fedora_upgrade() {
@@ -43,7 +44,6 @@ function systools_package() {
     # sudo dnf -y install inxi
     # sudo inxi --admin --verbosity=7 --filter --no-host
 
-    sudo dnf -y install dnf-plugins-core
 
     sudo dnf -y install unrar
 }
@@ -610,7 +610,9 @@ function buildtools_bazel() {
     go get github.com/bazelbuild/buildtools/unused_deps
 }
 
-function gcloud_package() {
+
+function cloud_tools_packages() {
+    #gcloud_package() {
     cat <<EOF | sudo tee /etc/yum.repos.d/google-cloud-sdk.repo
 [google-cloud-sdk]
 name=Google Cloud SDK
@@ -625,6 +627,10 @@ EOF
    sudo dnf -y install libxcrypt-compat.x86_64
    sudo dnf -y install google-cloud-sdk
 
+   # hashicorp
+   sudo dnf install -y dnf-plugins-core
+   sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+   sudo dnf -y install terraform
 }
 
 function database_packages() {
@@ -752,7 +758,7 @@ function install_all_modules() {
 	# npm_packages
 	# font_packages
 	# codec_packages
-	# gcloud_package
+	# cloud_tools_packages
 	# libreoffice_packages
 	## buildtools_bazel
 	# embedded_dev

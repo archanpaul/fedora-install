@@ -23,8 +23,16 @@ target-currency=''
 target-units='radian'
 word-size=64
 
+[cheese]
+burst-delay=1000
+camera='081b (V4L2)'
+photo-x-resolution=1280
+photo-y-resolution=960
+video-x-resolution=1280
+video-y-resolution=960
+
 [control-center]
-last-panel='display'
+last-panel='bluetooth'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -49,8 +57,8 @@ name='Unnamed Folder'
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2023-05-08-16-23-57-izabel-ouwdw--XNzo-unsplash.jpg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2023-05-08-16-23-57-izabel-ouwdw--XNzo-unsplash.jpg'
+picture-uri='/home/arp/.config/background'
+picture-uri-dark='/home/arp/.config/background'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -75,8 +83,11 @@ locate-pointer=false
 monospace-font-name='Roboto Mono Medium 11'
 
 [desktop/notifications]
-application-children=['org-freedesktop-problems-applet', 'org-gnome-software', 'org-gnome-terminal', 'gnome-power-panel', 'org-gnome-totem', 'code']
+application-children=['org-freedesktop-problems-applet', 'org-gnome-software', 'org-gnome-terminal', 'gnome-power-panel', 'org-gnome-totem', 'code', 'org-gnome-nautilus', 'chromium-browser']
 show-in-lock-screen=false
+
+[desktop/notifications/application/chromium-browser]
+application-id='chromium-browser.desktop'
 
 [desktop/notifications/application/code]
 application-id='code.desktop'
@@ -86,6 +97,9 @@ application-id='gnome-power-panel.desktop'
 
 [desktop/notifications/application/org-freedesktop-problems-applet]
 application-id='org.freedesktop.problems.applet.desktop'
+
+[desktop/notifications/application/org-gnome-nautilus]
+application-id='org.gnome.Nautilus.desktop'
 
 [desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
@@ -134,30 +148,43 @@ button-layout='appmenu:minimize,maximize,close'
 num-workspaces=1
 titlebar-font='Roboto Medium 11'
 
+[evince/default]
+window-ratio=(1.0925925925925926, 0.71282051282051284)
+
 [evolution-data-server]
 migrated=true
+
+[login-screen]
+enable-fingerprint-authentication=true
+enable-password-authentication=true
+enable-smartcard-authentication=false
 
 [mutter]
 center-new-windows=true
 dynamic-workspaces=false
 workspaces-only-on-primary=false
 
+[nautilus/compression]
+default-compression-format='zip'
+
 [nautilus/preferences]
 default-folder-viewer='icon-view'
 migrated-gtk-settings=true
 search-filter-time-type='last_modified'
+search-view='list-view'
 
 [nautilus/window-state]
-initial-size=(890, 550)
+initial-size=(1312, 888)
 
 [settings-daemon/plugins/color]
 night-light-enabled=false
-night-light-last-coordinates=(26.329269534007196, 89.4495)
+night-light-last-coordinates=(22.002075530527829, 79.001099999999994)
 night-light-temperature=uint32 4700
 
 [shell]
 app-picker-layout=[{'android-studio.desktop': <{'position': <0>}>, 'org.gnome.Contacts.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'org.gnome.Logs.desktop': <{'position': <5>}>, 'org.gnome.Evince.desktop': <{'position': <6>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <7>}>, 'blender.desktop': <{'position': <8>}>, 'org.gnome.Photos.desktop': <{'position': <9>}>, 'org.gnome.Totem.desktop': <{'position': <10>}>, 'org.gnome.Calendar.desktop': <{'position': <11>}>, 'microsoft-edge.desktop': <{'position': <12>}>, 'chromium-browser.desktop': <{'position': <13>}>, 'Utilities': <{'position': <14>}>, 'gimp.desktop': <{'position': <15>}>, 'org.inkscape.Inkscape.desktop': <{'position': <16>}>, 'libreoffice-writer.desktop': <{'position': <17>}>, 'libreoffice-calc.desktop': <{'position': <18>}>, 'libreoffice-impress.desktop': <{'position': <19>}>, 'libreoffice-math.desktop': <{'position': <20>}>, 'libreoffice-draw.desktop': <{'position': <21>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <22>}>, 'transmission-gtk.desktop': <{'position': <23>}>}, {'com.github.calo001.fondo.desktop': <{'position': <0>}>, 'org.pitivi.Pitivi.desktop': <{'position': <1>}>, 'easytag.desktop': <{'position': <2>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <3>}>, 'torbrowser.desktop': <{'position': <4>}>, 'mozilla-thunderbird.desktop': <{'position': <5>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <6>}>, 'java-20-openjdk-20.0.0.0.36-1.rolling.fc38.x86_64-jconsole.desktop': <{'position': <7>}>, 'htop.desktop': <{'position': <8>}>, 'scrcpy.desktop': <{'position': <9>}>, 'org.gnome.Shotwell.desktop': <{'position': <10>}>, 'org.gnome.Boxes.desktop': <{'position': <11>}>, 'org.gnome.Cheese.desktop': <{'position': <12>}>, 'ed1fd4b0-c5a0-4618-a708-5c0107614b89': <{'position': <13>}>, 'org.gnome.Software.desktop': <{'position': <14>}>}]
-command-history=['scrcpy']
+command-history=['scrcpy', 'cheeze', 'cheese']
+disable-user-extensions=false
 disabled-extensions=['dash-to-dock@micxgx.gmail.com']
 enabled-extensions=['background-logo@fedorahosted.org', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com']
 favorite-apps=['gnome-system-monitor.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'code.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop', 'firefox-wayland.desktop', 'google-chrome.desktop']
@@ -215,11 +242,11 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1683543265
+check-timestamp=int64 1684634765
 first-run=false
-flatpak-purge-timestamp=int64 1682659307
+flatpak-purge-timestamp=int64 1684569489
 install-timestamp=int64 1682335240
-update-notification-timestamp=int64 1682335481
+update-notification-timestamp=int64 1684558993
 
 [system/location]
 enabled=true
