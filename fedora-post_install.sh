@@ -527,7 +527,7 @@ function python_packages() {
     # pip3 install opencv-python
     # pip3 install keras tensorflow
     # pip3 install mediapipe
-    # pip3 install pytorch torchvision
+    # pip3 install torch torchvision
 
     ## conda
     # sudo dnf -y install conda
@@ -563,8 +563,12 @@ function gnome_packages() {
     sudo dnf -y install gnome-shell-extension-screenshot-window-sizer
     sudo dnf -y install gnome-shell-extension-dash-to-panel.noarch
 
-    # sudo dnf -y install celluloid vlc
-    # sudo dnf -y install --allowerasing obs-studio
+    sudo dnf -y install v4l-util gtk-v4l
+
+    sudo dnf -y install vlc
+    # sudo dnf -y install celluloid
+    sudo dnf -y install --allowerasing obs-studio
+    sudo dnf -y install --allowerasing x264 obs-studio-plugin-x264
 }
 
 function font_packages() {

@@ -32,7 +32,7 @@ video-x-resolution=1280
 video-y-resolution=960
 
 [control-center]
-last-panel='bluetooth'
+last-panel='display'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -57,8 +57,8 @@ name='Unnamed Folder'
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='/home/arp/.config/background'
-picture-uri-dark='/home/arp/.config/background'
+picture-uri='file:///home/arp/.local/share/backgrounds/2023-05-25-11-37-41-izabel-aSfaOkKI6VY-unsplash.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2023-05-25-11-37-41-izabel-aSfaOkKI6VY-unsplash.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -129,7 +129,7 @@ report-technical-problems=false
 color-shading-type='solid'
 lock-delay=uint32 30
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2023-05-08-16-23-57-izabel-ouwdw--XNzo-unsplash.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2023-05-25-11-37-41-izabel-aSfaOkKI6VY-unsplash.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -154,11 +154,6 @@ window-ratio=(1.0925925925925926, 0.71282051282051284)
 [evolution-data-server]
 migrated=true
 
-[login-screen]
-enable-fingerprint-authentication=true
-enable-password-authentication=true
-enable-smartcard-authentication=false
-
 [mutter]
 center-new-windows=true
 dynamic-workspaces=false
@@ -178,11 +173,11 @@ initial-size=(1312, 888)
 
 [settings-daemon/plugins/color]
 night-light-enabled=false
-night-light-last-coordinates=(22.002075530527829, 79.001099999999994)
+night-light-last-coordinates=(26.32732039698244, 89.4495)
 night-light-temperature=uint32 4700
 
 [shell]
-app-picker-layout=[{'android-studio.desktop': <{'position': <0>}>, 'org.gnome.Contacts.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'org.gnome.Logs.desktop': <{'position': <5>}>, 'org.gnome.Evince.desktop': <{'position': <6>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <7>}>, 'blender.desktop': <{'position': <8>}>, 'org.gnome.Photos.desktop': <{'position': <9>}>, 'org.gnome.Totem.desktop': <{'position': <10>}>, 'org.gnome.Calendar.desktop': <{'position': <11>}>, 'microsoft-edge.desktop': <{'position': <12>}>, 'chromium-browser.desktop': <{'position': <13>}>, 'Utilities': <{'position': <14>}>, 'gimp.desktop': <{'position': <15>}>, 'org.inkscape.Inkscape.desktop': <{'position': <16>}>, 'libreoffice-writer.desktop': <{'position': <17>}>, 'libreoffice-calc.desktop': <{'position': <18>}>, 'libreoffice-impress.desktop': <{'position': <19>}>, 'libreoffice-math.desktop': <{'position': <20>}>, 'libreoffice-draw.desktop': <{'position': <21>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <22>}>, 'transmission-gtk.desktop': <{'position': <23>}>}, {'com.github.calo001.fondo.desktop': <{'position': <0>}>, 'org.pitivi.Pitivi.desktop': <{'position': <1>}>, 'easytag.desktop': <{'position': <2>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <3>}>, 'torbrowser.desktop': <{'position': <4>}>, 'mozilla-thunderbird.desktop': <{'position': <5>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <6>}>, 'java-20-openjdk-20.0.0.0.36-1.rolling.fc38.x86_64-jconsole.desktop': <{'position': <7>}>, 'htop.desktop': <{'position': <8>}>, 'scrcpy.desktop': <{'position': <9>}>, 'org.gnome.Shotwell.desktop': <{'position': <10>}>, 'org.gnome.Boxes.desktop': <{'position': <11>}>, 'org.gnome.Cheese.desktop': <{'position': <12>}>, 'ed1fd4b0-c5a0-4618-a708-5c0107614b89': <{'position': <13>}>, 'org.gnome.Software.desktop': <{'position': <14>}>}]
+app-picker-layout=[{'org.gnome.Contacts.desktop': <{'position': <0>}>, 'org.gnome.Weather.desktop': <{'position': <1>}>, 'org.gnome.clocks.desktop': <{'position': <2>}>, 'org.gnome.Maps.desktop': <{'position': <3>}>, 'org.gnome.Logs.desktop': <{'position': <4>}>, 'org.gnome.Evince.desktop': <{'position': <5>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <6>}>, 'blender.desktop': <{'position': <7>}>, 'org.gnome.Photos.desktop': <{'position': <8>}>, 'org.gnome.Totem.desktop': <{'position': <9>}>, 'org.gnome.Calendar.desktop': <{'position': <10>}>, 'android-studio.desktop': <{'position': <11>}>, 'microsoft-edge.desktop': <{'position': <12>}>, 'chromium-browser.desktop': <{'position': <13>}>, 'Utilities': <{'position': <14>}>, 'gimp.desktop': <{'position': <15>}>, 'org.inkscape.Inkscape.desktop': <{'position': <16>}>, 'libreoffice-writer.desktop': <{'position': <17>}>, 'libreoffice-calc.desktop': <{'position': <18>}>, 'libreoffice-impress.desktop': <{'position': <19>}>, 'libreoffice-math.desktop': <{'position': <20>}>, 'libreoffice-draw.desktop': <{'position': <21>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <22>}>, 'transmission-gtk.desktop': <{'position': <23>}>}, {'com.github.calo001.fondo.desktop': <{'position': <0>}>, 'easytag.desktop': <{'position': <1>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <2>}>, 'torbrowser.desktop': <{'position': <3>}>, 'mozilla-thunderbird.desktop': <{'position': <4>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <5>}>, 'org.pitivi.Pitivi.desktop': <{'position': <6>}>, 'com.obsproject.Studio.desktop': <{'position': <7>}>, 'vlc.desktop': <{'position': <8>}>, 'gtk-v4l.desktop': <{'position': <9>}>, 'org.gnome.Cheese.desktop': <{'position': <10>}>, 'org.gnome.Shotwell.desktop': <{'position': <11>}>, 'htop.desktop': <{'position': <12>}>, 'scrcpy.desktop': <{'position': <13>}>, 'org.gnome.Boxes.desktop': <{'position': <14>}>, 'java-20-openjdk-20.0.1.0.9-8.rolling.fc38.x86_64-jconsole.desktop': <{'position': <15>}>, 'org.gnome.Software.desktop': <{'position': <16>}>, 'ed1fd4b0-c5a0-4618-a708-5c0107614b89': <{'position': <17>}>}]
 command-history=['scrcpy', 'cheeze', 'cheese']
 disable-user-extensions=false
 disabled-extensions=['dash-to-dock@micxgx.gmail.com']
@@ -198,7 +193,7 @@ current-workspace-only=true
 animate-appicon-hover-animation-extent={'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}
 appicon-margin=2
 appicon-padding=2
-available-monitors=[0, 1]
+available-monitors=[1, 0]
 dot-color-dominant=false
 dot-color-override=false
 dot-color-unfocused-different=false
@@ -221,7 +216,7 @@ panel-element-positions='{"0":[{"element":"showAppsButton","visible":true,"posit
 panel-element-positions-monitors-sync=false
 panel-lengths='{"0":46,"1":40}'
 panel-sizes='{"0":32,"1":32}'
-primary-monitor=0
+primary-monitor=1
 progress-show-count=true
 show-apps-icon-file=''
 show-apps-icon-side-padding=4
@@ -242,9 +237,9 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1684634765
+check-timestamp=int64 1684994898
 first-run=false
-flatpak-purge-timestamp=int64 1684569489
+flatpak-purge-timestamp=int64 1685002036
 install-timestamp=int64 1682335240
 update-notification-timestamp=int64 1684558993
 
