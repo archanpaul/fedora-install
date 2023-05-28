@@ -203,8 +203,8 @@ EOF
     go install -v golang.org/x/mobile/cmd/gobind@latest
     go install -v golang.org/x/mobile/cmd/gomobile@latest
     # protobuf
-    go install -v github.com/golang/protobuf/protoc-gen-go
-    go install -v google.golang.org/grpc/cmd/protoc-gen-go-grpc
+    go install -v github.com/golang/protobuf/protoc-gen-go@latest
+    go install -v google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 }
 
 function go_libs_packages() {
