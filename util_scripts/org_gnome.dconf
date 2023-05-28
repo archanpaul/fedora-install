@@ -32,7 +32,7 @@ video-x-resolution=1280
 video-y-resolution=960
 
 [control-center]
-last-panel='display'
+last-panel='sound'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -83,7 +83,7 @@ locate-pointer=false
 monospace-font-name='Roboto Mono Medium 11'
 
 [desktop/notifications]
-application-children=['org-freedesktop-problems-applet', 'org-gnome-software', 'org-gnome-terminal', 'gnome-power-panel', 'org-gnome-totem', 'code', 'org-gnome-nautilus', 'chromium-browser']
+application-children=['org-freedesktop-problems-applet', 'org-gnome-software', 'org-gnome-terminal', 'gnome-power-panel', 'org-gnome-totem', 'code', 'org-gnome-nautilus', 'chromium-browser', 'gnome-network-panel']
 show-in-lock-screen=false
 
 [desktop/notifications/application/chromium-browser]
@@ -91,6 +91,9 @@ application-id='chromium-browser.desktop'
 
 [desktop/notifications/application/code]
 application-id='code.desktop'
+
+[desktop/notifications/application/gnome-network-panel]
+application-id='gnome-network-panel.desktop'
 
 [desktop/notifications/application/gnome-power-panel]
 application-id='gnome-power-panel.desktop'
@@ -149,7 +152,7 @@ num-workspaces=1
 titlebar-font='Roboto Medium 11'
 
 [evince/default]
-window-ratio=(1.0925925925925926, 0.71282051282051284)
+window-ratio=(1.626984126984127, 1.3197278911564625)
 
 [evolution-data-server]
 migrated=true
@@ -173,7 +176,7 @@ initial-size=(1312, 888)
 
 [settings-daemon/plugins/color]
 night-light-enabled=false
-night-light-last-coordinates=(26.32732039698244, 89.4495)
+night-light-last-coordinates=(22.004068432514192, 79.001099999999994)
 night-light-temperature=uint32 4700
 
 [shell]
@@ -214,7 +217,7 @@ overview-click-to-exit=true
 panel-anchors='{"0":"MIDDLE","1":"MIDDLE"}'
 panel-element-positions='{"0":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}],"1":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'
 panel-element-positions-monitors-sync=false
-panel-lengths='{"0":46,"1":40}'
+panel-lengths='{"0":40,"1":50}'
 panel-sizes='{"0":32,"1":32}'
 primary-monitor=1
 progress-show-count=true
@@ -237,11 +240,11 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1684994898
+check-timestamp=int64 1685270388
 first-run=false
-flatpak-purge-timestamp=int64 1685002036
+flatpak-purge-timestamp=int64 1685277452
 install-timestamp=int64 1682335240
-update-notification-timestamp=int64 1684558993
+update-notification-timestamp=int64 1685172250
 
 [system/location]
 enabled=true
