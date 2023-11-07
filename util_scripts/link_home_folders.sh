@@ -54,23 +54,23 @@ function create_app_cache() {
 	# mkdir -p ${CACHE}/bazel.cache
 	# ln -sfn ${CACHE}/bazel.cache ~/.cache/bazel
 
-	# mkdir -p ${CACHE}/minikube.cache
-	# ln -sfn ${CACHE}/minikube.cache ~/.minikube
+	mkdir -p ${CACHE}/minikube.cache
+	ln -sfn ${CACHE}/minikube.cache ~/.minikube
 
 	# mkdir -p ${CACHE}/firebase.cache
 	# ln -sfn ${CACHE}/firebase.cache ~/.cache/firebase
 
-	# mkdir -p ${CACHE}/yay.cache
-	# ln -sfn ${CACHE}/yay.cache ~/.cache/yay
+	mkdir -p ${CACHE}/yay.cache
+	ln -sfn ${CACHE}/yay.cache ~/.cache/yay
 	
-	 mkdir -p ~/.local/share/containers
-	 mkdir -p ${CACHE}/containers.cache
-	 mkdir -p ${CACHE}/containers.cache/storage
-	 mkdir -p ${CACHE}/containers.cache/cache
-	 mkdir -p ${CACHE}/containers.cache/shared_folder
-	 ln -sfn ${CACHE}/containers.cache/storage ~/.local/share/containers/storage
-	 ln -sfn ${CACHE}/containers.cache/cache ~/.local/share/containers/cache
-	 ln -sfn ${CACHE}/containers.cache/shared_folder ~/.local/share/containers/shared_folder
+	mkdir -p ~/.local/share/containers
+	mkdir -p ${CACHE}/containers.cache
+	mkdir -p ${CACHE}/containers.cache/storage
+	mkdir -p ${CACHE}/containers.cache/cache
+	mkdir -p ${CACHE}/containers.cache/shared_folder
+	ln -sfn ${CACHE}/containers.cache/storage ~/.local/share/containers/storage
+	ln -sfn ${CACHE}/containers.cache/cache ~/.local/share/containers/cache
+	ln -sfn ${CACHE}/containers.cache/shared_folder ~/.local/share/containers/shared_folder
 
 	mkdir -p ${CACHE}/docker.cache
 	ln -sfn ${CACHE}/docker.cache ~/.local/share/docker
@@ -82,21 +82,30 @@ function create_app_cache() {
 	rm -rf ~/.mozilla
 	ln -sfn ${CACHE}/firefox.cache ~/.mozilla
 
-	# mkdir -p ${CACHE}/gnome-boxes.cache/gnome-boxes_cache ${CACHE}/gnome-boxes.cache/gnome-boxes_config ${CACHE}/gnome-boxes.cache/gnome-boxes_local_share
-	# ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_cache ~/.cache/gnome-boxes
-	# ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_config ~/.config/gnome-boxes
-	# ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_local_share ~/.local/share/gnome-boxes
+	mkdir -p ${CACHE}/google-chrome.cache
+	ln -sfn ${CACHE}/google-chrome.cache ~/.config/google-chrome/
 
-	# mkdir -p ${CACHE}/conda.cache
-	# ln -sfn ${CACHE}/conda.cache ~/.conda
-	# ln -s .conda .virtualenvs
+	mkdir -p ${CACHE}/libvirt
+	ln -sfn ${CACHE}/libvirt ~/.config/libvirt
 
-	# mkdir -p ${CACHE}/npm.cache
-	# mkdir -p ${CACHE}/npm.cache/npm
-	# ln -sfn ${CACHE}/npm.cache/npm ~/.npm
-	# mkdir -p ${CACHE}/npm.cache/node_modules
-	# ln -sfn ${CACHE}/npm.cache/node_modules ~/node_modules
-	# echo "export PATH=$PATH:~/node_modules/.bin"
+	#mkdir -p ${CACHE}/gnome-boxes.cache/gnome-boxes_cache ${CACHE}/gnome-boxes.cache/gnome-boxes_config ${CACHE}/gnome-boxes.cache/gnome-boxes_local_share
+	#ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_cache ~/.cache/gnome-boxes
+	#ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_config ~/.config/gnome-boxes
+	#ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_local_share ~/.local/share/gnome-boxes
+
+	mkdir -p ${CACHE}/virtualenvs.cache
+	ln -sfn ${CACHE}/virtualenvs.cache ~/.virtualenvs
+
+	mkdir -p ${CACHE}/npm.cache
+	mkdir -p ${CACHE}/npm.cache/npm
+	ln -sfn ${CACHE}/npm.cache/npm ~/.npm
+	mkdir -p ${CACHE}/npm.cache/node_modules
+	ln -sfn ${CACHE}/npm.cache/node_modules ~/node_modules
+	echo "export PATH=$PATH:~/node_modules/.bin"
+
+	# pytorch
+	mkdir -p ${CACHE}/torch.cache
+	ln -sfn ${CACHE}/torch.cache ~/.cache/torch
 }
 
 create_home_folders
