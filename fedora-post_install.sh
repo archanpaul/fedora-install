@@ -44,7 +44,6 @@ function systools_package() {
     # sudo dnf -y install inxi
     # sudo inxi --admin --verbosity=7 --filter --no-host
 
-
     sudo dnf -y install unrar
 }
 
@@ -72,18 +71,9 @@ function jdk_package() {
 }
 
 function container_package() {
-    #sudo dnf -y install @virtualization
+    # sudo dnf -y install @virtualization
     sudo dnf -y install podman podman-compose
-    sudo dnf -y install podman-plugins podman-remote
-    sudo dnf -y install podman podman-docker
-    # sudo dnf -y install slirp4netns buildah skopeo runc
-    # sudo dnf -y install toolbox
-
-    # sudo dnf -y install libvirt-devel
-    # sudo systemctl enable libvirtd
-    # sudo systemctl restart libvirtd
-    # sudo usermod -a -G libvirt $(whoami)
-    # newgrp libvirt
+    sudo dnf -y install podman-plugins
 }
 
 function docker_packages() {
@@ -114,21 +104,11 @@ function docker_packages() {
     # echo 'export DOCKER_HOST=unix:///run/user/1000/docker.sock' | sudo tee -a ~/.bashrc
 
     # systemctl --user start docker
-
     # sudo loginctl enable-linger $(whoami)
-
 }
 
 function kubernetes_packages() {
     sudo dnf -y install kubernetes
-
-    # Minikube
-    # wget -c https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm -P ${CACHE}
-    # sudo rpm -ivh ${CACHE}/minikube-latest.x86_64.rpm
-
-    ## For usermode docker enable docker configuration
-    # minikube start --driver=docker --container-runtime=containerd
-    # minikube kubectl -- get pods -A
 }
 
 function graphics_packages() {
@@ -143,22 +123,19 @@ function graphics_dev_packages() {
 
 function internet_package() {
     sudo dnf -y install chromium thunderbird transmission
-    sudo dnf -y install yt-dlp youtube-dl
+    sudo dnf -y install yt-dlp
 
     sudo dnf -y install firefox
     sudo dnf -y install firefox-wayland
     sudo dnf -y install mozilla-noscript mozilla-ublock-origin
 
+    ## Google Chrome
     sudo dnf config-manager --set-enabled google-chrome
     sudo dnf check-update
     sudo dnf -y install google-chrome-stable
     sudo dnf -y install chrome-remote-desktop
 
     sudo dnf -y install torbrowser-launcher
-
-    ## Enable widevine in Google-Chrome
-    # cp libwidevinecdm.so /usr/lib64/chromium-plugins/
-    # cp libwidevinecdmadapter.so /usr/lib64/chromium-plugins/
 
     ## Microsoft Edge
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -195,69 +172,23 @@ EOF
     go install -v golang.org/x/lint/golint@latest
     go install -v golang.org/x/tools/cmd/goimports@latest
     go install -v honnef.co/go/tools/cmd/staticcheck@latest
-    go install github.com/go-delve/delve/cmd/dlv@latest
+    go install -v github.com/go-delve/delve/cmd/dlv@latest
+
+    ## Dev
+    # grpc protobuf
+    go install -v google.golang.org/protobuf/cmd/protoc-gen-go@latest
+    go install -v google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+    # entgo
+    go install entgo.io/ent/cmd/ent@latest
+    go install entgo.io/contrib/entproto/cmd/protoc-gen-entgrpc@latest
+    go install ariga.io/atlas/cmd/atlas@latest
 
     ## Dev tools
-    go install -v github.com/cespare/reflex@latest
+    # go install -v github.com/cespare/reflex@latest
+    go install -v github.com/cosmtrek/air@latest
     # gomobile
     go install -v golang.org/x/mobile/cmd/gobind@latest
     go install -v golang.org/x/mobile/cmd/gomobile@latest
-    # protobuf
-    go install -v github.com/golang/protobuf/protoc-gen-go@latest
-    go install -v google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-}
-
-function go_libs_packages() {
-    source /etc/profile.d/go-packages.sh
-    export GO111MODULE=on
-
-    ## Dev
-    go get -u -v golang.org/x/...
-    go get -u -v golang.org/x/tools/...
-    go get -u -v golang.org/x/tools/cmd/...
-    #go get -u -v golang.org/x/tools/go/analysis/...
-    ## HTTP
-    go get -u -v github.com/gin-gonic/gin
-    go get -u -v github.com/gin-gonic/contrib/...
-    go get -u -v github.com/dgrijalva/jwt-go
-    #go get -v -v github.com/go-chi/chi
-    #go get -v -v github.com/go-chi/cors
-    ## Log
-    go get -v -v go.uber.org/zap
-    ## goNum
-    go get -u -v -t gonum.org/v1/gonum/...
-    ## DB
-    go get -u -v github.com/dgraph-io/dgo/v2
-    go get -u -v go.mongodb.org/mongo-driver
-    go get -u -v go.mongodb.org/mongo-driver/bson
-    go get -u -v go.mongodb.org/mongo-driver/mongo/options
-    go get -u -v go.mongodb.org/mongo-driver/mongo/readpref
-    ## protobuf
-    go get -u -v github.com/golang/protobuf/proto
-    go get -u -v github.com/golang/protobuf/protoc-gen-go
-    ## gRPC
-    go get -u -v google.golang.org/grpc
-    ## Messaging
-    #go get -u -v github.com/nats-io/nats.go
-    #go get -u -v github.com/nats-io/nats-server
-    #go get -u -v github.com/nats-io/nats-streaming-server
-    #go get github.com/liftbridge-io/go-liftbridge
-    #go get -u -v github.com/ThreeDotsLabs/watermill
-    # Go CDK
-    #go get -u -v gocloud.dev
-    # UUID
-    go get -u -v github.com/google/uuid
-    # Embedded DB
-    go get -u -v go.etcd.io/bbolt/...
-    go get -u -v github.com/dgraph-io/badger/...
-    # Firebase
-    go get -u -v firebase.google.com/go
-    go get -u -v firebase.google.com/go/auth
-    # opencv
-    go get -u -d gocv.io/x/gocv
-
-    ## Update
-    #go get -u -v all
 }
 
 function npm_packages() {
@@ -275,13 +206,12 @@ function vscode_package() {
     # code --list-extensions | xargs -L 1 echo code --install-extension
     # code --list-extensions | xargs -L 1 code --uninstall-extension
 
-    ## vscode install extensions
-
+    ## vscode extensions
     # code --install-extension Dart-Code.dart-code
     # code --install-extension Dart-Code.flutter
     # code --install-extension GitHub.github-vscode-theme
     # code --install-extension golang.go
-    # code --install-extension ms-azuretools.vscode-docker
+    # code --install-extension ms-python.isort
     # code --install-extension ms-python.python
     # code --install-extension ms-python.vscode-pylance
     # code --install-extension ms-toolsai.jupyter
@@ -290,90 +220,11 @@ function vscode_package() {
     # code --install-extension ms-toolsai.vscode-jupyter-cell-tags
     # code --install-extension ms-toolsai.vscode-jupyter-slideshow
     # code --install-extension ms-vscode-remote.remote-containers
-    # code --install-extension ms-vscode.cmake-tools
-    # code --install-extension ms-vscode.cpptools
-    # code --install-extension twxs.cmake
+    # code --install-extension PKief.material-icon-theme
+    # code --install-extension redhat.vscode-yaml
 
-    ## Settings
-
-    # {
-    #     "workbench.colorTheme": "GitHub Dark Dimmed",
-    #     "editor.fontFamily": "'Fira Code Medium', 'Droid Sans Mono', 'monospace', monospace",
-    #     "editor.fontSize": 16,
-    #     "editor.wordWrap": "on",
-    #     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-    #     "editor.formatOnPaste": true,
-    #     "editor.formatOnSave": true,
-    #     "editor.formatOnType": true,
-    #     "editor.tabCompletion": "on",
-    #     "editor.cursorSmoothCaretAnimation": "off",
-    #     "editor.lineHeight": 24,
-    #     "editor.minimap.autohide": true,
-    #     "editor.fontLigatures": true,
-    #     "editor.suggest.showStatusBar": true,
-    #     "editor.suggestSelection": "first",
-    #     "editor.suggest.insertMode": "insert",
-    #     "editor.minimap.enabled": true,
-    #     "editor.minimap.maxColumn": 40,
-    #     "explorer.decorations.badges": true,
-    #     "window.titleBarStyle": "custom",
-    #     "window.commandCenter": true,
-    #     "terminal.integrated.fontFamily": "'Fira Mono Medium'",
-    #     "files.autoSaveDelay": 10000,
-    #     "files.trimFinalNewlines": true,
-    #     "files.insertFinalNewline": true,
-    #     "files.trimTrailingWhitespace": true,
-    #     "files.exclude": {
-    #         // "**/.classpath": true,
-    #         "**/.project": true,
-    #         "**/.settings": true,
-    #     },
-    #     "[go]": {
-    #         "editor.formatOnSave": true,
-    #         "editor.defaultFormatter": "golang.go"
-    #     },
-    #     "go.autocompleteUnimportedPackages": true,
-    #     "go.coverOnSingleTestFile": true,
-    #     "go.gotoSymbol.includeImports": true,
-    #     "go.buildFlags": [
-    #         "-v"
-    #     ],
-    #     "go.testFlags": [
-    #         "-count=1",
-    #         "-v",
-    #     ],
-    #     "go.vetFlags": [
-    #         "-composites=false"
-    #     ],
-    #     "go.useLanguageServer": true,
-    #     "go.testTimeout": "3m",
-    #     "go.toolsManagement.autoUpdate": true,
-    #     "python.terminal.executeInFileDir": true,
-    #     "python.formatting.autopep8Args": [
-    #         "--ignore",
-    #         "E402"
-    #     ],
-    #     "python.analysis.completeFunctionParens": true,
-    #     "python.formatting.provider": "autopep8",
-    #     "python.testing.pytestEnabled": true,
-    #     "python.testing.autoTestDiscoverOnSaveEnabled": true,
-    #     // "python.analysis.typeCheckingMode": "basic",
-    #     "notebook.cellToolbarLocation": {
-    #         "default": "left"
-    #     },
-    #     "notebook.cellToolbarVisibility": "hover",
-    #     "notebook.globalToolbarShowLabel": "dynamic",
-    #     "notebook.lineNumbers": "on",
-    #     "notebook.markup.fontSize": 16,
-    #     "jupyter.runStartupCommands": [
-    #         "%load_ext autoreload",
-    #         "%autoreload 2"
-    #     ],
-    #     "jupyter.askForKernelRestart": false,
-    #     "jupyter.exportWithOutputEnabled": true,
-    #     "markdown.preview.fontSize": 20,
-    #     "markdown.preview.typographer": true,
-    #     "dart.lineLength": 150,
+    ## vscode settings
+     # {
     #     "[dart]": {
     #         "editor.formatOnSave": true,
     #         "editor.formatOnType": true,
@@ -384,24 +235,97 @@ function vscode_package() {
     #         "editor.suggest.snippetsPreventQuickSuggestions": false,
     #         "editor.suggestSelection": "first",
     #         "editor.tabCompletion": "onlySnippets",
-    #         "editor.wordBasedSuggestions": false,
+    #         "editor.wordBasedSuggestions": false
     #     },
-    #     "dart.devToolsBrowser": "default",
-    #     "dart.checkForSdkUpdates": false,
-    #     "dart.debugSdkLibraries": false,
-    #     "dart.openDevTools": "flutter",
-    #     "json.maxItemsComputed": 200000,
-    #     // "cmake.configureOnOpen": false,
-    #     // "C_Cpp.intelliSenseEngine": "Disabled",
-    #     // "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    #     // "C_Cpp.formatting": "Disabled",
     #     "[Log]": {
     #         "editor.wordWrap": "on"
     #     },
-    #     "dart.debugExternalPackageLibraries": false,
-    #     "git.openRepositoryInParentFolders": "always",
+    #     "dart.checkForSdkUpdates": false,
+    #     "dart.debugSdkLibraries": false,
+    #     "dart.devToolsBrowser": "default",
+    #     "dart.lineLength": 150,
+    #     "dart.openDevTools": "flutter",
+    #     "diffEditor.codeLens": true,
+    #     "diffEditor.ignoreTrimWhitespace": false,
+    #     "editor.bracketPairColorization.enabled": true,
+    #     "editor.fontFamily": "'Operator Mono','Fira Code Medium','Droid Sans Mono', 'monospace', monospace",
+    #     "editor.fontLigatures": true,
+    #     "editor.fontSize": 16,
+    #     "editor.formatOnPaste": true,
+    #     "editor.formatOnSave": true,
+    #     "editor.formatOnType": true,
+    #     "editor.lineHeight": 24,
+    #     "editor.minimap.autohide": true,
+    #     "editor.minimap.enabled": true,
+    #     "editor.minimap.maxColumn": 40,
+    #     "editor.suggest.insertMode": "insert",
+    #     "editor.suggest.showStatusBar": true,
+    #     "editor.suggestSelection": "first",
+    #     "editor.tabCompletion": "on",
+    #     "editor.wordWrap": "on",
+    #     "explorer.decorations.badges": false,
+    #     "files.autoSave": "afterDelay",
+    #     "files.autoSaveDelay": 3000,
+    #     "files.insertFinalNewline": true,
+    #     "files.trimFinalNewlines": true,
+    #     "files.trimTrailingWhitespace": true,
+    #     "git-graph.maxDepthOfRepoSearch": 10,
+    #     "git.repositoryScanMaxDepth": -1,
+    #     "go.buildFlags": [
+    #         "-v"
+    #     ],
+    #     "go.coverOnSingleTestFile": true,
+    #     "go.formatTool": "goimports",
+    #     "go.testFlags": [
+    #         "-count=1",
+    #         "-v"
+    #     ],
+    #     "go.testTimeout": "5m",
+    #     "go.toolsManagement.autoUpdate": true,
+    #     "go.useLanguageServer": true,
+    #     "go.vetFlags": [
+    #         "-composites=false"
+    #     ],
+    #     "json.maxItemsComputed": 200000,
+    #     "jupyter.askForKernelRestart": false,
+    #     "jupyter.exportWithOutputEnabled": true,
+    #     "jupyter.runStartupCommands": [
+    #         "%load_ext autoreload",
+    #         "%autoreload 2"
+    #     ],
+    #     "markdown.preview.fontSize": 20,
+    #     "markdown.preview.typographer": true,
+    #     "notebook.cellToolbarLocation": {
+    #         "default": "left"
+    #     },
+    #     "notebook.cellToolbarVisibility": "hover",
+    #     "notebook.formatOnCellExecution": true,
+    #     "notebook.formatOnSave.enabled": true,
+    #     "notebook.globalToolbarShowLabel": "dynamic",
+    #     "notebook.lineNumbers": "on",
+    #     "notebook.markup.fontSize": 14,
+    #     "python.analysis.completeFunctionParens": true,
+    #     "python.analysis.typeCheckingMode": "basic",
+    #     "python.defaultInterpreterPath": "/home/repos.arp/app_cache/virtualenvs.cache/venv_py311",
+    #     "python.languageServer": "Jedi",
+    #     "python.terminal.executeInFileDir": true,
+    #     "redhat.telemetry.enabled": false,
+    #     "telemetry.telemetryLevel": "off",
+    #     "terminal.integrated.copyOnSelection": true,
+    #     "terminal.integrated.cursorBlinking": true,
+    #     "terminal.integrated.cursorWidth": 2,
+    #     "terminal.integrated.fontFamily": "Roboto Mono Medium",
+    #     "terminal.integrated.fontSize": 12,
+    #     "terminal.integrated.inheritEnv": true,
+    #     "window.autoDetectColorScheme": true,
+    #     "window.menuBarVisibility": "compact",
+    #     "window.titleBarStyle": "custom",
+    #     "workbench.colorTheme": "GitHub Light",
+    #     "workbench.iconTheme": "material-icon-theme",
+    #     "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
+    #     "workbench.preferredLightColorTheme": "GitHub Light Default",
+    #     "workbench.sideBar.location": "left",
     #     "workbench.startupEditor": "none"
-    #     // "git.repositoryScanMaxDepth": -1,
     # }
 
     sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
@@ -409,7 +333,7 @@ function vscode_package() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2022.2.1.19
+    ANDROID_STUDIO_RELEASE=2022.3.1.20
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -454,7 +378,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="2.19.6"
+    DART_VERSION="3.1.5"
 
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
@@ -508,12 +432,10 @@ EOF
     # flutter config --enable-macos-desktop
     # dart --disable-analytics
     # dart pub global activate protoc_plugin
-
 }
 
 function python_packages() {
     sudo dnf -y install python3-virtualenv
-    # sudo dnf -y install python3-virtualenvwrapper
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
@@ -522,7 +444,8 @@ function python_packages() {
     sudo dnf -y install python3-opencv
 
     ## virtualenv
-    # virtualenv -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
+    ## virtualenv3 -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
+    # virtualenv3 --system-site-packages -p /usr/bin/python3.11 .virtualenvs/venv_py311
     # source ~/.virtualenvs/venv_py311/bin/activate
     # pip install --upgrade pip
     # pip3 install ipykernel autopep8 pylint
@@ -530,33 +453,16 @@ function python_packages() {
     # pip3 install opencv-python
     # pip3 install keras tensorflow
     # pip3 install mediapipe
-    # pip3 install torch torchvision
-
-    ## conda
-    # sudo dnf -y install conda
-    ## conda init bash
-    ## conda config --set report_errors false
-    ## conda config --set auto_activate_base false
-    ## conda create --name py310conda python=3.10
-    ## source ~/.bashrc
-    ## conda activate py310conda
-    ## conda install --yes ipykernel autopep8
-    ## conda install --yes tensorflow scikit-learn-intelex
-    ## conda install --yes pytorch
-    ## conda install --yes torchvision -c pytorch
-    ## conda install --yes -c conda-forge opencv
-    ## pip install mediapipe
+    # pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 }
 
 function gnome_packages() {
     sudo dnf -y install gnome-tweaks
-    sudo dnf -y install gtk-murrine-engine gtk2-engines
     sudo dnf -y install foliate
     sudo dnf -y install fondo
     sudo dnf -y install shotwell
     sudo dnf -y install gnome-boxes
-    sudo dnf -y install gnome-sound-recorder easytag
-    sudo dnf -y install pitivi snappy
+    sudo dnf -y install gnome-sound-recorder
     sudo dnf -y install evince xournalpp
     sudo dnf -y install gnome-firmware
 
@@ -567,9 +473,9 @@ function gnome_packages() {
     sudo dnf -y install gnome-shell-extension-dash-to-panel.noarch
 
     sudo dnf -y install v4l-util gtk-v4l
-
-    sudo dnf -y install vlc
+    # sudo dnf -y install vlc
     # sudo dnf -y install celluloid
+
     sudo dnf -y install --allowerasing obs-studio
     sudo dnf -y install --allowerasing x264 obs-studio-plugin-x264
 }
@@ -617,7 +523,6 @@ function buildtools_bazel() {
     go get github.com/bazelbuild/buildtools/unused_deps
 }
 
-
 function cloud_tools_packages() {
     #gcloud_package() {
     cat <<EOF | sudo tee /etc/yum.repos.d/google-cloud-sdk.repo
@@ -633,49 +538,14 @@ EOF
 
    sudo dnf -y install libxcrypt-compat.x86_64
    sudo dnf -y install google-cloud-sdk
-
-   # hashicorp
-   sudo dnf install -y dnf-plugins-core
-   sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
-   sudo dnf -y install terraform
 }
 
 function database_packages() {
-   # Postgres
-   sudo dnf -y install postgresql-server postgresql
-
-   # mongodb_package
-}
-
-function mongodb_package() {
-    MONGODB_VERSION="5.0"
-    MONGODB_COMPASS_VERSION="1.28.4"
-
-    cat <<EOF | sudo tee /etc/yum.repos.d/mongodb.repo
-[mongodb-org-${MONGODB_VERSION}]
-name=MongoDB Repository
-baseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/${MONGODB_VERSION}/x86_64/
-gpgcheck=1
-enabled=1
-gpgkey=https://www.mongodb.org/static/pgp/server-${MONGODB_VERSION}.asc
-EOF
-    sudo dnf -y install mongodb-org
-
-    ## for changing dbPath
-    sudo cp /etc/mongod.conf /etc/mongod.conf.orig
-    ## update dbPath at /etc/mongo.conf
-    # mkdir -p /home/databases/mongo/
-    # chown -R mongod:mongod /home/databases/mongo/
-    # chcon -Rv --type=mongod_var_lib_t /home/databases/mongo
-    # sudo systemctl enable mongod.service
-    # sudo systemctl start mongod.service
-
-    wget -c https://downloads.mongodb.com/compass/mongodb-compass-${MONGODB_COMPASS_VERSION}.x86_64.rpm -P ${CACHE}
-    sudo yum install ${CACHE}/mongodb-compass-${MONGODB_COMPASS_VERSION}.x86_64.rpm
+   sudo dnf -y install postgresql postgresql-server
+   sudo dnf -y install mariadb mariadb-server
 }
 
 function embedded_dev() {
-    ## arm-none-eabi toolchain
     sudo dnf -y install arm-none-eabi-binutils-cs arm-none-eabi-gcc-cs arm-none-eabi-gcc-cs-c++
     sudo dnf -y install arm-none-eabi-newlib
 }
@@ -690,7 +560,7 @@ function httpd_service() {
 }
 
 function security_service() {
-    sudo dnf -y install firewalld
+    sudo dnf -y install firewalld ufw
 
     sudo firewall-cmd --add-port=80/tcp --permanent
     sudo firewall-cmd --add-port=8080/tcp --permanent
@@ -707,38 +577,6 @@ function security_service() {
 
     ## /etc/crontab
     ## 05 4 * * * root /usr/sbin/aide --check
-}
-
-function matlab_dep() {
-    sudo dnf -y install libxcrypt-compat libnsl
-}
-
-function chroot_os() {
-    sudo dnf -y install schroot debootstrap
-
-    CHROOT_FOLDER=/home/chroot_env/
-
-    sudo mkdir -p ${CHROOT_FOLDER}
-    sudo chmod 755 ${CHROOT_FOLDER}
-    sudo chown -R root:wheel ${CHROOT_FOLDER}
-
-    # Ubuntu
-    UBUNTU_DISTRO=focal
-    UBUNTU_DISTRO_FOLDER=${CHROOT_FOLDER}/ubuntu_${UBUNTU_DISTRO}
-    sudo mkdir -p ${UBUNTU_DISTRO_FOLDER}
-    sudo chmod 755 ${UBUNTU_DISTRO_FOLDER}
-    cat <<EOF | sudo tee /etc/schroot/chroot.d/${UBUNTU_DISTRO}.conf
-[${UBUNTU_DISTRO}]
-description=Ubuntu ${UBUNTU_DISTRO}
-directory=${UBUNTU_DISTRO_FOLDER}
-type=directory
-users=arp
-groups=wheel
-root-groups=wheel
-EOF
-
-    sudo debootstrap --arch=amd64 focal ${UBUNTU_DISTRO_FOLDER}
-    # schroot -c focal -u root
 }
 
 function install_all_modules() {
@@ -761,11 +599,9 @@ function install_all_modules() {
 	# vscode_package
 	# swift_packages
 	# go_packages
-	## go_libs_packages
 	# npm_packages
 	# font_packages
 	# codec_packages
-	# cloud_tools_packages
 	# libreoffice_packages
 	## buildtools_bazel
 	# embedded_dev
