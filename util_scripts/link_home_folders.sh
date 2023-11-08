@@ -40,9 +40,13 @@ function create_home_folders() {
 
 	mkdir -p ${REPOS}/workspace
 	ln -sfn ${REPOS}/workspace .
+
+	mkdir ~/.ssh
+	chmod 700 ~/.ssh
 }
 
 function create_app_cache() {
+	mkdir -p ~/.config
 	mkdir -p ~/.local/share/ ~/.cache
 
 	mkdir -p ${CACHE}/gradle.cache
@@ -83,7 +87,7 @@ function create_app_cache() {
 	ln -sfn ${CACHE}/firefox.cache ~/.mozilla
 
 	mkdir -p ${CACHE}/google-chrome.cache
-	ln -sfn ${CACHE}/google-chrome.cache ~/.config/google-chrome/
+	ln -sfn ${CACHE}/google-chrome.cache ~/.config/google-chrome
 
 	mkdir -p ${CACHE}/libvirt
 	ln -sfn ${CACHE}/libvirt ~/.config/libvirt

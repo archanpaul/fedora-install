@@ -459,7 +459,6 @@ function python_packages() {
 function gnome_packages() {
     sudo dnf -y install gnome-tweaks
     sudo dnf -y install foliate
-    sudo dnf -y install fondo
     sudo dnf -y install shotwell
     sudo dnf -y install gnome-boxes
     sudo dnf -y install gnome-sound-recorder
@@ -472,7 +471,7 @@ function gnome_packages() {
     sudo dnf -y install gnome-shell-extension-screenshot-window-sizer
     sudo dnf -y install gnome-shell-extension-dash-to-panel.noarch
 
-    sudo dnf -y install v4l-util gtk-v4l
+    sudo dnf -y install gtk-v4l
     # sudo dnf -y install vlc
     # sudo dnf -y install celluloid
 
@@ -582,7 +581,7 @@ function security_service() {
 function install_all_modules() {
 	# update_hostname
 	# dnf_conf_update
-	# fedora_upgrade
+	 fedora_upgrade
 	# rpmfusion_repo
 
 	# systools_package
