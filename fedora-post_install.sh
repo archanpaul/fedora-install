@@ -303,7 +303,7 @@ function vscode_package() {
     #     "notebook.formatOnSave.enabled": true,
     #     "notebook.globalToolbarShowLabel": "dynamic",
     #     "notebook.lineNumbers": "on",
-    #     "notebook.markup.fontSize": 14,
+    #     "notebook.markup.fontSize": 16,
     #     "python.analysis.completeFunctionParens": true,
     #     "python.analysis.typeCheckingMode": "basic",
     #     "python.defaultInterpreterPath": "/home/repos.arp/app_cache/virtualenvs.cache/venv_py311",
@@ -444,8 +444,7 @@ function python_packages() {
     sudo dnf -y install python3-opencv
 
     ## virtualenv
-    ## virtualenv3 -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
-    # virtualenv3 --system-site-packages -p /usr/bin/python3.11 .virtualenvs/venv_py311
+    # virtualenv3 -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
     # source ~/.virtualenvs/venv_py311/bin/activate
     # pip install --upgrade pip
     # pip3 install ipykernel autopep8 pylint
