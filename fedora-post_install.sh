@@ -224,7 +224,7 @@ function vscode_package() {
     # code --install-extension redhat.vscode-yaml
 
     ## vscode settings
-     # {
+    # {
     #     "[dart]": {
     #         "editor.formatOnSave": true,
     #         "editor.formatOnType": true,
