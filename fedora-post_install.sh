@@ -307,7 +307,7 @@ function vscode_package() {
     #     "python.analysis.completeFunctionParens": true,
     #     "python.analysis.typeCheckingMode": "basic",
     #     "python.defaultInterpreterPath": "/home/repos.arp/app_cache/virtualenvs.cache/venv_py311",
-    #     "python.languageServer": "Jedi",
+    #     "python.languageServer": "Default",
     #     "python.terminal.executeInFileDir": true,
     #     "redhat.telemetry.enabled": false,
     #     "telemetry.telemetryLevel": "off",
