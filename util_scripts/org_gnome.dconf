@@ -10,8 +10,24 @@ show-right-margin=false
 style-scheme='Adwaita'
 use-system-font=false
 
+[calculator]
+accuracy=9
+angle-units='degrees'
+base=10
+button-mode='basic'
+number-format='automatic'
+show-thousands=false
+show-zeroes=false
+source-currency=''
+source-units='degree'
+target-currency=''
+target-units='radian'
+window-maximized=false
+window-size=(360, 503)
+word-size=64
+
 [control-center]
-last-panel='background'
+last-panel='mouse'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -55,8 +71,14 @@ font-name='Roboto Medium 11'
 monospace-font-name='Roboto Mono Medium 11'
 
 [desktop/notifications]
-application-children=['org-gnome-software', 'gnome-power-panel', 'org-gnome-terminal']
+application-children=['org-gnome-software', 'gnome-power-panel', 'org-gnome-terminal', 'com-spotify-client', 'code']
 show-in-lock-screen=false
+
+[desktop/notifications/application/code]
+application-id='code.desktop'
+
+[desktop/notifications/application/com-spotify-client]
+application-id='com.spotify.Client.desktop'
 
 [desktop/notifications/application/gnome-power-panel]
 application-id='gnome-power-panel.desktop'
@@ -67,8 +89,11 @@ application-id='org.gnome.Software.desktop'
 [desktop/notifications/application/org-gnome-terminal]
 application-id='org.gnome.Terminal.desktop'
 
+[desktop/peripherals/keyboard]
+numlock-state=true
+
 [desktop/peripherals/mouse]
-speed=0.49806949806949796
+speed=0.0
 
 [desktop/peripherals/touchpad]
 two-finger-scrolling-enabled=true
@@ -105,13 +130,27 @@ titlebar-font='Roboto Medium 11'
 [evolution-data-server]
 migrated=true
 
+[gnome-system-monitor]
+current-tab='processes'
+maximized=false
+network-total-in-bits=false
+show-dependencies=false
+show-whose-processes='user'
+window-state=(1068, 882, 26, 23)
+
+[gnome-system-monitor/disktreenew]
+col-6-visible=true
+col-6-width=0
+
 [mutter]
 center-new-windows=true
 dynamic-workspaces=false
 workspaces-only-on-primary=false
 
 [nautilus/preferences]
+default-folder-viewer='icon-view'
 migrated-gtk-settings=true
+search-filter-time-type='last_modified'
 
 [portal/filechooser/gnome-background-panel]
 last-folder-path='/home/arp/Pictures/Wallpapers'
@@ -129,7 +168,7 @@ command='systemctl suspend'
 name='Suspend'
 
 [shell]
-app-picker-layout=[{'org.gnome.baobab.desktop': <{'position': <0>}>, 'org.gnome.clocks.desktop': <{'position': <1>}>, 'org.gnome.Calendar.desktop': <{'position': <2>}>, 'org.gnome.Contacts.desktop': <{'position': <3>}>, 'org.gnome.Weather.desktop': <{'position': <4>}>, 'org.gnome.Maps.desktop': <{'position': <5>}>, 'org.gnome.Logs.desktop': <{'position': <6>}>, 'org.gnome.Software.desktop': <{'position': <7>}>, 'chromium-browser.desktop': <{'position': <8>}>, 'microsoft-edge.desktop': <{'position': <9>}>, 'org.gnome.Evince.desktop': <{'position': <10>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <11>}>, 'libreoffice-writer.desktop': <{'position': <12>}>, 'libreoffice-calc.desktop': <{'position': <13>}>, 'libreoffice-draw.desktop': <{'position': <14>}>, 'libreoffice-impress.desktop': <{'position': <15>}>, 'libreoffice-math.desktop': <{'position': <16>}>, 'org.gnome.Boxes.desktop': <{'position': <17>}>, 'org.gnome.Loupe.desktop': <{'position': <18>}>, 'org.gnome.Cheese.desktop': <{'position': <19>}>, 'org.gnome.Totem.desktop': <{'position': <20>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <21>}>, 'org.inkscape.Inkscape.desktop': <{'position': <22>}>, 'gimp.desktop': <{'position': <23>}>}, {'gnome-system-monitor.desktop': <{'position': <0>}>, 'android-studio.desktop': <{'position': <1>}>, 'scrcpy.desktop': <{'position': <2>}>, 'blender.desktop': <{'position': <3>}>, 'gtk-v4l.desktop': <{'position': <4>}>, 'com.obsproject.Studio.desktop': <{'position': <5>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <6>}>, 'org.gnome.Shotwell.desktop': <{'position': <7>}>, 'org.gnome.Connections.desktop': <{'position': <8>}>, 'firefox.desktop': <{'position': <9>}>, 'mozilla-thunderbird.desktop': <{'position': <10>}>, 'torbrowser.desktop': <{'position': <11>}>, 'transmission-gtk.desktop': <{'position': <12>}>, 'simple-scan.desktop': <{'position': <13>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <14>}>, 'org.gnome.font-viewer.desktop': <{'position': <15>}>, 'org.gnome.Characters.desktop': <{'position': <16>}>, 'org.gnome.DiskUtility.desktop': <{'position': <17>}>, 'org.gnome.Firmware.desktop': <{'position': <18>}>, 'org.gnome.Settings.desktop': <{'position': <19>}>, 'org.gnome.Extensions.desktop': <{'position': <20>}>, 'org.gnome.tweaks.desktop': <{'position': <21>}>, '94da4363-8801-4890-a5a4-fbfc70588fe3': <{'position': <22>}>}]
+app-picker-layout=[{'org.gnome.baobab.desktop': <{'position': <0>}>, 'org.gnome.clocks.desktop': <{'position': <1>}>, 'org.gnome.Calendar.desktop': <{'position': <2>}>, 'org.gnome.Contacts.desktop': <{'position': <3>}>, 'org.gnome.Weather.desktop': <{'position': <4>}>, 'org.gnome.Maps.desktop': <{'position': <5>}>, 'org.gnome.Logs.desktop': <{'position': <6>}>, 'org.gnome.Software.desktop': <{'position': <7>}>, 'chromium-browser.desktop': <{'position': <8>}>, 'microsoft-edge.desktop': <{'position': <9>}>, 'org.gnome.Evince.desktop': <{'position': <10>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <11>}>, 'libreoffice-writer.desktop': <{'position': <12>}>, 'libreoffice-calc.desktop': <{'position': <13>}>, 'libreoffice-draw.desktop': <{'position': <14>}>, 'libreoffice-impress.desktop': <{'position': <15>}>, 'libreoffice-math.desktop': <{'position': <16>}>, 'org.gnome.Boxes.desktop': <{'position': <17>}>, 'org.gnome.Loupe.desktop': <{'position': <18>}>, 'org.gnome.Cheese.desktop': <{'position': <19>}>, 'org.gnome.Totem.desktop': <{'position': <20>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <21>}>, 'org.inkscape.Inkscape.desktop': <{'position': <22>}>, 'gimp.desktop': <{'position': <23>}>}, {'android-studio.desktop': <{'position': <0>}>, 'scrcpy.desktop': <{'position': <1>}>, 'blender.desktop': <{'position': <2>}>, 'gtk-v4l.desktop': <{'position': <3>}>, 'com.obsproject.Studio.desktop': <{'position': <4>}>, 'org.gnome.Shotwell.desktop': <{'position': <5>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <6>}>, 'com.spotify.Client.desktop': <{'position': <7>}>, 'gnome-system-monitor.desktop': <{'position': <8>}>, 'firefox.desktop': <{'position': <9>}>, 'mozilla-thunderbird.desktop': <{'position': <10>}>, 'torbrowser.desktop': <{'position': <11>}>, 'transmission-gtk.desktop': <{'position': <12>}>, 'org.gnome.Connections.desktop': <{'position': <13>}>, 'simple-scan.desktop': <{'position': <14>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <15>}>, 'org.gnome.font-viewer.desktop': <{'position': <16>}>, 'org.gnome.Characters.desktop': <{'position': <17>}>, 'org.gnome.DiskUtility.desktop': <{'position': <18>}>, 'org.gnome.Firmware.desktop': <{'position': <19>}>, 'org.gnome.Settings.desktop': <{'position': <20>}>, 'org.gnome.Extensions.desktop': <{'position': <21>}>, 'org.gnome.tweaks.desktop': <{'position': <22>}>, '94da4363-8801-4890-a5a4-fbfc70588fe3': <{'position': <23>}>}]
 enabled-extensions=['background-logo@fedorahosted.org', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com']
 favorite-apps=['org.gnome.Nautilus.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Terminal.desktop', 'firefox-wayland.desktop', 'google-chrome.desktop', 'code.desktop']
 welcome-dialog-last-shown-version='45.0'
@@ -168,8 +207,9 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1699926926
+check-timestamp=int64 1700013690
 first-run=false
+flatpak-purge-timestamp=int64 1699955932
 update-notification-timestamp=int64 1699927033
 
 [terminal/legacy]
@@ -181,6 +221,7 @@ background-color='rgb(46,52,54)'
 default-size-columns=120
 default-size-rows=40
 foreground-color='rgb(211,215,207)'
+palette=['rgb(46,52,54)', 'rgb(204,0,0)', 'rgb(78,154,6)', 'rgb(196,160,0)', 'rgb(52,101,164)', 'rgb(117,80,123)', 'rgb(6,152,154)', 'rgb(211,215,207)', 'rgb(85,87,83)', 'rgb(239,41,41)', 'rgb(138,226,52)', 'rgb(252,233,79)', 'rgb(114,159,207)', 'rgb(173,127,168)', 'rgb(52,226,226)', 'rgb(238,238,236)']
 scrollback-lines=20000
 use-theme-colors=false
 

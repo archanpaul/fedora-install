@@ -211,6 +211,7 @@ function vscode_package() {
     # code --install-extension Dart-Code.flutter
     # code --install-extension GitHub.github-vscode-theme
     # code --install-extension golang.go
+    # code --install-extension ms-python.autopep8
     # code --install-extension ms-python.isort
     # code --install-extension ms-python.python
     # code --install-extension ms-python.vscode-pylance
@@ -220,7 +221,6 @@ function vscode_package() {
     # code --install-extension ms-toolsai.vscode-jupyter-cell-tags
     # code --install-extension ms-toolsai.vscode-jupyter-slideshow
     # code --install-extension ms-vscode-remote.remote-containers
-    # code --install-extension PKief.material-icon-theme
     # code --install-extension redhat.vscode-yaml
 
     ## vscode settings
@@ -239,6 +239,10 @@ function vscode_package() {
     #     },
     #     "[Log]": {
     #         "editor.wordWrap": "on"
+    #     },
+    #     "[python]": {
+    #         "editor.defaultFormatter": "ms-python.autopep8",
+    #         "editor.formatOnSave": true
     #     },
     #     "dart.checkForSdkUpdates": false,
     #     "dart.debugSdkLibraries": false,
@@ -303,7 +307,7 @@ function vscode_package() {
     #     "notebook.formatOnSave.enabled": true,
     #     "notebook.globalToolbarShowLabel": "dynamic",
     #     "notebook.lineNumbers": "on",
-    #     "notebook.markup.fontSize": 16,
+    #     "notebook.markup.fontSize": 14,
     #     "python.analysis.completeFunctionParens": true,
     #     "python.analysis.typeCheckingMode": "basic",
     #     "python.defaultInterpreterPath": "/home/repos.arp/app_cache/virtualenvs.cache/venv_py311",
@@ -320,8 +324,7 @@ function vscode_package() {
     #     "window.autoDetectColorScheme": true,
     #     "window.menuBarVisibility": "compact",
     #     "window.titleBarStyle": "custom",
-    #     "workbench.colorTheme": "GitHub Light",
-    #     "workbench.iconTheme": "material-icon-theme",
+    #     "workbench.colorTheme": "GitHub Light Default",
     #     "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
     #     "workbench.preferredLightColorTheme": "GitHub Light Default",
     #     "workbench.sideBar.location": "left",
@@ -444,10 +447,10 @@ function python_packages() {
     sudo dnf -y install python3-opencv
 
     ## virtualenv
-    # virtualenv3 -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
+    # virtualenv -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
     # source ~/.virtualenvs/venv_py311/bin/activate
     # pip install --upgrade pip
-    # pip3 install ipykernel autopep8 pylint
+    # pip3 install ipykernel autopep8 pylint black
     # pip3 install numpy scipy matplotlib pandas
     # pip3 install opencv-python
     # pip3 install keras tensorflow
