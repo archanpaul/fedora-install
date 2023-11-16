@@ -466,6 +466,7 @@ function gnome_packages() {
     sudo dnf -y install gnome-sound-recorder
     sudo dnf -y install evince xournalpp
     sudo dnf -y install gnome-firmware
+    sudo dnf -y install dconf-editor
 
     sudo dnf -y install gnome-extensions-app
     sudo dnf -y install gnome-shell-extension-dash-to-dock
@@ -580,6 +581,11 @@ function security_service() {
     ## 05 4 * * * root /usr/sbin/aide --check
 }
 
+function misc_services() {
+    # disabled (un-necessary for personal workstation?)
+    sudo systemctl disable --now sysstat
+}
+
 function install_all_modules() {
 	# update_hostname
 	# dnf_conf_update
@@ -610,6 +616,7 @@ function install_all_modules() {
 
 	# httpd_service
 	# security_service
+	# misc_services
 
 	# android-studio_package
 	# dart-sdk_package
