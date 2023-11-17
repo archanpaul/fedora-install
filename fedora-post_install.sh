@@ -161,9 +161,10 @@ export GOPATH=/opt/go-packages
 export PATH=\$PATH:\$GOPATH/bin
 EOF
     source /etc/profile.d/go-packages.sh
+}
 
-    sudo chown -R root:wheel /opt/go-packages
-    sudo chmod -R u+rwX,go+rwX,o-w /opt/go-packages
+function go_extra_packages() {
+    source /etc/profile.d/go-packages.sh
 
     ## VSCode go plugin dependencies
     export GO111MODULE=on
@@ -606,6 +607,7 @@ function install_all_modules() {
 	# vscode_package
 	# swift_packages
 	# go_packages
+	# go_extra_packages
 	# npm_packages
 	# font_packages
 	# codec_packages
