@@ -82,20 +82,20 @@ function create_app_cache() {
 	mkdir -p ${CACHE}/vm.cache
 	ln -sfn ${CACHE}/vm.cache ~/.local/share/vm
 
+	mkdir -p ${CACHE}/libvirt
+	ln -sfn ${CACHE}/libvirt ~/.config/libvirt
+
+	mkdir -p ${CACHE}/gnome-boxes.cache/gnome-boxes_cache ${CACHE}/gnome-boxes.cache/gnome-boxes_config ${CACHE}/gnome-boxes.cache/gnome-boxes_local_share
+	ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_cache ~/.cache/gnome-boxes
+	ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_config ~/.config/gnome-boxes
+	ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_local_share ~/.local/share/gnome-boxes
+
 	mkdir -p ${CACHE}/firefox.cache
 	rm -rf ~/.mozilla
 	ln -sfn ${CACHE}/firefox.cache ~/.mozilla
 
 	mkdir -p ${CACHE}/google-chrome.cache
 	ln -sfn ${CACHE}/google-chrome.cache ~/.config/google-chrome
-
-	mkdir -p ${CACHE}/libvirt
-	ln -sfn ${CACHE}/libvirt ~/.config/libvirt
-
-	#mkdir -p ${CACHE}/gnome-boxes.cache/gnome-boxes_cache ${CACHE}/gnome-boxes.cache/gnome-boxes_config ${CACHE}/gnome-boxes.cache/gnome-boxes_local_share
-	#ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_cache ~/.cache/gnome-boxes
-	#ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_config ~/.config/gnome-boxes
-	#ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_local_share ~/.local/share/gnome-boxes
 
 	mkdir -p ${CACHE}/virtualenvs.cache
 	ln -sfn ${CACHE}/virtualenvs.cache ~/.virtualenvs

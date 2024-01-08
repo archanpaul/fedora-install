@@ -224,120 +224,12 @@ function vscode_package() {
     # code --install-extension ms-vscode-remote.remote-containers
     # code --install-extension redhat.vscode-yaml
 
-    ## vscode settings
-    # {
-    #     "[dart]": {
-    #         "editor.formatOnSave": true,
-    #         "editor.formatOnType": true,
-    #         "editor.rulers": [
-    #             120
-    #         ],
-    #         "editor.selectionHighlight": false,
-    #         "editor.suggest.snippetsPreventQuickSuggestions": false,
-    #         "editor.suggestSelection": "first",
-    #         "editor.tabCompletion": "onlySnippets",
-    #         "editor.wordBasedSuggestions": false
-    #     },
-    #     "[Log]": {
-    #         "editor.wordWrap": "on"
-    #     },
-    #     "[python]": {
-    #         "editor.defaultFormatter": "ms-python.autopep8",
-    #         "editor.formatOnSave": true
-    #     },
-    #     "dart.checkForSdkUpdates": false,
-    #     "dart.debugSdkLibraries": false,
-    #     "dart.devToolsBrowser": "default",
-    #     "dart.lineLength": 150,
-    #     "dart.openDevTools": "flutter",
-    #     "diffEditor.codeLens": true,
-    #     "diffEditor.ignoreTrimWhitespace": false,
-    #     "editor.bracketPairColorization.enabled": true,
-    #     "editor.fontFamily": "'Operator Mono','Fira Code Medium','Droid Sans Mono', 'monospace', monospace",
-    #     "editor.fontLigatures": true,
-    #     "editor.fontSize": 16,
-    #     "editor.formatOnPaste": true,
-    #     "editor.formatOnSave": true,
-    #     "editor.formatOnType": true,
-    #     "editor.lineHeight": 24,
-    #     "editor.minimap.autohide": true,
-    #     "editor.minimap.enabled": true,
-    #     "editor.minimap.maxColumn": 40,
-    #     "editor.suggest.insertMode": "insert",
-    #     "editor.suggest.showStatusBar": true,
-    #     "editor.suggestSelection": "first",
-    #     "editor.tabCompletion": "on",
-    #     "editor.wordWrap": "on",
-    #     "explorer.decorations.badges": false,
-    #     "files.autoSave": "afterDelay",
-    #     "files.autoSaveDelay": 3000,
-    #     "files.insertFinalNewline": true,
-    #     "files.trimFinalNewlines": true,
-    #     "files.trimTrailingWhitespace": true,
-    #     "git-graph.maxDepthOfRepoSearch": 10,
-    #     "git.repositoryScanMaxDepth": -1,
-    #     "go.buildFlags": [
-    #         "-v"
-    #     ],
-    #     "go.coverOnSingleTestFile": true,
-    #     "go.formatTool": "goimports",
-    #     "go.testFlags": [
-    #         "-count=1",
-    #         "-v"
-    #     ],
-    #     "go.testTimeout": "5m",
-    #     "go.toolsManagement.autoUpdate": true,
-    #     "go.useLanguageServer": true,
-    #     "go.vetFlags": [
-    #         "-composites=false"
-    #     ],
-    #     "json.maxItemsComputed": 200000,
-    #     "jupyter.askForKernelRestart": false,
-    #     "jupyter.exportWithOutputEnabled": true,
-    #     "jupyter.runStartupCommands": [
-    #         "%load_ext autoreload",
-    #         "%autoreload 2"
-    #     ],
-    #     "markdown.preview.fontSize": 20,
-    #     "markdown.preview.typographer": true,
-    #     "notebook.cellToolbarLocation": {
-    #         "default": "left"
-    #     },
-    #     "notebook.cellToolbarVisibility": "hover",
-    #     "notebook.formatOnCellExecution": true,
-    #     "notebook.formatOnSave.enabled": true,
-    #     "notebook.globalToolbarShowLabel": "dynamic",
-    #     "notebook.lineNumbers": "on",
-    #     "notebook.markup.fontSize": 14,
-    #     "python.analysis.completeFunctionParens": true,
-    #     "python.analysis.typeCheckingMode": "basic",
-    #     "python.defaultInterpreterPath": "/home/repos.arp/app_cache/virtualenvs.cache/venv_py311",
-    #     "python.languageServer": "Default",
-    #     "python.terminal.executeInFileDir": true,
-    #     "redhat.telemetry.enabled": false,
-    #     "telemetry.telemetryLevel": "off",
-    #     "terminal.integrated.copyOnSelection": true,
-    #     "terminal.integrated.cursorBlinking": true,
-    #     "terminal.integrated.cursorWidth": 2,
-    #     "terminal.integrated.fontFamily": "Roboto Mono Medium",
-    #     "terminal.integrated.fontSize": 12,
-    #     "terminal.integrated.inheritEnv": true,
-    #     "window.autoDetectColorScheme": true,
-    #     "window.menuBarVisibility": "compact",
-    #     "window.titleBarStyle": "custom",
-    #     "workbench.colorTheme": "GitHub Light Default",
-    #     "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
-    #     "workbench.preferredLightColorTheme": "GitHub Light Default",
-    #     "workbench.sideBar.location": "left",
-    #     "workbench.startupEditor": "none"
-    # }
-
     sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
     sudo sysctl -p
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2022.3.1.20
+    ANDROID_STUDIO_RELEASE=2023.1.1.26
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -375,14 +267,14 @@ EOF
 
     sudo dnf -y copr enable zeno/scrcpy
     # rpmfusion_repo
-    sudo dnf -y install ffmpeg-free
+    # sudo dnf -y --allowerasing install ffmpeg-free
     sudo dnf -y install scrcpy
     # remove android-tools to use SDK's tools
     sudo rpm -e android-tools --nodeps
 }
 
 function dart-sdk_package() {
-    DART_VERSION="3.1.5"
+    DART_VERSION="3.2.4"
 
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
