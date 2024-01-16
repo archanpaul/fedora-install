@@ -340,6 +340,8 @@ function python_packages() {
     sudo dnf -y install python3-opencv
 
     ## virtualenv
+    # sudo dnf -y install python3.11
+    # mkdir .virtualenvs
     # virtualenv -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
     # source ~/.virtualenvs/venv_py311/bin/activate
     # pip install --upgrade pip
