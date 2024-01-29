@@ -9,7 +9,7 @@
         "editor.suggest.snippetsPreventQuickSuggestions": false,
         "editor.suggestSelection": "first",
         "editor.tabCompletion": "onlySnippets",
-        "editor.wordBasedSuggestions": false
+        "editor.wordBasedSuggestions": "off"
     },
     "[Log]": {
         "editor.wordWrap": "on"
@@ -26,7 +26,7 @@
     "diffEditor.codeLens": true,
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.bracketPairColorization.enabled": true,
-    "editor.fontFamily": "'Operator Mono','Fira Code Medium','Droid Sans Mono', 'monospace', monospace",
+    "editor.fontFamily": "'Jetbrains Mono Bold', 'Fira Code Medium','Droid Sans Mono', 'monospace', monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 16,
     "editor.formatOnPaste": true,
@@ -92,8 +92,8 @@
     "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.cursorWidth": 2,
-    "terminal.integrated.fontFamily": "Roboto Mono Medium",
-    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.fontFamily": "'Jetbrains Mono Medium', 'Roboto Mono Medium'",
+    "terminal.integrated.fontSize": 14,
     "terminal.integrated.inheritEnv": true,
     "window.autoDetectColorScheme": true,
     "window.menuBarVisibility": "compact",

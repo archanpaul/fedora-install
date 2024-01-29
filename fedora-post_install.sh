@@ -393,6 +393,7 @@ function font_packages() {
     sudo dnf -y install mozilla-fira-sans-fonts
     sudo dnf -y install mozilla-fira-mono-fonts
     sudo dnf -y install fira-code-fonts
+    sudo dnf -y install jetbrains-mono-fonts-all
 }
 
 function libreoffice_packages() {
