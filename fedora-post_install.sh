@@ -203,29 +203,32 @@ function vscode_package() {
     sudo dnf -y install code
     sudo dnf -y install pandoc
 
+    sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
+    sudo sysctl -p
+}
+
+function vscode_package_user_conf() {
     ## vscode list/remove extensions
     # code --list-extensions | xargs -L 1 echo code --install-extension
     # code --list-extensions | xargs -L 1 code --uninstall-extension
 
     ## vscode extensions
-    # code --install-extension Dart-Code.dart-code
-    # code --install-extension Dart-Code.flutter
-    # code --install-extension GitHub.github-vscode-theme
-    # code --install-extension golang.go
-    # code --install-extension ms-python.autopep8
-    # code --install-extension ms-python.isort
-    # code --install-extension ms-python.python
-    # code --install-extension ms-python.vscode-pylance
-    # code --install-extension ms-toolsai.jupyter
-    # code --install-extension ms-toolsai.jupyter-keymap
-    # code --install-extension ms-toolsai.jupyter-renderers
-    # code --install-extension ms-toolsai.vscode-jupyter-cell-tags
-    # code --install-extension ms-toolsai.vscode-jupyter-slideshow
-    # code --install-extension ms-vscode-remote.remote-containers
-    # code --install-extension redhat.vscode-yaml
+    code --install-extension Dart-Code.dart-code
+    code --install-extension Dart-Code.flutter
+    code --install-extension GitHub.github-vscode-theme
+    code --install-extension golang.go
+    code --install-extension ms-python.autopep8
+    code --install-extension ms-python.isort
+    code --install-extension ms-python.python
+    code --install-extension ms-python.vscode-pylance
+    code --install-extension ms-toolsai.jupyter
+    code --install-extension ms-toolsai.jupyter-keymap
+    code --install-extension ms-toolsai.jupyter-renderers
+    code --install-extension ms-toolsai.vscode-jupyter-cell-tags
+    code --install-extension ms-toolsai.vscode-jupyter-slideshow
+    code --install-extension ms-vscode-remote.remote-containers
+    code --install-extension redhat.vscode-yaml
 
-    sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
-    sudo sysctl -p
 }
 
 function android-studio_package(){
@@ -317,17 +320,19 @@ EOF
     ## Linux app development dependencies.
     sudo dnf -y install ninja-build
     sudo dnf -y install gtk3-devel
+}
 
-    # git config --global --add safe.directory /opt/flutter-sdk
-    # flutter doctor
-    # flutter doctor --android-licenses
-    # flutter config --no-analytics
-    # flutter precache
-    # flutter config --enable-linux-desktop
-    # flutter config --enable-windows-desktop
-    # flutter config --enable-macos-desktop
-    # dart --disable-analytics
-    # dart pub global activate protoc_plugin
+function flutter-sdk_user_conf() {
+    git config --global --add safe.directory /opt/flutter-sdk
+    flutter doctor
+    flutter doctor --android-licenses
+    flutter config --no-analytics
+    flutter precache
+    flutter config --enable-linux-desktop
+    flutter config --enable-windows-desktop
+    flutter config --enable-macos-desktop
+    dart --disable-analytics
+    dart pub global activate protoc_plugin
 }
 
 function python_packages() {
@@ -338,19 +343,22 @@ function python_packages() {
     sudo dnf -y install python3-ipykernel python3-notebook
     sudo dnf -y install python3-virtualenv
     sudo dnf -y install python3-opencv
+    
+    sudo dnf -y install python3.11
+}
 
+function python_user_conf() {
     ## virtualenv
-    # sudo dnf -y install python3.11
-    # mkdir .virtualenvs
-    # virtualenv -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
-    # source ~/.virtualenvs/venv_py311/bin/activate
-    # pip install --upgrade pip
-    # pip3 install ipykernel autopep8 pylint black
-    # pip3 install numpy scipy matplotlib pandas
-    # pip3 install opencv-python
-    # pip3 install keras tensorflow
-    # pip3 install mediapipe
-    # pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+    mkdir .virtualenvs
+    virtualenv -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
+    source ~/.virtualenvs/venv_py311/bin/activate
+    pip install --upgrade pip
+    pip3 install ipykernel autopep8 pylint black
+    pip3 install numpy scipy matplotlib pandas
+    pip3 install opencv-python
+    pip3 install keras tensorflow
+    pip3 install mediapipe
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 }
 
 function gnome_packages() {
@@ -520,4 +528,11 @@ function install_all_modules() {
 	# flutter-sdk_package
 }
 
+function user_conf_all_modules(){
+	vscode_package_user_conf
+	flutter-sdk_user_conf
+        # python_user_conf
+} 
+
 install_all_modules 2>&1 | tee fedora_install.log
+# user_conf_all_modules
