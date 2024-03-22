@@ -402,6 +402,8 @@ function font_packages() {
     sudo dnf -y install mozilla-fira-mono-fonts
     sudo dnf -y install fira-code-fonts
     sudo dnf -y install jetbrains-mono-fonts-all
+    sudo dnf -y install ht-alegreya-fonts
+    sudo dnf -y install ht-alegreya-sans-fonts
 }
 
 function libreoffice_packages() {
