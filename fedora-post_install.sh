@@ -350,8 +350,8 @@ function python_packages() {
 function python_user_conf() {
     ## virtualenv
     mkdir .virtualenvs
-    virtualenv -p /usr/bin/python3.11 --copies .virtualenvs/venv_py311
-    source ~/.virtualenvs/venv_py311/bin/activate
+    virtualenv -p /usr/bin/python3.12 --copies .virtualenvs/venv_py312
+    source ~/.virtualenvs/venv_py312/bin/activate
     pip install --upgrade pip
     pip3 install ipykernel autopep8 pylint black
     pip3 install numpy scipy matplotlib pandas

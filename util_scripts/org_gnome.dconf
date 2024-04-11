@@ -20,7 +20,7 @@ window-size=(360, 504)
 word-size=64
 
 [control-center]
-last-panel='background'
+last-panel='sound'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -46,8 +46,8 @@ translate=true
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2024-02-08-07-57-33-material-design-made-wallpaper_flip.png'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2024-02-08-07-57-33-material-design-made-wallpaper_flip.png'
+picture-uri='file:///home/arp/.local/share/backgrounds/2024-04-11-13-14-09-4_wallpaper.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2024-04-11-13-14-09-4_wallpaper.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -61,6 +61,7 @@ font-hinting='slight'
 
 [desktop/notifications]
 application-children=['org-gnome-terminal', 'gnome-power-panel', 'org-gnome-software', 'code', 'org-gnome-nautilus', 'gnome-network-panel', 'org-gnome-settings', 'com-spotify-client']
+show-in-lock-screen=false
 
 [desktop/notifications/application/code]
 application-id='code.desktop'
@@ -90,7 +91,7 @@ application-id='org.gnome.Software.desktop'
 application-id='org.gnome.Terminal.desktop'
 
 [desktop/peripherals/keyboard]
-numlock-state=false
+numlock-state=true
 
 [desktop/privacy]
 report-technical-problems=false
@@ -98,9 +99,16 @@ report-technical-problems=false
 [desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2024-02-08-07-57-33-material-design-made-wallpaper_flip.png'
+picture-uri='file:///home/arp/.local/share/backgrounds/2024-04-11-13-14-09-4_wallpaper.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
+
+[desktop/search-providers]
+sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Nautilus.desktop']
+
+[desktop/sound]
+event-sounds=false
+theme-name='__custom'
 
 [desktop/wm/preferences]
 button-layout='appmenu:minimize,maximize,close'
@@ -134,7 +142,7 @@ initial-size=(987, 806)
 last-folder-path='/home/arp/Downloads'
 
 [portal/filechooser/gnome-background-panel]
-last-folder-path='/home/arp/Pictures/Wallpapers'
+last-folder-path='/home/arp/Pictures/wallpapers'
 
 [portal/filechooser/google-chrome]
 last-folder-path='/home/arp/Downloads'
@@ -143,7 +151,7 @@ last-folder-path='/home/arp/Downloads'
 last-folder-path='/home/arp/Downloads'
 
 [settings-daemon/plugins/color]
-night-light-last-coordinates=(21.997330383178095, 79.001099999999994)
+night-light-last-coordinates=(22.799852885067136, 86.180400000000006)
 
 [settings-daemon/plugins/media-keys]
 custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
@@ -192,12 +200,12 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1707358663
+check-timestamp=int64 1712821487
 first-run=false
 flatpak-purge-timestamp=int64 1704515653
-install-timestamp=int64 1706328329
-packagekit-historical-updates-timestamp=uint64 1706328329
-update-notification-timestamp=int64 1704432894
+install-timestamp=int64 1711337304
+packagekit-historical-updates-timestamp=uint64 1711337304
+update-notification-timestamp=int64 1712821427
 
 [system/location]
 enabled=true
