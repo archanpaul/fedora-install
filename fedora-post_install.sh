@@ -117,7 +117,7 @@ function graphics_packages() {
 }
 
 function graphics_dev_packages() {
-    sudo dnf -y install gtk3-devel
+    sudo dnf -y install gtk4-devel
     sudo dnf -y install opencv opencv-contrib opencv-devel
 }
 
@@ -232,7 +232,7 @@ function vscode_package_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2023.1.1.27
+    ANDROID_STUDIO_RELEASE=2023.2.1.25
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -277,7 +277,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="3.2.4"
+    DART_VERSION="3.3.3"
 
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
@@ -418,17 +418,6 @@ function codec_packages() {
     sudo dnf config-manager --set-enabled fedora-cisco-openh264
     sudo dnf -y install openh264
     sudo dnf -y install gstreamer1-plugin-openh264 mozilla-openh264 gstreamer1-libav
-}
-
-function buildtools_bazel() {
-    sudo dnf -y install dnf-plugins-core
-    sudo dnf copr enable vbatts/bazel
-    sudo dnf -y install bazel5
-
-    # bazel_buildtools
-    go install github.com/bazelbuild/buildtools/buildifier@latest
-    go install github.com/bazelbuild/buildtools/buildozer@latest
-    go get github.com/bazelbuild/buildtools/unused_deps
 }
 
 function cloud_tools_packages() {
