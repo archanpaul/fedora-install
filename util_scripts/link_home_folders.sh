@@ -64,9 +64,6 @@ function create_app_cache() {
 	# mkdir -p ${CACHE}/firebase.cache
 	# ln -sfn ${CACHE}/firebase.cache ~/.cache/firebase
 
-	mkdir -p ${CACHE}/yay.cache
-	ln -sfn ${CACHE}/yay.cache ~/.cache/yay
-	
 	mkdir -p ~/.local/share/containers
 	mkdir -p ${CACHE}/containers.cache
 	mkdir -p ${CACHE}/containers.cache/storage
