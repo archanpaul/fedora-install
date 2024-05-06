@@ -232,7 +232,7 @@ function vscode_package_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2023.2.1.25
+    ANDROID_STUDIO_RELEASE=2023.3.1.18
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -501,12 +501,10 @@ function install_all_modules() {
 	# vscode_package
 	# swift_packages
 	# go_packages
-	# go_extra_packages
 	# npm_packages
 	# font_packages
 	# codec_packages
 	# libreoffice_packages
-	## buildtools_bazel
 	# embedded_dev
 	# database_packages
 
@@ -522,6 +520,7 @@ function install_all_modules() {
 function user_conf_all_modules(){
 	vscode_package_user_conf
 	flutter-sdk_user_conf
+	# go_extra_packages
         # python_user_conf
 } 
 
