@@ -232,7 +232,7 @@ function vscode_package_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2023.3.1.18
+    ANDROID_STUDIO_RELEASE=2023.3.1.19
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -277,7 +277,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="3.3.3"
+    DART_VERSION="3.4.0"
 
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
