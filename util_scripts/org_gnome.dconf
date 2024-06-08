@@ -20,7 +20,7 @@ window-size=(360, 504)
 word-size=64
 
 [control-center]
-last-panel='background'
+last-panel='power'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -46,8 +46,8 @@ translate=true
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2024-06-01-07-11-24-tech_nenon_2.jpeg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2024-06-01-07-11-24-tech_nenon_2.jpeg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2024-06-03-07-27-27-tech_nenon_2.jpeg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2024-06-03-07-27-27-tech_nenon_2.jpeg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -58,6 +58,7 @@ show-weekdate=true
 automatic-timezone=false
 
 [desktop/input-sources]
+current=uint32 0
 sources=[('xkb', 'in+eng')]
 
 [desktop/interface]
@@ -69,7 +70,7 @@ font-name='Cantarell 11'
 toolkit-accessibility=false
 
 [desktop/notifications]
-application-children=['org-gnome-terminal', 'code', 'org-gnome-software', 'org-gnome-evince', 'org-gnome-shell-extensions-gsconnect']
+application-children=['org-gnome-terminal', 'code', 'org-gnome-software', 'org-gnome-evince', 'org-gnome-shell-extensions-gsconnect', 'org-mozilla-firefox']
 show-in-lock-screen=false
 
 [desktop/notifications/application/code]
@@ -87,6 +88,9 @@ application-id='org.gnome.Software.desktop'
 [desktop/notifications/application/org-gnome-terminal]
 application-id='org.gnome.Terminal.desktop'
 
+[desktop/notifications/application/org-mozilla-firefox]
+application-id='org.mozilla.firefox.desktop'
+
 [desktop/peripherals/keyboard]
 numlock-state=true
 
@@ -97,11 +101,12 @@ two-finger-scrolling-enabled=true
 old-files-age=uint32 1
 recent-files-max-age=1
 remove-old-temp-files=true
+report-technical-problems=false
 
 [desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2024-06-01-07-11-24-tech_nenon_2.jpeg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2024-06-03-07-27-27-tech_nenon_2.jpeg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -128,18 +133,14 @@ dual-page-odd-left=true
 enable-spellchecking=true
 fullscreen=false
 inverted-colors=false
-show-sidebar=true
+show-sidebar=false
 sidebar-page='thumbnails'
 sidebar-size=182
 sizing-mode='fit-width'
-window-ratio=(2.7072892938496582, 1.3764845605700713)
+window-ratio=(2.0125997480050399, 1.7102137767220902)
 
 [evolution-data-server]
 migrated=true
-
-[login-screen]
-enable-fingerprint-authentication=true
-enable-smartcard-authentication=false
 
 [mutter]
 center-new-windows=true
@@ -152,19 +153,26 @@ migrated-gtk-settings=true
 search-filter-time-type='last_modified'
 
 [nautilus/window-state]
-initial-size=(981, 783)
+initial-size=(982, 783)
 
 [portal/filechooser/chromium-browser]
-last-folder-path='/home/arp/Downloads'
+last-folder-path='/home/arp/Documents/Aditri_College_Entrance_Documents/MUJ_admission'
+
+[portal/filechooser/code]
+last-folder-path='/home/arp/workspace/sfcomites_projects.workspace/sfcomites_sflihw_app.git'
 
 [portal/filechooser/gnome-background-panel]
 last-folder-path='/home/arp/Pictures/wallpapers'
 
+[portal/filechooser/google-chrome]
+last-folder-path='/home/arp/Documents/Aditri_College_Entrance_Documents/MUJ_admission'
+
 [portal/filechooser/microsoft-edge]
-last-folder-path='/home/arp/Downloads'
+last-folder-path='/home/arp/Downloads/MUJ_Courses'
 
 [settings-daemon/plugins/color]
 night-light-enabled=false
+night-light-last-coordinates=(21.99360989414452, 79.001099999999994)
 night-light-temperature=uint32 4617
 
 [settings-daemon/plugins/media-keys]
@@ -251,25 +259,30 @@ window-maximized=false
 window-size=(754, 460)
 
 [software]
-check-timestamp=int64 1717311811
+check-timestamp=int64 1717728140
 first-run=false
-flatpak-purge-timestamp=int64 1717213623
+flatpak-purge-timestamp=int64 1717729727
 install-timestamp=int64 1717140441
 packagekit-historical-updates-timestamp=uint64 1717140441
 update-notification-timestamp=int64 1716877825
+
+[system/location]
+enabled=true
 
 [terminal/legacy]
 theme-variant='system'
 
 [terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 audible-bell=false
-background-color='rgb(46,52,54)'
+background-color='rgb(238,238,236)'
 cursor-blink-mode='on'
 default-size-columns=120
 default-size-rows=40
-foreground-color='rgb(211,215,207)'
+font='JetBrains Mono 11'
+foreground-color='rgb(46,52,54)'
 palette=['rgb(46,52,54)', 'rgb(204,0,0)', 'rgb(78,154,6)', 'rgb(196,160,0)', 'rgb(52,101,164)', 'rgb(117,80,123)', 'rgb(6,152,154)', 'rgb(211,215,207)', 'rgb(85,87,83)', 'rgb(239,41,41)', 'rgb(138,226,52)', 'rgb(252,233,79)', 'rgb(114,159,207)', 'rgb(173,127,168)', 'rgb(52,226,226)', 'rgb(238,238,236)']
 scrollback-lines=100000
+use-system-font=false
 use-theme-colors=false
 
 [tweaks]

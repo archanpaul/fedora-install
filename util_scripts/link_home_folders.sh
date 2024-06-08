@@ -91,6 +91,10 @@ function create_app_cache() {
 	rm -rf ~/.mozilla
 	ln -sfn ${CACHE}/firefox.cache ~/.mozilla
 
+	mkdir -p ${CACHE}/edge/cache ${CACHE}/edge/config 
+	ln -sfn ${CACHE}/edge/cache .cache/microsoft-edge
+	ln -sfn ${CACHE}/edge/config .config/microsoft-edge
+
 	mkdir -p ${CACHE}/google-chrome.cache
 	ln -sfn ${CACHE}/google-chrome.cache ~/.config/google-chrome
 
