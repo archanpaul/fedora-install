@@ -52,12 +52,6 @@ function create_app_cache() {
 	mkdir -p ${CACHE}/gradle.cache
 	ln -sfn ${CACHE}/gradle.cache ~/.gradle
 
-	mkdir -p ${CACHE}/android.cache
-	ln -sfn ${CACHE}/android.cache ~/.android
-
-	# mkdir -p ${CACHE}/bazel.cache
-	# ln -sfn ${CACHE}/bazel.cache ~/.cache/bazel
-
 	mkdir -p ${CACHE}/minikube.cache
 	ln -sfn ${CACHE}/minikube.cache ~/.minikube
 
