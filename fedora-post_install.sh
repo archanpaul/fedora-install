@@ -74,6 +74,8 @@ function container_package() {
     # sudo dnf -y install @virtualization
     sudo dnf -y install podman podman-compose
     sudo dnf -y install podman-plugins
+
+    sudo dnf -y install virt-manager
 }
 
 function docker_packages() {
@@ -479,6 +481,12 @@ function security_service() {
 function misc_services() {
     # disabled (un-necessary for personal workstation?)
     sudo systemctl disable --now sysstat
+
+    # thinkbook power-management
+    sudo dnf -y install tlp tlp-rdw
+    # tlp-stat -b
+    # sudo tlp setcharge 80 1
+    # sudo tlp-stat -b
 }
 
 function install_all_modules() {

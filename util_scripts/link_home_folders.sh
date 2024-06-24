@@ -105,6 +105,12 @@ function create_app_cache() {
 	# pytorch
 	mkdir -p ${CACHE}/torch.cache
 	ln -sfn ${CACHE}/torch.cache ~/.cache/torch
+
+	# vscode
+	# rm -rf ~/.config/Code/ ~/.vscode/
+	mkdir -p ${CACHE}/vscode.cache/confige ${CACHE}/vscode.cache/config_code
+	ln -sfn ${CACHE}/vscode.cache/config ~/.vscode
+	ln -sfn ${CACHE}/vscode.cache/config_code ~/.config/Code
 }
 
 create_home_folders
