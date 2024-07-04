@@ -81,6 +81,9 @@ function create_app_cache() {
 	ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_config ~/.config/gnome-boxes
 	ln -sfn ${CACHE}/gnome-boxes.cache/gnome-boxes_local_share ~/.local/share/gnome-boxes
 
+	mkdir -p ${CACHE}/foliate
+	ln -sfn ${CACHE}/foliate .local/share/com.github.johnfactotum.Foliate
+
 	mkdir -p ${CACHE}/firefox.cache
 	rm -rf ~/.mozilla
 	ln -sfn ${CACHE}/firefox.cache ~/.mozilla
@@ -107,8 +110,8 @@ function create_app_cache() {
 	ln -sfn ${CACHE}/torch.cache ~/.cache/torch
 
 	# vscode
-	# rm -rf ~/.config/Code/ ~/.vscode/
-	mkdir -p ${CACHE}/vscode.cache/confige ${CACHE}/vscode.cache/config_code
+	rm -rf ~/.config/Code/ ~/.vscode/
+	mkdir -p ${CACHE}/vscode.cache/config ${CACHE}/vscode.cache/config_code
 	ln -sfn ${CACHE}/vscode.cache/config ~/.vscode
 	ln -sfn ${CACHE}/vscode.cache/config_code ~/.config/Code
 }

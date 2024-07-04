@@ -20,7 +20,7 @@ window-size=(360, 504)
 word-size=64
 
 [control-center]
-last-panel='sound'
+last-panel='background'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -46,8 +46,8 @@ translate=true
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2024-06-24-09-21-22-darker_vecteezy_colorful-3d-geometric-abstract-glossy-matte-multiple-shaped_25950227.jpeg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2024-06-24-09-21-22-darker_vecteezy_colorful-3d-geometric-abstract-glossy-matte-multiple-shaped_25950227.jpeg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2024-07-04-15-51-43-darker_vecteezy_colorful-3d-geometric-abstract-glossy-matte-multiple-shaped_25950227.jpeg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2024-07-04-15-51-43-darker_vecteezy_colorful-3d-geometric-abstract-glossy-matte-multiple-shaped_25950227.jpeg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -65,6 +65,7 @@ sources=[('xkb', 'in+eng')]
 clock-show-date=false
 clock-show-seconds=true
 clock-show-weekday=false
+color-scheme='default'
 document-font-name='Cantarell 11'
 font-name='Cantarell 11'
 toolkit-accessibility=false
@@ -112,7 +113,7 @@ report-technical-problems=false
 [desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2024-06-24-09-21-22-darker_vecteezy_colorful-3d-geometric-abstract-glossy-matte-multiple-shaped_25950227.jpeg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2024-07-04-15-51-43-darker_vecteezy_colorful-3d-geometric-abstract-glossy-matte-multiple-shaped_25950227.jpeg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -165,7 +166,10 @@ initial-size=(982, 783)
 last-folder-path='/home/arp/Documents/Aditri_College_Entrance_Documents/Bennett_University/BU_Admission_Documents'
 
 [portal/filechooser/code]
-last-folder-path='/home/arp/workspace/knowledgebase.git'
+last-folder-path='/home/arp/workspace/fedora-install.git'
+
+[portal/filechooser/com.github.johnfactotum.Foliate]
+last-folder-path='/home/arp/repos/ebooks/ai_ds_ebooks'
 
 [portal/filechooser/gnome-background-panel]
 last-folder-path='/home/arp/Pictures/wallpapers'
@@ -211,12 +215,15 @@ dot-size=1
 focus-highlight-dominant=true
 hide-overview-on-startup=true
 hotkeys-overlay-combo='TEMPORARILY'
+intellihide=true
+intellihide-hide-from-windows=true
 leftbox-padding=-1
+leftbox-size=0
 overview-click-to-exit=true
 panel-anchors='{"0":"MIDDLE","1":"MIDDLE"}'
 panel-element-positions='{"0":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}],"1":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'
-panel-lengths='{"0":45,"1":45}'
-panel-sizes='{"0":40,"1":40}'
+panel-lengths='{"0":40,"1":40}'
+panel-sizes='{"0":35,"1":35}'
 primary-monitor=0
 show-window-previews=false
 status-icon-padding=-1
@@ -227,6 +234,7 @@ trans-panel-opacity=0.25
 trans-use-custom-opacity=true
 trans-use-dynamic-opacity=true
 tray-padding=-1
+tray-size=0
 window-preview-title-position='TOP'
 
 [shell/extensions/gsconnect]
@@ -267,7 +275,7 @@ window-maximized=false
 window-size=(754, 460)
 
 [software]
-check-timestamp=int64 1719199577
+check-timestamp=int64 1720088481
 first-run=false
 flatpak-purge-timestamp=int64 1719225219
 install-timestamp=int64 1719041388
@@ -282,13 +290,13 @@ theme-variant='system'
 
 [terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 audible-bell=false
-background-color='rgb(46,52,54)'
+background-color='rgb(23,20,33)'
 cursor-blink-mode='on'
 default-size-columns=120
 default-size-rows=40
 font='JetBrains Mono 11'
-foreground-color='rgb(211,215,207)'
-palette=['rgb(46,52,54)', 'rgb(204,0,0)', 'rgb(78,154,6)', 'rgb(196,160,0)', 'rgb(52,101,164)', 'rgb(117,80,123)', 'rgb(6,152,154)', 'rgb(211,215,207)', 'rgb(85,87,83)', 'rgb(239,41,41)', 'rgb(138,226,52)', 'rgb(252,233,79)', 'rgb(114,159,207)', 'rgb(173,127,168)', 'rgb(52,226,226)', 'rgb(238,238,236)']
+foreground-color='rgb(208,207,204)'
+palette=['rgb(23,20,33)', 'rgb(192,28,40)', 'rgb(38,162,105)', 'rgb(162,115,76)', 'rgb(18,72,139)', 'rgb(163,71,186)', 'rgb(42,161,179)', 'rgb(208,207,204)', 'rgb(94,92,100)', 'rgb(246,97,81)', 'rgb(51,209,122)', 'rgb(233,173,12)', 'rgb(42,123,222)', 'rgb(192,97,203)', 'rgb(51,199,222)', 'rgb(255,255,255)']
 scrollback-lines=100000
 use-system-font=false
 use-theme-colors=false
