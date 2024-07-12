@@ -34,7 +34,7 @@ function systools_package() {
 
     sudo dnf -y install nvme-cli
 
-    sudo dnf -y install mc vim
+    sudo dnf -y install mc nvim
     sudo dnf -y install sysstat htop glances
     sudo dnf -y install nmap traceroute
     sudo dnf -y install wget aria2
@@ -215,11 +215,17 @@ function vscode_package_user_conf() {
     # code --list-extensions | xargs -L 1 code --uninstall-extension
 
     ## vscode extensions
-    code --install-extension Dart-Code.dart-code
-    code --install-extension Dart-Code.flutter
-    code --install-extension GitHub.github-vscode-theme
+    code --install-extension arcticicestudio.nord-visual-studio-code
+    code --install-extension dart-code.dart-code
+    code --install-extension dart-code.flutter
+    code --install-extension github.github-vscode-theme
     code --install-extension golang.go
+    code --install-extension llvm-vs-code-extensions.vscode-clangd
+    code --install-extension mhutchie.git-graph
+    code --install-extension ms-azuretools.vscode-docker
+    code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
     code --install-extension ms-python.autopep8
+    code --install-extension ms-python.debugpy
     code --install-extension ms-python.isort
     code --install-extension ms-python.python
     code --install-extension ms-python.vscode-pylance
@@ -229,8 +235,12 @@ function vscode_package_user_conf() {
     code --install-extension ms-toolsai.vscode-jupyter-cell-tags
     code --install-extension ms-toolsai.vscode-jupyter-slideshow
     code --install-extension ms-vscode-remote.remote-containers
+    code --install-extension ms-vscode-remote.remote-ssh
+    code --install-extension ms-vscode-remote.remote-ssh-edit
+    code --install-extension ms-vscode.cpptools
+    code --install-extension ms-vscode.remote-explorer
+    code --install-extension ms-vsliveshare.vsliveshare
     code --install-extension redhat.vscode-yaml
-
 }
 
 function android-studio_package(){
@@ -345,7 +355,7 @@ function python_packages() {
     sudo dnf -y install python3-ipykernel python3-notebook
     sudo dnf -y install python3-virtualenv
     sudo dnf -y install python3-opencv
-    
+
     sudo dnf -y install python3.11
 }
 
@@ -530,7 +540,7 @@ function user_conf_all_modules(){
 	flutter-sdk_user_conf
 	# go_extra_packages
         # python_user_conf
-} 
+}
 
 install_all_modules 2>&1 | tee fedora_install.log
 # user_conf_all_modules
