@@ -402,7 +402,8 @@ function markdown_packages() {
 
     sudo dnf -y install pandoc pandoc-pdf
     # convert epub to html
-    # pandoc -f epub -t html --embed-resources --standalone -o filename.html filename.epub
+    # pandoc -f epub -t html --embed-resources --standalone -o FILENAME.html FILENAME.epub
+    # pandoc -f html -t pdf --pdf-engine=xelatex -o FILENAME.pdf FILENAME.html
 }
 
 function font_packages() {

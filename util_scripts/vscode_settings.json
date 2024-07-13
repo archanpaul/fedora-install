@@ -18,6 +18,7 @@
         "editor.defaultFormatter": "ms-python.autopep8",
         "editor.formatOnSave": true
     },
+    "C_Cpp.clang_format_fallbackStyle": "\"{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}\"",
     "dart.checkForSdkUpdates": false,
     "dart.debugSdkLibraries": false,
     "dart.devToolsBrowser": "default",
@@ -99,7 +100,8 @@
     "window.titleBarStyle": "custom",
     "workbench.colorTheme": "GitHub Dark Dimmed",
     "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
-    "workbench.preferredLightColorTheme": "GitHub Light Default",
+    "workbench.preferredLightColorTheme": "Nord",
     "workbench.sideBar.location": "left",
     "workbench.startupEditor": "none"
 }
+
