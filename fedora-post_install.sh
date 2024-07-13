@@ -203,7 +203,6 @@ function vscode_package() {
     sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
     dnf check-update
     sudo dnf -y install code
-    sudo dnf -y install pandoc
 
     sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
     sudo sysctl -p
@@ -397,6 +396,15 @@ function gnome_packages() {
     sudo dnf -y install --allowerasing x264 obs-studio-plugin-x264
 }
 
+function markdown_packages() {
+    sudo dnf -y install flatpak
+    # flatpak install app/md.obsidian.Obsidian/x86_64/stable
+
+    sudo dnf -y install pandoc pandoc-pdf
+    # convert epub to html
+    # pandoc -f epub -t html --embed-resources --standalone -o filename.html filename.epub
+}
+
 function font_packages() {
     sudo dnf -y install google-roboto-fonts
     sudo dnf -y install google-roboto-mono-fonts
@@ -516,6 +524,7 @@ function install_all_modules() {
 	# internet_package
 	# python_packages
 	# gnome_packages
+	# markdown_packages
 	# vscode_package
 	# swift_packages
 	# go_packages
