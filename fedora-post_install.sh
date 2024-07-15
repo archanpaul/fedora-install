@@ -398,10 +398,11 @@ function markdown_packages() {
     sudo dnf -y install flatpak
     # flatpak install app/md.obsidian.Obsidian/x86_64/stable
 
-    sudo dnf -y install pandoc pandoc-pdf
-    # convert epub to html
-    # pandoc -f epub -t html --embed-resources --standalone -o FILENAME.html FILENAME.epub
-    # pandoc -f html -t pdf --pdf-engine=xelatex -o FILENAME.pdf FILENAME.html
+    sudo dnf -y install pandoc pandoc-pdf texlive-mdwtools
+    # Convert epub to html
+    # pandoc FILENAME.epub --webtex -f epub -t html --embed-resources --standalone -o FILENAME.html
+    # Remove all href from generated html
+    # sed -i 's|<a[^>]\+>|<a>|g' FILENAME.html
 }
 
 function font_packages() {
