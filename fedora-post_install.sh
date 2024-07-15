@@ -34,7 +34,7 @@ function systools_package() {
 
     sudo dnf -y install nvme-cli
 
-    sudo dnf -y install mc nvim
+    sudo dnf -y install mc neovim
     sudo dnf -y install sysstat htop glances
     sudo dnf -y install nmap traceroute
     sudo dnf -y install wget aria2
@@ -73,7 +73,6 @@ function jdk_package() {
 function container_package() {
     # sudo dnf -y install @virtualization
     sudo dnf -y install podman podman-compose
-    sudo dnf -y install podman-plugins
 
     sudo dnf -y install virt-manager
 }
@@ -120,7 +119,7 @@ function graphics_packages() {
 
 function graphics_dev_packages() {
     sudo dnf -y install gtk4-devel
-    sudo dnf -y install opencv opencv-contrib opencv-devel
+    sudo dnf -y install opencv opencv-devel
 }
 
 function internet_package() {
@@ -128,7 +127,6 @@ function internet_package() {
     sudo dnf -y install yt-dlp
 
     sudo dnf -y install firefox
-    sudo dnf -y install firefox-wayland
     sudo dnf -y install mozilla-noscript mozilla-ublock-origin
 
     ## Google Chrome
@@ -243,7 +241,7 @@ function vscode_package_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2024.1.1.11
+    ANDROID_STUDIO_RELEASE=2024.1.1.12
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -416,7 +414,7 @@ function font_packages() {
     sudo dnf -y install google-carlito-fonts
     sudo dnf -y install google-arimo-fonts
     sudo dnf -y install google-go-fonts
-    sudo dnf -y install google-go-mono--fonts
+    sudo dnf -y install google-go-mono-fonts
     sudo dnf -y install google-go-smallcaps-fonts
     sudo dnf -y install google-tinos-fonts
     sudo dnf -y install mozilla-fira-sans-fonts
