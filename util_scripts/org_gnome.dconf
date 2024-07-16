@@ -31,7 +31,7 @@ window-size=(360, 504)
 word-size=64
 
 [control-center]
-last-panel='bluetooth'
+last-panel='display'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -57,8 +57,8 @@ translate=true
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2024-07-12-15-06-24-darker_vecteezy_colorful-3d-geometric-abstract-glossy-matte-multiple-shaped_25950227.jpeg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2024-07-12-15-06-24-darker_vecteezy_colorful-3d-geometric-abstract-glossy-matte-multiple-shaped_25950227.jpeg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2024-07-15-14-17-54-darker_vecteezy_colorful-3d-geometric-abstract-glossy-matte-multiple-shaped_25950227.jpeg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2024-07-15-14-17-54-darker_vecteezy_colorful-3d-geometric-abstract-glossy-matte-multiple-shaped_25950227.jpeg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -136,7 +136,7 @@ report-technical-problems=false
 [desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2024-07-12-15-06-24-darker_vecteezy_colorful-3d-geometric-abstract-glossy-matte-multiple-shaped_25950227.jpeg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2024-07-15-14-17-54-darker_vecteezy_colorful-3d-geometric-abstract-glossy-matte-multiple-shaped_25950227.jpeg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -166,8 +166,8 @@ inverted-colors=false
 show-sidebar=false
 sidebar-page='thumbnails'
 sidebar-size=182
-sizing-mode='fit-page'
-window-ratio=(2.348993288590604, 1.4358669833729216)
+sizing-mode='automatic'
+window-ratio=(2.3473154362416109, 1.4358669833729216)
 
 [evolution-data-server]
 migrated=true
@@ -183,13 +183,13 @@ migrated-gtk-settings=true
 search-filter-time-type='last_modified'
 
 [nautilus/window-state]
-initial-size=(1086, 783)
+initial-size=(1086, 753)
 
 [portal/filechooser/anytype]
 last-folder-path='/home/arp/delme/Demo Valut 1/Valult 1/Book PDF'
 
 [portal/filechooser/chromium-browser]
-last-folder-path='/home/arp'
+last-folder-path='/home/arp/Downloads'
 
 [portal/filechooser/code]
 last-folder-path='/home/arp/delme/md_files'
@@ -201,10 +201,10 @@ last-folder-path='/home/arp/repos/ebooks/ai_ds_ebooks'
 last-folder-path='/home/arp/Pictures/wallpapers'
 
 [portal/filechooser/google-chrome]
-last-folder-path='/home/arp/Downloads'
+last-folder-path='/home/arp/delme'
 
 [portal/filechooser/md.obsidian.Obsidian]
-last-folder-path='/home/arp/delme'
+last-folder-path='/home/arp/workspace/obsidian_bootstrap.git'
 
 [portal/filechooser/microsoft-edge]
 last-folder-path='/home/arp/repos/ebooks/ai_ds_ebooks'
@@ -226,9 +226,9 @@ name='Suspend'
 sleep-inactive-ac-type='nothing'
 
 [shell]
-app-picker-layout=[{'org.gnome.clocks.desktop': <{'position': <0>}>, 'org.gnome.Calendar.desktop': <{'position': <1>}>, 'org.gnome.Software.desktop': <{'position': <2>}>, 'blender.desktop': <{'position': <3>}>, 'org.gnome.Snapshot.desktop': <{'position': <4>}>, 'gtk-v4l.desktop': <{'position': <5>}>, 'org.gnome.Totem.desktop': <{'position': <6>}>, 'org.gnome.Evince.desktop': <{'position': <7>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <8>}>, 'microsoft-edge.desktop': <{'position': <9>}>, 'chromium-browser.desktop': <{'position': <10>}>, 'gimp.desktop': <{'position': <11>}>, 'org.inkscape.Inkscape.desktop': <{'position': <12>}>, 'org.gnome.Loupe.desktop': <{'position': <13>}>, 'org.gnome.Logs.desktop': <{'position': <14>}>, 'android-studio.desktop': <{'position': <15>}>, 'org.gnome.SystemMonitor.desktop': <{'position': <16>}>, 'md.obsidian.Obsidian.desktop': <{'position': <17>}>, 'libreoffice-writer.desktop': <{'position': <18>}>, 'libreoffice-calc.desktop': <{'position': <19>}>, 'libreoffice-draw.desktop': <{'position': <20>}>, 'libreoffice-impress.desktop': <{'position': <21>}>, 'libreoffice-math.desktop': <{'position': <22>}>, 'nvim.desktop': <{'position': <23>}>}, {'com.obsproject.Studio.desktop': <{'position': <0>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <1>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <2>}>, 'org.gnome.Shotwell.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'org.gnome.font-viewer.desktop': <{'position': <5>}>, 'org.gnome.Characters.desktop': <{'position': <6>}>, 'org.mozilla.thunderbird.desktop': <{'position': <7>}>, 'torbrowser.desktop': <{'position': <8>}>, 'transmission-gtk.desktop': <{'position': <9>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <10>}>, 'simple-scan.desktop': <{'position': <11>}>, 'virt-manager.desktop': <{'position': <12>}>, 'org.gnome.Boxes.desktop': <{'position': <13>}>, 'scrcpy.desktop': <{'position': <14>}>, 'org.gnome.Settings.desktop': <{'position': <15>}>, 'org.pitivi.Pitivi.desktop': <{'position': <16>}>, 'org.gnome.tweaks.desktop': <{'position': <17>}>, 'org.gnome.Extensions.desktop': <{'position': <18>}>, 'org.gnome.Firmware.desktop': <{'position': <19>}>, 'org.gnome.baobab.desktop': <{'position': <20>}>, 'org.gnome.DiskUtility.desktop': <{'position': <21>}>, 'Utilities': <{'position': <22>}>}]
+app-picker-layout=[{'org.gnome.clocks.desktop': <{'position': <0>}>, 'org.gnome.Calendar.desktop': <{'position': <1>}>, 'org.gnome.Software.desktop': <{'position': <2>}>, 'blender.desktop': <{'position': <3>}>, 'org.gnome.Snapshot.desktop': <{'position': <4>}>, 'gtk-v4l.desktop': <{'position': <5>}>, 'org.gnome.Totem.desktop': <{'position': <6>}>, 'org.gnome.Evince.desktop': <{'position': <7>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <8>}>, 'microsoft-edge.desktop': <{'position': <9>}>, 'chromium-browser.desktop': <{'position': <10>}>, 'gimp.desktop': <{'position': <11>}>, 'org.inkscape.Inkscape.desktop': <{'position': <12>}>, 'org.gnome.Loupe.desktop': <{'position': <13>}>, 'org.gnome.Logs.desktop': <{'position': <14>}>, 'android-studio.desktop': <{'position': <15>}>, 'org.gnome.Boxes.desktop': <{'position': <16>}>, 'nvim.desktop': <{'position': <17>}>, 'org.gnome.SystemMonitor.desktop': <{'position': <18>}>, 'libreoffice-writer.desktop': <{'position': <19>}>, 'libreoffice-calc.desktop': <{'position': <20>}>, 'libreoffice-draw.desktop': <{'position': <21>}>, 'libreoffice-impress.desktop': <{'position': <22>}>, 'libreoffice-math.desktop': <{'position': <23>}>}, {'com.obsproject.Studio.desktop': <{'position': <0>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <1>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <2>}>, 'org.gnome.Shotwell.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'org.gnome.font-viewer.desktop': <{'position': <5>}>, 'org.gnome.Characters.desktop': <{'position': <6>}>, 'org.mozilla.thunderbird.desktop': <{'position': <7>}>, 'torbrowser.desktop': <{'position': <8>}>, 'transmission-gtk.desktop': <{'position': <9>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <10>}>, 'simple-scan.desktop': <{'position': <11>}>, 'virt-manager.desktop': <{'position': <12>}>, 'scrcpy.desktop': <{'position': <13>}>, 'org.gnome.Settings.desktop': <{'position': <14>}>, 'org.gnome.tweaks.desktop': <{'position': <15>}>, 'org.gnome.Extensions.desktop': <{'position': <16>}>, 'org.gnome.Firmware.desktop': <{'position': <17>}>, 'org.gnome.baobab.desktop': <{'position': <18>}>, 'org.gnome.DiskUtility.desktop': <{'position': <19>}>, 'Utilities': <{'position': <20>}>}]
 enabled-extensions=['background-logo@fedorahosted.org', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'gsconnect@andyholmes.github.io']
-favorite-apps=['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.TextEditor.desktop', 'org.mozilla.firefox.desktop', 'google-chrome.desktop', 'code.desktop']
+favorite-apps=['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.TextEditor.desktop', 'org.mozilla.firefox.desktop', 'google-chrome.desktop', 'code.desktop', 'md.obsidian.Obsidian.desktop']
 welcome-dialog-last-shown-version='46.1'
 
 [shell/extensions/dash-to-panel]
@@ -304,9 +304,9 @@ window-maximized=false
 window-size=(754, 460)
 
 [software]
-check-timestamp=int64 1720866651
+check-timestamp=int64 1721102565
 first-run=false
-flatpak-purge-timestamp=int64 1720873295
+flatpak-purge-timestamp=int64 1721112967
 install-timestamp=int64 1719041388
 packagekit-historical-updates-timestamp=uint64 1719041388
 update-notification-timestamp=int64 1720867164
