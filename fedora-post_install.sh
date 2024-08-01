@@ -212,7 +212,6 @@ function vscode_package_user_conf() {
     # code --list-extensions | xargs -L 1 code --uninstall-extension
 
     ## vscode extensions
-    code --install-extension arcticicestudio.nord-visual-studio-code
     code --install-extension dart-code.dart-code
     code --install-extension dart-code.flutter
     code --install-extension github.github-vscode-theme
@@ -526,13 +525,13 @@ function install_all_modules() {
 	# gnome_packages
 	# markdown_packages
 	# vscode_package
-	# swift_packages
+	## swift_packages
 	# go_packages
 	# npm_packages
 	# font_packages
 	# codec_packages
 	# libreoffice_packages
-	# embedded_dev
+	## embedded_dev
 	# database_packages
 
 	# httpd_service
@@ -552,4 +551,6 @@ function user_conf_all_modules(){
 }
 
 install_all_modules 2>&1 | tee fedora_install.log
+grep err fedora_install.log
+
 # user_conf_all_modules
