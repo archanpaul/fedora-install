@@ -391,6 +391,8 @@ function gnome_packages() {
 
     sudo dnf -y install --allowerasing obs-studio
     sudo dnf -y install --allowerasing x264 obs-studio-plugin-x264
+
+    sudo dnf -y install NetworkManager-ssh-gnome NetworkManager-vpnc-gnome NetworkManager-openconnect-gnome NetworkManager-pptp-gnome NetworkManager-openvpn-gnome
 }
 
 function markdown_packages() {
