@@ -114,6 +114,7 @@ function create_app_cache() {
 	mkdir -p ${CACHE}/vscode.cache/config ${CACHE}/vscode.cache/config_code
 	ln -sfn ${CACHE}/vscode.cache/config ~/.vscode
 	ln -sfn ${CACHE}/vscode.cache/config_code ~/.config/Code
+	# cat vscode_settings.json > ~/.config/Code/User/settings.json
 
 	# obsidian
 	rm -rf ~/.var/app/md.obsidian.Obsidian

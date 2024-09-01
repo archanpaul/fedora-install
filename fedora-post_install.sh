@@ -240,7 +240,7 @@ function vscode_package_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2024.1.1.12
+    ANDROID_STUDIO_RELEASE=2024.1.2.12
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -500,12 +500,28 @@ function security_service() {
 function misc_services() {
     # disabled (un-necessary for personal workstation?)
     sudo systemctl disable --now sysstat
+}
 
-    # thinkbook power-management
+function thinkpad_packages() {
     sudo dnf -y install tlp tlp-rdw
-    # tlp-stat -b
-    # sudo tlp setcharge 80 1
+    
+    # thinkbook power-management
     # sudo tlp-stat -b
+    # sudo tlp setcharge 80 1
+    # thinkpad power-management
+    # sudo tlp-stat -b
+    # sudo tlp setcharge 75 80
+    
+    # For secureboot using TPM
+    sudo dnf -y install clevis clevis-luks clevis-dracut clevis-udisks2 clevis-systemd
+    # sudo dracut -fv --regenerate-all
+    # sudo systemctl reboot
+    # sudo clevis luks bind -d /dev/nvme... tpm2
+    # sudo systemd-cryptenroll /dev/nvme0n1... --tpm2-device=auto --tpm2-pcrs=1,4,5,7,9
+    # sudo clevis luks list -d /dev/nvme0n1... tpm2
+    # sudo clevis luks unbind -d /dev/nvme0n1... -s 1 tpm2
+    # sudo clevis luks regen -d /dev/nvme0n1... -s 1 tpm2
+    # sudo clevis luks edit -d /dev/nvme0n1... -s 1 -c
 }
 
 function install_all_modules() {
@@ -535,13 +551,14 @@ function install_all_modules() {
 	# libreoffice_packages
 	## embedded_dev
 	# database_packages
+	# thinkpad_packages
 
 	# httpd_service
 	# security_service
 	# misc_services
 
 	# android-studio_package
-	# dart-sdk_package
+	## dart-sdk_package
 	# flutter-sdk_package
 }
 
