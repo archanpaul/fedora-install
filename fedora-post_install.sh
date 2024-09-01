@@ -503,6 +503,7 @@ function misc_services() {
 }
 
 function thinkpad_packages() {
+    sudo dnf -y install powertop
     sudo dnf -y install tlp tlp-rdw
     
     # thinkbook power-management
