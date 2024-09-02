@@ -4,8 +4,8 @@ first-run=false
 [Snapshot]
 capture-mode='picture'
 is-maximized=false
-window-height=640
-window-width=800
+window-height=563
+window-width=1019
 
 [TextEditor]
 highlight-current-line=true
