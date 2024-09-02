@@ -553,6 +553,8 @@ function thinkpad_packages() {
 
     # For secureboot using TPM
     sudo dnf -y install clevis clevis-luks clevis-dracut clevis-udisks2 clevis-systemd
+    # sudo systemd-cryptenroll --wipe-slot tpm2 --tpm2-device auto --tpm2-pcrs "1+3+5+7+11+12+14+15" /dev/nvme1n1p3
+    # sudo dracut -f
 }
 
 function install_all_modules() {
