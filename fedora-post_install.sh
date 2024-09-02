@@ -595,7 +595,7 @@ function install_all_modules() {
 	# flutter-sdk_package
 }
 
-function user_conf_all_modules(){
+function user_conf_all_modules() {
     git_package_user_conf
 	# vscode_package_user_conf
 	# flutter-sdk_user_conf
