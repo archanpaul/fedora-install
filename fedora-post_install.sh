@@ -502,27 +502,30 @@ function misc_services() {
     sudo systemctl disable --now sysstat
 }
 
-function thinkpad_packages() {
+function laptop_mode() {
     sudo dnf -y install powertop
+    ##
+    # sudo systemctl edit powertop.service
+    ## Add following to drop-in section
+    # [Service]
+    # ExecStartPost=/bin/bash -c 'echo on > /sys/bus/usb/devices/3-2/power/control'
+    ##
+    # sudo systemctl daemon-reload
+    # sudo systemctl --now enable powertop
+}
+
+function thinkpad_packages() {
     sudo dnf -y install tlp tlp-rdw
-    
+
     # thinkbook power-management
     # sudo tlp-stat -b
-    # sudo tlp setcharge 80 1
-    # thinkpad power-management
-    # sudo tlp-stat -b
+    ## Thinkpad battery charge threhold start 75% end 80%
     # sudo tlp setcharge 75 80
-    
+    ## set thinkbook battery charge threshold to 80% persistent
+    # sudo tlp setcharge 80 1
+
     # For secureboot using TPM
     sudo dnf -y install clevis clevis-luks clevis-dracut clevis-udisks2 clevis-systemd
-    # sudo dracut -fv --regenerate-all
-    # sudo systemctl reboot
-    # sudo clevis luks bind -d /dev/nvme... tpm2
-    # sudo systemd-cryptenroll /dev/nvme0n1... --tpm2-device=auto --tpm2-pcrs=1,4,5,7,9
-    # sudo clevis luks list -d /dev/nvme0n1... tpm2
-    # sudo clevis luks unbind -d /dev/nvme0n1... -s 1 tpm2
-    # sudo clevis luks regen -d /dev/nvme0n1... -s 1 tpm2
-    # sudo clevis luks edit -d /dev/nvme0n1... -s 1 -c
 }
 
 function install_all_modules() {
@@ -552,7 +555,8 @@ function install_all_modules() {
 	# libreoffice_packages
 	## embedded_dev
 	# database_packages
-	# thinkpad_packages
+	# laptop_mode
+    # thinkpad_packages
 
 	# httpd_service
 	# security_service
