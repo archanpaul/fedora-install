@@ -224,7 +224,7 @@ function vscode_package() {
     sudo sysctl -p
 }
 
-function git_package_user_conf() {
+function git_user_conf() {
     # git config --global core.editor "code --wait"
     git config --global core.editor "nvim"
 
@@ -595,8 +595,8 @@ function install_all_modules() {
 	# flutter-sdk_package
 }
 
-function user_conf_all_modules() {
-    git_package_user_conf
+function install_all_user_modules() {
+    git_user_conf
 	# vscode_package_user_conf
 	# flutter-sdk_user_conf
 	# go_extra_packages
@@ -604,6 +604,6 @@ function user_conf_all_modules() {
 }
 
 install_all_modules 2>&1 | tee fedora_install.log
-grep err fedora_install.log
+install_all_user_modules 2>&1 | tee -a fedora_install.log
 
-# user_conf_all_modules
+grep err fedora_install.log
