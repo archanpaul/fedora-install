@@ -8,10 +8,13 @@ function update_hostname() {
 }
 
 function dnf_conf_update() {
-    sudo echo 'keepcache=True' | sudo tee -a /etc/dnf/dnf.conf
-    sudo echo 'deltarpm=True' | sudo tee -a /etc/dnf/dnf.conf
-    sudo echo 'fastestmirror=True' | sudo tee -a /etc/dnf/dnf.conf
-    sudo echo 'max_parallel_downloads=20' | sudo tee -a /etc/dnf/dnf.conf
+        cat <<EOF | sudo tee -a /etc/dnf/dnf.conf
+keepcache=True
+deltarpm=True
+#fastestmirror=True
+max_parallel_downloads=20
+EOF
+
     sudo dnf -y install fedora-workstation-repositories
     sudo dnf -y install dnf-plugins-core
 }
@@ -25,7 +28,7 @@ function rpmfusion_repo() {
     sudo dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 }
 
-function systools_package() {
+function systool_packages() {
     sudo dnf -y install grubby
     sudo dnf -y install ecryptfs-utils
 
@@ -36,8 +39,6 @@ function systools_package() {
 
     sudo dnf -y install mc neovim
     sudo dnf -y install sysstat htop glances
-    sudo dnf -y install nmap traceroute
-    sudo dnf -y install wget aria2
 
     sudo dnf -y install mesa-vulkan-drivers vulkan-tools
 
@@ -47,7 +48,7 @@ function systools_package() {
     sudo dnf -y install unrar
 }
 
-function devtools_package() {
+function devtool_packages() {
     sudo dnf -y install autoconf automake make cmake patch pkgconf libtool
     sudo dnf -y install strace byacc elfutils ltrace strace valgrind
 
@@ -62,15 +63,15 @@ function devtools_package() {
     sudo dnf -y install git
 }
 
-function rpm_devtools_package() {
+function rpm_devtool_packages() {
     sudo dnf -y install fedora-packager fedora-review
 }
 
-function jdk_package() {
+function jdk_packages() {
     sudo dnf -y install java-latest-openjdk java-latest-openjdk-devel
 }
 
-function container_package() {
+function container_packages() {
     # sudo dnf -y install @virtualization
     sudo dnf -y install podman podman-compose
 
@@ -122,9 +123,26 @@ function graphics_dev_packages() {
     sudo dnf -y install opencv opencv-devel
 }
 
-function internet_package() {
-    sudo dnf -y install chromium thunderbird transmission
+function network_packages() {
+    sudo dnf -y install iputils net-tools
+    sudo dnf -y install nmap traceroute whois
+    sudo dnf -y install wget aria2
+
+    sudo dnf -y install openssh-server
+    cat <<EOF | sudo tee /etc/ssh/sshd_config.d/60-login-opts.conf
+#ChallengeResponseAuthentication no
+#PasswordAuthentication no
+#UsePAM no
+#PermitRootLogin no
+#PermitRootLogin prohibit-password
+EOF
+    # sudo systemctl restart sshd
+
     sudo dnf -y install yt-dlp
+}
+
+function browser_packages() {
+    sudo dnf -y install chromium thunderbird transmission
 
     sudo dnf -y install firefox
     sudo dnf -y install mozilla-noscript mozilla-ublock-origin
@@ -204,6 +222,14 @@ function vscode_package() {
 
     sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
     sudo sysctl -p
+}
+
+function git_package_user_conf() {
+    # git config --global core.editor "code --wait"
+    git config --global core.editor "nvim"
+
+    # git config --global user.name "USER_NAME"
+    # git config --global user.email "USER_EMAIL"
 }
 
 function vscode_package_user_conf() {
@@ -425,6 +451,7 @@ function font_packages() {
     sudo dnf -y install jetbrains-mono-fonts-all
     sudo dnf -y install ht-alegreya-fonts
     sudo dnf -y install ht-alegreya-sans-fonts
+    sudo dnf -y install liberation-fonts
 }
 
 function libreoffice_packages() {
@@ -463,7 +490,7 @@ function database_packages() {
    sudo dnf -y install mariadb mariadb-server
 }
 
-function embedded_dev() {
+function embedded_system_packages() {
     sudo dnf -y install arm-none-eabi-binutils-cs arm-none-eabi-gcc-cs arm-none-eabi-gcc-cs-c++
     sudo dnf -y install arm-none-eabi-newlib
 }
@@ -534,15 +561,16 @@ function install_all_modules() {
 	 fedora_upgrade
 	# rpmfusion_repo
 
-	# systools_package
-	# devtools_package
-	# rpm_devtools_package
-	# jdk_package
-	# container_package
+	# systool_packages
+	# devtool_packages
+	# rpm_devtool_packages
+	# jdk_packages
+	# container_packages
 	# kubernetes_packages
 	# graphics_packages
-        # graphics_dev_packages
-	# internet_package
+    # graphics_dev_packages
+    # network_packages
+	# browser_packages
 	# python_packages
 	# gnome_packages
 	# markdown_packages
@@ -553,7 +581,7 @@ function install_all_modules() {
 	# font_packages
 	# codec_packages
 	# libreoffice_packages
-	## embedded_dev
+	## embedded_system_packages
 	# database_packages
 	# laptop_mode
     # thinkpad_packages
@@ -568,10 +596,11 @@ function install_all_modules() {
 }
 
 function user_conf_all_modules(){
-	vscode_package_user_conf
-	flutter-sdk_user_conf
+    git_package_user_conf
+	# vscode_package_user_conf
+	# flutter-sdk_user_conf
 	# go_extra_packages
-        # python_user_conf
+    # python_user_conf
 }
 
 install_all_modules 2>&1 | tee fedora_install.log
