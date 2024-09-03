@@ -139,6 +139,12 @@ EOF
     # sudo systemctl restart sshd
 
     sudo dnf -y install yt-dlp
+
+    # Tailscale VPN
+    sudo dnf config-manager --add-repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+    sudo dnf install tailscale
+    # sudo systemctl enable --now tailscaled
+    # sudo tailscale up
 }
 
 function browser_packages() {
@@ -500,19 +506,12 @@ function httpd_service() {
         sudo chmod 775 /home/public
         sudo ln -s /home/public /var/www/html/public
         sudo chcon -R --reference=/var/www/html /home/public
-        sudo systemctl enable httpd
-        sudo systemctl restart httpd
+        sudo systemctl disable httpd
+        # sudo systemctl restart httpd
 }
 
-function security_service() {
+function security_packages() {
     sudo dnf -y install firewalld ufw
-
-    sudo firewall-cmd --add-port=80/tcp --permanent
-    sudo firewall-cmd --add-port=8080/tcp --permanent
-    sudo firewall-cmd --reload
-
-    sudo systemctl enable firewalld
-    sudo systemctl restart firewalld
 
     sudo dnf -y install aide
     #sudo aide --init
@@ -522,6 +521,21 @@ function security_service() {
 
     ## /etc/crontab
     ## 05 4 * * * root /usr/sbin/aide --check
+}
+
+function firewall_services() {
+    sudo firewall-cmd --add-service=http --zone=dmz
+    sudo firewall-cmd --add-service=https --zone=dmz
+
+    sudo firewall-cmd --add-interface=tailscale0 --zone=dmz
+
+    sudo firewall-cmd --add-port=8080/tcp --zone=dmz
+    
+    sudo firewall-cmd --runtime-to-permanent
+
+    sudo firewall-cmd --reload
+    sudo systemctl enable firewalld
+    sudo systemctl restart firewalld
 }
 
 function misc_services() {
@@ -543,6 +557,7 @@ function laptop_mode() {
 
 function thinkpad_packages() {
     sudo dnf -y install tlp tlp-rdw
+    # edit /etc/tlp.conf along with powertop
 
     # thinkbook power-management
     # sudo tlp-stat -b
@@ -551,8 +566,8 @@ function thinkpad_packages() {
     ## set thinkbook battery charge threshold to 80% persistent
     # sudo tlp setcharge 80 1
 
-    # For secureboot using TPM
-    sudo dnf -y install clevis clevis-luks clevis-dracut clevis-udisks2 clevis-systemd
+    # Auto decrypt luks using TPM2
+    sudo dnf -y install systemd-udev dracut
     # sudo systemd-cryptenroll --wipe-slot tpm2 --tpm2-device auto --tpm2-pcrs "1+3+5+7+11+12+14+15" /dev/nvme1n1p3
     # sudo dracut -f
 }
@@ -570,8 +585,8 @@ function install_all_modules() {
 	# container_packages
 	# kubernetes_packages
 	# graphics_packages
-    # graphics_dev_packages
-    # network_packages
+	# graphics_dev_packages
+	# network_packages
 	# browser_packages
 	# python_packages
 	# gnome_packages
@@ -585,11 +600,13 @@ function install_all_modules() {
 	# libreoffice_packages
 	## embedded_system_packages
 	# database_packages
-	# laptop_mode
-    # thinkpad_packages
+	# security_packages
 
-	# httpd_service
-	# security_service
+	# laptop_mode
+	# thinkpad_packages
+
+	# httpd_services
+	# firewall_services
 	# misc_services
 
 	# android-studio_package
