@@ -511,7 +511,7 @@ function httpd_service() {
 }
 
 function security_packages() {
-    sudo dnf -y install firewalld ufw
+    sudo dnf -y install firewalld
 
     sudo dnf -y install aide
     #sudo aide --init
@@ -524,13 +524,21 @@ function security_packages() {
 }
 
 function firewall_services() {
-    sudo firewall-cmd --add-service=http --zone=dmz
-    sudo firewall-cmd --add-service=https --zone=dmz
+    sudo systemctl enable firewalld
+    sudo systemctl restart firewalld
+}
 
-    sudo firewall-cmd --add-interface=tailscale0 --zone=dmz
+function firewall_user_services() {
+    sudo firewall-cmd --set-default-zone=public
+    sudo firewall-cmd --get-active-zones
 
-    sudo firewall-cmd --add-port=8080/tcp --zone=dmz
-    
+    sudo firewall-cmd --add-service=http --zone=public
+    sudo firewall-cmd --add-service=https --zone=public
+    sudo firewall-cmd --add-port=8080/tcp --zone=public
+    sudo firewall-cmd --add-interface=tailscale0 --zone=public
+
+    sudo firewall-cmd --list-all --zone=public
+
     sudo firewall-cmd --runtime-to-permanent
 
     sudo firewall-cmd --reload
@@ -615,6 +623,7 @@ function install_all_modules() {
 }
 
 function install_all_user_modules() {
+    # firewall_user_services
     git_user_conf
 	# vscode_package_user_conf
 	# flutter-sdk_user_conf
