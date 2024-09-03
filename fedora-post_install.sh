@@ -510,6 +510,23 @@ function httpd_service() {
         # sudo systemctl restart httpd
 }
 
+function thinkpad_packages() {
+    sudo dnf -y install tlp tlp-rdw
+    # edit /etc/tlp.conf along with powertop
+
+    # thinkbook power-management
+    # sudo tlp-stat -b
+    ## Thinkpad battery charge threhold start 75% end 80%
+    # sudo tlp setcharge 75 80
+    ## set thinkbook battery charge threshold to 80% persistent
+    # sudo tlp setcharge 80 1
+
+    # Auto decrypt luks using TPM2
+    sudo dnf -y install systemd-udev dracut
+    # sudo systemd-cryptenroll --wipe-slot tpm2 --tpm2-device auto --tpm2-pcrs "1+3+5+7+11+12+14+15" /dev/nvme1n1p3
+    # sudo dracut -f
+}
+
 function security_packages() {
     sudo dnf -y install firewalld
 
@@ -561,23 +578,6 @@ function laptop_mode() {
     ##
     # sudo systemctl daemon-reload
     # sudo systemctl --now enable powertop
-}
-
-function thinkpad_packages() {
-    sudo dnf -y install tlp tlp-rdw
-    # edit /etc/tlp.conf along with powertop
-
-    # thinkbook power-management
-    # sudo tlp-stat -b
-    ## Thinkpad battery charge threhold start 75% end 80%
-    # sudo tlp setcharge 75 80
-    ## set thinkbook battery charge threshold to 80% persistent
-    # sudo tlp setcharge 80 1
-
-    # Auto decrypt luks using TPM2
-    sudo dnf -y install systemd-udev dracut
-    # sudo systemd-cryptenroll --wipe-slot tpm2 --tpm2-device auto --tpm2-pcrs "1+3+5+7+11+12+14+15" /dev/nvme1n1p3
-    # sudo dracut -f
 }
 
 function install_all_modules() {
