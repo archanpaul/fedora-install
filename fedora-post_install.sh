@@ -474,6 +474,16 @@ function codec_packages() {
     sudo dnf -y install gstreamer1-plugin-openh264 mozilla-openh264 gstreamer1-libav
 }
 
+function database_packages() {
+   sudo dnf -y install postgresql postgresql-server
+   sudo dnf -y install mariadb mariadb-server
+}
+
+function embedded_system_packages() {
+    sudo dnf -y install arm-none-eabi-binutils-cs arm-none-eabi-gcc-cs arm-none-eabi-gcc-cs-c++
+    sudo dnf -y install arm-none-eabi-newlib
+}
+
 function cloud_tools_packages() {
     #gcloud_package() {
     cat <<EOF | sudo tee /etc/yum.repos.d/google-cloud-sdk.repo
@@ -489,16 +499,8 @@ EOF
 
    sudo dnf -y install libxcrypt-compat.x86_64
    sudo dnf -y install google-cloud-sdk
-}
 
-function database_packages() {
-   sudo dnf -y install postgresql postgresql-server
-   sudo dnf -y install mariadb mariadb-server
-}
-
-function embedded_system_packages() {
-    sudo dnf -y install arm-none-eabi-binutils-cs arm-none-eabi-gcc-cs arm-none-eabi-gcc-cs-c++
-    sudo dnf -y install arm-none-eabi-newlib
+   sudo dnf -y install rclone
 }
 
 function httpd_service() {
@@ -608,6 +610,7 @@ function install_all_modules() {
 	# libreoffice_packages
 	## embedded_system_packages
 	# database_packages
+	# cloud_tools_packages
 	# security_packages
 
 	# laptop_mode
@@ -623,8 +626,8 @@ function install_all_modules() {
 }
 
 function install_all_user_modules() {
-    # firewall_user_services
-    git_user_conf
+	# firewall_user_services
+	git_user_conf
 	# vscode_package_user_conf
 	# flutter-sdk_user_conf
 	# go_extra_packages
