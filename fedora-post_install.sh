@@ -248,6 +248,7 @@ function vscode_package_user_conf() {
     code --install-extension dart-code.flutter
     code --install-extension github.github-vscode-theme
     code --install-extension golang.go
+    code --install-extension hediet.vscode-drawio
     code --install-extension llvm-vs-code-extensions.vscode-clangd
     code --install-extension mhutchie.git-graph
     code --install-extension ms-azuretools.vscode-docker
@@ -364,6 +365,9 @@ EOF
 
 function flutter-sdk_user_conf() {
     git config --global --add safe.directory /opt/flutter-sdk
+
+    flutter upgrade --force
+
     flutter doctor
     flutter doctor --android-licenses
     flutter config --no-analytics
@@ -387,11 +391,16 @@ function python_packages() {
     sudo dnf -y install python3.11
 }
 
-function python_user_conf() {
-    ## virtualenv
-    mkdir ~/.virtualenvs
-    virtualenv -p /usr/bin/python3.12 --copies ~/.virtualenvs/venv_py312
-    source ~/.virtualenvs/venv_py312/bin/activate
+function python_virtualenv_packages() {
+    ## virtualenvs
+    sudo rm -rf /opt/python-virtualenvs
+    sudo mkdir /opt/python-virtualenvs
+    sudo chown -R root:wheel /opt/python-virtualenvs
+    sudo chmod -R u+rwX,go+rwX,o-w /opt/python-virtualenvs
+
+    virtualenv -p /usr/bin/python3.12 --copies /opt/python-virtualenvs/venv_py312
+    source /opt/python-virtualenvs/venv_py312/bin/activate
+
     pip install --upgrade pip
     pip3 install ipykernel autopep8 pylint black
     pip3 install numpy scipy matplotlib pandas
@@ -399,6 +408,12 @@ function python_user_conf() {
     pip3 install keras tensorflow
     pip3 install mediapipe
     pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+}
+
+function python_user_conf() {
+    mkdir ~/.virtualenvs
+    sudo ln -s /opt/python-virtualenvs/venv_py312 ~/.virtualenvs/venv_py312
+    # source ~/.virtualenvs/venv_py312/bin/activate
 }
 
 function gnome_packages() {
@@ -631,6 +646,7 @@ function install_all_user_modules() {
 	# vscode_package_user_conf
 	# flutter-sdk_user_conf
 	# go_extra_packages
+    # python_virtualenv_packages
     # python_user_conf
 }
 

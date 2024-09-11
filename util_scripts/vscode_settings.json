@@ -100,8 +100,7 @@
     "window.titleBarStyle": "custom",
     "workbench.colorTheme": "GitHub Dark Dimmed",
     "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
-    "workbench.preferredLightColorTheme": "Nord",
+    "workbench.preferredLightColorTheme": "GitHub Dark Dimmed",
     "workbench.sideBar.location": "left",
     "workbench.startupEditor": "none"
 }
-

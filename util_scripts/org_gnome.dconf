@@ -41,7 +41,7 @@ window-size=(360, 504)
 word-size=64
 
 [control-center]
-last-panel='wifi'
+last-panel='system'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -67,8 +67,8 @@ translate=true
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2024-09-02-09-05-40-vecteezy_scientific-future-technology-abstract-geometric-for_26716292.jpg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2024-09-02-09-05-40-vecteezy_scientific-future-technology-abstract-geometric-for_26716292.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2024-09-09-13-20-48-vecteezy_scientific-future-technology-abstract-geometric-for_26716292.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2024-09-09-13-20-48-vecteezy_scientific-future-technology-abstract-geometric-for_26716292.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -86,7 +86,7 @@ sources=[('xkb', 'in+eng')]
 clock-show-date=false
 clock-show-seconds=true
 clock-show-weekday=false
-color-scheme='default'
+color-scheme='prefer-dark'
 document-font-name='Cantarell 11'
 font-name='Cantarell 11'
 show-battery-percentage=true
@@ -162,7 +162,7 @@ view-only=true
 [desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2024-09-02-09-05-40-vecteezy_scientific-future-technology-abstract-geometric-for_26716292.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2024-09-09-13-20-48-vecteezy_scientific-future-technology-abstract-geometric-for_26716292.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -193,7 +193,7 @@ show-sidebar=false
 sidebar-page='thumbnails'
 sidebar-size=182
 sizing-mode='free'
-window-ratio=(2.6448616999798102, 1.1862629440293617)
+window-ratio=(1.8523489932885906, 1.2897862232779098)
 zoom=1.0
 
 [evolution-data-server]
@@ -209,10 +209,6 @@ window-width=1319
 [gnome-system-monitor/disktreenew]
 col-6-visible=true
 col-6-width=0
-
-[login-screen]
-enable-fingerprint-authentication=true
-enable-smartcard-authentication=false
 
 [mutter]
 center-new-windows=true
@@ -272,6 +268,7 @@ app-picker-layout=[{'org.gnome.clocks.desktop': <{'position': <0>}>, 'org.gnome.
 command-history=['calibre']
 enabled-extensions=['background-logo@fedorahosted.org', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'gsconnect@andyholmes.github.io']
 favorite-apps=['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.TextEditor.desktop', 'org.mozilla.firefox.desktop', 'google-chrome.desktop', 'code.desktop']
+last-selected-power-profile='power-saver'
 remember-mount-password=false
 welcome-dialog-last-shown-version='46.1'
 
@@ -350,7 +347,7 @@ window-size=(754, 460)
 [software]
 check-timestamp=int64 1725859430
 first-run=false
-flatpak-purge-timestamp=int64 1725779923
+flatpak-purge-timestamp=int64 1726026372
 install-timestamp=int64 1725365243
 packagekit-historical-updates-timestamp=uint64 1725365243
 update-notification-timestamp=int64 1725365292
