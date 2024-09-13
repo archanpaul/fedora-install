@@ -473,6 +473,9 @@ function font_packages() {
     sudo dnf -y install ht-alegreya-fonts
     sudo dnf -y install ht-alegreya-sans-fonts
     sudo dnf -y install liberation-fonts
+    sudo dnf -y install vernnobile-nunito-fonts
+    sudo dnf -y install vernnobile-oswald-fonts
+    sudo dnf -y install vernnobile-muli-fonts
 }
 
 function libreoffice_packages() {
