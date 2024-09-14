@@ -411,7 +411,7 @@ function python_virtualenv_packages() {
 }
 
 function python_user_conf() {
-    mkdir ~/.virtualenvs
+    mkdir -p ~/.virtualenvs
     sudo ln -s /opt/python-virtualenvs/venv_py312 ~/.virtualenvs/venv_py312
     # source ~/.virtualenvs/venv_py312/bin/activate
 }
@@ -601,6 +601,8 @@ function laptop_mode() {
 }
 
 function install_all_modules() {
+    echo "install_all_modules"
+
 	# update_hostname
 	# dnf_conf_update
 	 fedora_upgrade
@@ -618,7 +620,6 @@ function install_all_modules() {
 	# browser_packages
 	# python_packages
 	# gnome_packages
-	# markdown_packages
 	# vscode_package
 	## swift_packages
 	# go_packages
@@ -630,26 +631,30 @@ function install_all_modules() {
 	# database_packages
 	# cloud_tools_packages
 	# security_packages
+    # markdown_packages
 
 	# laptop_mode
 	# thinkpad_packages
 
 	# httpd_services
 	# firewall_services
+    # firewall_user_services
 	# misc_services
 
 	# android-studio_package
 	## dart-sdk_package
 	# flutter-sdk_package
+
+    # go_extra_packages
+    # python_virtualenv_packages
 }
 
 function install_all_user_modules() {
-	# firewall_user_services
-	git_user_conf
+    echo "install_all_user_modules"
+
+	# git_user_conf
 	# vscode_package_user_conf
-	# flutter-sdk_user_conf
-	# go_extra_packages
-    # python_virtualenv_packages
+    # flutter-sdk_user_conf
     # python_user_conf
 }
 
