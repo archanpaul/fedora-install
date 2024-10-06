@@ -55,6 +55,7 @@ function devtool_packages() {
     sudo dnf -y install binutils bison flex gcc gcc-c++ gdb
     sudo dnf -y install clang clang-tools-extra clang-devel
     sudo dnf -y install llvm llvm-devel
+    sudo dnf -y install gdisk
 
     sudo dnf -y install glibc-devel libstdc++-devel kernel-devel
     sudo dnf -y install protobuf protobuf-compiler protobuf-devel
@@ -141,8 +142,8 @@ EOF
     sudo dnf -y install yt-dlp
 
     # Tailscale VPN
-    sudo dnf config-manager --add-repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
-    sudo dnf install tailscale
+    sudo dnf config-manager -y --add-repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+    sudo dnf -y install tailscale
     # sudo systemctl enable --now tailscaled
     # sudo tailscale up
 }
@@ -244,6 +245,7 @@ function vscode_package_user_conf() {
     # code --list-extensions | xargs -L 1 code --uninstall-extension
 
     ## vscode extensions
+    code --install-extension chrischinchilla.vscode-pandoc
     code --install-extension dart-code.dart-code
     code --install-extension dart-code.flutter
     code --install-extension github.github-vscode-theme
@@ -405,7 +407,7 @@ function python_virtualenv_packages() {
     pip3 install ipykernel autopep8 pylint black
     pip3 install numpy scipy matplotlib pandas
     pip3 install opencv-python
-    pip3 install keras tensorflow
+    pip3 install tensorflow
     pip3 install mediapipe
     pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 }
@@ -476,6 +478,10 @@ function font_packages() {
     sudo dnf -y install vernnobile-nunito-fonts
     sudo dnf -y install vernnobile-oswald-fonts
     sudo dnf -y install vernnobile-muli-fonts
+    sudo dnf -y install typetogether-literata-fonts
+    sudo dnf -y install gfs-baskerville
+    sudo dnf -y install sorkintype-merriweather-fonts
+
 }
 
 function libreoffice_packages() {
@@ -631,29 +637,29 @@ function install_all_modules() {
 	# database_packages
 	# cloud_tools_packages
 	# security_packages
-    # markdown_packages
+	# markdown_packages
 
 	# laptop_mode
 	# thinkpad_packages
 
 	# httpd_services
 	# firewall_services
-    # firewall_user_services
+	# firewall_user_services
 	# misc_services
 
 	# android-studio_package
 	## dart-sdk_package
 	# flutter-sdk_package
 
-    # go_extra_packages
-    # python_virtualenv_packages
+	# go_extra_packages
+	# python_virtualenv_packages
 }
 
 function install_all_user_modules() {
     echo "install_all_user_modules"
 
-	# git_user_conf
-	# vscode_package_user_conf
+    # git_user_conf
+    # vscode_package_user_conf
     # flutter-sdk_user_conf
     # python_user_conf
 }

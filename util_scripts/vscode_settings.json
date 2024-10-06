@@ -1,4 +1,8 @@
 {
+    "C_Cpp.clang_format_fallbackStyle": "\"{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}\"",
+    "[Log]": {
+        "editor.wordWrap": "on"
+    },
     "[dart]": {
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
@@ -11,14 +15,32 @@
         "editor.tabCompletion": "onlySnippets",
         "editor.wordBasedSuggestions": "off"
     },
-    "[Log]": {
-        "editor.wordWrap": "on"
+    "[markdown]": {
+        "editor.autoClosingBrackets": "always",
+        "editor.bracketPairColorization.enabled": true,
+        "editor.cursorBlinking": "phase",
+        "editor.fontFamily": "'Jetbrains Mono Medium', 'Fira Code Medium','Droid Sans Mono', 'monospace', monospace",
+        "editor.fontSize": 16,
+        "editor.guides.indentation": true,
+        "editor.indentSize": "tabSize",
+        "editor.insertSpaces": false,
+        "editor.lineHeight": 1.5,
+        "editor.lineNumbers": "on",
+        "editor.matchBrackets": "always",
+        "editor.padding.top": 20,
+        "editor.quickSuggestions": {
+            "comments": true,
+            "other": true,
+            "strings": true
+        },
+        "editor.tabSize": 4,
+        "editor.wrappingStrategy": "advanced"
     },
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8",
         "editor.formatOnSave": true
     },
-    "C_Cpp.clang_format_fallbackStyle": "\"{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}\"",
+    "breadcrumbs.enabled": true,
     "dart.checkForSdkUpdates": false,
     "dart.debugSdkLibraries": false,
     "dart.devToolsBrowser": "default",
@@ -27,7 +49,8 @@
     "diffEditor.codeLens": true,
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.bracketPairColorization.enabled": true,
-    "editor.fontFamily": "'Jetbrains Mono Bold', 'Fira Code Medium','Droid Sans Mono', 'monospace', monospace",
+    "editor.cursorBlinking": "phase",
+    "editor.fontFamily": "'Jetbrains Mono Medium', 'Fira Code Medium','Droid Sans Mono', 'monospace', monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 16,
     "editor.formatOnPaste": true,
@@ -72,7 +95,9 @@
         "%load_ext autoreload",
         "%autoreload 2"
     ],
-    "markdown.preview.fontSize": 20,
+    "markdown.preview.fontFamily": "'Literata', 'Calibri','Fira Sans','Noteo Sans','Droid Sans'",
+    "markdown.preview.fontSize": 18,
+    "markdown.preview.lineHeight": 1.5,
     "markdown.preview.typographer": true,
     "notebook.cellToolbarLocation": {
         "default": "left"
@@ -82,7 +107,8 @@
     "notebook.formatOnSave.enabled": true,
     "notebook.globalToolbarShowLabel": "dynamic",
     "notebook.lineNumbers": "on",
-    "notebook.markup.fontSize": 22,
+    "notebook.markup.fontSize": 18,
+    "notebook.output.fontFamily": "'Jetbrains Mono Medium', 'Roboto Mono Medium'",
     "python.analysis.completeFunctionParens": true,
     "python.analysis.typeCheckingMode": "basic",
     "python.languageServer": "Default",

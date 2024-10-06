@@ -125,3 +125,6 @@ function create_app_cache() {
 create_home_folders
 create_app_cache
 ls -lah
+
+# upadte bash prompt
+# echo "export PROMPT_DIRTRIM=2" >> ~/.bash_profile
