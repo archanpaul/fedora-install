@@ -407,9 +407,10 @@ function python_virtualenv_packages() {
     pip3 install ipykernel autopep8 pylint black
     pip3 install numpy scipy matplotlib pandas
     pip3 install opencv-python
-    pip3 install tensorflow
-    pip3 install mediapipe
-    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+    # pip3 install keras tensorflow
+    pip3 install keras tensorflow-rocm
+    # pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.0
 }
 
 function python_user_conf() {
@@ -522,8 +523,8 @@ function amd_packages() {
     sudo dnf -y install rocalution rocblas rocfft rocrand rocsolver rocsparse roctracer 
     sudo dnf -y install rocprim-devel 
 
-    sudo dnf -y radeontop
-    sudo dnf -y sevctl snphost
+    sudo dnf -y install radeontop
+    sudo dnf -y install sevctl snphost
 }
 
 function cloud_tools_packages() {
