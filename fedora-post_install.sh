@@ -508,6 +508,24 @@ function embedded_system_packages() {
     sudo dnf -y install arm-none-eabi-newlib
 }
 
+function amd_packages() {
+    sudo dnf -y install rocminfo rocm-clinfo
+    sudo dnf -y install miopen
+    sudo dnf -y install rocm-cmake rocm-device-libs rocm-compilersupport-macros
+    sudo dnf -y install rocm-comgr rocm-comgr-devel
+    sudo dnf -y install rocm-core rocm-core-devel
+    sudo dnf -y install rocm-hip rocm-hip-devel
+    sudo dnf -y install rocm-opencl rocm-opencl-devel
+    sudo dnf -y install rocm-runtime rocm-runtime-devel
+    sudo dnf -y install rocm-smi rocm-smi-devel
+    sudo dnf -y install hipblas hipfft hipsolver hipsparse
+    sudo dnf -y install rocalution rocblas rocfft rocrand rocsolver rocsparse roctracer 
+    sudo dnf -y install rocprim-devel 
+
+    sudo dnf -y radeontop
+    sudo dnf -y sevctl snphost
+}
+
 function cloud_tools_packages() {
     #gcloud_package() {
     cat <<EOF | sudo tee /etc/yum.repos.d/google-cloud-sdk.repo
@@ -641,6 +659,7 @@ function install_all_modules() {
 
 	# laptop_mode
 	# thinkpad_packages
+	# amd_packages
 
 	# httpd_services
 	# firewall_services
