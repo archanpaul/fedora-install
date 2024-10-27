@@ -386,9 +386,10 @@ function python_packages() {
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
-    sudo dnf -y install python3-ipykernel python3-notebook
+    sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook 
     sudo dnf -y install python3-virtualenv
     sudo dnf -y install python3-opencv
+    sudo dnf -y install python3-torch python3-torchdata python3-torchvision
 
     sudo dnf -y install python3.11
 }
@@ -407,10 +408,10 @@ function python_virtualenv_packages() {
     pip3 install ipykernel autopep8 pylint black
     pip3 install numpy scipy matplotlib pandas
     pip3 install opencv-python
-    # pip3 install keras tensorflow
-    pip3 install keras tensorflow-rocm
-    # pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.0
+    pip3 install keras tensorflow
+    # pip3 install keras tensorflow-rocm
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+    # pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.0
 }
 
 function python_user_conf() {
@@ -448,6 +449,7 @@ function gnome_packages() {
 function markdown_packages() {
     sudo dnf -y install flatpak
     # flatpak install app/md.obsidian.Obsidian/x86_64/stable
+    # sudo flatpak override md.obsidian.Obsidian --filesystem=host
 
     sudo dnf -y install pandoc pandoc-pdf texlive-mdwtools
     # Convert epub to html

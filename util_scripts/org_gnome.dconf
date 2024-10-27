@@ -39,7 +39,7 @@ window-size=(360, 504)
 word-size=64
 
 [control-center]
-last-panel='display'
+last-panel='background'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -65,8 +65,8 @@ translate=true
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2024-09-14-15-00-24-vecteezy_scientific-future-technology-abstract-geometric-for_26716292.jpg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2024-09-14-15-00-24-vecteezy_scientific-future-technology-abstract-geometric-for_26716292.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2024-10-21-13-05-18-futuristic-sci-fi-space-tunnel-passageway-with-glowing-shiny-lights.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2024-10-21-13-05-18-futuristic-sci-fi-space-tunnel-passageway-with-glowing-shiny-lights.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -142,7 +142,7 @@ remove-old-temp-files=true
 [desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2024-09-14-15-00-24-vecteezy_scientific-future-technology-abstract-geometric-for_26716292.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2024-10-21-13-05-18-futuristic-sci-fi-space-tunnel-passageway-with-glowing-shiny-lights.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -213,6 +213,9 @@ last-folder-path='/home/arp/Downloads'
 [portal/filechooser/code]
 last-folder-path='/home/arp/workspace/machine_learning.workspace'
 
+[portal/filechooser/gnome-background-panel]
+last-folder-path='/home/arp/Pictures/wallpapers'
+
 [portal/filechooser/google-chrome]
 last-folder-path='/home/arp/Downloads'
 
@@ -253,7 +256,7 @@ animate-appicon-hover-animation-type='SIMPLE'
 appicon-margin=1
 appicon-padding=2
 appicon-style='NORMAL'
-available-monitors=[0]
+available-monitors=[0, 1]
 dot-color-dominant=true
 dot-color-override=false
 dot-position='BOTTOM'
@@ -286,15 +289,17 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1727754124
+check-timestamp=int64 1729493210
 first-run=false
 flatpak-purge-timestamp=int64 1727766375
-install-timestamp=int64 1727708259
-packagekit-historical-updates-timestamp=uint64 1727708259
-update-notification-timestamp=int64 1727708325
+install-timestamp=int64 1729492699
+packagekit-historical-updates-timestamp=uint64 1729492699
+update-notification-timestamp=int64 1729493147
 
 [terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 audible-bell=false
+cursor-blink-mode='on'
+cursor-shape='ibeam'
 default-size-columns=120
 default-size-rows=40
 visible-name='arp'
