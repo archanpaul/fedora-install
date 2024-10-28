@@ -275,7 +275,7 @@ function vscode_package_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2024.1.2.12
+    ANDROID_STUDIO_RELEASE=2024.2.1.10
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -320,7 +320,7 @@ EOF
 }
 
 function dart-sdk_package() {
-    DART_VERSION="3.4.4"
+    DART_VERSION="3.5.4"
 
     sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
     wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
@@ -382,16 +382,13 @@ function flutter-sdk_user_conf() {
 }
 
 function python_packages() {
-    sudo dnf -y install python3-virtualenv
+    sudo dnf -y install python3-virtualenv conda
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
-    sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook 
-    sudo dnf -y install python3-virtualenv
     sudo dnf -y install python3-opencv
+    sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook 
     sudo dnf -y install python3-torch python3-torchdata python3-torchvision
-
-    sudo dnf -y install python3.11
 }
 
 function python_virtualenv_packages() {
