@@ -440,7 +440,10 @@ function gnome_packages() {
     sudo dnf -y install --allowerasing obs-studio
     sudo dnf -y install --allowerasing x264 obs-studio-plugin-x264
 
-    sudo dnf -y install NetworkManager-ssh-gnome NetworkManager-vpnc-gnome NetworkManager-openconnect-gnome NetworkManager-pptp-gnome NetworkManager-openvpn-gnome
+    sudo dnf -y install NetworkManager-ssh-gnome NetworkManager-openconnect-gnome 
+    sudo dnf -y install NetworkManager-pptp-gnome NetworkManager-vpnc-gnome NetworkManager-openvpn-gnome
+
+    sudo dnf -y install gnome-shell-theme-yaru gnome-shell-theme-flat-remix
 }
 
 function markdown_packages() {
