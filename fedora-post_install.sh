@@ -8,7 +8,7 @@ function update_hostname() {
 }
 
 function dnf_conf_update() {
-        cat <<EOF | sudo tee -a /etc/dnf/dnf.conf
+    cat <<EOF | sudo tee -a /etc/dnf/dnf.conf
 keepcache=True
 deltarpm=True
 #fastestmirror=True
@@ -568,6 +568,7 @@ function httpd_service() {
 function thinkpad_packages() {
     sudo dnf -y install tlp tlp-rdw
     # edit /etc/tlp.conf along with powertop
+    sudo systemctl enable tlp.service --now
 
     # thinkbook power-management
     # sudo tlp-stat -b
