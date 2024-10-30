@@ -155,7 +155,7 @@ function browser_packages() {
     sudo dnf -y install mozilla-noscript mozilla-ublock-origin
 
     ## Google Chrome
-    sudo dnf config-manager --set-enabled google-chrome
+    sudo dnf config-manager setenabled google-chrome
     sudo dnf check-update
     sudo dnf -y install google-chrome-stable
     sudo dnf -y install chrome-remote-desktop
@@ -496,7 +496,7 @@ function libreoffice_packages() {
 }
 
 function codec_packages() {
-    sudo dnf config-manager --set-enabled fedora-cisco-openh264
+    sudo dnf config-manager setenabled fedora-cisco-openh264
     sudo dnf -y install openh264
     sudo dnf -y install gstreamer1-plugin-openh264 mozilla-openh264 gstreamer1-libav
 }
