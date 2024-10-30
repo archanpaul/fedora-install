@@ -406,7 +406,8 @@ function python_virtualenv_packages() {
     source /opt/python-virtualenvs/venvpy_${PYTHON_VENV_SUFFIX}/bin/activate
 
     pip install --upgrade pip
-    pip3 install ipykernel autopep8 pylint black
+    pip3 install autopep8 pylint black
+    pip3 install ipykernel ipywidgets
     pip3 install numpy scipy matplotlib pandas
     pip3 install opencv-python
     pip3 install keras tensorflow
@@ -449,6 +450,8 @@ function gnome_packages() {
     sudo dnf -y install NetworkManager-pptp-gnome NetworkManager-vpnc-gnome NetworkManager-openvpn-gnome
 
     sudo dnf -y install gnome-shell-theme-yaru gnome-shell-theme-flat-remix
+
+    # sudo dnf -y install calibre
 }
 
 function markdown_packages() {
