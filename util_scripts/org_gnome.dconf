@@ -15,7 +15,7 @@ show-grid=true
 show-map=true
 
 [control-center]
-last-panel='display'
+last-panel='keyboard'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -114,6 +114,14 @@ initial-size=(890, 550)
 [settings-daemon/plugins/color]
 night-light-enabled=true
 night-light-temperature=uint32 4700
+
+[settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Control>Escape'
+command='systemctl suspend'
+name='Suspend'
 
 [settings-daemon/plugins/power]
 sleep-inactive-ac-type='nothing'
