@@ -164,7 +164,7 @@ function browser_packages() {
 
     ## Microsoft Edge
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-    sudo dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/yumrepos/edge
+    sudo dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/yumrepos/edge/config.repo
     sudo dnf -y install microsoft-edge-stable
 }
 
@@ -291,7 +291,7 @@ function android-studio_package(){
 Type=Application
 Name=Android Studio
 Icon=/opt/android-studio/bin/studio.png
-Exec=env _JAVA_OPTIONS=-Djava.io.tmpdir=/var/tmp /opt/android-studio/bin/studio.sh
+Exec=env _JAVA_OPTIONS=-Djava.io.tmpdir=/var/tmp /opt/android-studio/bin/studio
 Terminal=false
 Categories=Development;IDE;
 EOF
