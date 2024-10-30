@@ -387,34 +387,38 @@ function python_packages() {
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
     sudo dnf -y install python3-opencv
-    sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook 
+    sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook
     sudo dnf -y install python3-torch python3-torchdata python3-torchvision python3-torchaudio python3-torchtext
 }
 
 function python_virtualenv_packages() {
+    PYTHON_PIP_VERSION=3.12
+    PYTHON_VENV_SUFFIX=312
+    sudo dnf -y install python${PYTHON_PIP_VERSION}
+
     ## virtualenvs
     sudo rm -rf /opt/python-virtualenvs
     sudo mkdir /opt/python-virtualenvs
     sudo chown -R root:wheel /opt/python-virtualenvs
     sudo chmod -R u+rwX,go+rwX,o-w /opt/python-virtualenvs
 
-    virtualenv -p /usr/bin/python3.12 --copies /opt/python-virtualenvs/venv_py312
-    source /opt/python-virtualenvs/venv_py312/bin/activate
+    virtualenv -p /usr/bin/python${PYTHON_PIP_VERSION} --copies /opt/python-virtualenvs/venvpy_${PYTHON_VENV_SUFFIX}
+    source /opt/python-virtualenvs/venvpy_${PYTHON_VENV_SUFFIX}/bin/activate
 
     pip install --upgrade pip
     pip3 install ipykernel autopep8 pylint black
     pip3 install numpy scipy matplotlib pandas
     pip3 install opencv-python
-    pip3 install keras tensorflow
+    # pip3 install keras tensorflow
     # pip3 install keras tensorflow-rocm
-    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+    # pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
     # pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.0
 }
 
 function python_user_conf() {
     mkdir -p ~/.virtualenvs
-    sudo ln -s /opt/python-virtualenvs/venv_py312 ~/.virtualenvs/venv_py312
-    # source ~/.virtualenvs/venv_py312/bin/activate
+    sudo ln -s /opt/python-virtualenvs/venvpy_${PYTHON_VENV_SUFFIX} ~/.virtualenvs/venvpy_${PYTHON_VENV_SUFFIX}
+    # source ~/.virtualenvs/venvpy_${PYTHON_VENV_SUFFIX}/bin/activate
 }
 
 function gnome_packages() {
@@ -440,7 +444,7 @@ function gnome_packages() {
     sudo dnf -y install --allowerasing obs-studio
     sudo dnf -y install --allowerasing x264 obs-studio-plugin-x264
 
-    sudo dnf -y install NetworkManager-ssh-gnome NetworkManager-openconnect-gnome 
+    sudo dnf -y install NetworkManager-ssh-gnome NetworkManager-openconnect-gnome
     sudo dnf -y install NetworkManager-pptp-gnome NetworkManager-vpnc-gnome NetworkManager-openvpn-gnome
 
     sudo dnf -y install gnome-shell-theme-yaru gnome-shell-theme-flat-remix
@@ -522,8 +526,8 @@ function amd_packages() {
     sudo dnf -y install rocm-runtime rocm-runtime-devel
     sudo dnf -y install rocm-smi rocm-smi-devel
     sudo dnf -y install hipblas hipfft hipsolver hipsparse
-    sudo dnf -y install rocalution rocblas rocfft rocrand rocsolver rocsparse roctracer 
-    sudo dnf -y install rocprim-devel 
+    sudo dnf -y install rocalution rocblas rocfft rocrand rocsolver rocsparse roctracer
+    sudo dnf -y install rocprim-devel
 
     sudo dnf -y install radeontop
     sudo dnf -y install sevctl snphost
@@ -664,7 +668,7 @@ function install_all_modules() {
 	# thinkpad_packages
 	# amd_packages
 
-	# httpd_services
+	# httpd_service
 	# firewall_services
 	# firewall_user_services
 	# misc_services
