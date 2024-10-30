@@ -82,7 +82,7 @@ function container_packages() {
 function docker_packages() {
     sudo dnf -y install fuse-overlayfs iptables
     sudo rpm --import https://download.docker.com/linux/fedora/gpg
-    sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+    sudo dnf config-manager addrepo --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo
     sudo dnf -y remove docker \
         docker-client \
         docker-client-latest \
@@ -142,7 +142,7 @@ EOF
     sudo dnf -y install yt-dlp
 
     # Tailscale VPN
-    sudo dnf config-manager -y --add-repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+    sudo dnf config-manager -y addrepo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     sudo dnf -y install tailscale
     # sudo systemctl enable --now tailscaled
     # sudo tailscale up
@@ -164,7 +164,7 @@ function browser_packages() {
 
     ## Microsoft Edge
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-    sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
+    sudo dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/yumrepos/edge
     sudo dnf -y install microsoft-edge-stable
 }
 
@@ -388,7 +388,7 @@ function python_packages() {
     sudo dnf -y install python3-matplotlib
     sudo dnf -y install python3-opencv
     sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook 
-    sudo dnf -y install python3-torch python3-torchdata python3-torchvision
+    sudo dnf -y install python3-torch python3-torchdata python3-torchvision python3-torchaudio python3-torchtext
 }
 
 function python_virtualenv_packages() {
