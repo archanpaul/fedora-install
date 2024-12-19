@@ -155,7 +155,7 @@ function browser_packages() {
     sudo dnf -y install mozilla-noscript mozilla-ublock-origin
 
     ## Google Chrome
-    sudo dnf config-manager setenabled google-chrome
+    sudo dnf config-manager setopt google-chrome.enabled=1
     sudo dnf check-update
     sudo dnf -y install google-chrome-stable
     sudo dnf -y install chrome-remote-desktop
@@ -275,7 +275,7 @@ function vscode_package_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2024.2.1.10
+    ANDROID_STUDIO_RELEASE=2024.2.1.12
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -504,7 +504,7 @@ function libreoffice_packages() {
 }
 
 function codec_packages() {
-    sudo dnf config-manager setenabled fedora-cisco-openh264
+    sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
     sudo dnf -y install openh264
     sudo dnf -y install gstreamer1-plugin-openh264 mozilla-openh264 gstreamer1-libav
 }
