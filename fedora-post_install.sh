@@ -381,6 +381,25 @@ function flutter-sdk_user_conf() {
     dart pub global activate protoc_plugin
 }
 
+function intel_packages() {
+    # ref: https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html?packages=cpp-essentials&cpp-essentials-os=linux&cpp-essentials-lin=yum-dnf
+
+        cat <<EOF | sudo tee /etc/yum.repos.d/intel_one_api.repo
+[oneAPI]
+name=Intel® oneAPI repository
+baseurl=https://yum.repos.intel.com/oneapi
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+EOF
+
+    sudo dnf -y install intel-oneapi-base-toolkit
+    sudo dnf -y install intel-deep-learning-essentials
+    sudo dnf -y install install intel-cpp-essentials
+
+}
+
 function python_packages() {
     sudo dnf -y install python3-virtualenv conda
     sudo dnf -y install python3-pylint python3-autopep8
@@ -412,7 +431,8 @@ function python_virtualenv_packages() {
     pip3 install opencv-python
 
     # Intel NPU
-    pip install intel-npu-acceleration-library
+    # intel_packages
+    # pip install intel-npu-acceleration-library
 
     # Tensorflow
     pip3 install keras
@@ -686,6 +706,8 @@ function install_all_modules() {
 
 	# laptop_mode
 	# thinkpad_packages
+
+	# intel_packages
 	# amd_packages
 
 	# httpd_service
