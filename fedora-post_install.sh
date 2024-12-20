@@ -11,7 +11,7 @@ function dnf_conf_update() {
     cat <<EOF | sudo tee -a /etc/dnf/dnf.conf
 keepcache=True
 deltarpm=True
-#fastestmirror=True
+fastestmirror=True
 max_parallel_downloads=20
 EOF
 
@@ -191,27 +191,17 @@ EOF
 function go_extra_packages() {
     source /etc/profile.d/go-packages.sh
 
-    ## VSCode go plugin dependencies
+    # VSCode go plugin dependencies
     export GO111MODULE=on
     go install -v golang.org/x/tools/gopls@latest
-    go install -v github.com/ramya-rao-a/go-outline@latest
     go install -v golang.org/x/lint/golint@latest
     go install -v golang.org/x/tools/cmd/goimports@latest
-    go install -v honnef.co/go/tools/cmd/staticcheck@latest
     go install -v github.com/go-delve/delve/cmd/dlv@latest
 
-    ## Dev
     # grpc protobuf
     go install -v google.golang.org/protobuf/cmd/protoc-gen-go@latest
     go install -v google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-    # entgo
-    go install entgo.io/ent/cmd/ent@latest
-    go install entgo.io/contrib/entproto/cmd/protoc-gen-entgrpc@latest
-    go install ariga.io/atlas/cmd/atlas@latest
 
-    ## Dev tools
-    # go install -v github.com/cespare/reflex@latest
-    go install -v github.com/cosmtrek/air@latest
     # gomobile
     go install -v golang.org/x/mobile/cmd/gobind@latest
     go install -v golang.org/x/mobile/cmd/gomobile@latest
