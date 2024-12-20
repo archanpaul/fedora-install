@@ -425,20 +425,14 @@ function python_virtualenv_packages() {
     # pip install intel-npu-acceleration-library
 
     # Tensorflow
-    pip3 install keras
-    # Tensorflow - default
-    pip3 install tensorflow
-    # Tensorflow - amd
-    # pip3 install tensorflow-rocm
-    # Tensorflow - intel
-    # pip3 install intel-tensorflow
+    pip3 install keras tensorflow
+    # pip3 install --upgrade intel-extension-for-tensorflow[cpu] #intel
+    # pip3 install --upgrade tensorflow-rocm #amd
 
     # PyTorch - default
     pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-    # PyTorch - amd
-    # pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.0
-    # PyTorch - intel
-    # pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/test/xpu
+    # pip3 install intel-extension-for-pytorch oneccl_bind_pt --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/cpu/cn/ #intel
+    # pip3 install torch torchvision torchaudio --upgrade --index-url https://download.pytorch.org/whl/rocm6.0 # amd
 }
 
 function python_user_conf() {
