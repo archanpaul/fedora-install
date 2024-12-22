@@ -235,33 +235,37 @@ function vscode_package_user_conf() {
     # code --list-extensions | xargs -L 1 code --uninstall-extension
 
     ## vscode extensions
-    code --install-extension chrischinchilla.vscode-pandoc
     code --install-extension dart-code.dart-code
-    code --install-extension dart-code.flutter
+    code --install-extension github.copilot
+    code --install-extension github.copilot-chat
     code --install-extension github.github-vscode-theme
     code --install-extension golang.go
-    code --install-extension hediet.vscode-drawio
+    code --install-extension google.geminicodeassist
     code --install-extension llvm-vs-code-extensions.vscode-clangd
-    code --install-extension mhutchie.git-graph
     code --install-extension ms-azuretools.vscode-docker
-    code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+    code --install-extension ms-pyright.pyright
     code --install-extension ms-python.autopep8
+    code --install-extension ms-python.black-formatter
     code --install-extension ms-python.debugpy
+    code --install-extension ms-python.gather
     code --install-extension ms-python.isort
+    code --install-extension ms-python.pylint
     code --install-extension ms-python.python
     code --install-extension ms-python.vscode-pylance
+    code --install-extension ms-toolsai.datawrangler
     code --install-extension ms-toolsai.jupyter
     code --install-extension ms-toolsai.jupyter-keymap
     code --install-extension ms-toolsai.jupyter-renderers
+    code --install-extension ms-toolsai.python-ds-extension-pack
     code --install-extension ms-toolsai.vscode-jupyter-cell-tags
     code --install-extension ms-toolsai.vscode-jupyter-slideshow
     code --install-extension ms-vscode-remote.remote-containers
     code --install-extension ms-vscode-remote.remote-ssh
     code --install-extension ms-vscode-remote.remote-ssh-edit
-    code --install-extension ms-vscode.cpptools
     code --install-extension ms-vscode.remote-explorer
+    code --install-extension ms-vscode.remote-server
+    code --install-extension ms-vscode.vscode-markdown-notebook
     code --install-extension ms-vsliveshare.vsliveshare
-    code --install-extension redhat.vscode-yaml
 }
 
 function android-studio_package(){
