@@ -27,11 +27,11 @@ source-units='degree'
 target-currency=''
 target-units='radian'
 window-maximized=false
-window-size=(360, 626)
+window-size=(360, 627)
 word-size=64
 
 [control-center]
-last-panel='display'
+last-panel='sound'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -82,8 +82,11 @@ monospace-font-name='Roboto Mono Medium 12'
 show-battery-percentage=true
 
 [desktop/notifications]
-application-children=['org-gnome-ptyxis', 'org-gnome-software', 'gnome-power-panel', 'org-freedesktop-problems-applet', 'libreoffice-calc']
+application-children=['org-gnome-ptyxis', 'org-gnome-software', 'gnome-power-panel', 'org-freedesktop-problems-applet', 'libreoffice-calc', 'calibre-gui']
 show-in-lock-screen=false
+
+[desktop/notifications/application/calibre-gui]
+application-id='calibre-gui.desktop'
 
 [desktop/notifications/application/gnome-power-panel]
 application-id='gnome-power-panel.desktop'
@@ -140,15 +143,18 @@ dual-page-odd-left=true
 enable-spellchecking=true
 fullscreen=false
 inverted-colors=false
-show-sidebar=false
+show-sidebar=true
 sidebar-page='thumbnails'
 sidebar-size=148
-sizing-mode='fit-page'
-window-ratio=(1.3549295774647887, 0.95999999999999996)
+sizing-mode='fit-width'
+window-ratio=(1.5824603162671924, 1.2020576128539318)
 zoom=0.84089642763137806
 
 [evolution-data-server]
 migrated=true
+
+[firmware]
+report-device-list-timestamp=int64 1736595334
 
 
 [mutter]
@@ -181,7 +187,11 @@ last-folder-path='/home/arp/Documents/Car_Documents_GrandVitara_2024/For_SBI'
 last-folder-path='/home/arp/Downloads'
 
 [settings-daemon/plugins/color]
+night-light-enabled=false
 night-light-schedule-automatic=false
+night-light-schedule-from=17.0
+night-light-schedule-to=5.0
+night-light-temperature=uint32 4700
 
 [settings-daemon/plugins/media-keys]
 custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
@@ -196,7 +206,7 @@ sleep-inactive-ac-type='nothing'
 
 [shell]
 app-picker-layout=[{'org.gnome.Calendar.desktop': <{'position': <0>}>, 'org.gnome.clocks.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.Maps.desktop': <{'position': <3>}>, 'org.gnome.Snapshot.desktop': <{'position': <4>}>, 'org.gnome.Totem.desktop': <{'position': <5>}>, 'google-chrome.desktop': <{'position': <6>}>, 'chromium-browser.desktop': <{'position': <7>}>, 'msedge-hnpfjngllnobngcgfapefoaidbinmjnm-Default.desktop': <{'position': <8>}>, 'org.gnome.Software.desktop': <{'position': <9>}>, 'android-studio.desktop': <{'position': <10>}>, 'org.gnome.Boxes.desktop': <{'position': <11>}>, 'org.gnome.Loupe.desktop': <{'position': <12>}>, 'org.gnome.Evince.desktop': <{'position': <13>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <14>}>, 'calibre-gui.desktop': <{'position': <15>}>, 'gimp.desktop': <{'position': <16>}>, 'org.inkscape.Inkscape.desktop': <{'position': <17>}>, 'libreoffice-calc.desktop': <{'position': <18>}>, 'libreoffice-draw.desktop': <{'position': <19>}>, 'libreoffice-impress.desktop': <{'position': <20>}>, 'libreoffice-math.desktop': <{'position': <21>}>, 'libreoffice-writer.desktop': <{'position': <22>}>, 'md.obsidian.Obsidian.desktop': <{'position': <23>}>}, {'org.gnome.Connections.desktop': <{'position': <0>}>, 'torbrowser.desktop': <{'position': <1>}>, 'org.mozilla.thunderbird.desktop': <{'position': <2>}>, 'transmission-gtk.desktop': <{'position': <3>}>, 'com.obsproject.Studio.desktop': <{'position': <4>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <5>}>, 'blender.desktop': <{'position': <6>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <7>}>, 'org.gnome.Shotwell.desktop': <{'position': <8>}>, 'simple-scan.desktop': <{'position': <9>}>, 'gtk-v4l.desktop': <{'position': <10>}>, 'scrcpy.desktop': <{'position': <11>}>, 'org.gnome.font-viewer.desktop': <{'position': <12>}>, 'org.gnome.Characters.desktop': <{'position': <13>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <14>}>, 'org.gnome.Logs.desktop': <{'position': <15>}>, 'virt-manager.desktop': <{'position': <16>}>, 'org.gnome.Extensions.desktop': <{'position': <17>}>, 'org.gnome.Firmware.desktop': <{'position': <18>}>, 'org.gnome.Settings.desktop': <{'position': <19>}>, 'org.gnome.tweaks.desktop': <{'position': <20>}>, 'org.gnome.baobab.desktop': <{'position': <21>}>, 'Utilities': <{'position': <22>}>}]
-command-history=['calibre']
+command-history=['cal', 'calibre']
 disabled-extensions=@as []
 enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'background-logo@fedorahosted.org', 'dash-to-panel@jderose9.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com']
 favorite-apps=['org.gnome.SystemMonitor.desktop', 'org.gnome.Ptyxis.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.TextEditor.desktop', 'code.desktop', 'org.mozilla.firefox.desktop', 'microsoft-edge.desktop']
@@ -207,7 +217,7 @@ welcome-dialog-last-shown-version='47.2'
 animate-appicon-hover-animation-extent={'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}
 appicon-margin=2
 appicon-padding=4
-available-monitors=[1, 0]
+available-monitors=[0]
 dot-color-dominant=false
 dot-color-override=true
 dot-position='BOTTOM'
@@ -224,7 +234,7 @@ panel-element-positions-monitors-sync=true
 panel-lengths='{"0":50,"1":40}'
 panel-positions='{"0":"BOTTOM","1":"BOTTOM"}'
 panel-sizes='{"0":32,"1":32}'
-primary-monitor=1
+primary-monitor=0
 show-tooltip=false
 status-icon-padding=0
 trans-panel-opacity=0.80000000000000004
@@ -235,11 +245,16 @@ tray-padding=2
 tray-size=0
 window-preview-title-position='TOP'
 
+[shell/world-clocks]
+locations=@av []
+
 [software]
-check-timestamp=int64 1736389903
+check-timestamp=int64 1736649838
 first-run=false
-flatpak-purge-timestamp=int64 1736407728
-update-notification-timestamp=int64 1736303188
+flatpak-purge-timestamp=int64 1736759461
+install-timestamp=int64 1736649939
+packagekit-historical-updates-timestamp=uint64 1736649939
+update-notification-timestamp=int64 1736650011
 
 [tweaks]
 show-extensions-notice=false

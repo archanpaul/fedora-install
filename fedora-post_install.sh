@@ -74,9 +74,20 @@ function jdk_packages() {
 
 function container_packages() {
     # sudo dnf -y install @virtualization
+
     sudo dnf -y install podman podman-compose
 
     sudo dnf -y install virt-manager
+}
+
+function container_user_conf() {
+    ## Fix podman-selinux permission issue for custom container storage folder.
+    ## ref: https://access.redhat.com/solutions/7021610
+    GRAPHROOT_PATH=`podman info | grep graphRoot | grep graphRoot: | awk '{print $2}'`
+    if [ -n "${GRAPHROOT_PATH}" ]; then
+    	sudo semanage fcontext -a -e /var/lib/containers ${GRAPHROOT_PATH}
+	sudo restorecon -R -v ${GRAPHROOT_PATH}
+    fi
 }
 
 function docker_packages() {
@@ -662,53 +673,53 @@ function laptop_mode() {
 function install_all_modules() {
     echo "install_all_modules"
 
-	# update_hostname
-	# dnf_conf_update
-	 fedora_upgrade
-	# rpmfusion_repo
+    # update_hostname
+    # dnf_conf_update
+    fedora_upgrade
+    # rpmfusion_repo
 
-	# systool_packages
-	# devtool_packages
-	# rpm_devtool_packages
-	# jdk_packages
-	# container_packages
-	# kubernetes_packages
-	# graphics_packages
-	# graphics_dev_packages
-	# network_packages
-	# browser_packages
-	# python_packages
-	# gnome_packages
-	# vscode_package
-	## swift_packages
-	# go_packages
-	# npm_packages
-	# font_packages
-	# codec_packages
-	# libreoffice_packages
-	## embedded_system_packages
-	# database_packages
-	# cloud_tools_packages
-	# security_packages
-	# markdown_packages
+    # systool_packages
+    # devtool_packages
+    # rpm_devtool_packages
+    # jdk_packages
+    # container_packages
+    # kubernetes_packages
+    # graphics_packages
+    # graphics_dev_packages
+    # network_packages
+    # browser_packages
+    # python_packages
+    # gnome_packages
+    # vscode_package
+    ## swift_packages
+    # go_packages
+    # npm_packages
+    # font_packages
+    # codec_packages
+    # libreoffice_packages
+    ## embedded_system_packages
+    # database_packages
+    # cloud_tools_packages
+    # security_packages
+    # markdown_packages
 
-	# laptop_mode
-	# thinkpad_packages
+    # laptop_mode
+    # thinkpad_packages
 
-	# intel_packages
-	# amd_packages
+    # intel_packages
+    # amd_packages
 
-	# httpd_service
-	# firewall_services
-	# firewall_user_services
-	# misc_services
+    # httpd_service
+    # firewall_services
+    # firewall_user_services
+    # misc_services
 
-	# android-studio_package
-	## dart-sdk_package
-	# flutter-sdk_package
+    # android-studio_package
+    ## dart-sdk_package
+    # flutter-sdk_package
 
-	# go_extra_packages
-	# python_virtualenv_packages
+    # go_extra_packages
+    # python_virtualenv_packages
 }
 
 function install_all_user_modules() {
@@ -718,6 +729,7 @@ function install_all_user_modules() {
     # vscode_package_user_conf
     # flutter-sdk_user_conf
     # python_user_conf
+    # container_user_conf
 }
 
 install_all_modules 2>&1 | tee fedora_install.log
