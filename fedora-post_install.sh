@@ -151,6 +151,7 @@ EOF
     # sudo systemctl restart sshd
 
     sudo dnf -y install yt-dlp
+    # yt-dlp -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' YT_PL_LINK
 
     # Tailscale VPN
     sudo dnf config-manager -y addrepo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
