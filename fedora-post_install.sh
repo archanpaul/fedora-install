@@ -281,7 +281,7 @@ function vscode_package_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2024.2.1.12
+    ANDROID_STUDIO_RELEASE=2024.2.2.13
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -348,18 +348,21 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
+    FLUTTER_VERSION="3.29.0-stable"
+
+    wget -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
     sudo mkdir -p /opt/flutter-sdk
 
-    sudo git clone -b stable --single-branch https://github.com/flutter/flutter.git /opt/flutter-sdk --depth=1
-    # sudo git clone -b master https://github.com/flutter/flutter.git /opt/flutter-sdk
+    sudo tar -xf ${CACHE}/flutter_linux_${FLUTTER_VERSION}.tar.xz -C /opt/flutter-sdk/
+    # sudo git clone -b main https://github.com/flutter/flutter.git /opt/flutter-sdk/ --depth=1
 
     sudo mkdir /opt/flutter-sdk/pub_cache
     sudo chown -R root:wheel /opt/flutter-sdk
     sudo chmod -R u+rwX,go+rwX,o-w /opt/flutter-sdk
 
     cat <<EOF | sudo tee /etc/profile.d/flutter-sdk.sh
-export FLUTTER_ROOT=/opt/flutter-sdk/
+export FLUTTER_ROOT=/opt/flutter-sdk/flutter/
 export PUB_CACHE=\$FLUTTER_ROOT/pub_cache
 export ENABLE_FLUTTER_DESKTOP=true
 export PATH=\$PATH:\$FLUTTER_ROOT/bin:\$PUB_CACHE/bin
@@ -372,7 +375,7 @@ EOF
 }
 
 function flutter-sdk_user_conf() {
-    git config --global --add safe.directory /opt/flutter-sdk
+    git config --global --add safe.directory /opt/flutter-sdk/flutter
 
     flutter upgrade --force
 
