@@ -362,7 +362,7 @@ function flutter-sdk_package() {
     sudo chmod -R u+rwX,go+rwX,o-w /opt/flutter-sdk
 
     cat <<EOF | sudo tee /etc/profile.d/flutter-sdk.sh
-export FLUTTER_ROOT=/opt/flutter-sdk/flutter/
+export FLUTTER_ROOT=/opt/flutter-sdk/flutter
 export PUB_CACHE=\$FLUTTER_ROOT/pub_cache
 export ENABLE_FLUTTER_DESKTOP=true
 export PATH=\$PATH:\$FLUTTER_ROOT/bin:\$PUB_CACHE/bin
@@ -438,6 +438,7 @@ function python_virtualenv_packages() {
     pip3 install ipykernel ipywidgets
     pip3 install numpy scipy matplotlib pandas
     pip3 install opencv-python
+    pip3 install scikit-learn
 
     # Intel NPU
     # intel_packages
@@ -720,7 +721,7 @@ function install_all_modules() {
 
     # android-studio_package
     ## dart-sdk_package
-    # flutter-sdk_package
+    flutter-sdk_package
 
     # go_extra_packages
     # python_virtualenv_packages
