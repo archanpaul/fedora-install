@@ -126,7 +126,8 @@
     "window.titleBarStyle": "custom",
     "workbench.colorTheme": "GitHub Dark Dimmed",
     "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
-    "workbench.preferredLightColorTheme": "GitHub Dark Dimmed",
+    "workbench.preferredLightColorTheme": "GitHub Light",
     "workbench.sideBar.location": "left",
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "amazonQ.telemetry": false
 }
