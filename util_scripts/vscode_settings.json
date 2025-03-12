@@ -37,7 +37,7 @@
         "editor.wrappingStrategy": "advanced"
     },
     "[python]": {
-        "editor.defaultFormatter": "ms-python.autopep8",
+        "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true
     },
     "breadcrumbs.enabled": true,

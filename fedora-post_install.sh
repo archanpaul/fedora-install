@@ -437,6 +437,10 @@ function python_virtualenv_packages() {
     pip3 install opencv-python
     pip3 install scikit-learn
 
+    # pip packages upgrade tool
+    pip install pip-review
+    # pip-review --local --auto
+
     # Intel NPU
     # intel_packages
     # pip install intel-npu-acceleration-library
@@ -718,7 +722,7 @@ function install_all_modules() {
 
     # android-studio_package
     ## dart-sdk_package
-    flutter-sdk_package
+    # flutter-sdk_package
 
     # go_extra_packages
     # python_virtualenv_packages
