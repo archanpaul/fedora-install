@@ -247,15 +247,12 @@ function vscode_package_user_conf() {
     # code --list-extensions | xargs -L 1 code --uninstall-extension
 
     ## vscode extensions
-    code --install-extension amazonwebservices.amazon-q-vscode
+    # code --install-extension amazonwebservices.amazon-q-vscode
     code --install-extension dart-code.dart-code
     code --install-extension dart-code.flutter
-    code --install-extension github.copilot
-    code --install-extension github.copilot-chat
     code --install-extension github.github-vscode-theme
     code --install-extension golang.go
     code --install-extension mhutchie.git-graph
-    code --install-extension ms-azuretools.vscode-docker
     code --install-extension ms-python.black-formatter
     code --install-extension ms-python.debugpy
     code --install-extension ms-python.python
@@ -274,7 +271,6 @@ function vscode_package_user_conf() {
     code --install-extension ms-vscode.live-server
     code --install-extension ms-vscode.remote-explorer
     code --install-extension ms-vsliveshare.vsliveshare
-
 }
 
 function android-studio_package(){
