@@ -445,53 +445,6 @@ function python_user_conf() {
     conda config --set auto_activate_base False
 }
 
-function python_virtualenv_packages_pip() {
-    PYTHON_PIP_VERSION=3.12
-    PYTHON_VENV_SUFFIX=312
-    sudo dnf -y install python${PYTHON_PIP_VERSION}
-
-    ## virtualenvs
-    sudo rm -rf /opt/python-virtualenvs
-    sudo mkdir /opt/python-virtualenvs
-    sudo chown -R root:wheel /opt/python-virtualenvs
-    sudo chmod -R u+rwX,go+rwX,o-w /opt/python-virtualenvs
-
-    virtualenv -p /usr/bin/python${PYTHON_PIP_VERSION} --copies /opt/python-virtualenvs/venvpy_${PYTHON_VENV_SUFFIX}
-    source /opt/python-virtualenvs/venvpy_${PYTHON_VENV_SUFFIX}/bin/activate
-
-    pip install --upgrade pip
-    pip3 install autopep8 pylint black
-    pip3 install ipykernel ipywidgets
-    pip3 install numpy scipy matplotlib pandas
-    pip3 install opencv-python
-    pip3 install scikit-learn
-
-    # pip packages upgrade tool
-    pip install pip-review
-    # pip-review --local --auto
-
-    # Intel NPU
-    # intel_packages
-    # pip install intel-npu-acceleration-library
-
-    # Tensorflow
-    pip3 install keras tensorflow
-    # pip3 install --upgrade intel-extension-for-tensorflow[cpu] #intel
-    # pip3 install --upgrade tensorflow-rocm #amd
-
-    # PyTorch - default
-    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-    # pip3 install intel-extension-for-pytorch oneccl_bind_pt --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/cpu/cn/ #intel
-    # pip3 install torch torchvision torchaudio --upgrade --index-url https://download.pytorch.org/whl/rocm6.0 # amd
-}
-
-function python_user_conf_pip() {
-    PYTHON_VENV_SUFFIX=312
-    mkdir -p ~/.virtualenvs
-    sudo ln -s /opt/python-virtualenvs/venvpy_${PYTHON_VENV_SUFFIX} ~/.virtualenvs/venvpy_${PYTHON_VENV_SUFFIX}
-    # source ~/.virtualenvs/venvpy_${PYTHON_VENV_SUFFIX}/bin/activate
-}
-
 function gnome_packages() {
     sudo dnf -y install gnome-tweaks
     sudo dnf -y install foliate
