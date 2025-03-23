@@ -252,6 +252,7 @@ function vscode_package_user_conf() {
     code --install-extension dart-code.flutter
     code --install-extension github.github-vscode-theme
     code --install-extension golang.go
+    code --install-extension google.geminicodeassist
     code --install-extension mhutchie.git-graph
     code --install-extension ms-python.black-formatter
     code --install-extension ms-python.debugpy
@@ -267,14 +268,12 @@ function vscode_package_user_conf() {
     code --install-extension ms-toolsai.vscode-jupyter-slideshow
     code --install-extension ms-vscode-remote.remote-containers
     code --install-extension ms-vscode-remote.remote-ssh
-    code --install-extension ms-vscode-remote.remote-ssh-edit
     code --install-extension ms-vscode.live-server
-    code --install-extension ms-vscode.remote-explorer
     code --install-extension ms-vsliveshare.vsliveshare
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2024.2.2.13
+    ANDROID_STUDIO_RELEASE=2024.3.1.13
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -413,6 +412,40 @@ function python_packages() {
 }
 
 function python_virtualenv_packages() {
+    ## virtualenvs
+    sudo rm -rf /opt/conda_venv
+    sudo mkdir -p /opt/conda_venv
+    sudo chown -R root:wheel /opt/conda_venv
+    sudo chmod -R u+rwX,go+rwX,o-w /opt/conda_venv
+
+    PYTHON_VERSION=3.12
+    CONDA_PATH_PREFIX=/opt/conda_venv
+    CONDA_VENV=pyvenv_312
+    CONDA_VENV_PATH=${CONDA_PATH_PREFIX}${CONDA_VENV}
+
+    conda config --append envs_dirs ${CONDA_PATH_PREFIX}
+    conda config --set env_prompt '({name})'
+
+    conda create -y --name ${CONDA_VENV} python=${PYTHON_VERSION} \
+        pip pylint black ipykernel ipywidgets
+    conda install -y -n ${CONDA_VENV} numpy scipy pandas matplotlib seaborn
+    conda install -y -n ${CONDA_VENV} opencv-python
+    conda install -y -n ${CONDA_VENV} scikit-learn
+    conda install -y -n ${CONDA_VENV} pytorch torchvision torchaudio
+    conda install -y -n ${CONDA_VENV} keras tensorflow
+    conda install -y -n ${CONDA_VENV} sqlalchemy flask jinja2
+}
+
+function python_user_conf() {
+    PYTHON_VERSION=3.12
+    CONDA_PATH_PREFIX=/opt/conda_venv
+    CONDA_VENV=pyvenv_312
+    conda config --append envs_dirs ${CONDA_PATH_PREFIX}
+    conda config --set env_prompt '({name})'
+    conda config --set auto_activate_base False
+}
+
+function python_virtualenv_packages_pip() {
     PYTHON_PIP_VERSION=3.12
     PYTHON_VENV_SUFFIX=312
     sudo dnf -y install python${PYTHON_PIP_VERSION}
@@ -452,7 +485,7 @@ function python_virtualenv_packages() {
     # pip3 install torch torchvision torchaudio --upgrade --index-url https://download.pytorch.org/whl/rocm6.0 # amd
 }
 
-function python_user_conf() {
+function python_user_conf_pip() {
     PYTHON_VENV_SUFFIX=312
     mkdir -p ~/.virtualenvs
     sudo ln -s /opt/python-virtualenvs/venvpy_${PYTHON_VENV_SUFFIX} ~/.virtualenvs/venvpy_${PYTHON_VENV_SUFFIX}
