@@ -1,8 +1,4 @@
 {
-    "C_Cpp.clang_format_fallbackStyle": "\"{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}\"",
-    "[Log]": {
-        "editor.wordWrap": "on"
-    },
     "[dart]": {
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
@@ -14,6 +10,9 @@
         "editor.suggestSelection": "first",
         "editor.tabCompletion": "onlySnippets",
         "editor.wordBasedSuggestions": "off"
+    },
+    "[Log]": {
+        "editor.wordWrap": "on"
     },
     "[markdown]": {
         "editor.autoClosingBrackets": "always",
@@ -41,6 +40,8 @@
         "editor.formatOnSave": true
     },
     "breadcrumbs.enabled": true,
+    "C_Cpp.clang_format_fallbackStyle": "\"{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}\"",
+    "continue.telemetryEnabled": false,
     "dart.checkForSdkUpdates": false,
     "dart.debugSdkLibraries": false,
     "dart.devToolsBrowser": "default",
@@ -71,6 +72,7 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
+    "geminicodeassist.enableTelemetry": false,
     "git-graph.maxDepthOfRepoSearch": 10,
     "git.repositoryScanMaxDepth": -1,
     "go.buildFlags": [
@@ -128,6 +130,5 @@
     "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
     "workbench.preferredLightColorTheme": "GitHub Light",
     "workbench.sideBar.location": "left",
-    "workbench.startupEditor": "none",
-    "amazonQ.telemetry": false
+    "workbench.startupEditor": "none"
 }
