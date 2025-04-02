@@ -247,13 +247,11 @@ function vscode_package_user_conf() {
     # code --list-extensions | xargs -L 1 code --uninstall-extension
 
     ## vscode extensions
-    code --install-extension amazonwebservices.amazon-q-vscode
     code --install-extension continue.continue
     code --install-extension dart-code.dart-code
     code --install-extension dart-code.flutter
     code --install-extension github.github-vscode-theme
     code --install-extension golang.go
-    code --install-extension google.geminicodeassist
     code --install-extension mhutchie.git-graph
     code --install-extension ms-python.debugpy
     code --install-extension ms-python.isort
@@ -431,11 +429,12 @@ function python_virtualenv_packages() {
     conda create -y --name ${CONDA_VENV} python=${PYTHON_VERSION} \
         pip pylint black ipykernel ipywidgets
     conda install -y -n ${CONDA_VENV} numpy scipy pandas matplotlib seaborn
-    conda install -y -n ${CONDA_VENV} opencv-python
+    conda install -y -n ${CONDA_VENV} opencv
     conda install -y -n ${CONDA_VENV} scikit-learn
     conda install -y -n ${CONDA_VENV} pytorch torchvision torchaudio
     conda install -y -n ${CONDA_VENV} keras tensorflow
     conda install -y -n ${CONDA_VENV} sqlalchemy flask jinja2
+    conda install -y -n ${CONDA_VENV} google-genai
 }
 
 function python_user_conf() {

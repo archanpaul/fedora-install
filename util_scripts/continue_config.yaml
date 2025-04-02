@@ -1,0 +1,29 @@
+name: Local Assistant
+version: 1.0.0
+schema: v1
+models:
+  - name: Llama3.2
+    provider: ollama
+    model: llama3.2:latest
+  - name: qwen2.5-coder:0.5b
+    provider: ollama
+    model: qwen2.5-coder:0.5b
+    roles:
+      - autocomplete
+  - name: qwen2.5-coder:1.5b
+    provider: ollama
+    model: qwen2.5-coder:1.5b
+    roles:
+      - autocomplete
+  - name: Gemini 2.0 Flash
+    provider: gemini
+    model: gemini-2.0-flash
+    apiKey: API_KEY
+context:
+  - provider: code
+  - provider: docs
+  - provider: diff
+  - provider: terminal
+  - provider: problems
+  - provider: folder
+  - provider: codebase

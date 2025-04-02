@@ -1,3 +1,6 @@
+[Connections]
+first-run=false
+
 [Ptyxis]
 audible-bell=false
 default-profile-uuid='77bde30562c8985b0b7dc8f6677691c5'
@@ -5,7 +8,7 @@ font-name='JetBrains Mono Medium 11'
 profile-uuids=['77bde30562c8985b0b7dc8f6677691c5']
 use-system-font=false
 visual-bell=false
-window-size=(uint32 104, uint32 42)
+window-size=(uint32 139, uint32 48)
 
 [Ptyxis/Profiles/77bde30562c8985b0b7dc8f6677691c5]
 palette='gnome'
@@ -189,8 +192,8 @@ inverted-colors=false
 show-sidebar=false
 sidebar-page='thumbnails'
 sidebar-size=148
-sizing-mode='fit-width'
-window-ratio=(1.9830508474576272, 2.1405622489959839)
+sizing-mode='fit-page'
+window-ratio=(2.5852340364744535, 1.5488963711185924)
 zoom=1.0
 
 [evolution-data-server]
@@ -202,6 +205,7 @@ report-device-list-timestamp=int64 1736595334
 [gnome-system-monitor]
 cpu-colors=[(uint32 0, '#e01b24'), (1, '#ff7800'), (2, '#f6d32d'), (3, '#33d17a'), (4, '#26a269'), (5, '#62a0ea'), (6, '#1c71d8'), (7, '#613583'), (8, '#9141ac'), (9, '#c061cb'), (10, '#ffbe6f'), (11, '#f9f06b'), (12, '#8ff0a4'), (13, '#2ec27e'), (14, '#1a5fb4'), (15, '#c061cb'), (16, '#7999968ef332'), (17, '#ba0af3327999')]
 current-tab='resources'
+maximized=false
 show-dependencies=false
 show-whose-processes='user'
 window-height=1033
@@ -232,6 +236,9 @@ initial-size-file-chooser=(890, 550)
 [portal/filechooser/chromium-browser]
 last-folder-path='/home/arp/Downloads'
 
+[portal/filechooser/code]
+last-folder-path='/home/arp/delme'
+
 [portal/filechooser/com.google.Chrome]
 last-folder-path='/home/arp/Downloads'
 
@@ -239,7 +246,10 @@ last-folder-path='/home/arp/Downloads'
 last-folder-path='/home/arp/Pictures/Wallpapers'
 
 [portal/filechooser/google-chrome]
-last-folder-path='/home/arp/Downloads'
+last-folder-path='/home/arp/Pictures/meeting_backgrounds'
+
+[portal/filechooser/md.obsidian.Obsidian]
+last-folder-path='/home/arp/workspace/obsidian_vaults/knowledgebase_arp.git'
 
 [portal/filechooser/microsoft-edge]
 last-folder-path='/home/arp/Downloads'
@@ -320,12 +330,12 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1742787862
+check-timestamp=int64 1743391471
 first-run=false
-flatpak-purge-timestamp=int64 1742796823
+flatpak-purge-timestamp=int64 1743417453
 install-timestamp=int64 1737124683
 packagekit-historical-updates-timestamp=uint64 1742612053
-update-notification-timestamp=int64 1742622686
+update-notification-timestamp=int64 1743216242
 
 [system/location]
 enabled=true
