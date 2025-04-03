@@ -253,6 +253,7 @@ function vscode_package_user_conf() {
     code --install-extension github.github-vscode-theme
     code --install-extension golang.go
     code --install-extension mhutchie.git-graph
+    code --install-extension ms-python.black-formatter
     code --install-extension ms-python.debugpy
     code --install-extension ms-python.isort
     code --install-extension ms-python.python
@@ -263,17 +264,15 @@ function vscode_package_user_conf() {
     code --install-extension ms-toolsai.vscode-jupyter-cell-tags
     code --install-extension ms-toolsai.vscode-jupyter-slideshow
     code --install-extension ms-vscode-remote.remote-containers
-    code --install-extension ms-vscode-remote.remote-ssh
-    code --install-extension ms-vscode-remote.remote-ssh-edit
     code --install-extension ms-vscode.cpptools
-    code --install-extension ms-vscode.hexeditor
     code --install-extension ms-vscode.live-server
     code --install-extension ms-vscode.makefile-tools
     code --install-extension ms-vscode.remote-explorer
+    code --install-extension redhat.vscode-yaml
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2024.3.1.13
+    ANDROID_STUDIO_RELEASE=2024.3.1.14
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
