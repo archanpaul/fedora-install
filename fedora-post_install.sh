@@ -76,6 +76,7 @@ function container_packages() {
     # sudo dnf -y install @virtualization
 
     sudo dnf -y install podman podman-compose
+    sudo dnf -y install podman-docker
 
     sudo dnf -y install virt-manager
 }
