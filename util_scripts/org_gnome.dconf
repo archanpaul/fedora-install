@@ -8,7 +8,7 @@ is-maximized=false
 window-size=(960, 600)
 
 [control-center]
-last-panel='display'
+last-panel='sound'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -32,8 +32,8 @@ translate=true
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2025-04-17-15-30-21-vecteezy_system-network-processor-server_30645313.jpg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2025-04-17-15-30-21-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2025-04-19-17-15-18-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2025-04-19-17-15-18-vecteezy_system-network-processor-server_30645313.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -65,7 +65,13 @@ clock-show-weekday=false
 show-battery-percentage=true
 
 [desktop/notifications]
-application-children=['org-gnome-tweaks', 'org-gnome-ptyxis', 'org-gnome-software']
+application-children=['org-gnome-tweaks', 'org-gnome-ptyxis', 'org-gnome-software', 'org-freedesktop-problems-applet', 'com-spotify-client']
+
+[desktop/notifications/application/com-spotify-client]
+application-id='com.spotify.Client.desktop'
+
+[desktop/notifications/application/org-freedesktop-problems-applet]
+application-id='org.freedesktop.problems.applet.desktop'
 
 [desktop/notifications/application/org-gnome-ptyxis]
 application-id='org.gnome.Ptyxis.desktop'
@@ -75,6 +81,9 @@ application-id='org.gnome.Software.desktop'
 
 [desktop/notifications/application/org-gnome-tweaks]
 application-id='org.gnome.tweaks.desktop'
+
+[desktop/peripherals/keyboard]
+numlock-state=true
 
 [desktop/peripherals/touchpad]
 two-finger-scrolling-enabled=true
@@ -88,13 +97,17 @@ report-technical-problems=false
 [desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2025-04-17-15-30-21-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2025-04-19-17-15-18-vecteezy_system-network-processor-server_30645313.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
 [desktop/search-providers]
 disable-external=true
 sort-order=['org.gnome.Settings.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Nautilus.desktop']
+
+[desktop/sound]
+event-sounds=false
+theme-name='__custom'
 
 [desktop/wm/preferences]
 button-layout='appmenu:minimize,maximize,close'
@@ -114,6 +127,7 @@ migrated-gtk-settings=true
 search-filter-time-type='last_modified'
 
 [nautilus/window-state]
+initial-size=(890, 550)
 initial-size-file-chooser=(890, 550)
 
 [portal/filechooser/code]
@@ -126,11 +140,19 @@ last-folder-path='/home/arp/Pictures/Wallpapers'
 night-light-last-coordinates=(19.134122694246244, 73.003900000000002)
 night-light-schedule-automatic=false
 
+[settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Control>Escape'
+command='systemctl suspend'
+name='Suspend'
+
 [shell]
-app-picker-layout=[{'org.gnome.Software.desktop': <{'position': <0>}>, 'org.gnome.Connections.desktop': <{'position': <1>}>, 'org.gnome.clocks.desktop': <{'position': <2>}>, 'org.gnome.Snapshot.desktop': <{'position': <3>}>, 'com.spotify.Client.desktop': <{'position': <4>}>, 'chromium-browser.desktop': <{'position': <5>}>, 'microsoft-edge.desktop': <{'position': <6>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <7>}>, 'org.gnome.Evince.desktop': <{'position': <8>}>, 'calibre-gui.desktop': <{'position': <9>}>, 'org.gnome.Logs.desktop': <{'position': <10>}>, 'android-studio.desktop': <{'position': <11>}>, 'gimp.desktop': <{'position': <12>}>, 'org.inkscape.Inkscape.desktop': <{'position': <13>}>, 'org.gnome.Loupe.desktop': <{'position': <14>}>, 'md.obsidian.Obsidian.desktop': <{'position': <15>}>, 'virt-manager.desktop': <{'position': <16>}>, 'org.gnome.Boxes.desktop': <{'position': <17>}>, 'libreoffice-writer.desktop': <{'position': <18>}>, 'libreoffice-calc.desktop': <{'position': <19>}>, 'libreoffice-impress.desktop': <{'position': <20>}>, 'libreoffice-draw.desktop': <{'position': <21>}>, 'libreoffice-math.desktop': <{'position': <22>}>}, {'org.gnome.Maps.desktop': <{'position': <0>}>, 'org.gnome.Calendar.desktop': <{'position': <1>}>, 'torbrowser.desktop': <{'position': <2>}>, 'transmission-gtk.desktop': <{'position': <3>}>, 'net.thunderbird.Thunderbird.desktop': <{'position': <4>}>, 'org.gnome.Characters.desktop': <{'position': <5>}>, 'org.gnome.font-viewer.desktop': <{'position': <6>}>, 'blender.desktop': <{'position': <7>}>, 'com.obsproject.Studio.desktop': <{'position': <8>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <9>}>, 'org.gnome.Totem.desktop': <{'position': <10>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <11>}>, 'org.gnome.Shotwell.desktop': <{'position': <12>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <13>}>, 'nvim.desktop': <{'position': <14>}>, 'simple-scan.desktop': <{'position': <15>}>, 'scrcpy.desktop': <{'position': <16>}>, 'org.gnome.baobab.desktop': <{'position': <17>}>, 'org.gnome.DiskUtility.desktop': <{'position': <18>}>, 'gtk-v4l.desktop': <{'position': <19>}>, 'org.gnome.Firmware.desktop': <{'position': <20>}>, 'org.gnome.tweaks.desktop': <{'position': <21>}>, 'org.gnome.Settings.desktop': <{'position': <22>}>, 'System': <{'position': <23>}>}]
+app-picker-layout=[{'org.gnome.Software.desktop': <{'position': <0>}>, 'org.gnome.Connections.desktop': <{'position': <1>}>, 'org.gnome.clocks.desktop': <{'position': <2>}>, 'org.gnome.Snapshot.desktop': <{'position': <3>}>, 'org.gnome.Loupe.desktop': <{'position': <4>}>, 'google-chrome.desktop': <{'position': <5>}>, 'chromium-browser.desktop': <{'position': <6>}>, 'android-studio.desktop': <{'position': <7>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <8>}>, 'org.gnome.Evince.desktop': <{'position': <9>}>, 'calibre-gui.desktop': <{'position': <10>}>, 'org.gnome.Logs.desktop': <{'position': <11>}>, 'gimp.desktop': <{'position': <12>}>, 'org.inkscape.Inkscape.desktop': <{'position': <13>}>, 'org.gnome.Boxes.desktop': <{'position': <14>}>, 'virt-manager.desktop': <{'position': <15>}>, 'libreoffice-writer.desktop': <{'position': <16>}>, 'libreoffice-calc.desktop': <{'position': <17>}>, 'libreoffice-impress.desktop': <{'position': <18>}>, 'libreoffice-draw.desktop': <{'position': <19>}>, 'libreoffice-math.desktop': <{'position': <20>}>, 'md.obsidian.Obsidian.desktop': <{'position': <21>}>, 'com.spotify.Client.desktop': <{'position': <22>}>}, {'org.gnome.Maps.desktop': <{'position': <0>}>, 'org.gnome.Calendar.desktop': <{'position': <1>}>, 'torbrowser.desktop': <{'position': <2>}>, 'transmission-gtk.desktop': <{'position': <3>}>, 'net.thunderbird.Thunderbird.desktop': <{'position': <4>}>, 'org.gnome.Characters.desktop': <{'position': <5>}>, 'org.gnome.font-viewer.desktop': <{'position': <6>}>, 'blender.desktop': <{'position': <7>}>, 'com.obsproject.Studio.desktop': <{'position': <8>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <9>}>, 'org.gnome.Totem.desktop': <{'position': <10>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <11>}>, 'org.gnome.Shotwell.desktop': <{'position': <12>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <13>}>, 'nvim.desktop': <{'position': <14>}>, 'simple-scan.desktop': <{'position': <15>}>, 'scrcpy.desktop': <{'position': <16>}>, 'org.gnome.baobab.desktop': <{'position': <17>}>, 'org.gnome.DiskUtility.desktop': <{'position': <18>}>, 'gtk-v4l.desktop': <{'position': <19>}>, 'org.gnome.Firmware.desktop': <{'position': <20>}>, 'org.gnome.tweaks.desktop': <{'position': <21>}>, 'org.gnome.Settings.desktop': <{'position': <22>}>}, {'System': <{'position': <0>}>}]
 disabled-extensions=['background-logo@fedorahosted.org', 'places-menu@gnome-shell-extensions.gcampax.github.com']
 enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com']
-favorite-apps=['org.gnome.Nautilus.desktop', 'code.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Ptyxis.desktop', 'google-chrome.desktop', 'org.mozilla.firefox.desktop', 'org.gnome.SystemMonitor.desktop']
+favorite-apps=['org.gnome.Nautilus.desktop', 'code.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Ptyxis.desktop', 'org.mozilla.firefox.desktop', 'org.gnome.SystemMonitor.desktop', 'microsoft-edge.desktop']
 welcome-dialog-last-shown-version='48.1'
 
 [shell/extensions/dash-to-panel]
@@ -165,7 +187,7 @@ tray-size=0
 window-preview-title-position='TOP'
 
 [software]
-check-timestamp=int64 1744881192
+check-timestamp=int64 1745063120
 first-run=false
 
 [system/location]

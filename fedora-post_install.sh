@@ -340,7 +340,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.29.0-stable"
+    FLUTTER_VERSION="3.29.3-stable"
 
     wget -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
@@ -407,43 +407,39 @@ function python_packages() {
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
     sudo dnf -y install python3-opencv
+    sudo dnf -y install python3-sqlalchemy
+    sudo dnf -y install python3-scikit-learn
     sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook
     sudo dnf -y install python3-torch python3-torchdata python3-torchvision python3-torchaudio python3-torchtext
 }
 
 function python_virtualenv_packages() {
+    PYTHON_VERSION=3.13
+    VENV=pyvenv_313
+    VENV_FOLDER=/opt/python_venv/${VENV}
+
     ## virtualenvs
-    sudo rm -rf /opt/conda_venv
-    sudo mkdir -p /opt/conda_venv
-    sudo chown -R root:wheel /opt/conda_venv
-    sudo chmod -R u+rwX,go+rwX,o-w /opt/conda_venv
+    sudo rm -rf ${VENV_FOLDER}
+    sudo mkdir -p ${VENV_FOLDER}
+    sudo chown -R root:wheel ${VENV_FOLDER}
+    sudo chmod -R u+rwX,go+rwX,o-w ${VENV_FOLDER}
 
-    PYTHON_VERSION=3.12
-    CONDA_PATH_PREFIX=/opt/conda_venv
-    CONDA_VENV=pyvenv_312
-    CONDA_VENV_PATH=${CONDA_PATH_PREFIX}${CONDA_VENV}
+    /usr/bin/python${PYTHON_VERSION} -m venv --system-site-packages --symlinks ${VENV_FOLDER}
 
-    conda config --append envs_dirs ${CONDA_PATH_PREFIX}
-    conda config --set env_prompt '({name})'
-
-    conda create -y --name ${CONDA_VENV} python=${PYTHON_VERSION} \
-        pip pylint black ipykernel ipywidgets
-    conda install -y -n ${CONDA_VENV} numpy scipy pandas matplotlib seaborn
-    conda install -y -n ${CONDA_VENV} opencv
-    conda install -y -n ${CONDA_VENV} scikit-learn
-    conda install -y -n ${CONDA_VENV} pytorch torchvision torchaudio
-    conda install -y -n ${CONDA_VENV} keras tensorflow
-    conda install -y -n ${CONDA_VENV} sqlalchemy flask jinja2
-    conda install -y -n ${CONDA_VENV} google-genai
+    set -e
+    source ${VENV_FOLDER}/bin/activate && \
+    pip install --upgrade pip && \
+    pip install black && \
+    deactivate
 }
 
 function python_user_conf() {
-    PYTHON_VERSION=3.12
-    CONDA_PATH_PREFIX=/opt/conda_venv
-    CONDA_VENV=pyvenv_312
-    conda config --append envs_dirs ${CONDA_PATH_PREFIX}
-    conda config --set env_prompt '({name})'
-    conda config --set auto_activate_base False
+    VENV=pyvenv_313
+    VENV_FOLDER=/opt/python_venv/${VENV}
+
+    mkdir -p ~/.virtualenvs
+    ln -sfn ${VENV_FOLDER} ~/.virtualenvs/${VENV}
+    ln -sfn ~/.virtualenvs/${VENV} ~/.venv
 }
 
 function gnome_packages() {
