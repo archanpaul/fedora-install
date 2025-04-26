@@ -176,9 +176,6 @@ window-width=1092
 col-26-visible=false
 col-26-width=0
 
-[login-screen]
-enable-fingerprint-authentication=true
-enable-smartcard-authentication=false
 
 [mutter]
 dynamic-workspaces=false
@@ -222,6 +219,7 @@ disabled-extensions=['background-logo@fedorahosted.org', 'dash-to-dock@micxgx.gm
 enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com']
 favorite-apps=['org.gnome.SystemMonitor.desktop', 'org.gnome.Ptyxis.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop', 'org.mozilla.firefox.desktop', 'microsoft-edge.desktop', 'code.desktop']
 last-selected-power-profile='performance'
+remember-mount-password=false
 welcome-dialog-last-shown-version='48.1'
 
 [shell/extensions/dash-to-panel]
@@ -239,10 +237,10 @@ global-border-radius=4
 hotkeys-overlay-combo='TEMPORARILY'
 leftbox-padding=0
 panel-anchors='{"DEL-5RCYP82C02MT":"MIDDLE","LEN-0x00000000":"MIDDLE"}'
-panel-element-positions='{"DEL-5RCYP82C02MT":[{"element":"showAppsButton","visible":true,"position":"centered"},{"element":"activitiesButton","visible":true,"position":"centered"},{"element":"leftBox","visible":true,"position":"centered"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"centered"},{"element":"rightBox","visible":true,"position":"centered"},{"element":"dateMenu","visible":true,"position":"centered"},{"element":"systemMenu","visible":true,"position":"centered"},{"element":"desktopButton","visible":true,"position":"centered"}]}'
-panel-lengths='{"DEL-5RCYP82C02MT":50}'
+panel-element-positions='{"DEL-5RCYP82C02MT":[{"element":"showAppsButton","visible":true,"position":"centered"},{"element":"activitiesButton","visible":true,"position":"centered"},{"element":"leftBox","visible":true,"position":"centered"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"centered"},{"element":"rightBox","visible":true,"position":"centered"},{"element":"dateMenu","visible":true,"position":"centered"},{"element":"systemMenu","visible":true,"position":"centered"},{"element":"desktopButton","visible":true,"position":"centered"}],"LEN-0x00000000":[{"element":"showAppsButton","visible":true,"position":"centered"},{"element":"activitiesButton","visible":false,"position":"centered"},{"element":"leftBox","visible":true,"position":"centered"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"centered"},{"element":"rightBox","visible":true,"position":"centered"},{"element":"dateMenu","visible":true,"position":"centered"},{"element":"systemMenu","visible":true,"position":"centered"},{"element":"desktopButton","visible":true,"position":"centered"}]}'
+panel-lengths='{"DEL-5RCYP82C02MT":50,"LEN-0x00000000":40}'
 panel-positions='{"DEL-5RCYP82C02MT":"BOTTOM"}'
-panel-sizes='{"DEL-5RCYP82C02MT":32}'
+panel-sizes='{"DEL-5RCYP82C02MT":32,"LEN-0x00000000":32}'
 prefs-opened=false
 primary-monitor='DEL-5RCYP82C02MT'
 status-icon-padding=0
