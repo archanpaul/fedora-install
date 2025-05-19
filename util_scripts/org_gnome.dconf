@@ -3,7 +3,7 @@ audible-bell=false
 default-profile-uuid='77335a7ceb057e6d2d4f0e136805b7b0'
 profile-uuids=['77335a7ceb057e6d2d4f0e136805b7b0']
 visual-bell=true
-window-size=(uint32 136, uint32 52)
+window-size=(uint32 136, uint32 49)
 
 [Ptyxis/Profiles/77335a7ceb057e6d2d4f0e136805b7b0]
 palette='gnome'
@@ -83,7 +83,7 @@ show-battery-percentage=true
 text-scaling-factor=1.0
 
 [desktop/notifications]
-application-children=['org-gnome-ptyxis', 'gnome-wellbeing-panel', 'gnome-power-panel', 'org-freedesktop-problems-applet', 'com-spotify-client', 'org-gnome-software', 'google-chrome', 'gimp', 'org-gnome-nautilus']
+application-children=['org-gnome-ptyxis', 'gnome-wellbeing-panel', 'gnome-power-panel', 'org-freedesktop-problems-applet', 'com-spotify-client', 'org-gnome-software', 'google-chrome', 'gimp', 'org-gnome-nautilus', 'microsoft-edge']
 
 [desktop/notifications/application/com-spotify-client]
 application-id='com.spotify.Client.desktop'
@@ -99,6 +99,9 @@ application-id='gnome-wellbeing-panel.desktop'
 
 [desktop/notifications/application/google-chrome]
 application-id='google-chrome.desktop'
+
+[desktop/notifications/application/microsoft-edge]
+application-id='microsoft-edge.desktop'
 
 [desktop/notifications/application/org-freedesktop-problems-applet]
 application-id='org.freedesktop.problems.applet.desktop'
@@ -138,7 +141,7 @@ secondary-color='#000000000000'
 sort-order=['org.gnome.Settings.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Nautilus.desktop']
 
 [desktop/session]
-idle-delay=uint32 600
+idle-delay=uint32 0
 
 [desktop/sound]
 event-sounds=false
@@ -151,15 +154,15 @@ num-workspaces=2
 [evince/default]
 continuous=true
 dual-page=false
-dual-page-odd-left=false
+dual-page-odd-left=true
 enable-spellchecking=true
 fullscreen=false
 inverted-colors=false
 show-sidebar=true
-sidebar-page='links'
-sidebar-size=513
+sidebar-page='thumbnails'
+sidebar-size=148
 sizing-mode='automatic'
-window-ratio=(2.4395424836601309, 1.2234848484848484)
+window-ratio=(2.1502525252525251, 1.1764705882352942)
 
 [evolution-data-server]
 migrated=true
@@ -181,17 +184,20 @@ col-26-width=0
 dynamic-workspaces=false
 workspaces-only-on-primary=false
 
+[nautilus/compression]
+default-compression-format='tar.xz'
+
 [nautilus/preferences]
 default-folder-viewer='icon-view'
 migrated-gtk-settings=true
 search-filter-time-type='last_modified'
 
 [nautilus/window-state]
-initial-size=(890, 550)
+initial-size=(1143, 923)
 initial-size-file-chooser=(890, 550)
 
 [portal/filechooser/code]
-last-folder-path='/home/arp/workspace/x10e.workspace/x10e_organiod.workspace'
+last-folder-path='/home/arp/delme/tech_knowledgebase.git'
 
 [portal/filechooser/google-chrome]
 last-folder-path='/home/arp/Pictures/Wallpapers'
@@ -212,6 +218,11 @@ custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybin
 binding='<Control>Escape'
 command='systemctl suspend'
 name='Suspend'
+
+[settings-daemon/plugins/power]
+power-saver-profile-on-low-battery=false
+sleep-inactive-ac-type='nothing'
+sleep-inactive-battery-type='nothing'
 
 [shell]
 app-picker-layout=[{'org.gnome.Software.desktop': <{'position': <0>}>, 'org.gnome.Connections.desktop': <{'position': <1>}>, 'org.gnome.Calendar.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Loupe.desktop': <{'position': <4>}>, 'org.gnome.Snapshot.desktop': <{'position': <5>}>, 'org.gnome.Totem.desktop': <{'position': <6>}>, 'android-studio.desktop': <{'position': <7>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <8>}>, 'org.gnome.Evince.desktop': <{'position': <9>}>, 'calibre-gui.desktop': <{'position': <10>}>, 'org.gnome.Boxes.desktop': <{'position': <11>}>, 'org.inkscape.Inkscape.desktop': <{'position': <12>}>, 'gimp.desktop': <{'position': <13>}>, 'chromium-browser.desktop': <{'position': <14>}>, 'google-chrome.desktop': <{'position': <15>}>, 'libreoffice-calc.desktop': <{'position': <16>}>, 'libreoffice-draw.desktop': <{'position': <17>}>, 'libreoffice-impress.desktop': <{'position': <18>}>, 'libreoffice-writer.desktop': <{'position': <19>}>, 'libreoffice-math.desktop': <{'position': <20>}>, 'md.obsidian.Obsidian.desktop': <{'position': <21>}>, 'com.spotify.Client.desktop': <{'position': <22>}>, 'msedge-hnpfjngllnobngcgfapefoaidbinmjnm-Default.desktop': <{'position': <23>}>}, {'org.gnome.font-viewer.desktop': <{'position': <0>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <1>}>, 'transmission-gtk.desktop': <{'position': <2>}>, 'torbrowser.desktop': <{'position': <3>}>, 'net.thunderbird.Thunderbird.desktop': <{'position': <4>}>, 'blender.desktop': <{'position': <5>}>, 'com.obsproject.Studio.desktop': <{'position': <6>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <7>}>, 'org.gnome.Shotwell.desktop': <{'position': <8>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <9>}>, 'virt-manager.desktop': <{'position': <10>}>, 'scrcpy.desktop': <{'position': <11>}>, 'org.gnome.DiskUtility.desktop': <{'position': <12>}>, 'org.gnome.Logs.desktop': <{'position': <13>}>, 'simple-scan.desktop': <{'position': <14>}>, 'org.gnome.tweaks.desktop': <{'position': <15>}>, 'org.gnome.Settings.desktop': <{'position': <16>}>, 'org.gnome.Extensions.desktop': <{'position': <17>}>, 'org.gnome.Firmware.desktop': <{'position': <18>}>, 'org.gnome.baobab.desktop': <{'position': <19>}>, 'System': <{'position': <20>}>}]
@@ -255,10 +266,12 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1745557577
+check-timestamp=int64 1747634138
 first-run=false
-flatpak-purge-timestamp=int64 1745569466
-packagekit-historical-updates-timestamp=uint64 1745641539
+flatpak-purge-timestamp=int64 1747634048
+install-timestamp=int64 1745817376
+packagekit-historical-updates-timestamp=uint64 1745817376
+update-notification-timestamp=int64 1747472282
 
 [tweaks]
 show-extensions-notice=false

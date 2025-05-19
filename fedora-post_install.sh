@@ -273,7 +273,7 @@ function vscode_package_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2024.3.1.14
+    ANDROID_STUDIO_RELEASE=2024.3.2.14
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
