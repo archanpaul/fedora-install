@@ -430,6 +430,7 @@ function python_virtualenv_packages() {
     source ${VENV_FOLDER}/bin/activate && \
     pip install --upgrade pip && \
     pip install black && \
+    pip install "transformers[torch]" && \
     deactivate
 }
 
