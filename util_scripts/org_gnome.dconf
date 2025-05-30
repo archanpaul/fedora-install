@@ -27,7 +27,7 @@ window-maximized=false
 window-size=(398, 616)
 
 [control-center]
-last-panel='sound'
+last-panel='background'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -43,6 +43,11 @@ apps=['org.gnome.Weather.desktop', 'nvim.desktop', 'org.gnome.Maps.desktop', 'or
 name='Utils'
 translate=false
 
+[desktop/app-folders/folders/Utilities]
+apps=['org.gnome.Connections.desktop', 'org.gnome.Evince.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Loupe.desktop']
+name='X-GNOME-Shell-Utilities.directory'
+translate=true
+
 [desktop/app-folders/folders/YaST]
 categories=['X-SuSE-YaST']
 name='suse-yast.directory'
@@ -51,8 +56,8 @@ translate=true
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2025-04-21-08-15-04-vecteezy_system-network-processor-server_30645313.jpg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2025-04-21-08-15-04-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2025-05-30-08-04-03-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2025-05-30-08-04-03-vecteezy_system-network-processor-server_30645313.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -74,6 +79,7 @@ show-weekdate=true
 automatic-timezone=true
 
 [desktop/input-sources]
+current=uint32 0
 sources=[('xkb', 'in+eng')]
 
 [desktop/interface]
@@ -135,12 +141,13 @@ two-finger-scrolling-enabled=true
 old-files-age=uint32 1
 recent-files-max-age=1
 remove-old-temp-files=true
+report-technical-problems=false
 
 [desktop/screensaver]
 color-shading-type='solid'
 lock-delay=uint32 30
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2025-04-21-08-15-04-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2025-05-30-08-04-03-vecteezy_system-network-processor-server_30645313.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -189,9 +196,6 @@ window-width=1092
 col-26-visible=false
 col-26-width=0
 
-[login-screen]
-enable-fingerprint-authentication=true
-enable-smartcard-authentication=false
 
 [mutter]
 dynamic-workspaces=false
@@ -201,7 +205,7 @@ workspaces-only-on-primary=false
 default-compression-format='tar.xz'
 
 [nautilus/preferences]
-default-folder-viewer='list-view'
+default-folder-viewer='icon-view'
 migrated-gtk-settings=true
 search-filter-time-type='last_modified'
 
@@ -210,7 +214,7 @@ initial-size=(1143, 923)
 initial-size-file-chooser=(949, 645)
 
 [portal/filechooser/code]
-last-folder-path='/home/arp/workspace/gene_expression_analysis.git/legacy/notebooks'
+last-folder-path='/home/arp/workspace/fedora-install.git'
 
 [portal/filechooser/google-chrome]
 last-folder-path='/home/arp/workspace/gene_expression_analysis.git/datasets'
@@ -228,6 +232,7 @@ last-folder-path='/home/arp/Pictures/Wallpapers'
 last-folder-path='/home/arp/delme'
 
 [settings-daemon/plugins/color]
+night-light-last-coordinates=(19.1266, 73.013599999999997)
 night-light-schedule-automatic=false
 
 [settings-daemon/plugins/media-keys]
@@ -286,12 +291,16 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1748321509
+check-timestamp=int64 1748571912
 first-run=false
 flatpak-purge-timestamp=int64 1748323392
 install-timestamp=int64 1747814699
 packagekit-historical-updates-timestamp=uint64 1747814699
+security-timestamp=int64 1748571913924445
 update-notification-timestamp=int64 1747814765
+
+[system/location]
+enabled=true
 
 [tweaks]
 show-extensions-notice=false
