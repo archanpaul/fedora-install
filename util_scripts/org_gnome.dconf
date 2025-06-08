@@ -56,8 +56,8 @@ translate=true
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2025-05-30-08-04-03-vecteezy_system-network-processor-server_30645313.jpg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2025-05-30-08-04-03-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2025-06-08-16-45-47-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2025-06-08-16-45-47-vecteezy_system-network-processor-server_30645313.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -87,7 +87,7 @@ accent-color='slate'
 clock-show-date=false
 clock-show-seconds=true
 show-battery-percentage=true
-text-scaling-factor=1.0
+text-scaling-factor=0.90000000000000002
 
 [desktop/notifications]
 application-children=['org-gnome-ptyxis', 'gnome-wellbeing-panel', 'gnome-power-panel', 'org-freedesktop-problems-applet', 'com-spotify-client', 'org-gnome-software', 'google-chrome', 'gimp', 'org-gnome-nautilus', 'microsoft-edge', 'md-obsidian-obsidian', 'calibre-gui']
@@ -147,7 +147,7 @@ report-technical-problems=false
 color-shading-type='solid'
 lock-delay=uint32 30
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2025-05-30-08-04-03-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2025-06-08-16-45-47-vecteezy_system-network-processor-server_30645313.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -272,11 +272,12 @@ focus-highlight-opacity=15
 global-border-radius=4
 hotkeys-overlay-combo='TEMPORARILY'
 leftbox-padding=0
-panel-anchors='{"DEL-5RCYP82C02MT":"MIDDLE","LEN-0x00000000":"MIDDLE"}'
+panel-anchors='{"DEL-5RCYP82C02MT":"MIDDLE","LEN-0x00000000":"MIDDLE","BNQ-ETR4N0132404U":"MIDDLE"}'
 panel-element-positions='{"DEL-5RCYP82C02MT":[{"element":"showAppsButton","visible":true,"position":"centered"},{"element":"activitiesButton","visible":true,"position":"centered"},{"element":"leftBox","visible":true,"position":"centered"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"centered"},{"element":"rightBox","visible":true,"position":"centered"},{"element":"dateMenu","visible":true,"position":"centered"},{"element":"systemMenu","visible":true,"position":"centered"},{"element":"desktopButton","visible":true,"position":"centered"}],"LEN-0x00000000":[{"element":"showAppsButton","visible":true,"position":"centered"},{"element":"activitiesButton","visible":false,"position":"centered"},{"element":"leftBox","visible":true,"position":"centered"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"centered"},{"element":"rightBox","visible":true,"position":"centered"},{"element":"dateMenu","visible":true,"position":"centered"},{"element":"systemMenu","visible":true,"position":"centered"},{"element":"desktopButton","visible":true,"position":"centered"}]}'
-panel-lengths='{"DEL-5RCYP82C02MT":50,"LEN-0x00000000":40}'
+panel-element-positions-monitors-sync=false
+panel-lengths='{"DEL-5RCYP82C02MT":50,"LEN-0x00000000":40,"BNQ-ETR4N0132404U":-1}'
 panel-positions='{"DEL-5RCYP82C02MT":"BOTTOM"}'
-panel-sizes='{"DEL-5RCYP82C02MT":32,"LEN-0x00000000":32}'
+panel-sizes='{"DEL-5RCYP82C02MT":32,"LEN-0x00000000":32,"BNQ-ETR4N0132404U":28}'
 prefs-opened=false
 primary-monitor='DEL-5RCYP82C02MT'
 status-icon-padding=0
@@ -291,11 +292,11 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1748571912
+check-timestamp=int64 1749381376
 first-run=false
 flatpak-purge-timestamp=int64 1748323392
 install-timestamp=int64 1747814699
-packagekit-historical-updates-timestamp=uint64 1747814699
+packagekit-historical-updates-timestamp=uint64 1749381177
 security-timestamp=int64 1748571913924445
 update-notification-timestamp=int64 1747814765
 
