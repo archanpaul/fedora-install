@@ -260,7 +260,9 @@ welcome-dialog-last-shown-version='48.1'
 
 [shell/extensions/dash-to-panel]
 animate-appicon-hover-animation-extent={'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}
-appicon-margin=2
+appicon-margin=0
+appicon-padding=4
+appicon-style='NORMAL'
 dot-color-dominant=true
 dot-color-override=false
 dot-position='BOTTOM'
@@ -270,6 +272,7 @@ extension-version=68
 focus-highlight-dominant=true
 focus-highlight-opacity=15
 global-border-radius=4
+highlight-appicon-hover-border-radius=2
 hotkeys-overlay-combo='TEMPORARILY'
 leftbox-padding=0
 panel-anchors='{"DEL-5RCYP82C02MT":"MIDDLE","LEN-0x00000000":"MIDDLE","BNQ-ETR4N0132404U":"MIDDLE"}'
@@ -277,7 +280,7 @@ panel-element-positions='{"DEL-5RCYP82C02MT":[{"element":"showAppsButton","visib
 panel-element-positions-monitors-sync=false
 panel-lengths='{"DEL-5RCYP82C02MT":50,"LEN-0x00000000":40,"BNQ-ETR4N0132404U":-1}'
 panel-positions='{"DEL-5RCYP82C02MT":"BOTTOM"}'
-panel-sizes='{"DEL-5RCYP82C02MT":32,"LEN-0x00000000":32,"BNQ-ETR4N0132404U":28}'
+panel-sizes='{"DEL-5RCYP82C02MT":32,"LEN-0x00000000":32,"BNQ-ETR4N0132404U":24}'
 prefs-opened=false
 primary-monitor='DEL-5RCYP82C02MT'
 status-icon-padding=0
