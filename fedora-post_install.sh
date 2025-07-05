@@ -248,7 +248,6 @@ function vscode_package_user_conf() {
     # code --list-extensions | xargs -L 1 code --uninstall-extension
 
     ## vscode extensions
-    code --install-extension amazonwebservices.amazon-q-vscode
     code --install-extension continue.continue
     code --install-extension dart-code.dart-code
     code --install-extension dart-code.flutter
@@ -256,6 +255,7 @@ function vscode_package_user_conf() {
     code --install-extension golang.go
     code --install-extension google.geminicodeassist
     code --install-extension mhutchie.git-graph
+    code --install-extension ms-azuretools.vscode-containers
     code --install-extension ms-python.black-formatter
     code --install-extension ms-python.debugpy
     code --install-extension ms-python.isort
