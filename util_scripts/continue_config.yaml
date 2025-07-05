@@ -2,23 +2,50 @@ name: Local Assistant
 version: 1.0.0
 schema: v1
 models:
-  - name: Llama3.2
+  - name: Llama 3.1 8B
     provider: ollama
-    model: llama3.2:latest
-  - name: qwen2.5-coder:0.5b
+    model: llama3.1:8b
+    roles:
+      - chat
+      - edit
+      - apply
+  - name: Qwen2.5-Coder 1.5B
     provider: ollama
-    model: qwen2.5-coder:0.5b
+    model: qwen2.5-coder:1.5b-base
     roles:
       - autocomplete
-  - name: qwen2.5-coder:1.5b
+  - name: Nomic Embed
     provider: ollama
-    model: qwen2.5-coder:1.5b
+    model: nomic-embed-text:latest
     roles:
-      - autocomplete
+      - embed
   - name: Gemini 2.0 Flash
     provider: gemini
     model: gemini-2.0-flash
     apiKey: API_KEY
+    roles:
+      - autocomplete
+      - chat
+      - edit
+      - apply
+  - name: Gemini 2.5 Flash
+    provider: gemini
+    model: gemini-2.5-flash
+    apiKey: API_KEY
+    roles:
+      - autocomplete
+      - chat
+      - edit
+      - apply
+  - name: Gemini 2.5 Pro
+    provider: gemini
+    model: gemini-2.5-pro
+    apiKey: API_KEY
+    roles:
+      - autocomplete
+      - chat
+      - edit
+      - apply
 context:
   - provider: code
   - provider: docs

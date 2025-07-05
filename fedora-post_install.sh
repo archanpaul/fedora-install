@@ -221,7 +221,7 @@ function go_extra_packages() {
 }
 
 function npm_packages() {
-    sudo dnf -y install npm
+    sudo dnf -y install npm yarn
 }
 
 function vscode_package() {
