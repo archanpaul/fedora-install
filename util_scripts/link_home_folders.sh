@@ -120,6 +120,11 @@ function create_app_cache() {
 	rm -rf ~/.var/app/md.obsidian.Obsidian
 	mkdir -p ~/.var/app ${CACHE}/obsidian.cache
 	ln -sfn ${CACHE}/obsidian.cache ~/.var/app/md.obsidian.Obsidian
+
+	# ollama
+	mkdir -p ${CACHE}/ollama.cache
+	ln -sfn ${CACHE}/ollama.cache ~/.ollama
+
 }
 
 create_home_folders

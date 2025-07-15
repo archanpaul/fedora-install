@@ -185,6 +185,21 @@ function swift_packages() {
     sudo dnf -y install swift-lang
 }
 
+function ai_packages() {
+    sudo dnf -y install ollama
+    sudo npm install -g @google/gemini-cli
+}
+
+function ollama_user_conf() {
+    ollama serve &
+    ollama pull gemma3n:e4b
+    ollama pull codegemma:7b
+    # ollama pull qwen2.5-coder:1.5b
+    # ollama pull qwen2.5-coder:7b
+    # ollama pull deepseek-r1:1.5b
+    # ollama pull deepseek-r1:8b
+}
+
 function go_packages() {
     sudo dnf -y install golang
 
@@ -248,7 +263,7 @@ function vscode_package_user_conf() {
     # code --list-extensions | xargs -L 1 code --uninstall-extension
 
     ## vscode extensions
-    code --install-extension continue.continue
+    # code --install-extension continue.continue
     code --install-extension dart-code.dart-code
     code --install-extension dart-code.flutter
     code --install-extension github.github-vscode-theme
@@ -268,15 +283,15 @@ function vscode_package_user_conf() {
     code --install-extension ms-toolsai.vscode-jupyter-cell-tags
     code --install-extension ms-toolsai.vscode-jupyter-slideshow
     code --install-extension ms-vscode-remote.remote-containers
-    code --install-extension ms-vscode.cpptools
-    code --install-extension ms-vscode.live-server
-    code --install-extension ms-vscode.makefile-tools
+    # code --install-extension ms-vscode.cpptools
+    # code --install-extension ms-vscode.live-server
+    # code --install-extension ms-vscode.makefile-tools
     code --install-extension ms-vscode.remote-explorer
-    code --install-extension redhat.vscode-yaml
+    # code --install-extension redhat.vscode-yaml
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2025.1.1.13
+    ANDROID_STUDIO_RELEASE=2025.1.1.14
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -343,7 +358,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.32.5-stable"
+    FLUTTER_VERSION="3.32.6-stable"
 
     wget -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
@@ -681,8 +696,10 @@ function install_all_modules() {
     # gnome_packages
     # vscode_package
     ## swift_packages
+    # llm_packages
     # go_packages
     # npm_packages
+    # ai_packages
     # font_packages
     # codec_packages
     # libreoffice_packages
@@ -719,6 +736,7 @@ function install_all_user_modules() {
     # flutter-sdk_user_conf
     # python_user_conf
     # container_user_conf
+    # ollama_user_conf
 }
 
 install_all_modules 2>&1 | tee fedora_install.log
