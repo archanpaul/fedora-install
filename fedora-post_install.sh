@@ -188,8 +188,8 @@ function ai_packages() {
 
 function ollama_user_conf() {
     ollama serve &
-    ollama pull qwen2.5-coder:1.5b
-    ollama pull qwen3:1.7b
+    ollama pull llama3.2:3b
+    ollama pull codellama:7b
 }
 
 function go_packages() {
@@ -417,7 +417,6 @@ function python_user_conf() {
 function gnome_packages() {
     sudo dnf -y install gnome-tweaks
     sudo dnf -y install foliate
-    sudo dnf -y install shotwell
     sudo dnf -y install gnome-boxes
     sudo dnf -y install gnome-sound-recorder
     sudo dnf -y install evince xournalpp
