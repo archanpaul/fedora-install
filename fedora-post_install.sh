@@ -181,10 +181,6 @@ function browser_packages() {
     sudo dnf -y install microsoft-edge-stable
 }
 
-function swift_packages() {
-    sudo dnf -y install swift-lang
-}
-
 function ai_packages() {
     sudo dnf -y install ollama
     sudo npm install -g @google/gemini-cli
@@ -192,12 +188,8 @@ function ai_packages() {
 
 function ollama_user_conf() {
     ollama serve &
-    ollama pull gemma3n:e4b
-    ollama pull codegemma:7b
-    # ollama pull qwen2.5-coder:1.5b
-    # ollama pull qwen2.5-coder:7b
-    # ollama pull deepseek-r1:1.5b
-    # ollama pull deepseek-r1:8b
+    ollama pull qwen2.5-coder:1.5b
+    ollama pull qwen3:1.7b
 }
 
 function go_packages() {
@@ -335,26 +327,6 @@ EOF
     sudo rpm -e android-tools --nodeps
 }
 
-function dart-sdk_package() {
-    DART_VERSION="3.5.4"
-
-    sudo rm -rf ${CACHE}/dartsdk-linux-x64-release.zip
-    wget -c https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-x64-release.zip -P ${CACHE}
-    sudo rm -rf /opt/dart-sdk
-
-    sudo unzip ${CACHE}/dartsdk-linux-x64-release.zip -d /opt/
-    sudo mkdir /opt/dart-sdk/pub_cache
-    sudo chown -R root:wheel /opt/dart-sdk
-    sudo chmod -R u+rwX,go+rwX,o-w /opt/dart-sdk
-
-    cat <<EOF | sudo tee /etc/profile.d/dart-sdk.sh
-#export PUB_CACHE=/opt/dart-sdk/pub_cache
-#export PATH=\$PATH:/opt/dart-sdk/bin
-EOF
-    source /etc/profile.d/dart-sdk.sh
-    #dart pub global activate protoc_plugin
-}
-
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
@@ -398,25 +370,6 @@ function flutter-sdk_user_conf() {
     flutter config --enable-macos-desktop
     dart --disable-analytics
     dart pub global activate protoc_plugin
-}
-
-function intel_packages() {
-    # ref: https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html?packages=cpp-essentials&cpp-essentials-os=linux&cpp-essentials-lin=yum-dnf
-
-        cat <<EOF | sudo tee /etc/yum.repos.d/intel_one_api.repo
-[oneAPI]
-name=Intel® oneAPI repository
-baseurl=https://yum.repos.intel.com/oneapi
-enabled=1
-gpgcheck=1
-repo_gpgcheck=1
-gpgkey=https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-EOF
-
-    sudo dnf -y install intel-oneapi-base-toolkit
-    sudo dnf -y install intel-deep-learning-essentials
-    sudo dnf -y install install intel-cpp-essentials
-
 }
 
 function python_packages() {
@@ -552,11 +505,6 @@ function database_packages() {
    sudo dnf -y install mariadb mariadb-server
 }
 
-function embedded_system_packages() {
-    sudo dnf -y install arm-none-eabi-binutils-cs arm-none-eabi-gcc-cs arm-none-eabi-gcc-cs-c++
-    sudo dnf -y install arm-none-eabi-newlib
-}
-
 function amd_packages() {
     sudo dnf -y install rocminfo rocm-clinfo
     sudo dnf -y install miopen
@@ -575,6 +523,24 @@ function amd_packages() {
     sudo dnf -y install sevctl snphost
 }
 
+function intel_packages() {
+    # ref: https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html?packages=cpp-essentials&cpp-essentials-os=linux&cpp-essentials-lin=yum-dnf
+
+        cat <<EOF | sudo tee /etc/yum.repos.d/intel_one_api.repo
+[oneAPI]
+name=Intel® oneAPI repository
+baseurl=https://yum.repos.intel.com/oneapi
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+EOF
+
+    sudo dnf -y install intel-oneapi-base-toolkit
+    sudo dnf -y install intel-deep-learning-essentials
+    sudo dnf -y install install intel-cpp-essentials
+}
+
 function cloud_tools_packages() {
     #gcloud_package() {
     cat <<EOF | sudo tee /etc/yum.repos.d/google-cloud-sdk.repo
@@ -590,7 +556,6 @@ EOF
 
    sudo dnf -y install libxcrypt-compat.x86_64
    sudo dnf -y install google-cloud-sdk
-
    sudo dnf -y install rclone
 }
 
@@ -695,15 +660,12 @@ function install_all_modules() {
     # python_packages
     # gnome_packages
     # vscode_package
-    ## swift_packages
-    # llm_packages
     # go_packages
     # npm_packages
     # ai_packages
     # font_packages
     # codec_packages
     # libreoffice_packages
-    ## embedded_system_packages
     # database_packages
     # cloud_tools_packages
     # security_packages
@@ -721,7 +683,6 @@ function install_all_modules() {
     # misc_services
 
     # android-studio_package
-    ## dart-sdk_package
     # flutter-sdk_package
 
     # go_extra_packages
