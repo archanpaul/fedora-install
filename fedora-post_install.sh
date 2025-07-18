@@ -188,8 +188,6 @@ function ai_packages() {
 
 function ollama_user_conf() {
     ollama serve &
-    ollama pull llama3.2:3b
-    ollama pull codellama:7b
 }
 
 function go_packages() {
