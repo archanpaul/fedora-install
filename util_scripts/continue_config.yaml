@@ -1,28 +1,23 @@
-name: Local Assistant
+name: Arp Personal Assistant
 version: 1.0.0
 schema: v1
 models:
-  - name: Llama 3.1 8B
-    provider: ollama
-    model: llama3.1:8b
-    roles:
-      - chat
-      - edit
-      - apply
-  - name: Qwen2.5-Coder 1.5B
-    provider: ollama
-    model: qwen2.5-coder:1.5b-base
-    roles:
-      - autocomplete
-  - name: Nomic Embed
-    provider: ollama
-    model: nomic-embed-text:latest
-    roles:
-      - embed
+   - name: Deepseek-R1
+     provider: ollama
+     model: deepseek-r1:1.5b
+     roles:
+       - chat
+       - edit
+       - apply
+   - name: Qwen2.5-Coder
+     provider: ollama
+     model: qwen2.5-coder:1.5b-base
+     roles:
+       - autocomplete
   - name: Gemini 2.0 Flash
     provider: gemini
     model: gemini-2.0-flash
-    apiKey: API_KEY
+    apiKey: GEMINI_API_KEY
     roles:
       - autocomplete
       - chat
@@ -31,7 +26,7 @@ models:
   - name: Gemini 2.5 Flash
     provider: gemini
     model: gemini-2.5-flash
-    apiKey: API_KEY
+    apiKey: GEMINI_API_KEY
     roles:
       - autocomplete
       - chat
@@ -40,7 +35,7 @@ models:
   - name: Gemini 2.5 Pro
     provider: gemini
     model: gemini-2.5-pro
-    apiKey: API_KEY
+    apiKey: GEMINI_API_KEY
     roles:
       - autocomplete
       - chat
