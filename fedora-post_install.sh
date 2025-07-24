@@ -32,6 +32,9 @@ function systool_packages() {
     sudo dnf -y install grubby
     sudo dnf -y install ecryptfs-utils
 
+    # secure boot
+    sudo dnf -y install akmods modutil
+
     sudo dnf -y install cronie
     sudo systemctl enable crond.service
 

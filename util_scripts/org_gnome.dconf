@@ -1,7 +1,10 @@
 [Ptyxis]
 default-profile-uuid='961ea6494e293e244bd41100687b86a6'
 profile-uuids=['961ea6494e293e244bd41100687b86a6']
-window-size=(uint32 110, uint32 40)
+window-size=(uint32 119, uint32 44)
+
+[Ptyxis/Profiles/961ea6494e293e244bd41100687b86a6]
+palette='gnome'
 
 [TextEditor]
 highlight-current-line=true
@@ -14,7 +17,7 @@ tab-width=uint32 4
 use-system-font=true
 
 [control-center]
-last-panel='sound'
+last-panel='power'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -38,8 +41,8 @@ translate=true
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2025-07-19-17-21-48-vecteezy_system-network-processor-server_30645313.jpg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2025-07-19-17-21-48-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2025-07-22-18-27-19-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2025-07-22-18-27-19-vecteezy_system-network-processor-server_30645313.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -66,23 +69,33 @@ clock-show-date=false
 clock-show-seconds=true
 clock-show-weekday=false
 document-font-name='Adwaita Sans Medium 11 @wght=500'
+font-hinting='slight'
 font-name='Adwaita Sans Medium 11 @wght=500'
-monospace-font-name='Fira Mono Medium 11'
+monospace-font-name='JetBrains Mono Medium 11'
 show-battery-percentage=true
-text-scaling-factor=0.84999999999999998
+text-scaling-factor=0.85999999999999988
 
 [desktop/notifications]
-application-children=['org-gnome-software', 'org-gnome-ptyxis', 'com-spotify-client']
+application-children=['org-gnome-software', 'org-gnome-ptyxis', 'com-spotify-client', 'org-mozilla-firefox', 'google-chrome', 'gnome-power-panel']
 show-in-lock-screen=false
 
 [desktop/notifications/application/com-spotify-client]
 application-id='com.spotify.Client.desktop'
+
+[desktop/notifications/application/gnome-power-panel]
+application-id='gnome-power-panel.desktop'
+
+[desktop/notifications/application/google-chrome]
+application-id='google-chrome.desktop'
 
 [desktop/notifications/application/org-gnome-ptyxis]
 application-id='org.gnome.Ptyxis.desktop'
 
 [desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
+
+[desktop/notifications/application/org-mozilla-firefox]
+application-id='org.mozilla.firefox.desktop'
 
 [desktop/peripherals/keyboard]
 numlock-state=true
@@ -101,7 +114,7 @@ remove-old-temp-files=true
 [desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2025-07-19-17-21-48-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2025-07-22-18-27-19-vecteezy_system-network-processor-server_30645313.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -118,8 +131,24 @@ action-middle-click-titlebar='toggle-shade'
 button-layout='appmenu:minimize,maximize,close'
 num-workspaces=2
 
+[evince/default]
+continuous=true
+dual-page=false
+dual-page-odd-left=true
+enable-spellchecking=true
+fullscreen=false
+inverted-colors=false
+show-sidebar=true
+sidebar-page='thumbnails'
+sidebar-size=132
+sizing-mode='automatic'
+window-ratio=(1.8421407719605201, 1.2055777557387342)
+
 [evolution-data-server]
 migrated=true
+
+[firmware]
+report-device-list-timestamp=int64 1753326350
 
 
 [mutter]
@@ -139,7 +168,7 @@ initial-size=(890, 550)
 initial-size-file-chooser=(890, 550)
 
 [portal/filechooser/code]
-last-folder-path='/home/arp/workspace/fedora-install.git'
+last-folder-path='/home/arp/delme/fedora-install.git'
 
 [portal/filechooser/org.gnome.Settings]
 last-folder-path='/home/arp/Pictures/Wallpapers'
@@ -194,15 +223,18 @@ primary-monitor='BNQ-ETR4N0132404U'
 status-icon-padding=0
 trans-use-custom-opacity=true
 tray-padding=0
-tray-size=10
+tray-size=0
 window-preview-title-position='TOP'
 
 [shell/world-clocks]
 locations=@av []
 
 [software]
-check-timestamp=int64 1752927929
+check-timestamp=int64 1753326221
 first-run=false
+flatpak-purge-timestamp=int64 1753250011
+packagekit-historical-updates-timestamp=uint64 1753151436
+update-notification-timestamp=int64 1753189117
 
 [tweaks]
 show-extensions-notice=false
