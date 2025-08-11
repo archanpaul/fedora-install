@@ -612,6 +612,7 @@ function firewall_user_services() {
     sudo firewall-cmd --add-service=https --zone=public
     sudo firewall-cmd --add-port=8080/tcp --zone=public
     sudo firewall-cmd --add-interface=tailscale0 --zone=public
+    # sudo firewall-cmd --zone=public --add-port=3389/tcp --timeout=5m
 
     sudo firewall-cmd --list-all --zone=public
 
