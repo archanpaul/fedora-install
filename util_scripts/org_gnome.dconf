@@ -67,16 +67,26 @@ accent-color='slate'
 clock-show-date=false
 clock-show-seconds=true
 clock-show-weekday=false
+font-antialiasing='grayscale'
 show-battery-percentage=true
 text-scaling-factor=0.84999999999999998
 toolkit-accessibility=false
 
 [desktop/notifications]
-application-children=['org-gnome-software']
+application-children=['org-gnome-software', 'org-mozilla-firefox', 'google-chrome']
 show-in-lock-screen=false
+
+[desktop/notifications/application/google-chrome]
+application-id='google-chrome.desktop'
 
 [desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
+
+[desktop/notifications/application/org-mozilla-firefox]
+application-id='org.mozilla.firefox.desktop'
+
+[desktop/peripherals/keyboard]
+numlock-state=true
 
 [desktop/peripherals/mouse]
 speed=0.46464646464646475
@@ -131,6 +141,9 @@ show-create-link=true
 [nautilus/window-state]
 initial-size=(890, 550)
 initial-size-file-chooser=(890, 550)
+
+[portal/filechooser/md.obsidian.Obsidian]
+last-folder-path='/home/arp/workspace/obsidian_vaults/obsidian_arp.git'
 
 [portal/filechooser/org.gnome.Settings]
 last-folder-path='/home/arp/Pictures/Wallpapers'
