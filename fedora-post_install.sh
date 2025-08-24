@@ -445,6 +445,10 @@ function gnome_packages() {
     # sudo dnf -y install calibre
 }
 
+function tex_packages() {
+    sudo dnf -y install texlive texlive-preprint latexmk
+}
+
 function markdown_packages() {
     sudo dnf -y install flatpak
     # flatpak install app/md.obsidian.Obsidian/x86_64/stable
@@ -671,6 +675,7 @@ function install_all_modules() {
     # cloud_tools_packages
     # security_packages
     # markdown_packages
+    # tex_packages
 
     # laptop_mode
     # thinkpad_packages
