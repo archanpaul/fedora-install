@@ -445,21 +445,21 @@ function gnome_packages() {
     # sudo dnf -y install calibre
 }
 
-function tex_packages() {
-    sudo dnf -y install texlive texlive-preprint texlive-algorithmicx
+function tex_pandoc_packages() {
+    sudo dnf -y install texlive texlive-preprint texlive-algorithmicx texlive-mdwtools
     sudo dnf -y install latexmk 
+    sudo dnf -y install pandoc pandoc-pdf
+
+    # Convert epub to html
+    # pandoc FILENAME.epub --webtex -f epub -t html --embed-resources --standalone -o FILENAME.html
+    # Remove all href from generated html
+    # sed -i 's|<a[^>]\+>|<a>|g' FILENAME.html
 }
 
 function markdown_packages() {
     sudo dnf -y install flatpak
     # flatpak install app/md.obsidian.Obsidian/x86_64/stable
     # sudo flatpak override md.obsidian.Obsidian --filesystem=host
-
-    sudo dnf -y install pandoc pandoc-pdf texlive-mdwtools
-    # Convert epub to html
-    # pandoc FILENAME.epub --webtex -f epub -t html --embed-resources --standalone -o FILENAME.html
-    # Remove all href from generated html
-    # sed -i 's|<a[^>]\+>|<a>|g' FILENAME.html
 }
 
 function font_packages() {
@@ -676,7 +676,7 @@ function install_all_modules() {
     # cloud_tools_packages
     # security_packages
     # markdown_packages
-    # tex_packages
+    # tex_pandoc_packages
 
     # laptop_mode
     # thinkpad_packages
