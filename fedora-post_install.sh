@@ -446,7 +446,8 @@ function gnome_packages() {
 }
 
 function tex_packages() {
-    sudo dnf -y install texlive texlive-preprint latexmk
+    sudo dnf -y install texlive texlive-preprint texlive-algorithmicx
+    sudo dnf -y install latexmk 
 }
 
 function markdown_packages() {

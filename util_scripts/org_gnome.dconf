@@ -21,8 +21,18 @@ show-right-margin=true
 tab-width=uint32 4
 use-system-font=false
 
+[calculator]
+base=10
+button-mode='basic'
+source-currency=''
+source-units='degree'
+target-currency=''
+target-units='radian'
+window-maximized=false
+window-size=(392, 616)
+
 [control-center]
-last-panel='system'
+last-panel='sound'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -67,17 +77,36 @@ accent-color='slate'
 clock-show-date=false
 clock-show-seconds=true
 clock-show-weekday=false
+document-font-name='Adwaita Sans Medium 11 @wght=500'
 font-antialiasing='grayscale'
+font-hinting='slight'
+font-name='Adwaita Sans Medium 11 @wght=500'
+monospace-font-name='Fira Mono Medium 11'
 show-battery-percentage=true
 text-scaling-factor=0.84999999999999998
 toolkit-accessibility=false
 
 [desktop/notifications]
-application-children=['org-gnome-software', 'org-mozilla-firefox', 'google-chrome', 'org-gnome-ptyxis']
+application-children=['org-gnome-software', 'org-mozilla-firefox', 'google-chrome', 'org-gnome-ptyxis', 'gnome-power-panel', 'com-spotify-client', 'org-gnome-evince', 'org-gnome-nautilus', 'gnome-printers-panel']
 show-in-lock-screen=false
+
+[desktop/notifications/application/com-spotify-client]
+application-id='com.spotify.Client.desktop'
+
+[desktop/notifications/application/gnome-power-panel]
+application-id='gnome-power-panel.desktop'
+
+[desktop/notifications/application/gnome-printers-panel]
+application-id='gnome-printers-panel.desktop'
 
 [desktop/notifications/application/google-chrome]
 application-id='google-chrome.desktop'
+
+[desktop/notifications/application/org-gnome-evince]
+application-id='org.gnome.Evince.desktop'
+
+[desktop/notifications/application/org-gnome-nautilus]
+application-id='org.gnome.Nautilus.desktop'
 
 [desktop/notifications/application/org-gnome-ptyxis]
 application-id='org.gnome.Ptyxis.desktop'
@@ -121,6 +150,20 @@ theme-name='__custom'
 button-layout='appmenu:minimize,maximize,close'
 num-workspaces=2
 
+[evince/default]
+continuous=true
+dual-page=false
+dual-page-odd-left=false
+enable-spellchecking=true
+fullscreen=false
+inverted-colors=false
+show-sidebar=true
+sidebar-page='thumbnails'
+sidebar-size=148
+sizing-mode='free'
+window-ratio=(1.4329487498236111, 1.0108208910902849)
+zoom=1.0
+
 [evolution-data-server]
 migrated=true
 
@@ -142,11 +185,20 @@ search-filter-time-type='last_modified'
 show-create-link=true
 
 [nautilus/window-state]
-initial-size=(890, 550)
+initial-size=(877, 722)
 initial-size-file-chooser=(890, 550)
+
+[portal/filechooser/code]
+last-folder-path='/home/arp/workspace/research_workspace/aqpcdsys_workspace'
+
+[portal/filechooser/google-chrome]
+last-folder-path='/home/arp/Downloads'
 
 [portal/filechooser/md.obsidian.Obsidian]
 last-folder-path='/home/arp/workspace/obsidian_vaults/obsidian_arp.git'
+
+[portal/filechooser/msedge-hnpfjngllnobngcgfapefoaidbinmjnm-Default]
+last-folder-path='/home/arp/Downloads'
 
 [portal/filechooser/org.gnome.Settings]
 last-folder-path='/home/arp/Pictures/Wallpapers'
@@ -154,11 +206,20 @@ last-folder-path='/home/arp/Pictures/Wallpapers'
 [settings-daemon/plugins/color]
 night-light-schedule-automatic=false
 
+[settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Control>Escape'
+command='systemctl suspend'
+name='Suspend'
+
 [shell]
 app-picker-layout=[{'org.gnome.Software.desktop': <{'position': <0>}>, 'org.gnome.clocks.desktop': <{'position': <1>}>, 'org.gnome.Calendar.desktop': <{'position': <2>}>, 'org.gnome.Loupe.desktop': <{'position': <3>}>, 'org.gnome.Totem.desktop': <{'position': <4>}>, 'chromium-browser.desktop': <{'position': <5>}>, 'google-chrome.desktop': <{'position': <6>}>, 'microsoft-edge.desktop': <{'position': <7>}>, 'virt-manager.desktop': <{'position': <8>}>, 'org.gnome.Boxes.desktop': <{'position': <9>}>, 'android-studio.desktop': <{'position': <10>}>, 'org.inkscape.Inkscape.desktop': <{'position': <11>}>, 'gimp.desktop': <{'position': <12>}>, 'com.spotify.Client.desktop': <{'position': <13>}>, 'md.obsidian.Obsidian.desktop': <{'position': <14>}>, 'msedge-hnpfjngllnobngcgfapefoaidbinmjnm-Default.desktop': <{'position': <15>}>, 'libreoffice-writer.desktop': <{'position': <16>}>, 'libreoffice-calc.desktop': <{'position': <17>}>, 'libreoffice-impress.desktop': <{'position': <18>}>, 'libreoffice-draw.desktop': <{'position': <19>}>, 'libreoffice-math.desktop': <{'position': <20>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <21>}>, 'org.gnome.Evince.desktop': <{'position': <22>}>, 'calibre-gui.desktop': <{'position': <23>}>}, {'com.obsproject.Studio.desktop': <{'position': <0>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <1>}>, 'blender.desktop': <{'position': <2>}>, 'org.gnome.Snapshot.desktop': <{'position': <3>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <4>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <5>}>, 'org.gnome.font-viewer.desktop': <{'position': <6>}>, 'org.gnome.Characters.desktop': <{'position': <7>}>, 'transmission-gtk.desktop': <{'position': <8>}>, 'torbrowser.desktop': <{'position': <9>}>, 'net.thunderbird.Thunderbird.desktop': <{'position': <10>}>, 'gtk-v4l.desktop': <{'position': <11>}>, 'org.gnome.baobab.desktop': <{'position': <12>}>, 'org.gnome.DiskUtility.desktop': <{'position': <13>}>, 'simple-scan.desktop': <{'position': <14>}>, 'org.gnome.Logs.desktop': <{'position': <15>}>, 'htop.desktop': <{'position': <16>}>, 'org.gnome.Settings.desktop': <{'position': <17>}>, 'org.gnome.tweaks.desktop': <{'position': <18>}>, 'org.gnome.Extensions.desktop': <{'position': <19>}>, 'org.gnome.Firmware.desktop': <{'position': <20>}>, 'org.gnome.Connections.desktop': <{'position': <21>}>, 'scrcpy.desktop': <{'position': <22>}>, 'Utilities': <{'position': <23>}>}]
 disabled-extensions=['dash-to-dock@micxgx.gmail.com', 'places-menu@gnome-shell-extensions.gcampax.github.com']
 enabled-extensions=['background-logo@fedorahosted.org', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com']
 favorite-apps=['org.mozilla.firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Ptyxis.desktop', 'code.desktop', 'org.gnome.SystemMonitor.desktop']
+last-selected-power-profile='power-saver'
 welcome-dialog-last-shown-version='48.4'
 
 [shell/extensions/dash-to-panel]
@@ -177,15 +238,17 @@ focus-highlight-dominant=true
 global-border-radius=1
 hide-overview-on-startup=true
 hotkeys-overlay-combo='TEMPORARILY'
+intellihide=true
+intellihide-hide-from-windows=true
 leftbox-padding=0
 leftbox-size=11
 overview-click-to-exit=true
-panel-anchors='{"BNQ-ETR4N0132404U":"MIDDLE"}'
+panel-anchors='{"BNQ-ETR4N0132404U":"MIDDLE","LEN-0x00000000":"MIDDLE"}'
 panel-element-positions='{"BNQ-ETR4N0132404U":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'
-panel-lengths='{"BNQ-ETR4N0132404U":-1}'
+panel-lengths='{"BNQ-ETR4N0132404U":-1,"LEN-0x00000000":-1}'
 panel-positions='{}'
 panel-side-margins=0
-panel-sizes='{"BNQ-ETR4N0132404U":24}'
+panel-sizes='{"BNQ-ETR4N0132404U":24,"LEN-0x00000000":22}'
 panel-top-bottom-margins=0
 panel-top-bottom-padding=0
 prefs-opened=false
@@ -202,9 +265,9 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1755492916
+check-timestamp=int64 1755826938
 first-run=false
-flatpak-purge-timestamp=int64 1755508994
+flatpak-purge-timestamp=int64 1756102575
 install-timestamp=int64 1755182626
 packagekit-historical-updates-timestamp=uint64 1755182626
 update-notification-timestamp=int64 1755492859
