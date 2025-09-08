@@ -447,6 +447,7 @@ function gnome_packages() {
 
 function tex_pandoc_packages() {
     sudo dnf -y install texlive texlive-preprint texlive-algorithmicx texlive-mdwtools
+    sudo dnf -y install texlive-sttools texlive-nature
     sudo dnf -y install latexmk 
     sudo dnf -y install pandoc pandoc-pdf
 
