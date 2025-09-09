@@ -32,7 +32,7 @@ window-maximized=false
 window-size=(392, 616)
 
 [control-center]
-last-panel='sound'
+last-panel='background'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -56,8 +56,8 @@ translate=true
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2025-08-18-10-53-44-vecteezy_system-network-processor-server_30645313.jpg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2025-08-18-10-53-44-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2025-09-09-16-30-05-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2025-09-09-16-30-05-vecteezy_system-network-processor-server_30645313.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -134,7 +134,7 @@ remove-old-temp-files=true
 [desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2025-08-18-10-53-44-vecteezy_system-network-processor-server_30645313.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2025-09-09-16-30-05-vecteezy_system-network-processor-server_30645313.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -189,7 +189,7 @@ initial-size=(877, 722)
 initial-size-file-chooser=(890, 550)
 
 [portal/filechooser/code]
-last-folder-path='/home/arp/workspace/research_workspace/aqpcdsys_workspace'
+last-folder-path='/home/arp/workspace/fedora-install.git'
 
 [portal/filechooser/google-chrome]
 last-folder-path='/home/arp/Downloads'
@@ -265,7 +265,7 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1755826938
+check-timestamp=int64 1757415654
 first-run=false
 flatpak-purge-timestamp=int64 1756102575
 install-timestamp=int64 1755182626
