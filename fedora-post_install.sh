@@ -156,7 +156,9 @@ EOF
 
     sudo dnf -y install yt-dlp
     # yt-dlp -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' YT_PL_LINK
+}
 
+function network_extra_packages() {
     # Tailscale VPN
     sudo dnf config-manager -y addrepo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     sudo dnf -y install tailscale
@@ -284,7 +286,7 @@ function vscode_package_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2025.1.2.11
+    ANDROID_STUDIO_RELEASE=2025.1.3.7
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -331,7 +333,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.35.1-stable"
+    FLUTTER_VERSION="3.35.3-stable"
 
     wget -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
@@ -663,6 +665,7 @@ function install_all_modules() {
     # graphics_packages
     # graphics_dev_packages
     # network_packages
+    # network_extra_packages
     # browser_packages
     # python_packages
     # gnome_packages
