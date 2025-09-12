@@ -184,6 +184,10 @@ function browser_packages() {
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
     sudo dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/yumrepos/edge/config.repo
     sudo dnf -y install microsoft-edge-stable
+
+    ## Brave
+    sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+    sudo dnf install brave-browser
 }
 
 function ai_packages() {
