@@ -64,7 +64,7 @@ function devtool_packages() {
     sudo dnf -y install protobuf protobuf-compiler protobuf-devel
     sudo dnf -y install boost-devel
 
-    sudo dnf -y install git
+    sudo dnf -y install git git-lfs
 }
 
 function rpm_devtool_packages() {
@@ -186,8 +186,8 @@ function browser_packages() {
     sudo dnf -y install microsoft-edge-stable
 
     ## Brave
-    sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-    sudo dnf install brave-browser
+    # sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+    # sudo dnf install brave-browser
 }
 
 function ai_packages() {
