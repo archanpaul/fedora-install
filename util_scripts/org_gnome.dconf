@@ -4,7 +4,7 @@ default-profile-uuid='56943058cddf4a6e4968b8f968c79034'
 font-name='Fira Mono Medium 11'
 profile-uuids=['56943058cddf4a6e4968b8f968c79034']
 use-system-font=false
-window-size=(uint32 117, uint32 36)
+window-size=(uint32 143, uint32 48)
 
 [Ptyxis/Profiles/56943058cddf4a6e4968b8f968c79034]
 palette='gnome'
@@ -19,7 +19,7 @@ style-scheme='Adwaita'
 tab-width=uint32 4
 
 [control-center]
-last-panel='universal-access'
+last-panel='sound'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -70,11 +70,23 @@ show-battery-percentage=true
 text-scaling-factor=0.84999999999999998
 
 [desktop/notifications]
-application-children=['org-gnome-software']
+application-children=['org-gnome-software', 'google-chrome', 'org-mozilla-firefox', 'com-spotify-client']
 show-in-lock-screen=false
+
+[desktop/notifications/application/com-spotify-client]
+application-id='com.spotify.Client.desktop'
+
+[desktop/notifications/application/google-chrome]
+application-id='google-chrome.desktop'
 
 [desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
+
+[desktop/notifications/application/org-mozilla-firefox]
+application-id='org.mozilla.firefox.desktop'
+
+[desktop/peripherals/keyboard]
+numlock-state=true
 
 [desktop/peripherals/mouse]
 speed=0.41414141414141414
@@ -129,6 +141,14 @@ last-folder-path='/home/arp/Pictures/Wallpapers'
 [settings-daemon/plugins/color]
 night-light-schedule-automatic=false
 
+[settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Control>Escape'
+command='systemctl suspend'
+name='Suspend'
+
 [shell]
 app-picker-layout=[{'org.gnome.clocks.desktop': <{'position': <0>}>, 'org.gnome.Calendar.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.Maps.desktop': <{'position': <3>}>, 'org.gnome.Loupe.desktop': <{'position': <4>}>, 'org.gnome.Totem.desktop': <{'position': <5>}>, 'org.gnome.Snapshot.desktop': <{'position': <6>}>, 'org.gnome.Connections.desktop': <{'position': <7>}>, 'org.gnome.Software.desktop': <{'position': <8>}>, 'gimp.desktop': <{'position': <9>}>, 'org.inkscape.Inkscape.desktop': <{'position': <10>}>, 'org.gnome.Boxes.desktop': <{'position': <11>}>, 'chromium-browser.desktop': <{'position': <12>}>, 'google-chrome.desktop': <{'position': <13>}>, 'org.gnome.Evince.desktop': <{'position': <14>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <15>}>, 'android-studio.desktop': <{'position': <16>}>, 'libreoffice-writer.desktop': <{'position': <17>}>, 'libreoffice-calc.desktop': <{'position': <18>}>, 'libreoffice-impress.desktop': <{'position': <19>}>, 'libreoffice-draw.desktop': <{'position': <20>}>, 'libreoffice-math.desktop': <{'position': <21>}>, 'md.obsidian.Obsidian.desktop': <{'position': <22>}>, 'com.spotify.Client.desktop': <{'position': <23>}>}, {'virt-manager.desktop': <{'position': <0>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <1>}>, 'com.obsproject.Studio.desktop': <{'position': <2>}>, 'blender.desktop': <{'position': <3>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <4>}>, 'org.fedoraproject.MediaWriter.desktop': <{'position': <5>}>, 'nvim.desktop': <{'position': <6>}>, 'com.github.xournalpp.xournalpp.desktop': <{'position': <7>}>, 'org.gnome.Characters.desktop': <{'position': <8>}>, 'org.gnome.font-viewer.desktop': <{'position': <9>}>, 'scrcpy.desktop': <{'position': <10>}>, 'net.thunderbird.Thunderbird.desktop': <{'position': <11>}>, 'torbrowser.desktop': <{'position': <12>}>, 'transmission-gtk.desktop': <{'position': <13>}>, 'simple-scan.desktop': <{'position': <14>}>, 'org.gnome.DiskUtility.desktop': <{'position': <15>}>, 'org.gnome.baobab.desktop': <{'position': <16>}>, 'org.gnome.Extensions.desktop': <{'position': <17>}>, 'org.gnome.Firmware.desktop': <{'position': <18>}>, 'org.gnome.Settings.desktop': <{'position': <19>}>, 'org.gnome.tweaks.desktop': <{'position': <20>}>, 'org.gnome.Logs.desktop': <{'position': <21>}>, 'Utilities': <{'position': <22>}>}]
 disabled-extensions=['places-menu@gnome-shell-extensions.gcampax.github.com']
@@ -158,6 +178,7 @@ panel-sizes='{"BNQ-ETR4N0132404U":24}'
 prefs-opened=false
 primary-monitor='BNQ-ETR4N0132404U'
 status-icon-padding=0
+taskbar-locked=true
 trans-panel-opacity=0.80000000000000004
 trans-use-custom-opacity=true
 trans-use-dynamic-opacity=true
