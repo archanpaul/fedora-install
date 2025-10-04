@@ -387,7 +387,7 @@ function python_packages() {
     sudo dnf -y install python3-opencv
     sudo dnf -y install python3-sqlalchemy
     sudo dnf -y install python3-scikit-learn
-    sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook
+    sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook python3-jupyterlab-jupytext
     sudo dnf -y install python3-torch python3-torchdata python3-torchvision python3-torchaudio python3-torchtext
 }
 
@@ -453,7 +453,7 @@ function gnome_packages() {
 
 function tex_pandoc_packages() {
     sudo dnf -y install texlive texlive-preprint texlive-algorithmicx texlive-mdwtools texlive-latexindent
-    sudo dnf -y install texlive-nature texlive-threeparttable texlive-sttools texlive-appendix texlive-wrapfig texlive-multirow texlive-ncctools
+    sudo dnf -y install texlive-nature texlive-threeparttable texlive-sttools texlive-appendix texlive-wrapfig texlive-multirow texlive-ncctools texlive-framed texlive-anyfontsize
     sudo dnf -y install latexmk 
     sudo dnf -y install pandoc pandoc-pdf
 
