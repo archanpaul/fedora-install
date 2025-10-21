@@ -290,7 +290,7 @@ function vscode_package_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2025.1.3.7
+    ANDROID_STUDIO_RELEASE=2025.1.4.8
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -337,7 +337,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.35.3-stable"
+    FLUTTER_VERSION="3.35.6-stable"
 
     wget -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
@@ -408,7 +408,8 @@ function python_virtualenv_packages() {
     source ${VENV_FOLDER}/bin/activate && \
     pip install --upgrade pip && \
     pip install black && \
-    pip install "transformers[torch]" && \
+    pip install python-dotenv && \
+    pip install google-generativeai google-adk && \
     deactivate
 }
 
@@ -454,6 +455,7 @@ function gnome_packages() {
 function tex_pandoc_packages() {
     sudo dnf -y install texlive texlive-preprint texlive-algorithmicx texlive-mdwtools texlive-latexindent
     sudo dnf -y install texlive-nature texlive-threeparttable texlive-sttools texlive-appendix texlive-wrapfig texlive-multirow texlive-ncctools texlive-framed texlive-anyfontsize
+    sudo dnf -y install texlive-moreverb texlive-comment
     sudo dnf -y install latexmk 
     sudo dnf -y install pandoc pandoc-pdf
 
