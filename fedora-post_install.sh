@@ -286,6 +286,7 @@ function vscode_package_user_conf() {
 
 function android-studio_package(){
     ANDROID_STUDIO_RELEASE=2025.1.4.8
+    ANDROID_NDK_VERSION=27.3.13750724
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -313,7 +314,7 @@ EOF
     cat <<EOF | sudo tee /etc/profile.d/android-sdk.sh
 export ANDROID_HOME=/opt/android-sdk/
 export ANDROID_SDK_ROOT=\$ANDROID_HOME
-export ANDROID_NDK_ROOT=\$ANDROID_HOME/ndk/21.1.6352462
+export ANDROID_NDK_ROOT=\$ANDROID_HOME/ndk/\$ANDROID_NDK_VERSION
 export ANDROID_NDK_HOME=\$ANDROID_NDK_ROOT
 export PATH=\$PATH:\$ANDROID_HOME/platform-tools/
 EOF
@@ -426,7 +427,6 @@ function gnome_packages() {
 
     sudo dnf -y install gnome-extensions-app
     sudo dnf -y install gnome-shell-extension-dash-to-dock
-    sudo dnf -y install gnome-shell-extension-gsconnect
     sudo dnf -y install gnome-shell-extension-screenshot-window-sizer
     sudo dnf -y install gnome-shell-extension-dash-to-panel.noarch
 
