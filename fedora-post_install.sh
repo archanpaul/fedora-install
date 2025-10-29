@@ -22,6 +22,8 @@ EOF
 function fedora_upgrade() {
     sudo dnf -y upgrade --downloadonly
     sudo dnf -y upgrade
+    # sudo flatpak update --appstream
+    # sudo flatpak update
 }
 
 function rpmfusion_repo() {
@@ -76,11 +78,8 @@ function jdk_packages() {
 }
 
 function container_packages() {
-    # sudo dnf -y install @virtualization
-
     sudo dnf -y install podman podman-compose podman-remote
     sudo dnf -y install podman-docker
-
     sudo dnf -y install virt-manager
 }
 
@@ -184,10 +183,6 @@ function browser_packages() {
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
     sudo dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/yumrepos/edge/config.repo
     sudo dnf -y install microsoft-edge-stable
-
-    ## Brave
-    # sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-    # sudo dnf install brave-browser
 }
 
 function ai_packages() {
@@ -337,7 +332,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.35.6-stable"
+    FLUTTER_VERSION="3.35.7-stable"
 
     wget -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
@@ -392,8 +387,8 @@ function python_packages() {
 }
 
 function python_virtualenv_packages() {
-    PYTHON_VERSION=3.13
-    VENV=pyvenv_313
+    PYTHON_VERSION=3.14
+    VENV=pyvenv_314
     VENV_FOLDER=/opt/python_venv/${VENV}
 
     ## virtualenvs
@@ -414,7 +409,7 @@ function python_virtualenv_packages() {
 }
 
 function python_user_conf() {
-    VENV=pyvenv_313
+    VENV=pyvenv_314
     VENV_FOLDER=/opt/python_venv/${VENV}
 
     mkdir -p ~/.virtualenvs
@@ -424,12 +419,10 @@ function python_user_conf() {
 
 function gnome_packages() {
     sudo dnf -y install gnome-tweaks
-    sudo dnf -y install foliate
     sudo dnf -y install gnome-boxes
     sudo dnf -y install gnome-sound-recorder
-    sudo dnf -y install evince xournalpp
     sudo dnf -y install gnome-firmware
-    sudo dnf -y install dconf-editor
+    sudo dnf -y install foliate papers
 
     sudo dnf -y install gnome-extensions-app
     sudo dnf -y install gnome-shell-extension-dash-to-dock
@@ -438,16 +431,12 @@ function gnome_packages() {
     sudo dnf -y install gnome-shell-extension-dash-to-panel.noarch
 
     sudo dnf -y install gtk-v4l
-    # sudo dnf -y install vlc
-    # sudo dnf -y install celluloid
 
     sudo dnf -y install --allowerasing obs-studio
     sudo dnf -y install --allowerasing x264 obs-studio-plugin-x264
 
     sudo dnf -y install NetworkManager-ssh-gnome NetworkManager-openconnect-gnome
     sudo dnf -y install NetworkManager-pptp-gnome NetworkManager-vpnc-gnome NetworkManager-openvpn-gnome
-
-    sudo dnf -y install gnome-shell-theme-yaru gnome-shell-theme-flat-remix
 
     # sudo dnf -y install calibre
 }
@@ -467,11 +456,12 @@ function tex_pandoc_packages() {
 
 function markdown_packages() {
     sudo dnf -y install flatpak
-    # flatpak install app/md.obsidian.Obsidian/x86_64/stable
-    # sudo flatpak override md.obsidian.Obsidian --filesystem=host
+    sudo flatpak update --appstream
+    sudo flatpak install -y flathub md.obsidian.Obsidian
 }
 
 function font_packages() {
+    sudo dnf -y install liberation-fonts-all
     sudo dnf -y install google-roboto-fonts
     sudo dnf -y install google-roboto-mono-fonts
     sudo dnf -y install google-roboto-slab-fonts
@@ -671,7 +661,6 @@ function install_all_modules() {
     # graphics_packages
     # graphics_dev_packages
     # network_packages
-    # network_extra_packages
     # browser_packages
     # python_packages
     # gnome_packages
@@ -683,7 +672,6 @@ function install_all_modules() {
     # codec_packages
     # libreoffice_packages
     # database_packages
-    # cloud_tools_packages
     # security_packages
     # markdown_packages
     # tex_pandoc_packages
@@ -698,6 +686,9 @@ function install_all_modules() {
     # firewall_services
     # firewall_user_services
     # misc_services
+
+    # network_extra_packages
+    # cloud_tools_packages
 
     # android-studio_package
     # flutter-sdk_package

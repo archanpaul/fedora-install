@@ -55,8 +55,8 @@ function create_app_cache() {
 	mkdir -p ${CACHE}/minikube.cache
 	ln -sfn ${CACHE}/minikube.cache ~/.minikube
 
-	# mkdir -p ${CACHE}/firebase.cache
-	# ln -sfn ${CACHE}/firebase.cache ~/.cache/firebase
+	mkdir -p ${CACHE}/firebase.cache
+	ln -sfn ${CACHE}/firebase.cache ~/.cache/firebase
 
 	mkdir -p ~/.local/share/containers
 	mkdir -p ${CACHE}/containers.cache
@@ -132,4 +132,4 @@ create_app_cache
 ls -lah
 
 # upadte bash prompt
-# echo "export PROMPT_DIRTRIM=2" >> ~/.bash_profile
+echo "export PROMPT_DIRTRIM=2" >> ~/.bash_profile
