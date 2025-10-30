@@ -385,6 +385,8 @@ function python_packages() {
     sudo dnf -y install python3-scikit-learn
     sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook python3-jupyterlab-jupytext
     sudo dnf -y install python3-torch python3-torchdata python3-torchvision python3-torchaudio python3-torchtext
+
+    sudo dnf -y install python3-devel
 }
 
 function python_virtualenv_packages() {
