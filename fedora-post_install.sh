@@ -285,8 +285,8 @@ function vscode_package_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2025.1.4.8
-    ANDROID_NDK_VERSION=27.3.13750724
+    ANDROID_STUDIO_RELEASE=2025.2.1.7
+    ANDROID_NDK_VERSION=29.0.14206865
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -376,7 +376,7 @@ function flutter-sdk_user_conf() {
 }
 
 function python_packages() {
-    sudo dnf -y install python3-virtualenv conda
+    sudo dnf -y install python3-virtualenv poetry
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
