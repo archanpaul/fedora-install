@@ -11,8 +11,9 @@ function dnf_conf_update() {
     cat <<EOF | sudo tee -a /etc/dnf/dnf.conf
 keepcache=True
 deltarpm=True
-fastestmirror=True
-max_parallel_downloads=20
+# fastestmirror=True
+# skip_if_unavailable=True
+max_parallel_downloads=10
 EOF
 
     sudo dnf -y install fedora-workstation-repositories
@@ -260,9 +261,13 @@ function vscode_package_user_conf() {
     # code --install-extension continue.continue
     code --install-extension dart-code.dart-code
     code --install-extension dart-code.flutter
+    code --install-extension github.copilot
+    code --install-extension github.copilot-chat
     code --install-extension github.github-vscode-theme
     code --install-extension golang.go
+    code --install-extension google.gemini-cli-vscode-ide-companion
     code --install-extension google.geminicodeassist
+    code --install-extension james-yu.latex-workshop
     code --install-extension mhutchie.git-graph
     code --install-extension ms-azuretools.vscode-containers
     code --install-extension ms-python.black-formatter
@@ -270,6 +275,7 @@ function vscode_package_user_conf() {
     code --install-extension ms-python.isort
     code --install-extension ms-python.python
     code --install-extension ms-python.vscode-pylance
+    code --install-extension ms-python.vscode-python-envs
     code --install-extension ms-toolsai.datawrangler
     code --install-extension ms-toolsai.jupyter
     code --install-extension ms-toolsai.jupyter-keymap
@@ -277,11 +283,8 @@ function vscode_package_user_conf() {
     code --install-extension ms-toolsai.vscode-jupyter-cell-tags
     code --install-extension ms-toolsai.vscode-jupyter-slideshow
     code --install-extension ms-vscode-remote.remote-containers
-    # code --install-extension ms-vscode.cpptools
-    # code --install-extension ms-vscode.live-server
-    # code --install-extension ms-vscode.makefile-tools
+    code --install-extension ms-vscode.cpptools
     code --install-extension ms-vscode.remote-explorer
-    # code --install-extension redhat.vscode-yaml
 }
 
 function android-studio_package(){
@@ -407,7 +410,7 @@ function python_virtualenv_packages() {
     pip install --upgrade pip && \
     pip install black && \
     pip install python-dotenv && \
-    pip install google-generativeai google-adk && \
+    # pip install google-generativeai google-adk && \
     deactivate
 }
 
@@ -447,7 +450,7 @@ function tex_pandoc_packages() {
     sudo dnf -y install texlive texlive-preprint texlive-algorithmicx texlive-mdwtools texlive-latexindent
     sudo dnf -y install texlive-nature texlive-threeparttable texlive-sttools texlive-appendix texlive-wrapfig texlive-multirow texlive-ncctools texlive-framed texlive-anyfontsize
     sudo dnf -y install texlive-moreverb texlive-comment
-    sudo dnf -y install latexmk 
+    sudo dnf -y install latexmk
     sudo dnf -y install pandoc pandoc-pdf
 
     # Convert epub to html
