@@ -101,7 +101,7 @@
         "%autoreload 2"
     ],
     "markdown.preview.fontFamily": "'Literata', 'Calibri','Fira Sans','Noto Sans','Droid Sans'",
-    "markdown.preview.fontSize": 18,
+    "markdown.preview.fontSize": 16,
     "markdown.preview.lineHeight": 1.5,
     "markdown.preview.typographer": true,
     "notebook.cellToolbarLocation": {
@@ -130,11 +130,11 @@
     "terminal.integrated.inheritEnv": true,
     "window.autoDetectColorScheme": true,
     "window.menuBarVisibility": "compact",
+    "window.newWindowProfile": "Default",
     "window.titleBarStyle": "custom",
     "workbench.colorTheme": "GitHub Light Default",
     "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
-    "workbench.preferredLightColorTheme": "GitHub Light",
+    "workbench.preferredLightColorTheme": "GitHub Dark Dimmed",
     "workbench.sideBar.location": "left",
-    "workbench.startupEditor": "none",
-    "geminicodeassist.project": "local-voyager-kj1cz"
+    "workbench.startupEditor": "none"
 }
