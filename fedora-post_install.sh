@@ -32,7 +32,7 @@ function rpmfusion_repo() {
 }
 
 function systool_packages() {
-    sudo dnf -y install grubby
+    sudo dnf -y install grubby grub2-efi-x64-modules
     sudo dnf -y install ecryptfs-utils
 
     # secure boot
@@ -447,11 +447,12 @@ function gnome_packages() {
 }
 
 function tex_pandoc_packages() {
-    sudo dnf -y install texlive texlive-svg texlive-preprint texlive-algorithmicx texlive-mdwtools texlive-latexindent
+    sudo dnf -y install pandoc pandoc-pdf
+    sudo dnf -y install texlive texlive-svg texlive-trimspaces
+    sudo dnf -y install texlive-preprint texlive-algorithmicx texlive-mdwtools texlive-latexindent
     sudo dnf -y install texlive-nature texlive-threeparttable texlive-sttools texlive-appendix texlive-wrapfig texlive-multirow texlive-ncctools texlive-framed texlive-anyfontsize
     sudo dnf -y install texlive-moreverb texlive-comment
     sudo dnf -y install latexmk
-    sudo dnf -y install pandoc pandoc-pdf
 
     # Convert epub to html
     # pandoc FILENAME.epub --webtex -f epub -t html --embed-resources --standalone -o FILENAME.html
