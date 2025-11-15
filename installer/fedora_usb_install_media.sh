@@ -40,36 +40,30 @@ sudo grub2-install \
 
 echo ">>> Creating GRUB config..."
 sudo mkdir -p $MOUNTPOINT_EFI/boot/grub2
-cat << 'EOF' | sudo tee $MOUNTPOINT_EFI/boot/grub2/grub.cfg
+
+cat << EOF | sudo tee $MOUNTPOINT_EFI/boot/grub2/grub.cfg
 set timeout=5
 set default=0
 
 menuentry "Boot Fedora ISO" {
-    set root=(hd0,gpt2)
+    # This line IS expanded by the shell to set the correct ISO path
     set isofile="${BOOT_ISO_PATH}/${BOOT_ISO}"
-    loopback loop (hd0,gpt2)$isofile
-    linuxefi (loop)/isolinux/vmlinuz iso-scan/filename=$isofile root=live:CDLABEL=Fedora-Live rd.live.image
-    initrdefi (loop)/isolinux/initrd.img    
+
+    # Search for the partition labeled "FEDORA_DATA" and set it as \$root
+    search --no-floppy --set=root --label FEDORA_DATA
+    
+    # We escape \$root and \$isofile so GRUB uses them, not the shell
+    loopback loop (\$root)\$isofile
+    
+    linuxefi (loop)/boot/x86_64/loader/linux iso-scan/filename=\$isofile root=live:CDLABEL=Fedora-Live rd.live.image
+    initrdefi (loop)/boot/x86_64/loader/initrd
 }
 EOF
 
-# echo ">>> Creating GRUB config..."
-# sudo mkdir -p $MOUNTPOINT_EFI/boot/grub2
-# cat << 'EOF' | sudo tee $MOUNTPOINT_EFI/boot/grub2/grub.cfg
-# set timeout=5
-# set default=0
-
-# menuentry "Boot Fedora ISO" {
-#     set isofile="${BOOT_ISO_PATH}/${BOOT_ISO}"
-#     loopback loop (hd0,2)$isofile
-#     linux (loop)/isolinux/vmlinuz iso-scan/filename=$isofile root=live:CDLABEL=Fedora-Live
-#     initrd (loop)/isolinux/initrd.img
-# }
-# EOF
-
 if [[ "$FORMAT_DATA" == "yes" ]]; then
     echo ">>> Formatting DATA partition..."
-    sudo mkfs.ext4 $DATA_PART
+    # Add the label FEDORA_DATA for the GRUB 'search' command
+    sudo mkfs.ext4 -L FEDORA_DATA $DATA_PART
 
     echo ">>> Mounting DATA partition..."
     sudo mkdir -p $MOUNTPOINT_DATA
@@ -90,7 +84,5 @@ if [[ "$FORMAT_DATA" == "yes" ]]; then
 fi
 rm -rf ${MOUNTPOINT_EFI} ${MOUNTPOINT_DATA}
 
-echo ">>> Done! Copy your Fedora ISO to /isos on the USB (second partition)."
-echo ">>> Reboot and select the USB in UEFI boot menu."
+echo ">>> Done! Your USB drive should be ready."
 echo ">>> To test: sudo qemu-system-x86_64 -enable-kvm -m 2G -bios /usr/share/edk2/ovmf/OVMF_CODE.fd -drive file=/dev/sda,format=raw,media=disk"
-
