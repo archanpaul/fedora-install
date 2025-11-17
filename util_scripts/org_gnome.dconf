@@ -26,7 +26,7 @@ window-maximized=false
 window-size=(360, 616)
 
 [control-center]
-last-panel='sound'
+last-panel='power'
 window-state=(960, 516, false)
 
 [desktop/app-folders]
@@ -85,9 +85,10 @@ font-antialiasing='grayscale'
 font-hinting='slight'
 show-battery-percentage=true
 text-scaling-factor=0.85999999999999999
+toolkit-accessibility=false
 
 [desktop/notifications]
-application-children=['org-gnome-software', 'google-chrome', 'org-mozilla-firefox', 'gnome-about-panel', 'gnome-power-panel', 'microsoft-edge', 'com-spotify-client', 'org-gnome-ptyxis', 'org-gnome-nautilus', 'org-gnome-texteditor', 'org-gnome-showtime']
+application-children=['org-gnome-software', 'google-chrome', 'org-mozilla-firefox', 'gnome-about-panel', 'gnome-power-panel', 'microsoft-edge', 'com-spotify-client', 'org-gnome-ptyxis', 'org-gnome-nautilus', 'org-gnome-texteditor', 'org-gnome-showtime', 'org-freedesktop-problems-applet']
 show-in-lock-screen=false
 
 [desktop/notifications/application/com-spotify-client]
@@ -104,6 +105,9 @@ application-id='google-chrome.desktop'
 
 [desktop/notifications/application/microsoft-edge]
 application-id='microsoft-edge.desktop'
+
+[desktop/notifications/application/org-freedesktop-problems-applet]
+application-id='org.freedesktop.problems.applet.desktop'
 
 [desktop/notifications/application/org-gnome-nautilus]
 application-id='org.gnome.Nautilus.desktop'
@@ -213,7 +217,7 @@ window-height=887
 window-width=1150
 
 [portal/filechooser/code]
-last-folder-path='/home/arp/workspace/research_workspace/vectorized_neural_kernel.workspace/vectorized_neural_kernel.git/sources/vnk_framework/venv/bin'
+last-folder-path='/home/arp/workspace/delme'
 
 [portal/filechooser/com.google.Chrome]
 last-folder-path='/home/arp/workspace/delme'
@@ -253,7 +257,7 @@ app-picker-layout=[{'org.gnome.Connections.desktop': <{'position': <0>}>, 'org.g
 disabled-extensions=['places-menu@gnome-shell-extensions.gcampax.github.com']
 enabled-extensions=['background-logo@fedorahosted.org', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com']
 favorite-apps=['org.gnome.SystemMonitor.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Ptyxis.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop', 'code.desktop', 'microsoft-edge.desktop']
-last-selected-power-profile='performance'
+last-selected-power-profile='power-saver'
 remember-mount-password=false
 welcome-dialog-last-shown-version='49.1'
 
@@ -298,11 +302,13 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1763190123
+check-timestamp=int64 1763279818
 first-run=false
-flatpak-purge-timestamp=int64 1763184422
-install-timestamp=int64 1762050460
+flatpak-purge-timestamp=int64 1763297961
+install-timestamp=int64 1763280975
+packagekit-historical-updates-timestamp=uint64 1763280975
 security-timestamp=int64 1763106125281698
+update-notification-timestamp=int64 1763279843
 
 [system/location]
 enabled=false
