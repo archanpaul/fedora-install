@@ -260,8 +260,6 @@ function vscode_package_user_conf() {
     ## vscode extensions
     code --install-extension dart-code.dart-code
     code --install-extension dart-code.flutter
-    code --install-extension github.copilot
-    code --install-extension github.copilot-chat
     code --install-extension github.github-vscode-theme
     code --install-extension golang.go
     code --install-extension google.colab
@@ -279,10 +277,10 @@ function vscode_package_user_conf() {
     code --install-extension ms-toolsai.jupyter
     code --install-extension ms-toolsai.jupyter-keymap
     code --install-extension ms-toolsai.jupyter-renderers
-    code --install-extension ms-toolsai.python-ds-extension-pack
     code --install-extension ms-toolsai.vscode-jupyter-cell-tags
     code --install-extension ms-toolsai.vscode-jupyter-slideshow
     code --install-extension ms-vscode-remote.remote-containers
+    code --install-extension ms-vscode.cpptools
     code --install-extension ms-vscode.remote-explorer
 }
 
