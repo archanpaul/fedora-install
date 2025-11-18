@@ -42,7 +42,6 @@
     "amazonQ.telemetry": false,
     "breadcrumbs.enabled": true,
     "C_Cpp.clang_format_fallbackStyle": "\"{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}\"",
-    "chat.commandCenter.enabled": false,
     "continue.telemetryEnabled": false,
     "dart.checkForSdkUpdates": false,
     "dart.debugSdkLibraries": false,
@@ -136,5 +135,8 @@
     "workbench.preferredLightColorTheme": "GitHub Light",
     "workbench.sideBar.location": "left",
     "workbench.startupEditor": "none",
-    "geminicodeassist.project": "local-voyager-kj1cz"
+    "geminicodeassist.project": "local-voyager-kj1cz",
+    "chat.disableAIFeatures": true,
+    "geminicodeassist.codeGenerationPaneViewEnabled": true,
+    "geminicodeassist.updateChannel": "Default"
 }

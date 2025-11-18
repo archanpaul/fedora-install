@@ -265,7 +265,6 @@ function vscode_package_user_conf() {
     code --install-extension google.colab
     code --install-extension google.gemini-cli-vscode-ide-companion
     code --install-extension google.geminicodeassist
-    code --install-extension james-yu.latex-workshop
     code --install-extension mhutchie.git-graph
     code --install-extension ms-azuretools.vscode-containers
     code --install-extension ms-python.black-formatter
@@ -283,7 +282,6 @@ function vscode_package_user_conf() {
     code --install-extension ms-vscode-remote.remote-containers
     code --install-extension ms-vscode.cpptools
     code --install-extension ms-vscode.remote-explorer
-
 }
 
 function android-studio_package(){
