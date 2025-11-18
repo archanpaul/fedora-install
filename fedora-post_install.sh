@@ -287,7 +287,7 @@ function vscode_package_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2025.2.1.7
+    ANDROID_STUDIO_RELEASE=2025.2.1.8
     ANDROID_NDK_VERSION=29.0.14206865
 
     sudo rm -rf /opt/android-studio
@@ -335,7 +335,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.35.7-stable"
+    FLUTTER_VERSION="3.38.1-stable"
 
     wget -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk

@@ -1,6 +1,6 @@
 ## Link home folders
 
-REPOS_SRC=/home/repos.arp
+REPOS_SRC=/home/data.arp/repos.arp
 REPOS=~/repos
 CACHE=${REPOS}/app_cache
 
