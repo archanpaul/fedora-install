@@ -530,60 +530,6 @@ function database_packages() {
    sudo dnf -y install mariadb mariadb-server
 }
 
-function amd_packages() {
-    sudo dnf -y install rocminfo rocm-clinfo
-    sudo dnf -y install miopen
-    sudo dnf -y install rocm-cmake rocm-device-libs rocm-compilersupport-macros
-    sudo dnf -y install rocm-comgr rocm-comgr-devel
-    sudo dnf -y install rocm-core rocm-core-devel
-    sudo dnf -y install rocm-hip rocm-hip-devel
-    sudo dnf -y install rocm-opencl rocm-opencl-devel
-    sudo dnf -y install rocm-runtime rocm-runtime-devel
-    sudo dnf -y install rocm-smi rocm-smi-devel
-    sudo dnf -y install hipblas hipfft hipsolver hipsparse
-    sudo dnf -y install rocalution rocblas rocfft rocrand rocsolver rocsparse roctracer
-    sudo dnf -y install rocprim-devel
-
-    sudo dnf -y install radeontop
-    sudo dnf -y install sevctl snphost
-}
-
-function intel_packages() {
-    # ref: https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html?packages=cpp-essentials&cpp-essentials-os=linux&cpp-essentials-lin=yum-dnf
-
-        cat <<EOF | sudo tee /etc/yum.repos.d/intel_one_api.repo
-[oneAPI]
-name=Intel® oneAPI repository
-baseurl=https://yum.repos.intel.com/oneapi
-enabled=1
-gpgcheck=1
-repo_gpgcheck=1
-gpgkey=https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-EOF
-
-    sudo dnf -y install intel-oneapi-base-toolkit
-    sudo dnf -y install intel-deep-learning-essentials
-    sudo dnf -y install install intel-cpp-essentials
-}
-
-function cloud_tools_packages() {
-    #gcloud_package() {
-    cat <<EOF | sudo tee /etc/yum.repos.d/google-cloud-sdk.repo
-[google-cloud-sdk]
-name=Google Cloud SDK
-baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el8-x86_64
-enabled=1
-gpgcheck=1
-repo_gpgcheck=0
-gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
-       https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-EOF
-
-   sudo dnf -y install libxcrypt-compat.x86_64
-   sudo dnf -y install google-cloud-sdk
-   sudo dnf -y install rclone
-}
-
 function httpd_service() {
         sudo mkdir -p /home/public
         sudo chmod 775 /home/public
@@ -698,24 +644,17 @@ function install_all_modules() {
     # security_packages
     # tex_pandoc_packages
     # markdown_packages
-
     # laptop_mode
     # thinkpad_packages
-
-    # intel_packages
-    # amd_packages
+    # network_extra_packages
 
     # httpd_service
     # firewall_services
     # firewall_user_services
     # misc_services
 
-    # network_extra_packages
-    # cloud_tools_packages
-
     # android-studio_package
     # flutter-sdk_package
-
     # go_extra_packages
     # python_virtualenv_packages
 }
