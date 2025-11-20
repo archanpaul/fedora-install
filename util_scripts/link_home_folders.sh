@@ -6,7 +6,7 @@ CACHE=${REPOS}/app_cache
 
 function create_home_folders() {
 	cd ~
-	
+
 	ln -sfn ${REPOS_SRC} ${REPOS}
 	mkdir -p ${CACHE}
 
@@ -17,15 +17,15 @@ function create_home_folders() {
 	unlink ~/Downloads
 	mkdir -p ${REPOS}/downloads
 	ln -sfn ${REPOS}/downloads Downloads
-	
+
 	unlink ~/Music
 	mkdir -p ${REPOS}/audio
 	ln -sfn ${REPOS}/audio Music
-	
+
 	unlink ~/Videos
 	mkdir -p ${REPOS}/videos
 	ln -sfn ${REPOS}/videos Videos
-	
+
 	unlink ~/Pictures
 	mkdir -p ${REPOS}/pictures
 	ln -sfn ${REPOS}/pictures Pictures
@@ -88,7 +88,7 @@ function create_app_cache() {
 	rm -rf ~/.mozilla
 	ln -sfn ${CACHE}/firefox.cache ~/.mozilla
 
-	mkdir -p ${CACHE}/edge/cache ${CACHE}/edge/config 
+	mkdir -p ${CACHE}/edge/cache ${CACHE}/edge/config
 	ln -sfn ${CACHE}/edge/cache .cache/microsoft-edge
 	ln -sfn ${CACHE}/edge/config .config/microsoft-edge
 
@@ -115,6 +115,11 @@ function create_app_cache() {
 	ln -sfn ${CACHE}/vscode.cache/config ~/.vscode
 	ln -sfn ${CACHE}/vscode.cache/config_code ~/.config/Code
 	# cat vscode_settings.json > ~/.config/Code/User/settings.json
+
+	# antigravity
+	rm -rf ~/.antigravity
+	mkdir -p ${CACHE}/antigravity.cache
+	ln -sfn ${CACHE}/antigravity.cache ~/.antigravity
 
 	# obsidian
 	rm -rf ~/.var/app/md.obsidian.Obsidian

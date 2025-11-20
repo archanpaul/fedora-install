@@ -31,6 +31,11 @@ function rpmfusion_repo() {
     sudo dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 }
 
+function flatpak_repo() {
+    sudo dnf -y install flatpak
+    sudo flatpak update --appstream
+}
+
 function systool_packages() {
     sudo dnf -y install grubby grub2-efi-x64-modules
     sudo dnf -y install ecryptfs-utils
@@ -184,6 +189,9 @@ function browser_packages() {
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
     sudo dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/yumrepos/edge/config.repo
     sudo dnf -y install microsoft-edge-stable
+
+    ## LibreWolf
+    sudo flatpak install -y flathub io.gitlab.librewolf-community
 }
 
 function ai_packages() {
@@ -470,8 +478,6 @@ function tex_pandoc_packages() {
 }
 
 function markdown_packages() {
-    sudo dnf -y install flatpak
-    sudo flatpak update --appstream
     sudo flatpak install -y flathub md.obsidian.Obsidian
 }
 
@@ -666,6 +672,7 @@ function install_all_modules() {
     # dnf_conf_update
     fedora_upgrade
     # rpmfusion_repo
+    # flatpak_repo
 
     # systool_packages
     # devtool_packages
@@ -690,6 +697,7 @@ function install_all_modules() {
     # database_packages
     # security_packages
     # tex_pandoc_packages
+    # markdown_packages
 
     # laptop_mode
     # thinkpad_packages
@@ -704,7 +712,6 @@ function install_all_modules() {
 
     # network_extra_packages
     # cloud_tools_packages
-    # markdown_packages
 
     # android-studio_package
     # flutter-sdk_package
