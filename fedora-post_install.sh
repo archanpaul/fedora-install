@@ -244,6 +244,18 @@ function vscode_package() {
     sudo sysctl -p
 }
 
+function google_antigravity_package() {
+    sudo tee /etc/yum.repos.d/antigravity.repo << EOL
+[antigravity-rpm]
+name=Antigravity RPM Repository
+baseurl=https://us-central1-yum.pkg.dev/projects/antigravity-auto-updater-dev/antigravity-rpm
+enabled=1
+gpgcheck=0
+EOL
+    sudo dnf makecache
+    sudo dnf -y install antigravity
+}
+
 function git_user_conf() {
     # git config --global core.editor "code --wait"
     git config --global core.editor "nvim"
@@ -668,6 +680,7 @@ function install_all_modules() {
     # python_packages
     # gnome_packages
     # vscode_package
+    # google_antigravity_package
     # go_packages
     # npm_packages
     # ai_packages
@@ -676,7 +689,6 @@ function install_all_modules() {
     # libreoffice_packages
     # database_packages
     # security_packages
-    # markdown_packages
     # tex_pandoc_packages
 
     # laptop_mode
@@ -692,6 +704,7 @@ function install_all_modules() {
 
     # network_extra_packages
     # cloud_tools_packages
+    # markdown_packages
 
     # android-studio_package
     # flutter-sdk_package
