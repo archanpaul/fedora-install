@@ -49,7 +49,7 @@ function systool_packages() {
     sudo dnf -y install nvme-cli
 
     sudo dnf -y install mc neovim
-    sudo dnf -y install sysstat htop glances
+    sudo dnf -y install sysstat glances
 
     sudo dnf -y install mesa-vulkan-drivers vulkan-tools
 

@@ -88,9 +88,9 @@ function create_app_cache() {
 	rm -rf ~/.mozilla
 	ln -sfn ${CACHE}/firefox.cache ~/.mozilla
 
-	mkdir -p ${CACHE}/edge/cache ${CACHE}/edge/config
-	ln -sfn ${CACHE}/edge/cache .cache/microsoft-edge
-	ln -sfn ${CACHE}/edge/config .config/microsoft-edge
+	mkdir -p ${CACHE}/edge.cache/cache ${CACHE}/edge.cache/config
+	ln -sfn ${CACHE}/edge.cache/cache .cache/microsoft-edge
+	ln -sfn ${CACHE}/edge.cache/config .config/microsoft-edge
 
 	mkdir -p ${CACHE}/google-chrome.cache
 	ln -sfn ${CACHE}/google-chrome.cache ~/.config/google-chrome
@@ -115,6 +115,11 @@ function create_app_cache() {
 	ln -sfn ${CACHE}/vscode.cache/config ~/.vscode
 	ln -sfn ${CACHE}/vscode.cache/config_code ~/.config/Code
 	# cat vscode_settings.json > ~/.config/Code/User/settings.json
+
+	# Gemini
+	rm -rf ~/.gemini
+	mkdir -p ${CACHE}/gemini.cache
+	ln -sfn ${CACHE}/gemini.cache ~/.gemini
 
 	# antigravity
 	rm -rf ~/.antigravity
