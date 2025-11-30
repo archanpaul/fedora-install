@@ -122,9 +122,10 @@ function create_app_cache() {
 	ln -sfn ${CACHE}/gemini.cache ~/.gemini
 
 	# antigravity
-	rm -rf ~/.antigravity
-	mkdir -p ${CACHE}/antigravity.cache
-	ln -sfn ${CACHE}/antigravity.cache ~/.antigravity
+	rm -rf ~/.antigravity ~/.config/Antigravity
+	mkdir -p ${CACHE}/antigravity.cache/antigravity ${CACHE}/antigravity.cache/config
+	ln -sfn ${CACHE}/antigravity.cache/antigravity ~/.antigravity
+	ln -sfn ${CACHE}/antigravity.cache/config ~/.config/Antigravity
 
 	# obsidian
 	rm -rf ~/.var/app/md.obsidian.Obsidian

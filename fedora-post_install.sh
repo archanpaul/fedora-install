@@ -191,7 +191,8 @@ function browser_packages() {
     sudo dnf -y install microsoft-edge-stable
 
     ## LibreWolf
-    sudo flatpak install -y flathub io.gitlab.librewolf-community
+    sudo dnf config-manager addrepo --from-repofile=https://repo.librewolf.net/librewolf.repo
+    sudo dnf -y install librewolf
 }
 
 function ai_packages() {
@@ -252,26 +253,6 @@ function vscode_package() {
     sudo sysctl -p
 }
 
-function google_antigravity_package() {
-    sudo tee /etc/yum.repos.d/antigravity.repo << EOL
-[antigravity-rpm]
-name=Antigravity RPM Repository
-baseurl=https://us-central1-yum.pkg.dev/projects/antigravity-auto-updater-dev/antigravity-rpm
-enabled=1
-gpgcheck=0
-EOL
-    sudo dnf makecache
-    sudo dnf -y install antigravity
-}
-
-function git_user_conf() {
-    # git config --global core.editor "code --wait"
-    git config --global core.editor "nvim"
-
-    # git config --global user.name "USER_NAME"
-    # git config --global user.email "USER_EMAIL"
-}
-
 function vscode_package_user_conf() {
     ## vscode list/remove extensions
     # code --list-extensions | xargs -L 1 echo code --install-extension
@@ -302,6 +283,45 @@ function vscode_package_user_conf() {
     code --install-extension ms-vscode-remote.remote-containers
     code --install-extension ms-vscode.cpptools
     code --install-extension ms-vscode.remote-explorer
+}
+
+function google_antigravity_package() {
+    sudo tee /etc/yum.repos.d/antigravity.repo << EOL
+[antigravity-rpm]
+name=Antigravity RPM Repository
+baseurl=https://us-central1-yum.pkg.dev/projects/antigravity-auto-updater-dev/antigravity-rpm
+enabled=1
+gpgcheck=0
+EOL
+    sudo dnf makecache
+    sudo dnf -y install antigravity
+}
+
+function antigravity_package_user_conf() {
+    ## antigravity list/remove extensions
+    # antigravity --list-extensions | xargs -L 1 echo antigravity --install-extension
+    # antigravity --list-extensions | xargs -L 1 antigravity --uninstall-extension
+
+    ## antigravity extensions
+    antigravity --install-extension dart-code.dart-code
+    antigravity --install-extension dart-code.flutter
+    antigravity --install-extension golang.go
+    antigravity --install-extension ms-python.debugpy
+    antigravity --install-extension ms-python.python
+    antigravity --install-extension ms-python.vscode-python-envs
+    antigravity --install-extension ms-toolsai.jupyter
+    antigravity --install-extension ms-toolsai.jupyter-keymap
+    antigravity --install-extension ms-toolsai.jupyter-renderers
+    antigravity --install-extension ms-toolsai.vscode-jupyter-cell-tags
+    antigravity --install-extension ms-toolsai.vscode-jupyter-slideshow
+}
+
+function git_user_conf() {
+    # git config --global core.editor "code --wait"
+    git config --global core.editor "nvim"
+
+    # git config --global user.name "USER_NAME"
+    # git config --global user.email "USER_EMAIL"
 }
 
 function android-studio_package(){
@@ -664,6 +684,7 @@ function install_all_user_modules() {
 
     # git_user_conf
     # vscode_package_user_conf
+    # antigravity_package_user_conf
     # flutter-sdk_user_conf
     # python_user_conf
     # container_user_conf
