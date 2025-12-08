@@ -32,7 +32,7 @@ function rpmfusion_repo() {
 }
 
 function flatpak_repo() {
-    sudo dnf -y install flatpak
+    sudo dnf -y install flatpak flatpak-builder
     sudo flatpak update --appstream
 }
 
@@ -198,6 +198,8 @@ function browser_packages() {
 function ai_packages() {
     sudo dnf -y install ollama
     sudo npm install -g @google/gemini-cli
+    # gemini extensions install https://github.com/gemini-cli-extensions/flutter
+    # gemini extensions install https://github.com/gemini-cli-extensions/code-review
 }
 
 function ollama_user_conf() {
