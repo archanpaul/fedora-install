@@ -77,6 +77,8 @@ function devtool_packages() {
 
 function rpm_devtool_packages() {
     sudo dnf -y install fedora-packager fedora-review
+    sudo dnf -y install patchelf
+    sudo dnf -y install chrpath
 }
 
 function jdk_packages() {
@@ -413,6 +415,9 @@ function flutter-sdk_user_conf() {
     flutter config --enable-linux-desktop
     flutter config --enable-windows-desktop
     flutter config --enable-macos-desktop
+    flutter config --no-enable-web
+    flutter --disable-analytics
+
     dart --disable-analytics
     dart pub global activate protoc_plugin
 }
