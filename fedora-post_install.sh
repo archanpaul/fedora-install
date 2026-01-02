@@ -329,7 +329,7 @@ function git_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2025.2.2.7
+    ANDROID_STUDIO_RELEASE=2025.2.2.8
     ANDROID_NDK_VERSION=29.0.14206865
 
     sudo rm -rf /opt/android-studio
@@ -377,7 +377,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.38.4-stable"
+    FLUTTER_VERSION="3.38.5-stable"
 
     wget -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
@@ -420,6 +420,7 @@ function flutter-sdk_user_conf() {
 
     dart --disable-analytics
     dart pub global activate protoc_plugin
+    flutter pub global deactivate devtools
 }
 
 function python_packages() {
