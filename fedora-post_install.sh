@@ -39,6 +39,7 @@ function flatpak_repo() {
 function systool_packages() {
     sudo dnf -y install grubby grub2-efi-x64-modules
     sudo dnf -y install ecryptfs-utils
+    sudo dnf -y install gdisk
 
     # secure boot
     sudo dnf -y install akmods modutil
@@ -66,7 +67,6 @@ function devtool_packages() {
     sudo dnf -y install binutils bison flex gcc gcc-c++ gdb
     sudo dnf -y install clang clang-tools-extra clang-devel
     sudo dnf -y install llvm llvm-devel
-    sudo dnf -y install gdisk
 
     sudo dnf -y install glibc-devel libstdc++-devel kernel-devel
     sudo dnf -y install protobuf protobuf-compiler protobuf-devel
