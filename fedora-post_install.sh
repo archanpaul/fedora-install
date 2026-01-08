@@ -299,6 +299,15 @@ gpgcheck=0
 EOL
     sudo dnf makecache
     sudo dnf -y install antigravity
+
+    # Restrict Antigravity memory usage.
+    sudo tee /etc/systemd/system/antigravity-total.slice << EOL
+[Unit]
+Description=Hard Memory Cap for ALL Antigravity Instances
+[Slice]
+MemoryMax=16G
+EOL
+    sudo systemctl daemon-reload
 }
 
 function antigravity_package_user_conf() {
