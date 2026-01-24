@@ -42,6 +42,7 @@
     "amazonQ.telemetry": false,
     "breadcrumbs.enabled": true,
     "C_Cpp.clang_format_fallbackStyle": "\"{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}\"",
+    "chat.disableAIFeatures": true,
     "continue.telemetryEnabled": false,
     "dart.checkForSdkUpdates": false,
     "dart.debugSdkLibraries": false,
@@ -73,8 +74,11 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
+    "geminicodeassist.codeGenerationPaneViewEnabled": true,
     "geminicodeassist.enableTelemetry": false,
     "geminicodeassist.inlineSuggestions.enableAuto": true,
+    "geminicodeassist.project": "gen-lang-client-0876712108",
+    "geminicodeassist.updateChannel": "Default",
     "git-graph.maxDepthOfRepoSearch": 10,
     "git.repositoryScanMaxDepth": -1,
     "go.buildFlags": [
@@ -92,6 +96,7 @@
     "go.vetFlags": [
         "-composites=false"
     ],
+    "http.systemCertificatesNode": true,
     "json.maxItemsComputed": 200000,
     "jupyter.askForKernelRestart": false,
     "jupyter.exportWithOutputEnabled": true,
@@ -134,9 +139,5 @@
     "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
     "workbench.preferredLightColorTheme": "GitHub Light",
     "workbench.sideBar.location": "left",
-    "workbench.startupEditor": "none",
-    "geminicodeassist.project": "local-voyager-kj1cz",
-    "chat.disableAIFeatures": true,
-    "geminicodeassist.codeGenerationPaneViewEnabled": true,
-    "geminicodeassist.updateChannel": "Default"
+    "workbench.startupEditor": "none"
 }
