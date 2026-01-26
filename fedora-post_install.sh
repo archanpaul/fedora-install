@@ -48,6 +48,8 @@ function systool_packages() {
     sudo systemctl enable crond.service
 
     sudo dnf -y install nvme-cli
+    sudo dnf -y install ddcutil
+    # sudo ddcutil setvcp 10 50
 
     sudo dnf -y install mc neovim
     sudo dnf -y install sysstat glances
@@ -338,7 +340,7 @@ function git_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2025.2.2.8
+    ANDROID_STUDIO_RELEASE=2025.2.3.9
     ANDROID_NDK_VERSION=29.0.14206865
 
     sudo rm -rf /opt/android-studio
@@ -386,7 +388,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.38.5-stable"
+    FLUTTER_VERSION="3.38.7-stable"
 
     wget -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
