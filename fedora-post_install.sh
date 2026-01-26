@@ -381,8 +381,6 @@ EOF
     # rpmfusion_repo
     # sudo dnf -y --allowerasing install ffmpeg-free
     sudo dnf -y install scrcpy
-    # remove android-tools to use SDK's tools
-    sudo rpm -e android-tools --nodeps
 }
 
 function flutter-sdk_package() {
