@@ -11,8 +11,17 @@ show-map=true
 show-right-margin=false
 tab-width=uint32 4
 
+[calculator]
+base=10
+button-mode='basic'
+source-units=['degree']
+target-units=['radian']
+unit-category='angle'
+window-maximized=false
+window-size=(360, 616)
+
 [control-center]
-last-panel='keyboard'
+last-panel='power'
 window-state=(1091, 838, false)
 
 [desktop/app-folders]
@@ -69,9 +78,18 @@ show-battery-percentage=true
 text-scaling-factor=1.0
 
 [desktop/notifications]
-application-children=['org-gnome-software', 'google-chrome', 'gnome-about-panel', 'gimp', 'org-gnome-ptyxis', 'gnome-power-panel', 'org-gnome-decibels']
+application-children=['org-gnome-software', 'google-chrome', 'gnome-about-panel', 'gimp', 'org-gnome-ptyxis', 'gnome-power-panel', 'org-gnome-decibels', 'microsoft-edge', 'antigravity', 'com-arputer-knowledge-hive', 'org-freedesktop-problems-applet', 'com-spotify-client']
 show-banners=true
 show-in-lock-screen=false
+
+[desktop/notifications/application/antigravity]
+application-id='antigravity.desktop'
+
+[desktop/notifications/application/com-arputer-knowledge-hive]
+application-id='com.arputer.knowledge_hive.desktop'
+
+[desktop/notifications/application/com-spotify-client]
+application-id='com.spotify.Client.desktop'
 
 [desktop/notifications/application/gimp]
 application-id='gimp.desktop'
@@ -84,6 +102,12 @@ application-id='gnome-power-panel.desktop'
 
 [desktop/notifications/application/google-chrome]
 application-id='google-chrome.desktop'
+
+[desktop/notifications/application/microsoft-edge]
+application-id='microsoft-edge.desktop'
+
+[desktop/notifications/application/org-freedesktop-problems-applet]
+application-id='org.freedesktop.problems.applet.desktop'
 
 [desktop/notifications/application/org-gnome-decibels]
 application-id='org.gnome.Decibels.desktop'
@@ -128,15 +152,19 @@ migrated=true
 
 [gnome-system-monitor]
 cpu-colors=[(uint32 0, '#e01b24'), (1, '#ff7800'), (2, '#f6d32d'), (3, '#33d17a'), (4, '#26a269'), (5, '#62a0ea'), (6, '#1c71d8'), (7, '#613583'), (8, '#9141ac'), (9, '#c061cb'), (10, '#ffbe6f'), (11, '#f9f06b'), (12, '#8ff0a4'), (13, '#2ec27e'), (14, '#1a5fb4'), (15, '#c061cb'), (16, '#eff7f3327999'), (17, '#d2f17999f332')]
+current-tab='processes'
 maximized=false
 show-dependencies=false
 show-whose-processes='user'
-window-height=720
-window-width=800
+window-height=1212
+window-width=1035
 
 [gnome-system-monitor/proctree]
 col-26-visible=false
 col-26-width=0
+columns-order=[0, 12, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+sort-col=8
+sort-order=0
 
 
 [mutter]
@@ -151,7 +179,7 @@ default-folder-viewer='icon-view'
 migrated-gtk-settings=true
 
 [nautilus/window-state]
-initial-size=(1666, 1278)
+initial-size=(1386, 1033)
 initial-size-file-chooser=(890, 550)
 
 [papers]
@@ -163,20 +191,23 @@ continuous=true
 dual-page=false
 dual-page-odd-left=false
 enable-spellchecking=true
-show-sidebar=true
+show-sidebar=false
 sizing-mode='automatic'
 window-height=1462
 window-maximized=false
 window-width=1528
 
+[portal/filechooser/antigravity]
+last-folder-path='/home/arp/workspace/knowledge_hive.workspace/knowledge_hive_app.git'
+
 [portal/filechooser/com.google.Chrome]
-last-folder-path='/home/arp/Downloads/kk_package/distributable/geocontext_ablation_presentation'
+last-folder-path='/home/arp/Downloads'
 
 [portal/filechooser/md.obsidian.Obsidian]
 last-folder-path='/home/arp/workspace/obsidian.vaults/obsidian_arp.git'
 
 [portal/filechooser/org.chromium.Chromium]
-last-folder-path='/home/arp/Downloads/kk_package/distributable'
+last-folder-path='/home/arp/Downloads'
 
 [portal/filechooser/org.gnome.Settings]
 last-folder-path='/home/arp/Pictures/Wallpapers'
@@ -237,11 +268,12 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1769402801
+check-timestamp=int64 1769663717
 first-run=false
-flatpak-purge-timestamp=int64 1769343504
+flatpak-purge-timestamp=int64 1769682540
 install-timestamp=int64 1768357542
-packagekit-historical-updates-timestamp=uint64 1769224592
+packagekit-historical-updates-timestamp=uint64 1769612672
+update-notification-timestamp=int64 1769610769
 
 [system/location]
 enabled=false
