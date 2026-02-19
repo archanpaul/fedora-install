@@ -344,14 +344,14 @@ function git_user_conf() {
 
 function android-studio_package(){
     ANDROID_STUDIO_RELEASE=2025.3.1.8
+    ANDROID_STUDIO_RELEASE_NAME=panda1-patch1
     ANDROID_NDK_VERSION=29.0.14206865
-
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
 
-    wget -c https://redirector.gvt1.com/edgedl/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-${ANDROID_STUDIO_RELEASE}-linux.tar.gz -P ${CACHE}
+    wget -q --show-progress -c https://edgedl.me.gvt1.com/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz
 
-    sudo tar zxfv ${CACHE}/android-studio-${ANDROID_STUDIO_RELEASE}-linux.tar.gz -C /opt/
+    sudo tar zxfv ${CACHE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz -C /opt/
     sudo chown -R root:wheel /opt/android-studio
     sudo chmod -R u+rwX,go+rwX,o-w /opt/android-studio
 
@@ -391,7 +391,7 @@ function flutter-sdk_package() {
 
     FLUTTER_VERSION="3.41.1-stable"
 
-    wget -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
+    wget -q --show-progress -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
     sudo mkdir -p /opt/flutter-sdk
 
