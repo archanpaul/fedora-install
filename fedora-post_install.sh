@@ -288,7 +288,10 @@ function vscode_package_user_conf() {
     code --install-extension ms-toolsai.vscode-jupyter-slideshow
     code --install-extension ms-vscode-remote.remote-containers
     code --install-extension ms-vscode.cpptools
+    code --install-extension ms-vscode.live-server
     code --install-extension ms-vscode.remote-explorer
+    code --install-extension ms-vsliveshare.vsliveshare
+
 }
 
 function google_antigravity_package() {
@@ -340,7 +343,7 @@ function git_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2025.2.3.9
+    ANDROID_STUDIO_RELEASE=2025.3.1.8
     ANDROID_NDK_VERSION=29.0.14206865
 
     sudo rm -rf /opt/android-studio
@@ -386,7 +389,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.38.9-stable"
+    FLUTTER_VERSION="3.41.1-stable"
 
     wget -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
