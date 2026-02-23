@@ -349,7 +349,7 @@ function android-studio_package(){
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
 
-    wget -q --show-progress -c https://edgedl.me.gvt1.com/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz
+    wget -q --show-progress -c https://edgedl.me.gvt1.com/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz -P ${CACHE}
 
     sudo tar zxfv ${CACHE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz -C /opt/
     sudo chown -R root:wheel /opt/android-studio
@@ -409,7 +409,8 @@ export ENABLE_FLUTTER_DESKTOP=true
 export PATH=\$PATH:\$FLUTTER_ROOT/bin:\$PUB_CACHE/bin
 EOF
     source /etc/profile.d/flutter-sdk.sh
-
+    
+    sudo dnf -y install egl-utils
     ## Linux app development dependencies.
     sudo dnf -y install ninja-build
     sudo dnf -y install gtk3-devel
@@ -478,6 +479,10 @@ function python_user_conf() {
     mkdir -p ~/.virtualenvs
     ln -sfn ${VENV_FOLDER} ~/.virtualenvs/${VENV}
     ln -sfn ~/.virtualenvs/${VENV} ~/.venv
+}
+
+function rust_packages() {
+    sudo dnf -y install rust cargo
 }
 
 function gnome_packages() {
@@ -671,6 +676,7 @@ function install_all_modules() {
     # network_packages
     # browser_packages
     # python_packages
+    # rust_packages
     # gnome_packages
     # vscode_package
     # google_antigravity_package
