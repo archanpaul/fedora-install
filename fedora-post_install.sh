@@ -260,38 +260,32 @@ function vscode_package() {
 }
 
 function vscode_package_user_conf() {
-    ## vscode list/remove extensions
     # code --list-extensions | xargs -L 1 echo code --install-extension
     # code --list-extensions | xargs -L 1 code --uninstall-extension
 
     ## vscode extensions
-    code --install-extension dart-code.dart-code
-    code --install-extension dart-code.flutter
-    code --install-extension github.github-vscode-theme
-    code --install-extension golang.go
-    code --install-extension google.colab
-    code --install-extension google.gemini-cli-vscode-ide-companion
-    code --install-extension google.geminicodeassist
-    code --install-extension mhutchie.git-graph
-    code --install-extension ms-azuretools.vscode-containers
-    code --install-extension ms-python.black-formatter
-    code --install-extension ms-python.debugpy
-    code --install-extension ms-python.isort
-    code --install-extension ms-python.python
-    code --install-extension ms-python.vscode-pylance
-    code --install-extension ms-python.vscode-python-envs
-    code --install-extension ms-toolsai.datawrangler
-    code --install-extension ms-toolsai.jupyter
-    code --install-extension ms-toolsai.jupyter-keymap
-    code --install-extension ms-toolsai.jupyter-renderers
-    code --install-extension ms-toolsai.vscode-jupyter-cell-tags
-    code --install-extension ms-toolsai.vscode-jupyter-slideshow
-    code --install-extension ms-vscode-remote.remote-containers
-    code --install-extension ms-vscode.cpptools
-    code --install-extension ms-vscode.live-server
-    code --install-extension ms-vscode.remote-explorer
-    code --install-extension ms-vsliveshare.vsliveshare
-
+	code --install-extension dart-code.dart-code
+	code --install-extension dart-code.flutter
+	code --install-extension github.github-vscode-theme
+	code --install-extension golang.go
+	code --install-extension google.colab
+	code --install-extension google.gemini-cli-vscode-ide-companion
+	code --install-extension google.geminicodeassist
+	code --install-extension marimo-team.vscode-marimo
+	code --install-extension mhutchie.git-graph
+	code --install-extension ms-azuretools.vscode-containers
+	code --install-extension ms-python.black-formatter
+	code --install-extension ms-python.debugpy
+	code --install-extension ms-python.isort
+	code --install-extension ms-python.python
+	code --install-extension ms-python.vscode-pylance
+	code --install-extension ms-python.vscode-python-envs
+	code --install-extension ms-toolsai.jupyter
+	code --install-extension ms-toolsai.jupyter-keymap
+	code --install-extension ms-toolsai.jupyter-renderers
+	code --install-extension ms-toolsai.vscode-jupyter-cell-tags
+	code --install-extension ms-vscode-remote.remote-containers
+	code --install-extension ms-vsliveshare.vsliveshare
 }
 
 function google_antigravity_package() {
@@ -316,22 +310,25 @@ EOL
 }
 
 function antigravity_package_user_conf() {
-    ## antigravity list/remove extensions
     # antigravity --list-extensions | xargs -L 1 echo antigravity --install-extension
     # antigravity --list-extensions | xargs -L 1 antigravity --uninstall-extension
 
     ## antigravity extensions
-    antigravity --install-extension dart-code.dart-code
-    antigravity --install-extension dart-code.flutter
-    antigravity --install-extension golang.go
-    antigravity --install-extension ms-python.debugpy
-    antigravity --install-extension ms-python.python
-    antigravity --install-extension ms-python.vscode-python-envs
-    antigravity --install-extension ms-toolsai.jupyter
-    antigravity --install-extension ms-toolsai.jupyter-keymap
-    antigravity --install-extension ms-toolsai.jupyter-renderers
-    antigravity --install-extension ms-toolsai.vscode-jupyter-cell-tags
-    antigravity --install-extension ms-toolsai.vscode-jupyter-slideshow
+	antigravity --install-extension dart-code.dart-code
+	antigravity --install-extension dart-code.flutter
+	antigravity --install-extension github.github-vscode-theme
+	antigravity --install-extension golang.go
+	antigravity --install-extension google.colab
+	antigravity --install-extension marimo-team.vscode-marimo
+	antigravity --install-extension meta.pyrefly
+	antigravity --install-extension ms-python.debugpy
+	antigravity --install-extension ms-python.isort
+	antigravity --install-extension ms-python.python
+	antigravity --install-extension ms-python.vscode-python-envs
+	antigravity --install-extension ms-toolsai.jupyter
+	antigravity --install-extension ms-toolsai.jupyter-keymap
+	antigravity --install-extension ms-toolsai.jupyter-renderers
+	antigravity --install-extension ms-toolsai.vscode-jupyter-cell-tags
 }
 
 function git_user_conf() {
@@ -343,8 +340,8 @@ function git_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2025.3.1.8
-    ANDROID_STUDIO_RELEASE_NAME=panda1-patch1
+    ANDROID_STUDIO_RELEASE=2025.3.2.6
+    ANDROID_STUDIO_RELEASE_NAME=panda2
     ANDROID_NDK_VERSION=29.0.14206865
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -389,7 +386,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.41.1-stable"
+    FLUTTER_VERSION="3.41.4-stable"
 
     wget -q --show-progress -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
@@ -444,7 +441,7 @@ function python_packages() {
     sudo dnf -y install python3-opencv
     sudo dnf -y install python3-sqlalchemy
     sudo dnf -y install python3-scikit-learn
-    sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook python3-jupyterlab-jupytext
+    sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook
     sudo dnf -y install python3-torch python3-torchdata python3-torchvision python3-torchaudio python3-torchtext
 
     sudo dnf -y install python3-devel
@@ -467,6 +464,7 @@ function python_virtualenv_packages() {
     source ${VENV_FOLDER}/bin/activate && \
     pip install --upgrade pip && \
     pip install black && \
+    pip install marimo && \
     pip install python-dotenv && \
     # pip install google-generativeai google-adk && \
     deactivate
@@ -702,7 +700,7 @@ function install_all_modules() {
     # android-studio_package
     # flutter-sdk_package
     # go_extra_packages
-    # python_virtualenv_packages
+     python_virtualenv_packages
 }
 
 function install_all_user_modules() {
@@ -712,7 +710,7 @@ function install_all_user_modules() {
     # vscode_package_user_conf
     # antigravity_package_user_conf
     # flutter-sdk_user_conf
-    # python_user_conf
+     python_user_conf
     # container_user_conf
     # ollama_user_conf
 }
