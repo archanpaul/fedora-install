@@ -700,7 +700,7 @@ function install_all_modules() {
     # android-studio_package
     # flutter-sdk_package
     # go_extra_packages
-     python_virtualenv_packages
+    # python_virtualenv_packages
 }
 
 function install_all_user_modules() {
@@ -710,7 +710,7 @@ function install_all_user_modules() {
     # vscode_package_user_conf
     # antigravity_package_user_conf
     # flutter-sdk_user_conf
-     python_user_conf
+    # python_user_conf
     # container_user_conf
     # ollama_user_conf
 }

@@ -33,7 +33,7 @@ window-maximized=false
 window-size=(360, 616)
 
 [control-center]
-last-panel='sound'
+last-panel='background'
 window-state=(1219, 906, false)
 
 [desktop/app-folders]
@@ -57,8 +57,8 @@ translate=true
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2026-02-08-16-05-37-vecteezy_abstract-geometric-shapes-create-modern-ornate-wallpaper_32933829.jpg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2026-02-08-16-05-37-vecteezy_abstract-geometric-shapes-create-modern-ornate-wallpaper_32933829.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2026-03-09-15-16-21-vecteezy_ai-generated-abstract-black-geometric-geometric-abstract_35667877.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2026-03-09-15-16-21-vecteezy_ai-generated-abstract-black-geometric-geometric-abstract_35667877.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -132,7 +132,7 @@ two-finger-scrolling-enabled=true
 [desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2026-02-08-16-05-37-vecteezy_abstract-geometric-shapes-create-modern-ornate-wallpaper_32933829.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2026-03-09-15-16-21-vecteezy_ai-generated-abstract-black-geometric-geometric-abstract_35667877.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -279,11 +279,11 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1771485678
+check-timestamp=int64 1773049512
 first-run=false
 flatpak-purge-timestamp=int64 1771412401
-install-timestamp=int64 1771484563
-packagekit-historical-updates-timestamp=uint64 1771485974
+install-timestamp=int64 1772850415
+packagekit-historical-updates-timestamp=uint64 1772851723
 
 [tweaks]
 show-extensions-notice=false
