@@ -70,7 +70,7 @@ function devtool_packages() {
     sudo dnf -y install clang clang-tools-extra clang-devel
     sudo dnf -y install llvm llvm-devel
 
-    sudo dnf -y install glibc-devel libstdc++-devel kernel-devel
+    sudo dnf -y install glibc-devel glibc-static libstdc++-devel kernel-devel
     sudo dnf -y install protobuf protobuf-compiler protobuf-devel
     sudo dnf -y install boost-devel
 
@@ -89,7 +89,7 @@ function jdk_packages() {
 
 function container_packages() {
     sudo dnf -y install podman podman-compose podman-remote
-    sudo dnf -y install podman-docker
+    sudo dnf -y install podman-docker docker-compose
     sudo dnf -y install virt-manager
 }
 
@@ -243,6 +243,7 @@ function go_extra_packages() {
     # gomobile
     go install -v golang.org/x/mobile/cmd/gobind@latest
     go install -v golang.org/x/mobile/cmd/gomobile@latest
+    go install -v github.com/tinygo-org/tinygo@latest
 }
 
 function npm_packages() {
