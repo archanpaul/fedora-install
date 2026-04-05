@@ -511,7 +511,7 @@ function tex_pandoc_packages() {
     sudo dnf -y install pandoc pandoc-pdf
     sudo dnf -y install texlive texlive-svg texlive-trimspaces
     sudo dnf -y install texlive-preprint texlive-algorithmicx texlive-mdwtools texlive-latexindent
-    sudo dnf -y install texlive-nature texlive-threeparttable texlive-sttools texlive-appendix texlive-wrapfig texlive-multirow texlive-ncctools texlive-framed texlive-anyfontsize
+    sudo dnf -y install texlive-nature texlive-threeparttable texlive-sttools texlive-appendix texlive-wrapfig texlive-multirow texlive-ncctools texlive-framed texlive-anyfontsize texlive-draftwatermark
     sudo dnf -y install texlive-moreverb texlive-comment
     sudo dnf -y install latexmk
 
