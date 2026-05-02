@@ -341,8 +341,8 @@ function git_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2025.3.2.6
-    ANDROID_STUDIO_RELEASE_NAME=panda2
+    ANDROID_STUDIO_RELEASE=2025.3.4
+    ANDROID_STUDIO_RELEASE_NAME=panda4
     ANDROID_NDK_VERSION=29.0.14206865
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -387,7 +387,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.41.4-stable"
+    FLUTTER_VERSION="3.41.9-stable"
 
     wget -q --show-progress -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
@@ -655,6 +655,11 @@ function laptop_mode() {
     # sudo systemctl --now enable powertop
 }
 
+function intel_packages() {
+    sudo dnf -y install openvino
+    sudo dnf -y install intel-npu-driver
+}
+
 function install_all_modules() {
     echo "install_all_modules"
 
@@ -692,6 +697,7 @@ function install_all_modules() {
     # laptop_mode
     # thinkpad_packages
     # network_extra_packages
+    # intel_packages
 
     # httpd_service
     # firewall_services
