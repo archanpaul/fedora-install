@@ -145,7 +145,7 @@ function graphics_packages() {
 
 function graphics_dev_packages() {
     sudo dnf -y install gtk4-devel
-    sudo dnf -y install opencv opencv-devel
+    # sudo dnf -y install opencv opencv-devel
 }
 
 function network_packages() {
@@ -169,7 +169,7 @@ EOF
 
 function network_extra_packages() {
     # Tailscale VPN
-    sudo dnf config-manager -y addrepo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+    sudo dnf config-manager -y addrepo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo --overwrite
     sudo dnf -y install tailscale
     # sudo systemctl enable --now tailscaled
     # sudo tailscale up
@@ -272,7 +272,6 @@ function vscode_package_user_conf() {
 	code --install-extension google.colab
 	code --install-extension google.gemini-cli-vscode-ide-companion
 	code --install-extension google.geminicodeassist
-	code --install-extension marimo-team.vscode-marimo
 	code --install-extension mhutchie.git-graph
 	code --install-extension ms-azuretools.vscode-containers
 	code --install-extension ms-python.black-formatter
@@ -320,7 +319,6 @@ function antigravity_package_user_conf() {
 	antigravity --install-extension github.github-vscode-theme
 	antigravity --install-extension golang.go
 	antigravity --install-extension google.colab
-	antigravity --install-extension marimo-team.vscode-marimo
 	antigravity --install-extension meta.pyrefly
 	antigravity --install-extension ms-python.debugpy
 	antigravity --install-extension ms-python.isort
@@ -341,13 +339,13 @@ function git_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2025.3.4
-    ANDROID_STUDIO_RELEASE_NAME=panda4
+    ANDROID_STUDIO_RELEASE=2025.3.4.7
+    ANDROID_STUDIO_RELEASE_NAME=panda4-patch1
     ANDROID_NDK_VERSION=29.0.14206865
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
 
-    wget -q --show-progress -c https://edgedl.me.gvt1.com/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz -P ${CACHE}
+    wget -q --show-progress -nc https://edgedl.me.gvt1.com/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz -P ${CACHE}
 
     sudo tar zxfv ${CACHE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz -C /opt/
     sudo chown -R root:wheel /opt/android-studio
@@ -389,7 +387,7 @@ function flutter-sdk_package() {
 
     FLUTTER_VERSION="3.41.9-stable"
 
-    wget -q --show-progress -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
+    wget -q --show-progress -nc https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
     sudo mkdir -p /opt/flutter-sdk
 
@@ -439,7 +437,7 @@ function python_packages() {
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
-    sudo dnf -y install python3-opencv
+    # sudo dnf -y install python3-opencv
     sudo dnf -y install python3-sqlalchemy
     sudo dnf -y install python3-scikit-learn
     sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook
@@ -465,9 +463,8 @@ function python_virtualenv_packages() {
     source ${VENV_FOLDER}/bin/activate && \
     pip install --upgrade pip && \
     pip install black && \
-    pip install marimo && \
     pip install python-dotenv && \
-    # pip install google-generativeai google-adk && \
+    pip install google-generativeai google-adk && \
     deactivate
 }
 
@@ -584,9 +581,10 @@ function httpd_service() {
 }
 
 function thinkpad_packages() {
-    sudo dnf -y install tlp tlp-rdw
-    # edit /etc/tlp.conf along with powertop
-    sudo systemctl enable tlp.service --now
+    # sudo dnf -y remove tuned-ppd
+    # sudo dnf -y install tlp tlp-rdw
+    ## edit /etc/tlp.conf along with powertop
+    # sudo systemctl enable tlp.service --now
 
     # thinkbook power-management
     # sudo tlp-stat -b
