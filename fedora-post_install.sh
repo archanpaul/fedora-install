@@ -246,7 +246,7 @@ function go_extra_packages() {
     go install -v github.com/tinygo-org/tinygo@latest
 
     # google-adk
-    go install  google.golang.org/adk
+    go install  google.golang.org/adk@latest
 }
 
 function npm_packages() {
@@ -466,8 +466,7 @@ function python_virtualenv_packages() {
     source ${VENV_FOLDER}/bin/activate && \
     pip install --upgrade pip && \
     pip install black && \
-    pip install python-dotenv && \
-    pip install google-generativeai google-adk && \
+    pip install google-generativeai google-adk litellm && \
     deactivate
     set +e
 }
