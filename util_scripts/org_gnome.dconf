@@ -7,6 +7,10 @@ window-size=(uint32 142, uint32 53)
 [Ptyxis/Profiles/9590030185005ce37ff718ab69faeb38]
 palette='gnome'
 
+[Showtime/State]
+is-maximized=false
+looping=true
+
 [Snapshot]
 is-maximized=false
 window-height=640
@@ -20,8 +24,17 @@ show-right-margin=true
 style-scheme='Adwaita'
 tab-width=uint32 4
 
+[calculator]
+base=10
+button-mode='basic'
+source-units=['degree']
+target-units=['radian']
+unit-category='angle'
+window-maximized=false
+window-size=(360, 616)
+
 [control-center]
-last-panel='display'
+last-panel='sound'
 window-state=(980, 634, false)
 
 [desktop/a11y/magnifier]
@@ -87,7 +100,7 @@ show-battery-percentage=true
 text-scaling-factor=1.0
 
 [desktop/notifications]
-application-children=['org-gnome-software', 'org-gnome-ptyxis', 'gnome-about-panel', 'code', 'google-chrome', 'gnome-power-panel', 'librewolf', 'org-mozilla-firefox']
+application-children=['org-gnome-software', 'org-gnome-ptyxis', 'gnome-about-panel', 'code', 'google-chrome', 'gnome-power-panel', 'librewolf', 'org-mozilla-firefox', 'org-gnome-showtime', 'microsoft-edge', 'org-gnome-decibels']
 show-in-lock-screen=false
 
 [desktop/notifications/application/code]
@@ -105,8 +118,17 @@ application-id='google-chrome.desktop'
 [desktop/notifications/application/librewolf]
 application-id='librewolf.desktop'
 
+[desktop/notifications/application/microsoft-edge]
+application-id='microsoft-edge.desktop'
+
+[desktop/notifications/application/org-gnome-decibels]
+application-id='org.gnome.Decibels.desktop'
+
 [desktop/notifications/application/org-gnome-ptyxis]
 application-id='org.gnome.Ptyxis.desktop'
+
+[desktop/notifications/application/org-gnome-showtime]
+application-id='org.gnome.Showtime.desktop'
 
 [desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
@@ -139,6 +161,9 @@ secondary-color='#000000000000'
 
 [desktop/search-providers]
 sort-order=['org.gnome.Settings.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Nautilus.desktop']
+
+[desktop/session]
+idle-delay=uint32 900
 
 [desktop/sound]
 event-sounds=false
@@ -177,7 +202,7 @@ default-folder-viewer='icon-view'
 migrated-gtk-settings=true
 
 [nautilus/window-state]
-initial-size=(1200, 712)
+initial-size=(1326, 928)
 initial-size-file-chooser=(986, 612)
 
 [papers]
@@ -191,22 +216,25 @@ dual-page-odd-left=true
 enable-spellchecking=true
 show-sidebar=false
 sizing-mode='automatic'
-window-height=1444
+window-height=1335
 window-maximized=false
-window-width=1826
+window-width=1625
 zoom=1.4749042283997811
 
 [portal/filechooser/com.arputer.knowledge_hive]
 last-folder-path='/home/arp/Downloads'
 
 [portal/filechooser/com.google.Chrome]
-last-folder-path='/home/arp/Downloads'
+last-folder-path='/home/arp/Downloads/delme'
 
 [portal/filechooser/md.obsidian.Obsidian]
-last-folder-path='/home/arp/workspace/obsidian.vaults/obsidian_bootstrap.git'
+last-folder-path='/home/arp/workspace/obsidian.vaults/coursera_sync.git'
 
 [portal/filechooser/org.gnome.Settings]
 last-folder-path='/home/arp/Pictures/Wallpapers'
+
+[portal/filechooser/org.gnome.SoundRecorder]
+last-folder-path='/home/arp/Music'
 
 [portal/filechooser/org.mozilla.firefox]
 last-folder-path='/home/arp/Downloads'
@@ -276,10 +304,11 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1778652071
+check-timestamp=int64 1779089706
 first-run=false
-flatpak-purge-timestamp=int64 1778135018
-update-notification-timestamp=int64 1778051354
+flatpak-purge-timestamp=int64 1779104449
+security-timestamp=int64 1779089095508711
+update-notification-timestamp=int64 1779089145
 
 [tweaks]
 show-extensions-notice=false
