@@ -454,26 +454,23 @@ function python_virtualenv_packages() {
     VENV=pyvenv_314
     VENV_FOLDER=/opt/python_venv/${VENV}
 
-    sudo rm -rf "${VENV_FOLDER}"
-    sudo mkdir -p "/opt/python_venv"
-    
-    sudo touch "${VENV_FOLDER}" 2>/dev/null || sudo mkdir -p "${VENV_FOLDER}"
-    sudo chown -R $(whoami): $(dirname "${VENV_FOLDER}")
-    sudo chown -R $(whoami): "${VENV_FOLDER}"
+    ## virtualenvs
+    sudo rm -rf ${VENV_FOLDER}
+    sudo mkdir -p ${VENV_FOLDER}
+    sudo chown -R root:wheel ${VENV_FOLDER}
+    sudo chmod -R u+rwX,go+rwX,o-w ${VENV_FOLDER}
 
-    /usr/bin/python${PYTHON_VERSION} -m venv --symlinks "${VENV_FOLDER}"
+    /usr/bin/python${PYTHON_VERSION} -m venv --system-site-packages --symlinks ${VENV_FOLDER}
 
     set -e
-    source "${VENV_FOLDER}/bin/activate"
-    
-    pip install --upgrade pip
-    pip install black python-dotenv 
-    pip install google-generativeai google-adk litellm
-    
+    source ${VENV_FOLDER}/bin/activate && \
+    pip install --upgrade pip && \
+    pip install black && \
+    pip install python-dotenv && \
+    pip install google-generativeai google-adk && \
     deactivate
     set +e
 }
-
 
 function python_user_conf() {
     VENV=pyvenv_314
