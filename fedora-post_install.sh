@@ -388,7 +388,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.41.9-stable"
+    FLUTTER_VERSION="3.44.0-stable"
 
     wget -q --show-progress -nc https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
@@ -436,12 +436,12 @@ function flutter-sdk_user_conf() {
 }
 
 function python_packages() {
-    sudo dnf -y install python3-virtualenv poetry
+    sudo dnf -y install python3-virtualenv python3-poetry
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
-    # sudo dnf -y install python3-opencv
-    sudo dnf -y install python3-sqlalchemy
+    sudo dnf -y install python3-opencv
+    sudo dnf -y install python3-sqlalchemy python3-pydantic
     sudo dnf -y install python3-scikit-learn
     sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook
     sudo dnf -y install python3-torch python3-torchdata python3-torchvision python3-torchaudio python3-torchtext
@@ -584,10 +584,10 @@ function httpd_service() {
 }
 
 function thinkpad_packages() {
-    # sudo dnf -y remove tuned-ppd
-    # sudo dnf -y install tlp tlp-rdw
+     sudo dnf -y remove tuned-ppd
+     sudo dnf -y install tlp tlp-rdw
     ## edit /etc/tlp.conf along with powertop
-    # sudo systemctl enable tlp.service --now
+     sudo systemctl enable tlp.service --now
 
     # thinkbook power-management
     # sudo tlp-stat -b
