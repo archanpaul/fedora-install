@@ -84,9 +84,10 @@ function create_app_cache() {
 	mkdir -p ${CACHE}/foliate
 	ln -sfn ${CACHE}/foliate .local/share/com.github.johnfactotum.Foliate
 
-	mkdir -p ${CACHE}/firefox.cache
+	mkdir -p ${CACHE}/mozilla.cache
 	rm -rf ~/.mozilla
-	ln -sfn ${CACHE}/firefox.cache ~/.mozilla
+	ln -sfn ${CACHE}/mozilla.cache ~/.mozilla
+	ln -sfn ${CACHE}/mozilla.cache ~/.config/mozilla
 
 	mkdir -p ${CACHE}/edge.cache/cache ${CACHE}/edge.cache/config
 	ln -sfn ${CACHE}/edge.cache/cache .cache/microsoft-edge
