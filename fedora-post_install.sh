@@ -145,7 +145,7 @@ function graphics_packages() {
 
 function graphics_dev_packages() {
     sudo dnf -y install gtk4-devel
-    # sudo dnf -y install opencv opencv-devel
+    sudo dnf -y install opencv opencv-devel
 }
 
 function network_packages() {
@@ -440,7 +440,7 @@ function python_packages() {
     sudo dnf -y install python3-pylint python3-autopep8
     sudo dnf -y install python3-numpy python3-scipy python3-pandas
     sudo dnf -y install python3-matplotlib
-    # sudo dnf -y install python3-opencv
+    sudo dnf -y install python3-opencv
     sudo dnf -y install python3-sqlalchemy python3-pydantic
     sudo dnf -y install python3-scikit-learn
     sudo dnf -y install python3-ipykernel python3-ipywidgets python3-notebook
