@@ -408,7 +408,7 @@ export ENABLE_FLUTTER_DESKTOP=true
 export PATH=\$PATH:\$FLUTTER_ROOT/bin:\$PUB_CACHE/bin
 EOF
     source /etc/profile.d/flutter-sdk.sh
-    
+
     sudo dnf -y install egl-utils
     ## Linux app development dependencies.
     sudo dnf -y install ninja-build
@@ -490,6 +490,7 @@ function gnome_packages() {
     sudo dnf -y install gnome-sound-recorder
     sudo dnf -y install gnome-firmware
     sudo dnf -y install foliate papers
+    sudo dnf -y install calibre
 
     sudo dnf -y install gnome-extensions-app
     sudo dnf -y install gnome-shell-extension-dash-to-dock
@@ -575,26 +576,48 @@ function database_packages() {
 }
 
 function httpd_service() {
-        sudo mkdir -p /home/public
-        sudo chmod 775 /home/public
-        sudo ln -s /home/public /var/www/html/public
-        sudo chcon -R --reference=/var/www/html /home/public
-        sudo systemctl disable httpd
-        # sudo systemctl restart httpd
+    sudo mkdir -p /home/public
+    sudo chmod 775 /home/public
+    sudo ln -s /home/public /var/www/html/public
+    sudo chcon -R --reference=/var/www/html /home/public
+    sudo systemctl disable httpd
+    # sudo systemctl restart httpd
+}
+
+function laptop_mode() {
+    sudo dnf -y install powertop
+
+    ##
+    # sudo systemctl edit powertop.service
+    ## Add following to drop-in section
+    # [Service]
+    # ExecStartPost=/bin/bash -c 'echo on > /sys/bus/usb/devices/3-2/power/control'
+    ##
+
+    sudo systemctl enable powertop.service --now
+    sudo systemctl daemon-reload
 }
 
 function thinkpad_packages() {
-     sudo dnf -y remove tuned-ppd
-     sudo dnf -y install tlp tlp-rdw
-    ## edit /etc/tlp.conf along with powertop
-     sudo systemctl enable tlp.service --now
+     sudo dnf -y install tuned tuned-ppd
+     # sudo dnf -y install tlp
+     sudo dnf -y install tlp-rdw
 
-    # thinkbook power-management
+     sudo systemctl enable tuned.service --now
+
+     # sudo dnf -y install tlp-pd
+     # sudo systemctl enable tlp.service --now
+
+    # battery controller settings
     # sudo tlp-stat -b
-    ## Thinkpad battery charge threhold start 75% end 80%
+
+    # thinkpad
     # sudo tlp setcharge 75 80
-    ## set thinkbook battery charge threshold to 80% persistent
+    # sudo tlp fullcharge
+
+    ## thinkbook
     # sudo tlp setcharge 80 1
+    # sudo tlp fullcharge
 
     # Auto decrypt luks using TPM2
     sudo dnf -y install systemd-udev dracut
@@ -642,18 +665,6 @@ function firewall_user_services() {
 function misc_services() {
     # disabled (un-necessary for personal workstation?)
     sudo systemctl disable --now sysstat
-}
-
-function laptop_mode() {
-    sudo dnf -y install powertop
-    ##
-    # sudo systemctl edit powertop.service
-    ## Add following to drop-in section
-    # [Service]
-    # ExecStartPost=/bin/bash -c 'echo on > /sys/bus/usb/devices/3-2/power/control'
-    ##
-    # sudo systemctl daemon-reload
-    # sudo systemctl --now enable powertop
 }
 
 function intel_packages() {
