@@ -291,27 +291,6 @@ function vscode_package_user_conf() {
 	code --install-extension ms-vsliveshare.vsliveshare
 }
 
-# function google_antigravity_package() {
-#     sudo tee /etc/yum.repos.d/antigravity.repo << EOL
-# [antigravity-rpm]
-# name=Antigravity RPM Repository
-# baseurl=https://us-central1-yum.pkg.dev/projects/antigravity-auto-updater-dev/antigravity-rpm
-# enabled=1
-# gpgcheck=0
-# EOL
-#     sudo dnf makecache
-#     sudo dnf -y install antigravity
-
-#     # Restrict Antigravity memory usage.
-#     sudo tee /etc/systemd/system/antigravity-total.slice << EOL
-# [Unit]
-# Description=Hard Memory Cap for ALL Antigravity Instances
-# [Slice]
-# MemoryMax=16G
-# EOL
-#     sudo systemctl daemon-reload
-# }
-
 function antigravity_packages() {
     AG_VERSION="2.0.6-5413878570549248"
     AG_URL=https://storage.googleapis.com/antigravity-public/antigravity-hub/${AG_VERSION}/linux-x64/Antigravity.tar.gz
