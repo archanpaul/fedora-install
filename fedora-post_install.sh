@@ -291,28 +291,82 @@ function vscode_package_user_conf() {
 	code --install-extension ms-vsliveshare.vsliveshare
 }
 
-function google_antigravity_package() {
-    sudo tee /etc/yum.repos.d/antigravity.repo << EOL
-[antigravity-rpm]
-name=Antigravity RPM Repository
-baseurl=https://us-central1-yum.pkg.dev/projects/antigravity-auto-updater-dev/antigravity-rpm
-enabled=1
-gpgcheck=0
-EOL
-    sudo dnf makecache
-    sudo dnf -y install antigravity
+# function google_antigravity_package() {
+#     sudo tee /etc/yum.repos.d/antigravity.repo << EOL
+# [antigravity-rpm]
+# name=Antigravity RPM Repository
+# baseurl=https://us-central1-yum.pkg.dev/projects/antigravity-auto-updater-dev/antigravity-rpm
+# enabled=1
+# gpgcheck=0
+# EOL
+#     sudo dnf makecache
+#     sudo dnf -y install antigravity
+
+#     # Restrict Antigravity memory usage.
+#     sudo tee /etc/systemd/system/antigravity-total.slice << EOL
+# [Unit]
+# Description=Hard Memory Cap for ALL Antigravity Instances
+# [Slice]
+# MemoryMax=16G
+# EOL
+#     sudo systemctl daemon-reload
+# }
+
+function antigravity_packages() {
+    AG_VERSION="2.0.6-5413878570549248"
+    AG_URL=https://storage.googleapis.com/antigravity-public/antigravity-hub/${AG_VERSION}/linux-x64/Antigravity.tar.gz
+    AG_IDE_VERSION="2.0.3-6242596486512640"
+    AG_IDE_URL=https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/${AG_IDE_VERSION}/linux-x64/Antigravity%20IDE.tar.gz
+    AG_CLI_VERSION="974169037036"
+
+    # wget -c --show-progress -nc ${AG_URL} -O ${CACHE}/antigravity-${AG_VERSION}.tar.gz
+    # wget -c --show-progress -nc ${AG_IDE_URL} -O ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz
+    # wget -c --show-progress $(curl -s "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p') -O ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz
+
+    sudo rm -rf /opt/antigravity
+    sudo mkdir -p /opt/antigravity/bin /opt/antigravity/antigravity /opt/antigravity/antigravity-ide /opt/antigravity/antigravity-cli
+
+
+    sudo tar -zxf ${CACHE}/antigravity-${AG_VERSION}.tar.gz -C /opt/antigravity/antigravity/ --strip-components=1
+    sudo tar -zxf ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz -C /opt/antigravity/antigravity-ide/ --strip-components=1
+    sudo tar -zxf ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz -C /opt/antigravity/antigravity-cli/ && sudo mv /opt/antigravity/antigravity-cli/antigravity /opt/antigravity/antigravity-cli/antigravity-cli
+
+    sudo ln -s /opt/antigravity/antigravity/antigravity /opt/antigravity/bin/antigravity
+    sudo ln -s /opt/antigravity/antigravity-ide/bin/antigravity-ide /opt/antigravity/bin/antigravity-ide
+    sudo ln -s /opt/antigravity/antigravity-cli/antigravity-cli /opt/antigravity/bin/antigravity-cli
+
+    sudo chown -R root:wheel /opt/antigravity
+    sudo chmod -R u+rwX,go+rwX,o-w /opt/antigravity
+
+    cat <<EOF | sudo tee /etc/profile.d/antigravity.sh
+export ANTIGRAVITY_ROOT=/opt/antigravity
+export PATH=\$PATH:\$ANTIGRAVITY_ROOT/bin
+EOF
+    source /etc/profile.d/antigravity.sh
+
+    cat <<EOF | sudo tee /opt/antigravity/antigravity.desktop
+[Desktop Entry]
+Type=Application
+Name=Antigravity IDE
+Icon=/opt/antigravity/antigravity-ide/resources/app/resources/linux/code.png
+Exec=/opt/antigravity/bin/antigravity-ide
+Terminal=false
+Categories=Development;IDE;
+EOF
+
+    sudo cp /opt/antigravity/antigravity.desktop /usr/share/applications/antigravity.desktop
 
     # Restrict Antigravity memory usage.
-    sudo tee /etc/systemd/system/antigravity-total.slice << EOL
-[Unit]
-Description=Hard Memory Cap for ALL Antigravity Instances
-[Slice]
-MemoryMax=16G
-EOL
-    sudo systemctl daemon-reload
+#     sudo tee /etc/systemd/system/antigravity-total.slice << EOL
+# [Unit]
+# Description=Hard Memory Cap for ALL Antigravity Instances
+# [Slice]
+# MemoryMax=16G
+# EOL
+#     sudo systemctl daemon-reload
 }
 
-function antigravity_package_user_conf() {
+function antigravity_ide_package_user_conf() {
     # antigravity --list-extensions | xargs -L 1 echo antigravity --install-extension
     # antigravity --list-extensions | xargs -L 1 antigravity --uninstall-extension
 
@@ -573,6 +627,7 @@ function codec_packages() {
 function database_packages() {
    sudo dnf -y install postgresql postgresql-server
    sudo dnf -y install mariadb mariadb-server
+   sudo dnf -y install sqlite sqlite-devel
 }
 
 function httpd_service() {
@@ -695,7 +750,7 @@ function install_all_modules() {
     # rust_packages
     # gnome_packages
     # vscode_package
-    # google_antigravity_package
+    # antigravity_packages
     # go_packages
     # npm_packages
     # ai_packages
@@ -727,7 +782,7 @@ function install_all_user_modules() {
 
     # git_user_conf
     # vscode_package_user_conf
-    # antigravity_package_user_conf
+    # antigravity_ide_package_user_conf
     # flutter-sdk_user_conf
     # python_user_conf
     # container_user_conf
