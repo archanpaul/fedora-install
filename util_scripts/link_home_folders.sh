@@ -123,10 +123,13 @@ function create_app_cache() {
 	ln -sfn ${CACHE}/gemini.cache ~/.gemini
 
 	# antigravity
-	rm -rf ~/.antigravity ~/.config/Antigravity
-	mkdir -p ${CACHE}/antigravity.cache/antigravity ${CACHE}/antigravity.cache/config
+	mkdir -p ${CACHE}/antigravity.cache/antigravity ${CACHE}/antigravity.cache/antigravity-ide
+	mkdir -p ${CACHE}/antigravity.cache/config/antigravity ${CACHE}/antigravity.cache/config/antigravity-ide
+	rm -rf ~/.antigravity ~/.antigravity-ide ~/.config/Antigravity
 	ln -sfn ${CACHE}/antigravity.cache/antigravity ~/.antigravity
-	ln -sfn ${CACHE}/antigravity.cache/config ~/.config/Antigravity
+	ln -sfn ${CACHE}/antigravity.cache/antigravity-ide ~/.antigravity-ide
+	ln -sfn ${CACHE}/antigravity.cache/config/antigravity ~/.config/Antigravity
+	ln -sfn ${CACHE}/antigravity.cache/config/antigravity-ide ~/.config/Antigravity\ IDE
 
 	# obsidian
 	rm -rf ~/.var/app/md.obsidian.Obsidian
@@ -136,7 +139,6 @@ function create_app_cache() {
 	# ollama
 	mkdir -p ${CACHE}/ollama.cache
 	ln -sfn ${CACHE}/ollama.cache ~/.ollama
-
 }
 
 create_home_folders
