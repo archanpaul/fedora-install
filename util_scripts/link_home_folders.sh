@@ -1,6 +1,7 @@
 ## Link home folders
 
-REPOS_SRC=/home/data.arp/repos.arp
+USER_NAME=arp
+REPOS_SRC=/home/data.${USER_NAME}/repos.${USER_NAME}
 REPOS=~/repos
 CACHE=${REPOS}/app_cache
 
@@ -41,7 +42,7 @@ function create_home_folders() {
 	mkdir -p ${REPOS}/workspace
 	ln -sfn ${REPOS}/workspace .
 
-	mkdir ~/.ssh
+	mkdir -p ~/.ssh
 	chmod 700 ~/.ssh
 }
 
@@ -114,7 +115,7 @@ function create_app_cache() {
 	rm -rf ~/.config/Code/ ~/.vscode/
 	mkdir -p ${CACHE}/vscode.cache/vscode ${CACHE}/vscode.cache/vscode-shared ${CACHE}/vscode.cache/config_code 
 	ln -sfn ${CACHE}/vscode.cache/vscode ~/.vscode
-	ln -sfn ${CACHE}/vscode.cache/vscode-shared ~/.vscode
+	ln -sfn ${CACHE}/vscode.cache/vscode-shared ~/.vscode-shared
 	ln -sfn ${CACHE}/vscode.cache/config_code ~/.config/Code
 	# cat vscode_settings.json > ~/.config/Code/User/settings.json
 
