@@ -265,27 +265,27 @@ function vscode_package_user_conf() {
     # code --list-extensions | xargs -L 1 code --uninstall-extension
 
     ## vscode extensions
-	code --install-extension dart-code.dart-code
-	code --install-extension dart-code.flutter
-	code --install-extension github.github-vscode-theme
-	code --install-extension golang.go
-	code --install-extension google.colab
-	code --install-extension google.gemini-cli-vscode-ide-companion
-	code --install-extension google.geminicodeassist
-	code --install-extension mhutchie.git-graph
-	code --install-extension ms-azuretools.vscode-containers
-	code --install-extension ms-python.black-formatter
-	code --install-extension ms-python.debugpy
-	code --install-extension ms-python.isort
-	code --install-extension ms-python.python
-	code --install-extension ms-python.vscode-pylance
-	code --install-extension ms-python.vscode-python-envs
-	code --install-extension ms-toolsai.jupyter
-	code --install-extension ms-toolsai.jupyter-keymap
-	code --install-extension ms-toolsai.jupyter-renderers
-	code --install-extension ms-toolsai.vscode-jupyter-cell-tags
-	code --install-extension ms-vscode-remote.remote-containers
-	code --install-extension ms-vsliveshare.vsliveshare
+	code --force --install-extension dart-code.dart-code
+	code --force --install-extension dart-code.flutter
+	code --force --install-extension github.github-vscode-theme
+	code --force --install-extension golang.go
+	code --force --install-extension google.colab
+	code --force --install-extension google.gemini-cli-vscode-ide-companion
+	code --force --install-extension google.geminicodeassist
+	code --force --install-extension mhutchie.git-graph
+	code --force --install-extension ms-azuretools.vscode-containers
+	code --force --install-extension ms-python.black-formatter
+	code --force --install-extension ms-python.debugpy
+	code --force --install-extension ms-python.isort
+	code --force --install-extension ms-python.python
+	code --force --install-extension ms-python.vscode-pylance
+	code --force --install-extension ms-python.vscode-python-envs
+	code --force --install-extension ms-toolsai.jupyter
+	code --force --install-extension ms-toolsai.jupyter-keymap
+	code --force --install-extension ms-toolsai.jupyter-renderers
+	code --force --install-extension ms-toolsai.vscode-jupyter-cell-tags
+	code --force --install-extension ms-vscode-remote.remote-containers
+	code --force --install-extension ms-vsliveshare.vsliveshare
 }
 
 function antigravity_packages() {
@@ -358,24 +358,24 @@ EOF
 }
 
 function antigravity_ide_package_user_conf() {
-    # antigravity --list-extensions | xargs -L 1 echo antigravity --install-extension
-    # antigravity --list-extensions | xargs -L 1 antigravity --uninstall-extension
+    # antigravity-ide --list-extensions | xargs -L 1 echo antigravity --install-extension
+    # antigravity-ide --list-extensions | xargs -L 1 antigravity --uninstall-extension
 
     ## antigravity extensions
-	antigravity --install-extension dart-code.dart-code
-	antigravity --install-extension dart-code.flutter
-	antigravity --install-extension github.github-vscode-theme
-	antigravity --install-extension golang.go
-	antigravity --install-extension google.colab
-	antigravity --install-extension meta.pyrefly
-	antigravity --install-extension ms-python.debugpy
-	antigravity --install-extension ms-python.isort
-	antigravity --install-extension ms-python.python
-	antigravity --install-extension ms-python.vscode-python-envs
-	antigravity --install-extension ms-toolsai.jupyter
-	antigravity --install-extension ms-toolsai.jupyter-keymap
-	antigravity --install-extension ms-toolsai.jupyter-renderers
-	antigravity --install-extension ms-toolsai.vscode-jupyter-cell-tags
+	antigravity-ide --force --install-extension dart-code.dart-code
+	antigravity-ide --force --install-extension dart-code.flutter
+	antigravity-ide --force --install-extension github.github-vscode-theme
+	antigravity-ide --force --install-extension golang.go
+	antigravity-ide --force --install-extension google.colab
+	antigravity-ide --force --install-extension meta.pyrefly
+	antigravity-ide --force --install-extension ms-python.debugpy
+	antigravity-ide --force --install-extension ms-python.isort
+	antigravity-ide --force --install-extension ms-python.python
+	antigravity-ide --force --install-extension ms-python.vscode-python-envs
+	antigravity-ide --force --install-extension ms-toolsai.jupyter
+	antigravity-ide --force --install-extension ms-toolsai.jupyter-keymap
+	antigravity-ide --force --install-extension ms-toolsai.jupyter-renderers
+	antigravity-ide --force --install-extension ms-toolsai.vscode-jupyter-cell-tags
 }
 
 function git_user_conf() {
