@@ -298,15 +298,19 @@ function antigravity_packages() {
     AG_IDE_URL=https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/${AG_IDE_VERSION}/linux-x64/Antigravity%20IDE.tar.gz
     AG_CLI_VERSION="974169037036"
 
-    # wget -c --show-progress -nc ${AG_URL} -O ${CACHE}/antigravity-${AG_VERSION}.tar.gz
-    # wget -c --show-progress -nc ${AG_IDE_URL} -O ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz
-    # wget -c --show-progress $(curl -s "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p') -O ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz
+    wget -c --show-progress -nc ${AG_URL} -O ${CACHE}/antigravity-${AG_VERSION}.tar.gz
+    wget -c --show-progress -nc ${AG_IDE_URL} -O ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz
+    wget -c --show-progress $(curl -s "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p') -O ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz
 
     sudo rm -rf /opt/antigravity
     sudo mkdir -p /opt/antigravity/bin /opt/antigravity/antigravity /opt/antigravity/antigravity-ide /opt/antigravity/antigravity-cli
 
-
     sudo tar -zxf ${CACHE}/antigravity-${AG_VERSION}.tar.gz -C /opt/antigravity/antigravity/ --strip-components=1
+    (
+        cd /opt/antigravity/antigravity/resources/ || exit 1
+        sudo npx --yes @electron/asar extract-file /opt/antigravity/antigravity/resources/app.asar icon.png
+    )
+
     sudo tar -zxf ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz -C /opt/antigravity/antigravity-ide/ --strip-components=1
     sudo tar -zxf ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz -C /opt/antigravity/antigravity-cli/ && sudo mv /opt/antigravity/antigravity-cli/antigravity /opt/antigravity/antigravity-cli/antigravity-cli
 
@@ -314,16 +318,18 @@ function antigravity_packages() {
     sudo ln -s /opt/antigravity/antigravity-ide/bin/antigravity-ide /opt/antigravity/bin/antigravity-ide
     sudo ln -s /opt/antigravity/antigravity-cli/antigravity-cli /opt/antigravity/bin/antigravity-cli
 
-    sudo chown -R root:wheel /opt/antigravity
-    sudo chmod -R u+rwX,go+rwX,o-w /opt/antigravity
-
-    cat <<EOF | sudo tee /etc/profile.d/antigravity.sh
-export ANTIGRAVITY_ROOT=/opt/antigravity
-export PATH=\$PATH:\$ANTIGRAVITY_ROOT/bin
-EOF
-    source /etc/profile.d/antigravity.sh
-
     cat <<EOF | sudo tee /opt/antigravity/antigravity.desktop
+[Desktop Entry]
+Type=Application
+Name=Antigravity
+Icon=/opt/antigravity/antigravity/resources/icon.png
+Exec=/opt/antigravity/bin/antigravity
+Terminal=false
+Categories=Development;IDE;
+EOF
+    sudo cp /opt/antigravity/antigravity.desktop /usr/share/applications/antigravity.desktop
+
+    cat <<EOF | sudo tee /opt/antigravity/antigravity-ide.desktop
 [Desktop Entry]
 Type=Application
 Name=Antigravity IDE
@@ -332,8 +338,16 @@ Exec=/opt/antigravity/bin/antigravity-ide
 Terminal=false
 Categories=Development;IDE;
 EOF
+    sudo cp /opt/antigravity/antigravity-ide.desktop /usr/share/applications/antigravity-ide.desktop
 
-    sudo cp /opt/antigravity/antigravity.desktop /usr/share/applications/antigravity.desktop
+    cat <<EOF | sudo tee /etc/profile.d/antigravity.sh
+export ANTIGRAVITY_ROOT=/opt/antigravity
+export PATH=\$PATH:\$ANTIGRAVITY_ROOT/bin
+EOF
+    # source /etc/profile.d/antigravity.sh
+
+    sudo chown -R root:wheel /opt/antigravity
+    sudo chmod -R u+rwX,go+rwX,o-w /opt/antigravity
 
     # Restrict Antigravity memory usage.
 #     sudo tee /etc/systemd/system/antigravity-total.slice << EOL
