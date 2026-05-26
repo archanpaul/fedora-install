@@ -514,6 +514,7 @@ function python_virtualenv_packages() {
     pip install --upgrade pip && \
     pip install black && \
     pip install google-generativeai google-adk litellm && \
+    pip install google-antigravity && \
     deactivate
     set +e
 }
