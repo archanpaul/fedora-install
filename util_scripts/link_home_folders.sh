@@ -112,8 +112,9 @@ function create_app_cache() {
 
 	# vscode
 	rm -rf ~/.config/Code/ ~/.vscode/
-	mkdir -p ${CACHE}/vscode.cache/config ${CACHE}/vscode.cache/config_code
-	ln -sfn ${CACHE}/vscode.cache/config ~/.vscode
+	mkdir -p ${CACHE}/vscode.cache/vscode ${CACHE}/vscode.cache/vscode-shared ${CACHE}/vscode.cache/config_code 
+	ln -sfn ${CACHE}/vscode.cache/vscode ~/.vscode
+	ln -sfn ${CACHE}/vscode.cache/vscode-shared ~/.vscode
 	ln -sfn ${CACHE}/vscode.cache/config_code ~/.config/Code
 	# cat vscode_settings.json > ~/.config/Code/User/settings.json
 
