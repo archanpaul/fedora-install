@@ -201,9 +201,6 @@ function browser_packages() {
 
 function ai_packages() {
     sudo dnf -y install ollama
-    sudo npm install -g @google/gemini-cli
-    # gemini extensions install https://github.com/gemini-cli-extensions/flutter
-    # gemini extensions install https://github.com/gemini-cli-extensions/code-review
 }
 
 function ollama_user_conf() {
@@ -317,6 +314,7 @@ function antigravity_packages() {
     sudo ln -s /opt/antigravity/antigravity/antigravity /opt/antigravity/bin/antigravity
     sudo ln -s /opt/antigravity/antigravity-ide/bin/antigravity-ide /opt/antigravity/bin/antigravity-ide
     sudo ln -s /opt/antigravity/antigravity-cli/antigravity-cli /opt/antigravity/bin/antigravity-cli
+    sudo ln -s /opt/antigravity/bin/antigravity-cli /opt/antigravity/bin/agy
 
     cat <<EOF | sudo tee /opt/antigravity/antigravity.desktop
 [Desktop Entry]
