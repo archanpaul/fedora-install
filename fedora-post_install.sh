@@ -295,12 +295,12 @@ function antigravity_packages() {
     AG_IDE_URL=https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/${AG_IDE_VERSION}/linux-x64/Antigravity%20IDE.tar.gz
     AG_CLI_VERSION="974169037036"
 
-    wget -c --show-progress -nc ${AG_URL} -O ${CACHE}/antigravity-${AG_VERSION}.tar.gz
-    wget -c --show-progress -nc ${AG_IDE_URL} -O ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz
-    wget -c --show-progress $(curl -s "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p') -O ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz
+    # wget -c --show-progress -nc ${AG_URL} -O ${CACHE}/antigravity-${AG_VERSION}.tar.gz
+    # wget -c --show-progress -nc ${AG_IDE_URL} -O ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz
+    # wget -c --show-progress $(curl -s "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p') -O ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz
 
     sudo rm -rf /opt/antigravity
-    sudo mkdir -p /opt/antigravity/bin /opt/antigravity/antigravity /opt/antigravity/antigravity-ide /opt/antigravity/antigravity-cli
+    sudo mkdir -p /opt/antigravity/bin /opt/antigravity/resources /opt/antigravity/antigravity /opt/antigravity/antigravity-ide /opt/antigravity/antigravity-cli
 
     sudo tar -zxf ${CACHE}/antigravity-${AG_VERSION}.tar.gz -C /opt/antigravity/antigravity/ --strip-components=1
     (
@@ -311,34 +311,91 @@ function antigravity_packages() {
     sudo tar -zxf ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz -C /opt/antigravity/antigravity-ide/ --strip-components=1
     sudo tar -zxf ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz -C /opt/antigravity/antigravity-cli/ && sudo mv /opt/antigravity/antigravity-cli/antigravity /opt/antigravity/antigravity-cli/antigravity-cli
 
-    sudo ln -s /opt/antigravity/antigravity/antigravity /opt/antigravity/bin/antigravity
-    sudo ln -s /opt/antigravity/antigravity-ide/bin/antigravity-ide /opt/antigravity/bin/antigravity-ide
-    sudo ln -s /opt/antigravity/antigravity-cli/antigravity-cli /opt/antigravity/bin/antigravity-cli
-    sudo ln -s /opt/antigravity/bin/antigravity-cli /opt/antigravity/bin/agy
+    sudo ln -sf /opt/antigravity/antigravity/antigravity /opt/antigravity/bin/antigravity
+    sudo ln -sf /opt/antigravity/antigravity-ide/bin/antigravity-ide /opt/antigravity/bin/antigravity-ide
+    sudo ln -sf /opt/antigravity/antigravity-cli/antigravity-cli /opt/antigravity/bin/antigravity-cli
+    sudo ln -sf /opt/antigravity/bin/antigravity-cli /opt/antigravity/bin/agy
 
-    cat <<EOF | sudo tee /opt/antigravity/antigravity.desktop
+    # antigravity.desktop (Basic Launcher)
+    sudo bash -c "cat << 'EOF' > /opt/antigravity/resources/antigravity.desktop
 [Desktop Entry]
 Type=Application
 Name=Antigravity
 Icon=/opt/antigravity/antigravity/resources/icon.png
-Exec=/opt/antigravity/bin/antigravity
+Exec=/opt/antigravity/bin/antigravity %F
 Terminal=false
 Categories=Development;IDE;
-EOF
-    sudo cp /opt/antigravity/antigravity.desktop /usr/share/applications/antigravity.desktop
+MimeType=application/x-code-workspace;inode/directory;text/plain;
+EOF"
+    sudo ln -sf /opt/antigravity/resources/antigravity.desktop /usr/share/applications/antigravity.desktop
 
-    cat <<EOF | sudo tee /opt/antigravity/antigravity-ide.desktop
+    # antigravity-url-handler.desktop (Hidden Basic URL Handler)
+    sudo bash -c "cat << 'EOF' > /opt/antigravity/resources/antigravity-url-handler.desktop
 [Desktop Entry]
+Name=Antigravity - URL Handler
+Comment=Handle Antigravity custom URL protocols
+GenericName=Text Editor
+Exec=/opt/antigravity/bin/antigravity --open-url %U
+Icon=/opt/antigravity/antigravity/resources/icon.png
 Type=Application
-Name=Antigravity IDE
-Icon=/opt/antigravity/antigravity-ide/resources/app/resources/linux/code.png
-Exec=/opt/antigravity/bin/antigravity-ide
-Terminal=false
+NoDisplay=true
+StartupNotify=true
+StartupWMClass=antigravity
 Categories=Development;IDE;
-EOF
-    sudo cp /opt/antigravity/antigravity-ide.desktop /usr/share/applications/antigravity-ide.desktop
+MimeType=x-scheme-handler/antigravity;
+EOF"
+    sudo ln -sf /opt/antigravity/resources/antigravity-url-handler.desktop /usr/share/applications/antigravity-url-handler.desktop
 
-    cat <<EOF | sudo tee /etc/profile.d/antigravity.sh
+    # antigravity-ide.desktop (Full Featured IDE Launcher with Window Management)
+    sudo bash -c "cat << 'EOF' > /opt/antigravity/resources/antigravity-ide.desktop
+[Desktop Entry]
+Name=Antigravity IDE
+CommonName=Text Editor
+Comment=Code Editing. Redefined.
+GenericName=Text Editor
+Exec=/opt/antigravity/bin/antigravity-ide %F
+Icon=/opt/antigravity/antigravity-ide/resources/app/resources/linux/code.png
+Type=Application
+StartupNotify=true
+StartupWMClass=antigravity
+Terminal=false
+Categories=Development;IDE;TextEditor;
+MimeType=application/x-code-workspace;inode/directory;text/plain;text/x-chdr;text/x-csrc;text/x-c++;text/x-c++src;text/x-java;text/x-python;application/x-php;text/html;text/css;application/javascript;application/json;
+Actions=new-empty-window;
+
+[Desktop Action new-empty-window]
+Name=New Empty Window
+Exec=/opt/antigravity/bin/antigravity-ide --new-window %F
+Icon=/opt/antigravity/antigravity-ide/resources/app/resources/linux/code.png
+EOF"
+    sudo ln -sf /opt/antigravity/resources/antigravity-ide.desktop /usr/share/applications/antigravity-ide.desktop
+
+    # antigravity-ide-url-handler.desktop (Hidden Full IDE URL Handler)
+    sudo bash -c "cat << 'EOF' > /opt/antigravity/resources/antigravity-ide-url-handler.desktop
+[Desktop Entry]
+Name=Antigravity IDE - URL Handler
+Comment=Handle Antigravity custom URL protocols
+GenericName=Text Editor
+Exec=/opt/antigravity/bin/antigravity-ide --open-url %U
+Icon=/opt/antigravity/antigravity-ide/resources/app/resources/linux/code.png
+Type=Application
+NoDisplay=true
+StartupNotify=true
+StartupWMClass=antigravity
+Categories=Development;IDE;
+MimeType=x-scheme-handler/antigravity;x-scheme-handler/antigravity-ide;
+EOF"
+    sudo ln -sf /opt/antigravity/resources/antigravity-ide-url-handler.desktop /usr/share/applications/antigravity-ide-url-handler.desktop
+
+    # Update the system-wide desktop database
+    sudo update-desktop-database /usr/share/applications/
+    xdg-mime query default x-scheme-handler/antigravity
+    xdg-mime query default x-scheme-handler/antigravity-ide
+    # # testing
+    # xdg-open "antigravity://oauth-success"
+    # xdg-open "antigravity-ide://oauth-success"
+
+    sudo cat <<EOF | sudo tee /etc/profile.d/antigravity.sh
 export ANTIGRAVITY_ROOT=/opt/antigravity
 export PATH=\$PATH:\$ANTIGRAVITY_ROOT/bin
 EOF
