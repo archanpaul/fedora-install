@@ -740,6 +740,8 @@ EOF
 
     # sudo dnf remove -y tuned tuned-ppd
     # sudo dnf install -y tlp tlp-ppd tlp-rdw
+    # sudo systemctl disable tuned.service --now
+    # sudo systemctl enable tlp.service --now
 
     # Auto decrypt luks using TPM2
     sudo dnf -y install systemd-udev dracut
