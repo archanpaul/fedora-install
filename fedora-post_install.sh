@@ -593,7 +593,7 @@ function gnome_packages() {
     sudo dnf -y install gnome-sound-recorder
     sudo dnf -y install gnome-firmware
     sudo dnf -y install foliate papers
-    sudo dnf -y install calibre
+    sudo dnf -y install calibre python3-tzlocal
 
     sudo dnf -y install gnome-extensions-app
     sudo dnf -y install gnome-shell-extension-dash-to-dock

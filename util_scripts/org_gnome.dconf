@@ -1,7 +1,14 @@
 [Ptyxis]
+cursor-blink-mode='on'
+cursor-shape='underline'
 default-profile-uuid='ff8d41b1f8fcfa28c227a2896a0ee9c4'
+font-name='Go Mono 12'
 profile-uuids=['ff8d41b1f8fcfa28c227a2896a0ee9c4']
-window-size=(uint32 115, uint32 42)
+use-system-font=true
+window-size=(uint32 148, uint32 61)
+
+[Ptyxis/Profiles/ff8d41b1f8fcfa28c227a2896a0ee9c4]
+palette='gnome'
 
 [TextEditor]
 highlight-current-line=true
@@ -16,8 +23,11 @@ window-maximized=false
 window-width=587
 
 [control-center]
-last-panel='sound'
+last-panel='display'
 window-state=(1334, 925, false)
+
+[desktop/a11y/applications]
+screen-magnifier-enabled=false
 
 [desktop/a11y/magnifier]
 cross-hairs-length=58
@@ -47,8 +57,8 @@ translate=true
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2026-05-21-16-48-10-vecteezy_ai-generated-abstract-black-geometric-geometric-abstract_35667877.jpg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2026-05-21-16-48-10-vecteezy_ai-generated-abstract-black-geometric-geometric-abstract_35667877.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2026-05-26-13-40-52-vecteezy_ai-generated-abstract-black-geometric-geometric-abstract_35667877.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2026-05-26-13-40-52-vecteezy_ai-generated-abstract-black-geometric-geometric-abstract_35667877.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -78,14 +88,21 @@ clock-show-date=false
 clock-show-seconds=true
 clock-show-weekday=false
 color-scheme='default'
-document-font-name='Adwaita Sans Medium 12 @wght=500'
-font-name='Adwaita Sans Medium 12 @wght=500'
-monospace-font-name='Adwaita Mono 12'
+document-font-name='Roboto Medium 11'
+font-antialiasing='grayscale'
+font-hinting='slight'
+font-name='Roboto Medium 11'
+monospace-font-name='Roboto Mono Medium 11'
 show-battery-percentage=true
+text-scaling-factor=1.0
+toolkit-accessibility=false
 
 [desktop/notifications]
-application-children=['org-gnome-settings', 'org-gnome-ptyxis', 'gnome-wellbeing-panel', 'code', 'google-chrome', 'gnome-about-panel', 'org-gnome-software', 'com-spotify-client', 'gnome-power-panel', 'org-gnome-nautilus', 'librewolf']
+application-children=['org-gnome-settings', 'org-gnome-ptyxis', 'gnome-wellbeing-panel', 'code', 'google-chrome', 'gnome-about-panel', 'org-gnome-software', 'com-spotify-client', 'gnome-power-panel', 'org-gnome-nautilus', 'librewolf', 'antigravity-ide']
 show-in-lock-screen=false
+
+[desktop/notifications/application/antigravity-ide]
+application-id='antigravity-ide.desktop'
 
 [desktop/notifications/application/code]
 application-id='code.desktop'
@@ -141,7 +158,7 @@ daily-limit-seconds=uint32 28800
 [desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2026-05-21-16-48-10-vecteezy_ai-generated-abstract-black-geometric-geometric-abstract_35667877.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2026-05-26-13-40-52-vecteezy_ai-generated-abstract-black-geometric-geometric-abstract_35667877.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -160,7 +177,9 @@ button-layout='appmenu:minimize,maximize,close'
 num-workspaces=2
 
 [firmware]
-device-id-last='0155f55b2d9f986eec41cadc6979407632d8d4ae'
+device-id-last='4d9b10292dcbc16454232b51ec707bbc81bc5798'
+enable-switchable-authentication=false
+report-device-list-timestamp=int64 1779953482
 
 enable-switchable-authentication=false
 
@@ -194,6 +213,9 @@ sizing-mode='automatic'
 [portal/filechooser/com.google.Chrome]
 last-folder-path='/home/arp/Downloads'
 
+[portal/filechooser/md.obsidian.Obsidian]
+last-folder-path='/home/arp/workspace/obsidian.vaults/coursera_sync.git'
+
 [portal/filechooser/org.gnome.Settings]
 last-folder-path='/home/arp/Pictures/Wallpapers'
 
@@ -226,7 +248,7 @@ app-picker-layout=[{'org.gnome.Connections.desktop': <{'position': <0>}>, 'org.g
 disabled-extensions=['dash-to-dock@micxgx.gmail.com', 'places-menu@gnome-shell-extensions.gcampax.github.com']
 enabled-extensions=['background-logo@fedorahosted.org', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com']
 favorite-apps=['org.gnome.SystemMonitor.desktop', 'org.gnome.Ptyxis.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'antigravity.desktop', 'antigravity-ide.desktop', 'code.desktop', 'google-chrome.desktop', 'librewolf.desktop']
-last-selected-power-profile='performance'
+last-selected-power-profile='power-saver'
 remember-mount-password=false
 welcome-dialog-last-shown-version='50.1'
 
@@ -275,10 +297,10 @@ locations=@av []
 locations=@av []
 
 [software]
-check-timestamp=int64 1779780263
+check-timestamp=int64 1779952227
 first-run=false
-flatpak-purge-timestamp=int64 1779718110
-install-timestamp=int64 1779676804
+flatpak-purge-timestamp=int64 1779881573
+install-timestamp=int64 1779786444
 packagekit-historical-updates-timestamp=uint64 1779676804
 security-timestamp=int64 1779593391767808
 update-notification-timestamp=int64 1779593973
