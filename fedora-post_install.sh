@@ -738,6 +738,9 @@ WantedBy=multi-user.target
 EOF
     sudo systemctl enable --now battery-threshold.service
 
+    # sudo dnf remove -y tuned tuned-ppd
+    # sudo dnf install -y tlp tlp-ppd tlp-rdw
+
     # Auto decrypt luks using TPM2
     sudo dnf -y install systemd-udev dracut
     # sudo systemd-cryptenroll --wipe-slot tpm2 --tpm2-device auto --tpm2-pcrs "1+3+5+7+11+12+14+15" /dev/nvme1n1p3
