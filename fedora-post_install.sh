@@ -1,3 +1,13 @@
+# fedora-post_install.sh
+
+# Prompt the user for input
+read -p "Do you want to continue? (y/n): " response
+# Convert response to lowercase and check if it's 'y' or 'yes'
+if [[ "${response,,}" != "y" && "${response,,}" != "yes" ]]; then
+    echo "Exiting..."
+    exit 1
+fi
+
 CACHE=`pwd`/cache
 HOSTNAME="arpo"
 
@@ -191,11 +201,11 @@ function browser_packages() {
 
     ## Microsoft Edge
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-    sudo dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/yumrepos/edge/config.repo
+    sudo dnf config-manager -y addrepo --from-repofile=https://packages.microsoft.com/yumrepos/edge/config.repo
     sudo dnf -y install microsoft-edge-stable
 
     ## LibreWolf
-    sudo dnf config-manager addrepo --from-repofile=https://repo.librewolf.net/librewolf.repo
+    sudo dnf config-manager -y addrepo --from-repofile=https://repo.librewolf.net/librewolf.repo
     sudo dnf -y install librewolf
 }
 
@@ -243,7 +253,7 @@ function go_extra_packages() {
     go install -v github.com/tinygo-org/tinygo@latest
 
     # google-adk
-    go install  google.golang.org/adk@latest
+    go install -v google.golang.org/adk@latest
 }
 
 function npm_packages() {
@@ -689,7 +699,11 @@ function httpd_service() {
 }
 
 function laptop_mode() {
+    sudo dnf -y install tuned tuned-ppd
+    sudo systemctl enable tuned.service --now
+
     sudo dnf -y install powertop
+    sudo systemctl disable powertop.service --now
 
     ##
     # sudo systemctl edit powertop.service
@@ -698,7 +712,6 @@ function laptop_mode() {
     # ExecStartPost=/bin/bash -c 'echo on > /sys/bus/usb/devices/3-2/power/control'
     ##
 
-    sudo systemctl disable powertop.service --now
     sudo systemctl daemon-reload
 }
 

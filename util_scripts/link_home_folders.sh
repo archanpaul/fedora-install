@@ -5,6 +5,14 @@ REPOS_SRC=/home/data.${USER_NAME}/repos.${USER_NAME}
 REPOS=~/repos
 CACHE=${REPOS}/app_cache
 
+# Prompt the user for input
+read -p "Do you want to continue? (y/n): " response
+# Convert response to lowercase and check if it's 'y' or 'yes'
+if [[ "${response,,}" != "y" && "${response,,}" != "yes" ]]; then
+    echo "Exiting..."
+    exit 1
+fi
+
 function create_home_folders() {
 	cd ~
 
