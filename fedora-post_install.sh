@@ -216,7 +216,7 @@ function go_packages() {
     sudo chown -R root:wheel /opt/go-packages
     sudo chmod -R u+rwX,go+rwX,o-w /opt/go-packages
 
-        cat <<EOF | sudo tee /etc/profile.d/go-packages.sh
+    cat <<EOF | sudo tee /etc/profile.d/go-packages.sh
 export GOPATH=/opt/go-packages
 export PATH=\$PATH:\$GOPATH/bin
 EOF
@@ -317,7 +317,7 @@ function antigravity_packages() {
     sudo ln -sf /opt/antigravity/bin/antigravity-cli /opt/antigravity/bin/agy
 
     # antigravity.desktop (Basic Launcher)
-    sudo bash -c "cat << 'EOF' > /opt/antigravity/resources/antigravity.desktop
+    cat <<EOF | sudo tee /opt/antigravity/resources/antigravity.desktop
 [Desktop Entry]
 Type=Application
 Name=Antigravity
@@ -330,7 +330,7 @@ EOF"
     sudo ln -sf /opt/antigravity/resources/antigravity.desktop /usr/share/applications/antigravity.desktop
 
     # antigravity-url-handler.desktop (Hidden Basic URL Handler)
-    sudo bash -c "cat << 'EOF' > /opt/antigravity/resources/antigravity-url-handler.desktop
+    cat <<EOF | sudo tee /opt/antigravity/resources/antigravity-url-handler.desktop
 [Desktop Entry]
 Name=Antigravity - URL Handler
 Comment=Handle Antigravity custom URL protocols
@@ -347,7 +347,7 @@ EOF"
     sudo ln -sf /opt/antigravity/resources/antigravity-url-handler.desktop /usr/share/applications/antigravity-url-handler.desktop
 
     # antigravity-ide.desktop (Full Featured IDE Launcher with Window Management)
-    sudo bash -c "cat << 'EOF' > /opt/antigravity/resources/antigravity-ide.desktop
+    cat <<EOF | sudo tee /opt/antigravity/resources/antigravity-ide.desktop
 [Desktop Entry]
 Name=Antigravity IDE
 CommonName=Text Editor
@@ -371,7 +371,7 @@ EOF"
     sudo ln -sf /opt/antigravity/resources/antigravity-ide.desktop /usr/share/applications/antigravity-ide.desktop
 
     # antigravity-ide-url-handler.desktop (Hidden Full IDE URL Handler)
-    sudo bash -c "cat << 'EOF' > /opt/antigravity/resources/antigravity-ide-url-handler.desktop
+    cat <<EOF | sudo tee /opt/antigravity/resources/antigravity-ide-url-handler.desktop
 [Desktop Entry]
 Name=Antigravity IDE - URL Handler
 Comment=Handle Antigravity custom URL protocols
@@ -405,12 +405,12 @@ EOF
     sudo chmod -R u+rwX,go+rwX,o-w /opt/antigravity
 
     # Restrict Antigravity memory usage.
-#     sudo tee /etc/systemd/system/antigravity-total.slice << EOL
+    # cat <<EOF | sudo tee /etc/systemd/system/antigravity-total.slice
 # [Unit]
 # Description=Hard Memory Cap for ALL Antigravity Instances
 # [Slice]
 # MemoryMax=16G
-# EOL
+# EOF
 #     sudo systemctl daemon-reload
 }
 
@@ -703,8 +703,8 @@ function laptop_mode() {
 }
 
 function thinkpad_packages() {
-
-    sudo bash -c "cat << 'EOF' > /etc/systemd/system/battery-threshold.service
+    # battery-threshold.service
+    cat <<EOF | sudo tee /etc/systemd/system/battery-threshold.service
 [Unit]
 Description=Set ThinkPad Battery Charge Thresholds
 After=multi-user.target
@@ -717,6 +717,7 @@ RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
 EOF
+    sudo systemctl enable --now battery-threshold.service
 
     # Auto decrypt luks using TPM2
     sudo dnf -y install systemd-udev dracut
