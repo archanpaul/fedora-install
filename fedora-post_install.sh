@@ -305,9 +305,15 @@ function antigravity_packages() {
     AG_IDE_URL=https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/${AG_IDE_VERSION}/linux-x64/Antigravity%20IDE.tar.gz
     AG_CLI_VERSION="974169037036"
 
-    wget -c --show-progress -nc ${AG_URL} -O ${CACHE}/antigravity-${AG_VERSION}.tar.gz
-    wget -c --show-progress -nc ${AG_IDE_URL} -O ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz
-    wget -c --show-progress $(curl -s "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p') -O ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz
+    if [ ! -f "${CACHE}/antigravity-${AG_VERSION}.tar.gz" ]; then
+        wget -c --show-progress -nc ${AG_URL} -O ${CACHE}/antigravity-${AG_VERSION}.tar.gz
+    fi
+    if [ ! -f "${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz" ]; then
+        wget -c --show-progress -nc ${AG_IDE_URL} -O ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz
+    fi
+    if [ ! -f "${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz" ]; then
+        wget -c --show-progress $(curl -s "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p') -O ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz
+    fi
 
     sudo rm -rf /opt/antigravity
     sudo mkdir -p /opt/antigravity/bin /opt/antigravity/resources /opt/antigravity/antigravity /opt/antigravity/antigravity-ide /opt/antigravity/antigravity-cli
@@ -336,7 +342,7 @@ Exec=/opt/antigravity/bin/antigravity %F
 Terminal=false
 Categories=Development;IDE;
 MimeType=application/x-code-workspace;inode/directory;text/plain;
-EOF"
+EOF
     sudo ln -sf /opt/antigravity/resources/antigravity.desktop /usr/share/applications/antigravity.desktop
 
     # antigravity-url-handler.desktop (Hidden Basic URL Handler)
@@ -353,7 +359,7 @@ StartupNotify=true
 StartupWMClass=antigravity
 Categories=Development;IDE;
 MimeType=x-scheme-handler/antigravity;
-EOF"
+EOF
     sudo ln -sf /opt/antigravity/resources/antigravity-url-handler.desktop /usr/share/applications/antigravity-url-handler.desktop
 
     # antigravity-ide.desktop (Full Featured IDE Launcher with Window Management)
@@ -377,7 +383,7 @@ Actions=new-empty-window;
 Name=New Empty Window
 Exec=/opt/antigravity/bin/antigravity-ide --new-window %F
 Icon=/opt/antigravity/antigravity-ide/resources/app/resources/linux/code.png
-EOF"
+EOF
     sudo ln -sf /opt/antigravity/resources/antigravity-ide.desktop /usr/share/applications/antigravity-ide.desktop
 
     # antigravity-ide-url-handler.desktop (Hidden Full IDE URL Handler)
@@ -394,7 +400,7 @@ StartupNotify=true
 StartupWMClass=antigravity
 Categories=Development;IDE;
 MimeType=x-scheme-handler/antigravity;x-scheme-handler/antigravity-ide;
-EOF"
+EOF
     sudo ln -sf /opt/antigravity/resources/antigravity-ide-url-handler.desktop /usr/share/applications/antigravity-ide-url-handler.desktop
 
     # Update the system-wide desktop database
@@ -429,20 +435,20 @@ function antigravity_ide_package_user_conf() {
     # antigravity-ide --list-extensions | xargs -L 1 antigravity --uninstall-extension
 
     ## antigravity extensions
-	antigravity-ide --force --install-extension dart-code.dart-code
-	antigravity-ide --force --install-extension dart-code.flutter
-	antigravity-ide --force --install-extension github.github-vscode-theme
-	antigravity-ide --force --install-extension golang.go
-	antigravity-ide --force --install-extension google.colab
-	antigravity-ide --force --install-extension meta.pyrefly
-	antigravity-ide --force --install-extension ms-python.debugpy
-	antigravity-ide --force --install-extension ms-python.isort
-	antigravity-ide --force --install-extension ms-python.python
-	antigravity-ide --force --install-extension ms-python.vscode-python-envs
-	antigravity-ide --force --install-extension ms-toolsai.jupyter
-	antigravity-ide --force --install-extension ms-toolsai.jupyter-keymap
-	antigravity-ide --force --install-extension ms-toolsai.jupyter-renderers
-	antigravity-ide --force --install-extension ms-toolsai.vscode-jupyter-cell-tags
+    antigravity-ide --force --install-extension dart-code.dart-code
+    antigravity-ide --force --install-extension dart-code.flutter
+    antigravity-ide --force --install-extension github.github-vscode-theme
+    antigravity-ide --force --install-extension golang.go
+    antigravity-ide --force --install-extension google.colab
+    antigravity-ide --force --install-extension meta.pyrefly
+    antigravity-ide --force --install-extension ms-python.debugpy
+    antigravity-ide --force --install-extension ms-python.isort
+    antigravity-ide --force --install-extension ms-python.python
+    antigravity-ide --force --install-extension ms-python.vscode-python-envs
+    antigravity-ide --force --install-extension ms-toolsai.jupyter
+    antigravity-ide --force --install-extension ms-toolsai.jupyter-keymap
+    antigravity-ide --force --install-extension ms-toolsai.jupyter-renderers
+    antigravity-ide --force --install-extension ms-toolsai.vscode-jupyter-cell-tags
 }
 
 function git_user_conf() {
