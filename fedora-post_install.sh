@@ -295,9 +295,9 @@ function antigravity_packages() {
     AG_IDE_URL=https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/${AG_IDE_VERSION}/linux-x64/Antigravity%20IDE.tar.gz
     AG_CLI_VERSION="974169037036"
 
-    # wget -c --show-progress -nc ${AG_URL} -O ${CACHE}/antigravity-${AG_VERSION}.tar.gz
-    # wget -c --show-progress -nc ${AG_IDE_URL} -O ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz
-    # wget -c --show-progress $(curl -s "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p') -O ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz
+    wget -c --show-progress -nc ${AG_URL} -O ${CACHE}/antigravity-${AG_VERSION}.tar.gz
+    wget -c --show-progress -nc ${AG_IDE_URL} -O ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz
+    wget -c --show-progress $(curl -s "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p') -O ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz
 
     sudo rm -rf /opt/antigravity
     sudo mkdir -p /opt/antigravity/bin /opt/antigravity/resources /opt/antigravity/antigravity /opt/antigravity/antigravity-ide /opt/antigravity/antigravity-cli
@@ -698,30 +698,25 @@ function laptop_mode() {
     # ExecStartPost=/bin/bash -c 'echo on > /sys/bus/usb/devices/3-2/power/control'
     ##
 
-    sudo systemctl enable powertop.service --now
+    sudo systemctl disable powertop.service --now
     sudo systemctl daemon-reload
 }
 
 function thinkpad_packages() {
-     sudo dnf -y install tuned tuned-ppd
-     # sudo dnf -y install tlp
-     sudo dnf -y install tlp-rdw
 
-     sudo systemctl enable tuned.service --now
+    sudo bash -c "cat << 'EOF' > /etc/systemd/system/battery-threshold.service
+[Unit]
+Description=Set ThinkPad Battery Charge Thresholds
+After=multi-user.target
 
-     # sudo dnf -y install tlp-pd
-     # sudo systemctl enable tlp.service --now
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo 70 > /sys/class/power_supply/BAT0/charge_control_start_threshold && echo 75 > /sys/class/power_supply/BAT0/charge_control_end_threshold'
+RemainAfterExit=yes
 
-    # battery controller settings
-    # sudo tlp-stat -b
-
-    # thinkpad
-    # sudo tlp setcharge 75 80
-    # sudo tlp fullcharge
-
-    ## thinkbook
-    # sudo tlp setcharge 80 1
-    # sudo tlp fullcharge
+[Install]
+WantedBy=multi-user.target
+EOF
 
     # Auto decrypt luks using TPM2
     sudo dnf -y install systemd-udev dracut
@@ -799,7 +794,6 @@ function install_all_modules() {
     # rust_packages
     # gnome_packages
     # vscode_package
-    # antigravity_packages
     # go_packages
     # npm_packages
     # ai_packages
@@ -820,6 +814,7 @@ function install_all_modules() {
     # firewall_user_services
     # misc_services
 
+    # antigravity_packages
     # android-studio_package
     # flutter-sdk_package
     # go_extra_packages
