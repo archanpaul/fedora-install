@@ -205,8 +205,8 @@ function browser_packages() {
     sudo dnf -y install microsoft-edge-stable
 
     ## LibreWolf
-    sudo dnf config-manager -y addrepo --from-repofile=https://repo.librewolf.net/librewolf.repo
-    sudo dnf -y install librewolf
+    # sudo dnf config-manager -y addrepo --from-repofile=https://repo.librewolf.net/librewolf.repo
+    # sudo dnf -y install librewolf
 }
 
 function ai_packages() {
