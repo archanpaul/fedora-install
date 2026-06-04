@@ -299,9 +299,9 @@ function vscode_package_user_conf() {
 }
 
 function antigravity_packages() {
-    AG_VERSION="2.0.6-5413878570549248"
+    AG_VERSION="2.0.11-6560309696135168"
     AG_URL=https://storage.googleapis.com/antigravity-public/antigravity-hub/${AG_VERSION}/linux-x64/Antigravity.tar.gz
-    AG_IDE_VERSION="2.0.3-6242596486512640"
+    AG_IDE_VERSION="2.0.4-6381998290370560"
     AG_IDE_URL=https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/${AG_IDE_VERSION}/linux-x64/Antigravity%20IDE.tar.gz
     AG_CLI_VERSION="974169037036"
 
