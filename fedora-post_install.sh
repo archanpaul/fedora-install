@@ -210,11 +210,8 @@ function browser_packages() {
 }
 
 function ai_packages() {
-    sudo dnf -y install ollama
-}
-
-function ollama_user_conf() {
-    ollama serve &
+    # sudo dnf -y install ollama
+    sudo flatpak install -y flathub ai.lmstudio.lm-studio
 }
 
 function go_packages() {
@@ -855,7 +852,6 @@ function install_all_user_modules() {
     # flutter-sdk_user_conf
     # python_user_conf
     # container_user_conf
-    # ollama_user_conf
 }
 
 install_all_modules 2>&1 | tee fedora_install.log
