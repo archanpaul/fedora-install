@@ -150,7 +150,7 @@ function kubernetes_packages() {
 
 function graphics_packages() {
     sudo dnf -y install gimp inkscape
-    sudo dnf -y install blender
+    sudo dnf -y install pitivi
 }
 
 function graphics_dev_packages() {
@@ -457,8 +457,8 @@ function git_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2025.3.4.7
-    ANDROID_STUDIO_RELEASE_NAME=panda4-patch1
+    ANDROID_STUDIO_RELEASE=2026.1.1.8
+    ANDROID_STUDIO_RELEASE_NAME=quail1
     ANDROID_NDK_VERSION=29.0.14206865
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
@@ -503,7 +503,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.44.0-stable"
+    FLUTTER_VERSION="3.44.1-stable"
 
     wget -q --show-progress -nc https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
