@@ -1,37 +1,31 @@
 [Ptyxis]
-default-profile-uuid='11de47c9383e3f996d17600f6a2407e0'
-profile-uuids=['11de47c9383e3f996d17600f6a2407e0']
-window-size=(uint32 141, uint32 51)
+audible-bell=false
+default-profile-uuid='ab74953ce7b922d1c2102db26a26bca4'
+profile-uuids=['ab74953ce7b922d1c2102db26a26bca4']
+window-size=(uint32 126, uint32 42)
 
-[Snapshot]
-is-maximized=false
-window-height=640
-window-width=800
+[Ptyxis/Profiles/ab74953ce7b922d1c2102db26a26bca4]
+palette='campbell'
 
 [TextEditor]
-custom-font='Roboto Mono Medium 12'
-discover-settings=true
+custom-font='JetBrains Mono Medium 13'
 highlight-current-line=true
 show-line-numbers=true
 show-map=true
 show-right-margin=true
+style-scheme='builder'
 tab-width=uint32 4
 use-system-font=false
 
 [control-center]
-last-panel='background'
-window-state=(1418, 1127, false)
+last-panel='system'
+window-state=(1110, 878, false)
 
 [desktop/a11y/magnifier]
 cross-hairs-length=58
 
 [desktop/app-folders]
-folder-children=['System', 'YaST', 'Pardus', '83ff61da-3617-4234-a570-75ccf579d614', 'b151ebea-18ad-4b39-ac18-50aad4608245']
-
-[desktop/app-folders/folders/83ff61da-3617-4234-a570-75ccf579d614]
-apps=['nvim.desktop', 'org.torproject.torbrowser-launcher.settings.desktop', 'org.gnome.Contacts.desktop', 'jupyter-notebook.desktop', 'org.gnome.Tour.desktop', 'scrcpy-console.desktop', 'org.freedesktop.MalcontentControl.desktop', 'java-latest-openjdk-jconsole.desktop', 'org.gnome.Yelp.desktop', 'opencascade-draw.desktop']
-name='Misc'
-translate=false
+folder-children=['System', 'YaST', 'Pardus', 'bcf465b5-1ab1-409d-b007-6a30de4255e2']
 
 [desktop/app-folders/folders/Pardus]
 categories=['X-Pardus-Apps']
@@ -48,15 +42,16 @@ categories=['X-SuSE-YaST']
 name='suse-yast.directory'
 translate=true
 
-[desktop/app-folders/folders/b151ebea-18ad-4b39-ac18-50aad4608245]
-apps=['libreoffice-writer.desktop', 'libreoffice-calc.desktop', 'libreoffice-impress.desktop', 'libreoffice-draw.desktop', 'libreoffice-math.desktop']
-name='Office'
+[desktop/app-folders/folders/bcf465b5-1ab1-409d-b007-6a30de4255e2]
+apps=['org.gnome.Maps.desktop', 'org.gnome.Weather.desktop', 'nvim.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Tour.desktop', 'opencascade-draw.desktop', 'java-latest-openjdk-jconsole.desktop', 'scrcpy-console.desktop', 'org.freedesktop.MalcontentControl.desktop', 'org.gnome.Yelp.desktop', 'org.torproject.torbrowser-launcher.settings.desktop', 'jupyter-notebook.desktop', 'jupyterlab.desktop']
+name='Misc'
+translate=false
 
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2026-06-06-16-56-44-peakpx.jpg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2026-06-06-16-56-44-peakpx.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2026-06-08-18-34-40-geometric-abstract-background-futuristic-dark-theme-dark-blu.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2026-06-08-18-34-40-geometric-abstract-background-futuristic-dark-theme-dark-blu.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -79,45 +74,28 @@ sources=[('xkb', 'us')]
 
 [desktop/interface]
 accent-color='slate'
+clock-format='24h'
 clock-show-date=false
 clock-show-seconds=true
-clock-show-weekday=false
-color-scheme='default'
-document-font-name='Adwaita Sans 12'
-font-antialiasing='grayscale'
-font-hinting='slight'
-font-name='Adwaita Sans 12'
-gtk-enable-primary-paste=true
-monospace-font-name='Adwaita Mono 12'
+document-font-name='Adwaita Sans 13'
+font-name='Adwaita Sans 13'
+monospace-font-name='Adwaita Mono 13'
 show-battery-percentage=true
 
 [desktop/notifications]
-application-children=['org-gnome-settings', 'google-chrome', 'org-gnome-ptyxis', 'code', 'gnome-about-panel']
+application-children=['org-gnome-ptyxis', 'org-gnome-software']
 show-in-lock-screen=false
-
-[desktop/notifications/application/code]
-application-id='code.desktop'
-
-[desktop/notifications/application/gnome-about-panel]
-application-id='gnome-about-panel.desktop'
-
-[desktop/notifications/application/google-chrome]
-application-id='google-chrome.desktop'
 
 [desktop/notifications/application/org-gnome-ptyxis]
 application-id='org.gnome.Ptyxis.desktop'
 
-[desktop/notifications/application/org-gnome-settings]
-application-id='org.gnome.Settings.desktop'
-
-[desktop/peripherals/keyboard]
-numlock-state=true
+[desktop/notifications/application/org-gnome-software]
+application-id='org.gnome.Software.desktop'
 
 [desktop/peripherals/mouse]
-speed=0.49377593360995853
+speed=0.49367088607594933
 
 [desktop/peripherals/touchpad]
-natural-scroll=false
 two-finger-scrolling-enabled=true
 
 [desktop/privacy]
@@ -131,7 +109,7 @@ daily-limit-seconds=uint32 28800
 [desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2026-06-06-16-56-44-peakpx.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2026-06-08-18-34-40-geometric-abstract-background-futuristic-dark-theme-dark-blu.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -163,25 +141,14 @@ default-zoom-level='small-plus'
 migrated-gtk-settings=true
 
 [nautilus/window-state]
+initial-size=(1113, 898)
 initial-size-file-chooser=(890, 550)
-
-[portal/filechooser/code]
-last-folder-path='/home/arp/workspace/grokking.workspace/handsonmlp.git'
-
-[portal/filechooser/md.obsidian.Obsidian]
-last-folder-path='/home/arp/workspace/obsidian.vaults/obsidian_boostrap.git'
 
 [portal/filechooser/org.gnome.Settings]
 last-folder-path='/home/arp/Pictures/Wallpapers'
 
-[portal/filechooser/org.gnome.TextEditor]
-last-folder-path='/home/arp/delme/fedora-install/util_scripts'
-
 [settings-daemon/plugins/color]
 night-light-schedule-automatic=false
-
-[settings-daemon/plugins/housekeeping]
-donation-reminder-last-shown=int64 1780752883144630
 
 [settings-daemon/plugins/media-keys]
 custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
@@ -192,30 +159,28 @@ command='systemctl suspend'
 name='Suspend'
 
 [settings-daemon/plugins/power]
-sleep-inactive-ac-timeout=1800
+sleep-inactive-ac-timeout=5400
+sleep-inactive-battery-timeout=1200
 
 [shell]
-app-picker-layout=[{'org.gnome.Connections.desktop': <{'position': <0>}>, 'org.gnome.clocks.desktop': <{'position': <1>}>, 'org.gnome.Software.desktop': <{'position': <2>}>, 'org.gnome.Decibels.desktop': <{'position': <3>}>, 'org.gnome.Showtime.desktop': <{'position': <4>}>, 'org.gnome.Loupe.desktop': <{'position': <5>}>, 'com.obsproject.Studio.desktop': <{'position': <6>}>, 'android-studio.desktop': <{'position': <7>}>, 'antigravity.desktop': <{'position': <8>}>, 'antigravity-ide.desktop': <{'position': <9>}>, 'org.gnome.Boxes.desktop': <{'position': <10>}>, 'virt-manager.desktop': <{'position': <11>}>, 'org.mozilla.firefox.desktop': <{'position': <12>}>, 'chromium-browser.desktop': <{'position': <13>}>, 'org.torproject.torbrowser-launcher.desktop': <{'position': <14>}>, 'transmission-gtk.desktop': <{'position': <15>}>, 'org.inkscape.Inkscape.desktop': <{'position': <16>}>, 'gimp.desktop': <{'position': <17>}>, 'org.gnome.Papers.desktop': <{'position': <18>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <19>}>, 'calibre-gui.desktop': <{'position': <20>}>, 'com.arputer.knowledge_hive.desktop': <{'position': <21>}>, 'com.spotify.Client.desktop': <{'position': <22>}>, 'msedge-hnpfjngllnobngcgfapefoaidbinmjnm-Default.desktop': <{'position': <23>}>}, {'b151ebea-18ad-4b39-ac18-50aad4608245': <{'position': <0>}>, 'org.gnome.Calendar.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.Maps.desktop': <{'position': <3>}>, 'org.gnome.Characters.desktop': <{'position': <4>}>, 'org.gnome.font-viewer.desktop': <{'position': <5>}>, 'jupyterlab.desktop': <{'position': <6>}>, 'blender.desktop': <{'position': <7>}>, 'org.gnome.Snapshot.desktop': <{'position': <8>}>, 'gtk-v4l.desktop': <{'position': <9>}>, 'net.thunderbird.Thunderbird.desktop': <{'position': <10>}>, 'org.fedoraproject.MediaWriter.desktop': <{'position': <11>}>, 'org.gnome.baobab.desktop': <{'position': <12>}>, 'org.gnome.DiskUtility.desktop': <{'position': <13>}>, 'org.gnome.Settings.desktop': <{'position': <14>}>, 'org.gnome.tweaks.desktop': <{'position': <15>}>, 'org.gnome.Extensions.desktop': <{'position': <16>}>, 'org.gnome.Logs.desktop': <{'position': <17>}>, 'org.gnome.SimpleScan.desktop': <{'position': <18>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <19>}>, 'org.gnome.Firmware.desktop': <{'position': <20>}>, 'scrcpy.desktop': <{'position': <21>}>, '83ff61da-3617-4234-a570-75ccf579d614': <{'position': <22>}>}]
+app-picker-layout=[{'org.gnome.Connections.desktop': <{'position': <0>}>, 'org.gnome.clocks.desktop': <{'position': <1>}>, 'org.gnome.Software.desktop': <{'position': <2>}>, 'org.gnome.Decibels.desktop': <{'position': <3>}>, 'org.gnome.Showtime.desktop': <{'position': <4>}>, 'org.gnome.Snapshot.desktop': <{'position': <5>}>, 'org.gnome.Loupe.desktop': <{'position': <6>}>, 'gimp.desktop': <{'position': <7>}>, 'org.inkscape.Inkscape.desktop': <{'position': <8>}>, 'org.mozilla.firefox.desktop': <{'position': <9>}>, 'chromium-browser.desktop': <{'position': <10>}>, 'org.torproject.torbrowser-launcher.desktop': <{'position': <11>}>, 'org.gnome.Boxes.desktop': <{'position': <12>}>, 'virt-manager.desktop': <{'position': <13>}>, 'android-studio.desktop': <{'position': <14>}>, 'antigravity.desktop': <{'position': <15>}>, 'antigravity-ide.desktop': <{'position': <16>}>, 'ai.lmstudio.lm-studio.desktop': <{'position': <17>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <18>}>, 'org.gnome.Papers.desktop': <{'position': <19>}>, 'calibre-gui.desktop': <{'position': <20>}>, 'org.gnome.Logs.desktop': <{'position': <21>}>, 'com.spotify.Client.desktop': <{'position': <22>}>}, {'org.fedoraproject.MediaWriter.desktop': <{'position': <0>}>, 'org.gnome.font-viewer.desktop': <{'position': <1>}>, 'org.gnome.Characters.desktop': <{'position': <2>}>, 'org.gnome.Calendar.desktop': <{'position': <3>}>, 'transmission-gtk.desktop': <{'position': <4>}>, 'net.thunderbird.Thunderbird.desktop': <{'position': <5>}>, 'scrcpy.desktop': <{'position': <6>}>, 'libreoffice-calc.desktop': <{'position': <7>}>, 'libreoffice-draw.desktop': <{'position': <8>}>, 'libreoffice-impress.desktop': <{'position': <9>}>, 'libreoffice-math.desktop': <{'position': <10>}>, 'libreoffice-writer.desktop': <{'position': <11>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <12>}>, 'org.pitivi.Pitivi.desktop': <{'position': <13>}>, 'com.obsproject.Studio.desktop': <{'position': <14>}>, 'org.gnome.SimpleScan.desktop': <{'position': <15>}>, 'org.gnome.DiskUtility.desktop': <{'position': <16>}>, 'org.gnome.baobab.desktop': <{'position': <17>}>, 'gtk-v4l.desktop': <{'position': <18>}>, 'org.gnome.Settings.desktop': <{'position': <19>}>, 'org.gnome.tweaks.desktop': <{'position': <20>}>, 'org.gnome.Extensions.desktop': <{'position': <21>}>, 'org.gnome.Firmware.desktop': <{'position': <22>}>, 'bcf465b5-1ab1-409d-b007-6a30de4255e2': <{'position': <23>}>}]
 enabled-extensions=['background-logo@fedorahosted.org', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com']
-favorite-apps=['org.gnome.SystemMonitor.desktop', 'org.gnome.Ptyxis.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', 'code.desktop', 'md.obsidian.Obsidian.desktop', 'google-chrome.desktop', 'microsoft-edge.desktop']
+favorite-apps=['org.gnome.SystemMonitor.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Ptyxis.desktop', 'code.desktop', 'md.obsidian.Obsidian.desktop', 'google-chrome.desktop', 'microsoft-edge.desktop']
 welcome-dialog-last-shown-version='50.2'
 
 [shell/extensions/dash-to-panel]
-animate-appicon-hover=false
-animate-appicon-hover-animation-convexity={'RIPPLE': 2.0, 'PLANK': 1.0, 'SIMPLE': 0.0}
 animate-appicon-hover-animation-extent={'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}
-animate-appicon-hover-animation-type='SIMPLE'
 appicon-margin=2
+appicon-padding=4
 dot-color-dominant=true
 dot-color-override=false
-dot-color-unfocused-different=false
 dot-position='BOTTOM'
 dot-size=1
-dot-style-focused='CILIORA'
 dot-style-unfocused='DASHES'
 extension-version=73
 focus-highlight-dominant=true
-global-border-radius=1
+focus-highlight-opacity=25
+global-border-radius=2
 hide-overview-on-startup=true
 hotkeys-overlay-combo='TEMPORARILY'
 intellihide=true
@@ -223,19 +188,18 @@ intellihide-hide-from-windows=true
 leftbox-padding=0
 leftbox-size=16
 overview-click-to-exit=true
-panel-anchors='{"GSM-506NTTQK4097":"MIDDLE","LEN-0x00000000":"MIDDLE"}'
-panel-element-positions='{"LEN-0x00000000":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}],"GSM-506NTTQK4097":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'
-panel-lengths='{"GSM-506NTTQK4097":-1,"LEN-0x00000000":-1}'
+panel-anchors='{"GSM-506NTTQK4097":"MIDDLE"}'
+panel-element-positions='{"GSM-506NTTQK4097":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'
+panel-lengths='{"GSM-506NTTQK4097":-1}'
 panel-positions='{}'
-panel-side-margins=2
-panel-side-padding=0
-panel-sizes='{"LEN-0x00000000":32,"GSM-506NTTQK4097":32}'
-panel-top-bottom-margins=2
+panel-side-margins=4
+panel-sizes='{"GSM-506NTTQK4097":32}'
+panel-top-bottom-margins=4
 panel-top-bottom-padding=0
 prefs-opened=false
 show-tooltip=false
 status-icon-padding=0
-trans-panel-opacity=0.80000000000000004
+trans-panel-opacity=0.59999999999999998
 trans-use-custom-opacity=true
 trans-use-dynamic-opacity=true
 tray-padding=0
@@ -246,9 +210,8 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1780745052
+check-timestamp=int64 1780923567
 first-run=false
-flatpak-purge-timestamp=int64 1780758895
 
 [tweaks]
 show-extensions-notice=false

@@ -146,6 +146,11 @@ function create_app_cache() {
 	mkdir -p ~/.var/app ${CACHE}/obsidian.cache
 	ln -sfn ${CACHE}/obsidian.cache ~/.var/app/md.obsidian.Obsidian
 
+	# lm-studio
+	rm -rf ~/.var/app/ai.lmstudio.lm-studio
+	mkdir -p ~/.var/app ${CACHE}/lm-studio.cache
+	ln -sfn ${CACHE}/lm-studio.cache ~/.var/app/ai.lmstudio.lm-studio
+
 	# ollama
 	mkdir -p ${CACHE}/ollama.cache
 	ln -sfn ${CACHE}/ollama.cache ~/.ollama

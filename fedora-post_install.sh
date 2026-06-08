@@ -19,7 +19,7 @@ function update_hostname() {
 
 function dnf_conf_update() {
     cat <<EOF | sudo tee -a /etc/dnf/dnf.conf
-keepcache=True
+keepcache=False
 deltarpm=True
 # fastestmirror=True
 # skip_if_unavailable=True
