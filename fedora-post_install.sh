@@ -575,13 +575,14 @@ function python_virtualenv_packages() {
     sudo chown -R root:wheel ${VENV_FOLDER}
     sudo chmod -R u+rwX,go+rwX,o-w ${VENV_FOLDER}
 
-    /usr/bin/python${PYTHON_VERSION} -m venv --system-site-packages --symlinks --relocatable ${VENV_FOLDER}
+    /usr/bin/python${PYTHON_VERSION} -m venv --system-site-packages --symlinks ${VENV_FOLDER}
 
     set -e
     source ${VENV_FOLDER}/bin/activate && \
     pip install --upgrade pip && \
     pip install black && \
-    pip install google-generativeai google-adk litellm && \
+    pip install litellm && \
+    pip install google-generativeai google-adk && \
     pip install google-antigravity && \
     deactivate
     set +e
@@ -597,7 +598,7 @@ function python_virtualenv_packages() {
     sudo chown -R root:wheel ${VENV_FOLDER}
     sudo chmod -R u+rwX,go+rwX,o-w ${VENV_FOLDER}
 
-    /usr/bin/python${PYTHON_VERSION} -m venv --relocatable ${VENV_FOLDER}
+    /usr/bin/python${PYTHON_VERSION} -m venv ${VENV_FOLDER}
 
     set -e
     source ${VENV_FOLDER}/bin/activate && \
@@ -605,8 +606,8 @@ function python_virtualenv_packages() {
     pip install black && \
     pip install numpy pandas matplotlib scikit-learn && \
     pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
-    pip install 'litellm[proxy]' && \
-    pip install google-generativeai google-adk litellm && \
+    pip install litellm 'litellm[proxy]' && \
+    pip install google-generativeai google-adk && \
     pip install google-antigravity && \
     deactivate
     set +e
@@ -832,7 +833,7 @@ function install_all_modules() {
 
     # update_hostname
     # dnf_conf_update
-    fedora_upgrade
+      fedora_upgrade
     # rpmfusion_repo
     # flatpak_repo
 
