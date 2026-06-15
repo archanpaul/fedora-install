@@ -457,9 +457,9 @@ function git_user_conf() {
 }
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2026.1.1.8
-    ANDROID_STUDIO_RELEASE_NAME=quail1
-    ANDROID_NDK_VERSION=29.0.14206865
+    ANDROID_STUDIO_RELEASE=2026.1.1.9
+    ANDROID_STUDIO_RELEASE_NAME=quail1-patch1
+    ANDROID_NDK_VERSION=30.0.14904198
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
 
@@ -503,7 +503,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.44.1-stable"
+    FLUTTER_VERSION="3.44.2-stable"
 
     wget -q --show-progress -nc https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
@@ -575,7 +575,7 @@ function python_virtualenv_packages() {
     sudo chown -R root:wheel ${VENV_FOLDER}
     sudo chmod -R u+rwX,go+rwX,o-w ${VENV_FOLDER}
 
-    /usr/bin/python${PYTHON_VERSION} -m venv --system-site-packages --symlinks ${VENV_FOLDER}
+    /usr/bin/python${PYTHON_VERSION} -m venv --system-site-packages --symlinks --relocatable ${VENV_FOLDER}
 
     set -e
     source ${VENV_FOLDER}/bin/activate && \
@@ -585,14 +585,45 @@ function python_virtualenv_packages() {
     pip install google-antigravity && \
     deactivate
     set +e
+
+    sudo dnf -y install python3.12
+    PYTHON_VERSION=3.12
+    VENV=pyvenv_312
+    VENV_FOLDER=/opt/python_venv/${VENV}
+
+    ## virtualenvs
+    sudo rm -rf ${VENV_FOLDER}
+    sudo mkdir -p ${VENV_FOLDER}
+    sudo chown -R root:wheel ${VENV_FOLDER}
+    sudo chmod -R u+rwX,go+rwX,o-w ${VENV_FOLDER}
+
+    /usr/bin/python${PYTHON_VERSION} -m venv --relocatable ${VENV_FOLDER}
+
+    set -e
+    source ${VENV_FOLDER}/bin/activate && \
+    pip install --upgrade pip && \
+    pip install black && \
+    pip install numpy pandas matplotlib scikit-learn && \
+    pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
+    pip install 'litellm[proxy]' && \
+    pip install google-generativeai google-adk litellm && \
+    pip install google-antigravity && \
+    deactivate
+    set +e
 }
 
 function python_user_conf() {
     VENV=pyvenv_314
     VENV_FOLDER=/opt/python_venv/${VENV}
-
     mkdir -p ~/.virtualenvs
     ln -sfn ${VENV_FOLDER} ~/.virtualenvs/${VENV}
+
+    VENV=pyvenv_312
+    VENV_FOLDER=/opt/python_venv/${VENV}
+    mkdir -p ~/.virtualenvs
+    ln -sfn ${VENV_FOLDER} ~/.virtualenvs/${VENV}
+
+    rm -rf ~/.venv
     ln -sfn ~/.virtualenvs/${VENV} ~/.venv
 }
 
@@ -791,6 +822,9 @@ function misc_services() {
 function intel_packages() {
     sudo dnf -y install openvino
     sudo dnf -y install intel-npu-driver
+    sudo usermod -a -G render $USER
+
+    sudo dnf -y install python3-openvino
 }
 
 function install_all_modules() {
