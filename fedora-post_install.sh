@@ -319,6 +319,20 @@ function ollama_packages() {
     # ollama pull gpt-oss:20b
 }
 
+function claude_packages() {
+    cat <<EOF | sudo tee /etc/yum.repos.d/claude-code.repo
+[claude-code]
+name=Claude Code
+baseurl=https://downloads.claude.ai/claude-code/rpm/stable
+enabled=1
+gpgcheck=1
+gpgkey=https://downloads.claude.ai/keys/claude-code.asc
+EOF
+
+    sudo dnf -y update
+    sudo dnf -y install claude-code
+}
+
 function antigravity_packages() {
     AG_VERSION="2.0.11-6560309696135168"
     AG_URL=https://storage.googleapis.com/antigravity-public/antigravity-hub/${AG_VERSION}/linux-x64/Antigravity.tar.gz
@@ -896,6 +910,7 @@ function install_all_modules() {
 
     # lmstudio_packages
     # ollama_packages
+    # claude_packages
     # antigravity_packages
 
     # android-studio_package
