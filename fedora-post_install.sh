@@ -209,11 +209,6 @@ function browser_packages() {
     # sudo dnf -y install librewolf
 }
 
-function ai_packages() {
-    # sudo dnf -y install ollama
-    sudo flatpak install -y flathub ai.lmstudio.lm-studio
-}
-
 function go_packages() {
     sudo dnf -y install golang
 
@@ -293,6 +288,35 @@ function vscode_package_user_conf() {
 	code --force --install-extension ms-toolsai.vscode-jupyter-cell-tags
 	code --force --install-extension ms-vscode-remote.remote-containers
 	code --force --install-extension ms-vsliveshare.vsliveshare
+}
+
+function lmstudio_packages() {
+    sudo flatpak install -y flathub ai.lmstudio.lm-studio
+}
+
+function ollama_packages() {
+    OLLAMA_VERSION=0.30.8
+    OLLAMA_PKG=ollama-linux-amd64.tar.zst
+    OLLAMA_URL=https://github.com/ollama/ollama/releases/download/v${OLLAMA_VERSION}/${OLLAMA_PKG}
+    OLLAMA_INSTALL_FOLDER=/opt/ollama
+
+    if [ ! -f "${CACHE}/ollama-${OLLAMA_VERSION}.tar.zst" ]; then
+        wget -c --show-progress -nc ${OLLAMA_URL} -O ${CACHE}/ollama-${OLLAMA_VERSION}.tar.zst
+    fi
+
+    sudo rm -rf ${OLLAMA_INSTALL_FOLDER}
+    sudo mkdir -p ${OLLAMA_INSTALL_FOLDER}
+
+    # curl -fsSL ${OLLAMA_URL} | sudo tar --zstd -x -C /opt/ollama
+    sudo tar xfv ${CACHE}/ollama-${OLLAMA_VERSION}.tar.zst  -C /opt/ollama/
+    sudo chown -R root:wheel ${OLLAMA_INSTALL_FOLDER}
+    sudo chmod -R u+rwX,go+rwX,o-w ${OLLAMA_INSTALL_FOLDER}
+
+    sudo ln -sf /opt/ollama/bin/ollama /usr/local/bin/ollama
+
+    # ollama serve --watch
+    # ollama pull gemma4:12b
+    # ollama pull gpt-oss:20b
 }
 
 function antigravity_packages() {
@@ -853,7 +877,6 @@ function install_all_modules() {
     # vscode_package
     # go_packages
     # npm_packages
-    # ai_packages
     # font_packages
     # codec_packages
     # libreoffice_packages
@@ -871,7 +894,10 @@ function install_all_modules() {
     # firewall_user_services
     # misc_services
 
+    # lmstudio_packages
+    # ollama_packages
     # antigravity_packages
+
     # android-studio_package
     # flutter-sdk_package
     # go_extra_packages
