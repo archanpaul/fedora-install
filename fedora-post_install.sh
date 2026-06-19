@@ -331,6 +331,19 @@ EOF
 
     sudo dnf -y update
     sudo dnf -y install claude-code
+
+    cat <<EOF | sudo tee litellm_config.yaml
+model_list:
+  - model_name: gemini-flash
+    litellm_params:
+      model: gemini/gemini-3.1-flash
+      api_key: "GEMINI_API_KEY"
+  - model_name: gemma
+    litellm_params:
+      model: gemini/gemini-3.1-flash
+      api_key: "GEMINI_API_KEY"
+
+EOF
 }
 
 function antigravity_packages() {
@@ -859,11 +872,20 @@ function misc_services() {
 }
 
 function intel_packages() {
+    sudo dnf -y install intel-level-zero intel-level-zero-devel
     sudo dnf -y install openvino
     sudo dnf -y install intel-npu-driver
     sudo usermod -a -G render $USER
 
     sudo dnf -y install python3-openvino
+}
+
+function amd_packages() {
+    sudo dnf -y install hipcc hipcc-amd rocm-dev rocm-runtime-devel
+    sudo dnf -y install rocblas-devel rocrand-devel rocfft-devel rocsparse-devel
+    sudo dnf -y install rocm-hip-devel miopen-hip-devel rccl-devel
+    sudo dnf -y install rocprim-devel hipcub-devel rocthrust-devel
+    sudo dnf -y install rocm-cmake rocminfo
 }
 
 function install_all_modules() {
@@ -901,12 +923,14 @@ function install_all_modules() {
     # laptop_mode
     # thinkpad_packages
     # network_extra_packages
-    # intel_packages
 
     # httpd_service
     # firewall_services
     # firewall_user_services
     # misc_services
+
+    # intel_packages
+    # amd_packages
 
     # lmstudio_packages
     # ollama_packages
