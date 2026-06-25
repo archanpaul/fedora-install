@@ -30,10 +30,10 @@ source-units=['degree']
 target-units=['radian']
 unit-category='angle'
 window-maximized=false
-window-size=(393, 616)
+window-size=(360, 616)
 
 [control-center]
-last-panel='power'
+last-panel='display'
 window-state=(1110, 878, false)
 
 [desktop/a11y/magnifier]
@@ -65,8 +65,8 @@ translate=false
 [desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2026-06-15-19-02-46-geometric-abstract-background-futuristic-dark-theme-dark-blu.jpg'
-picture-uri-dark='file:///home/arp/.local/share/backgrounds/2026-06-15-19-02-46-geometric-abstract-background-futuristic-dark-theme-dark-blu.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2026-06-24-17-04-59-geometric-abstract-background-futuristic-dark-theme-dark-blu.jpg'
+picture-uri-dark='file:///home/arp/.local/share/backgrounds/2026-06-24-17-04-59-geometric-abstract-background-futuristic-dark-theme-dark-blu.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -97,7 +97,6 @@ document-font-name='Adwaita Sans 12'
 font-name='Adwaita Sans 12'
 monospace-font-name='Adwaita Mono 12'
 show-battery-percentage=true
-text-scaling-factor=1.1000000000000001
 
 [desktop/notifications]
 application-children=['org-gnome-ptyxis', 'org-gnome-software', 'google-chrome', 'antigravity-ide', 'gnome-about-panel', 'code', 'com-spotify-client', 'gnome-power-panel', 'com-obsproject-studio', 'org-gnome-showtime', 'microsoft-edge', 'com-arputer-knowledge-hive', 'org-mozilla-firefox', 'chromium-browser']
@@ -166,7 +165,7 @@ daily-limit-seconds=uint32 28800
 [desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/arp/.local/share/backgrounds/2026-06-15-19-02-46-geometric-abstract-background-futuristic-dark-theme-dark-blu.jpg'
+picture-uri='file:///home/arp/.local/share/backgrounds/2026-06-24-17-04-59-geometric-abstract-background-futuristic-dark-theme-dark-blu.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -327,7 +326,7 @@ window-preview-title-position='TOP'
 locations=@av []
 
 [software]
-check-timestamp=int64 1782279897
+check-timestamp=int64 1782372475
 first-run=false
 flatpak-purge-timestamp=int64 1782287017
 install-timestamp=int64 1781329956
