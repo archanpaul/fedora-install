@@ -271,8 +271,6 @@ function vscode_package_user_conf() {
     code --install-extension dart-code.flutter
     code --install-extension github.github-vscode-theme
     code --install-extension golang.go
-    code --install-extension google.colab
-    code --install-extension google.geminicodeassist
     code --install-extension meta.pyrefly
     code --install-extension mhutchie.git-graph
     code --install-extension ms-azuretools.vscode-containers
@@ -297,7 +295,7 @@ function lmstudio_packages() {
 }
 
 function ollama_packages() {
-    OLLAMA_VERSION=0.30.8
+    OLLAMA_VERSION=0.30.11
     OLLAMA_PKG=ollama-linux-amd64.tar.zst
     OLLAMA_URL=https://github.com/ollama/ollama/releases/download/v${OLLAMA_VERSION}/${OLLAMA_PKG}
     OLLAMA_INSTALL_FOLDER=/opt/ollama
@@ -638,6 +636,7 @@ function python_virtualenv_packages() {
     pip install litellm && \
     pip install google-generativeai google-adk && \
     pip install google-antigravity && \
+    pip install genkit genkit-plugin-google-genai genkit-plugin-compat-openai && \
     deactivate
     set +e
 
@@ -657,12 +656,13 @@ function python_virtualenv_packages() {
     set -e
     source ${VENV_FOLDER}/bin/activate && \
     pip install --upgrade pip && \
-    pip install black && \
+    pip install black ipykernel && \
     pip install numpy pandas matplotlib scikit-learn && \
     pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
     pip install litellm 'litellm[proxy]' && \
     pip install google-generativeai google-adk && \
     pip install google-antigravity && \
+    pip install genkit genkit-plugin-google-genai genkit-plugin-compat-openai && \
     deactivate
     set +e
 }
