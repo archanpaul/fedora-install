@@ -479,25 +479,25 @@ EOF
 }
 
 function antigravity_ide_package_user_conf() {
-    # antigravity-ide --list-extensions | xargs -L 1 echo antigravity --install-extension
-    # antigravity-ide --list-extensions | xargs -L 1 antigravity --uninstall-extension
+    # antigravity-ide --list-extensions | xargs -L 1 echo antigravity-ide --install-extension
+    # antigravity-ide --list-extensions | xargs -L 1 antigravity-ide --uninstall-extension
 
     ## antigravity extensions
-    antigravity --install-extension dart-code.dart-code
-    antigravity --install-extension dart-code.flutter
-    antigravity --install-extension github.github-vscode-theme
-    antigravity --install-extension golang.go
-    antigravity --install-extension google.colab
-    antigravity --install-extension meta.pyrefly
-    antigravity --install-extension ms-python.debugpy
-    antigravity --install-extension ms-python.isort
-    antigravity --install-extension ms-python.python
-    antigravity --install-extension ms-python.vscode-python-envs
-    antigravity --install-extension ms-toolsai.jupyter
-    antigravity --install-extension ms-toolsai.jupyter-keymap
-    antigravity --install-extension ms-toolsai.jupyter-renderers
-    antigravity --install-extension ms-toolsai.vscode-jupyter-cell-tags
-    antigravity --install-extension ms-toolsai.vscode-jupyter-slideshow
+    antigravity-ide --install-extension dart-code.dart-code
+    antigravity-ide --install-extension dart-code.flutter
+    antigravity-ide --install-extension github.github-vscode-theme
+    antigravity-ide --install-extension golang.go
+    antigravity-ide --install-extension google.colab
+    antigravity-ide --install-extension meta.pyrefly
+    antigravity-ide --install-extension ms-python.debugpy
+    antigravity-ide --install-extension ms-python.isort
+    antigravity-ide --install-extension ms-python.python
+    antigravity-ide --install-extension ms-python.vscode-python-envs
+    antigravity-ide --install-extension ms-toolsai.jupyter
+    antigravity-ide --install-extension ms-toolsai.jupyter-keymap
+    antigravity-ide --install-extension ms-toolsai.jupyter-renderers
+    antigravity-ide --install-extension ms-toolsai.vscode-jupyter-cell-tags
+    antigravity-ide --install-extension ms-toolsai.vscode-jupyter-slideshow
 }
 
 function git_user_conf() {
