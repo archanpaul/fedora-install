@@ -231,13 +231,14 @@ function go_extra_packages() {
     # VSCode go plugin dependencies
     export GO111MODULE=on
     go install -v golang.org/x/tools/gopls@latest
-    go install -v golang.org/x/lint/golint@latest
+    go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
     go install -v golang.org/x/tools/cmd/goimports@latest
     go install -v github.com/go-delve/delve/cmd/dlv@latest
 
     # grpc protobuf
-    go install -v google.golang.org/protobuf/cmd/protoc-gen-go@latest
-    go install -v google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+	go install github.com/bufbuild/buf/cmd/buf@latest
+	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 
     # gomobile
     go install -v golang.org/x/mobile/cmd/gobind@latest
@@ -295,7 +296,7 @@ function lmstudio_packages() {
 }
 
 function ollama_packages() {
-    OLLAMA_VERSION=0.30.11
+    OLLAMA_VERSION=0.31.1
     OLLAMA_PKG=ollama-linux-amd64.tar.zst
     OLLAMA_URL=https://github.com/ollama/ollama/releases/download/v${OLLAMA_VERSION}/${OLLAMA_PKG}
     OLLAMA_INSTALL_FOLDER=/opt/ollama
@@ -347,10 +348,12 @@ EOF
 }
 
 function antigravity_packages() {
-    AG_VERSION="2.1.4-6481382726303744"
+    AG_VERSION="2.2.1-5287492581195776"
     AG_URL=https://storage.googleapis.com/antigravity-public/antigravity-hub/${AG_VERSION}/linux-x64/Antigravity.tar.gz
+
     AG_IDE_VERSION="2.1.1-6123990880747520"
     AG_IDE_URL=https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/${AG_IDE_VERSION}/linux-x64/Antigravity%20IDE.tar.gz
+
     AG_CLI_VERSION="974169037036"
 
     if [ ! -f "${CACHE}/antigravity-${AG_VERSION}.tar.gz" ]; then
