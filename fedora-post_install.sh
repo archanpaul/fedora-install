@@ -503,6 +503,32 @@ function antigravity_ide_package_user_conf() {
     antigravity-ide --install-extension ms-toolsai.vscode-jupyter-slideshow
 }
 
+function kiro_package() {
+    KIRO_VERSION="1.0.89"
+    KIRO_URL=https://prod.download.desktop.kiro.dev/releases/stable/linux-x64/signed/${KIRO_VERSION}/tar/kiro-ide-${KIRO_VERSION}-stable-linux-x64.tar.gz
+
+    if [ ! -f "${CACHE}/kiro-ide-${KIRO_VERSION}-stable-linux-x64.tar.gz" ]; then
+        wget -c --show-progress -nc ${KIRO_URL} -O ${CACHE}/kiro-ide-${KIRO_VERSION}-stable-linux-x64.tar.gz
+    fi
+
+    sudo rm -rf /opt/kiro
+    sudo mkdir -p /opt/kiro
+    sudo tar -zxf ${CACHE}/kiro-ide-${KIRO_VERSION}-stable-linux-x64.tar.gz -C /opt/kiro --strip-components=1
+
+    # kiro.desktop (Basic Launcher)
+    cat <<EOF | sudo tee /opt/kiro/resources/kiro.desktop
+[Desktop Entry]
+Type=Application
+Name=Kiro
+Icon=/opt/kiro/resources/app/resources/linux/code.png
+Exec=/opt/kiro/bin/kiro %F
+Terminal=false
+Categories=Development;IDE;
+MimeType=application/x-code-workspace;inode/directory;text/plain;
+EOF
+    sudo ln -sf /opt/kiro/resources/kiro.desktop /usr/share/applications/kiro.desktop
+}
+
 function git_user_conf() {
     # git config --global core.editor "code --wait"
     git config --global core.editor "nvim"
@@ -942,6 +968,7 @@ function install_all_modules() {
     # ollama_packages
     # claude_packages
     # antigravity_packages
+    # kiro_package
 
     # android-studio_package
     # flutter-sdk_package
