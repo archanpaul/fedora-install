@@ -226,27 +226,29 @@ EOF
 }
 
 function go_extra_packages() {
-    source /etc/profile.d/go-packages.sh
+    (
+        source /etc/profile.d/go-packages.sh
 
-    # VSCode go plugin dependencies
-    export GO111MODULE=on
-    go install -v golang.org/x/tools/gopls@latest
-    go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-    go install -v golang.org/x/tools/cmd/goimports@latest
-    go install -v github.com/go-delve/delve/cmd/dlv@latest
+        # VSCode go plugin dependencies
+        export GO111MODULE=on
+        go install -v golang.org/x/tools/gopls@latest
+        go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+        go install -v golang.org/x/tools/cmd/goimports@latest
+        go install -v github.com/go-delve/delve/cmd/dlv@latest
 
-    # grpc protobuf
-	go install github.com/bufbuild/buf/cmd/buf@latest
-	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+        # grpc protobuf
+        go install github.com/bufbuild/buf/cmd/buf@latest
+        go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+        go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 
-    # gomobile
-    go install -v golang.org/x/mobile/cmd/gobind@latest
-    go install -v golang.org/x/mobile/cmd/gomobile@latest
-    go install -v github.com/tinygo-org/tinygo@latest
+        # gomobile
+        go install -v golang.org/x/mobile/cmd/gobind@latest
+        go install -v golang.org/x/mobile/cmd/gomobile@latest
+        go install -v github.com/tinygo-org/tinygo@latest
 
-    # google-adk
-    go install -v google.golang.org/adk@latest
+        # google-adk
+        go install -v google.golang.org/adk@latest
+    )
 }
 
 function npm_packages() {
@@ -537,7 +539,7 @@ function git_user_conf() {
     # git config --global user.email "USER_EMAIL"
 }
 
-function android-commandline_tools_package(){
+function android-sdk_packages(){
     # https://developer.android.com/studio#command-line-tools-only
     ANDROID_COMMANDLINE_TOOLS_RELEASE=14742923_latest
     ANDROID_COMMANDLINE_TOOLS_PKG_FILE=commandlinetools-linux-${ANDROID_COMMANDLINE_TOOLS_RELEASE}.zip
@@ -550,10 +552,9 @@ function android-commandline_tools_package(){
     if [ ! -f "${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}" ]; then
         wget -c --show-progress -nc ${ANDROID_COMMANDLINE_TOOLS_URL} -O ${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}.zip
     fi
-    sudo tar zxfv ${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE} -C /opt/${ANDROID_HOME}/
-
-    sudo chown -R root:wheel /opt/${ANDROID_HOME}
-    sudo chmod -R u+rwX,go+rwX,o-w /opt/${ANDROID_HOME}
+    sudo unzip ${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE} -d ${ANDROID_HOME}/
+    sudo chown -R root:wheel ${ANDROID_HOME}
+    sudo chmod -R u+rwX,go+rwX,o-w ${ANDROID_HOME}
 
     cat <<EOF | sudo tee /etc/profile.d/android-sdk.sh
 export ANDROID_HOME=/opt/android-sdk/
@@ -566,15 +567,23 @@ EOF
     source /etc/profile.d/android-sdk.sh
 
     # Install baseline packages
-    # ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --list |
-    yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/  "cmdline-tools;latest"
+    # ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --list
     yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
-    yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ \
-        "platform-tools" \
-        "build-tools" \
-        "platforms" \
-        "ndk" \
-        "emulator"
+    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/  "cmdline-tools;latest"
+    yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
+    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "platform-tools"
+    yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
+    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "build-tools;37.0.0"
+    yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
+    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "platforms;android-37.0"
+    yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
+    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "ndk;29.0.14206865"
+    yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
+    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "emulator"
+    yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
+
+    sudo chown -R root:wheel ${ANDROID_HOME}
+    sudo chmod -R u+rwX,go+rwX,o-w ${ANDROID_HOME}
 
     sudo dnf -y copr enable zeno/scrcpy
     # rpmfusion_repo
@@ -1000,7 +1009,7 @@ function install_all_modules() {
     # antigravity_packages
     # kiro_package
 
-    # android-commandline_tools_package
+    # android-sdk_packages
     # android-studio_package
     # flutter-sdk_package
     # go_extra_packages
