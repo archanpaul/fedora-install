@@ -537,10 +537,57 @@ function git_user_conf() {
     # git config --global user.email "USER_EMAIL"
 }
 
+function android-commandline_tools_package(){
+    # https://developer.android.com/studio#command-line-tools-only
+    ANDROID_COMMANDLINE_TOOLS_RELEASE=14742923_latest
+    ANDROID_COMMANDLINE_TOOLS_PKG_FILE=commandlinetools-linux-${ANDROID_COMMANDLINE_TOOLS_RELEASE}.zip
+    ANDROID_COMMANDLINE_TOOLS_URL=https://dl.google.com/android/repository/${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}
+    ANDROID_HOME=/opt/android-sdk
+
+    sudo rm -rf ${ANDROID_HOME}
+    sudo  mkdir -p ${ANDROID_HOME}
+
+    if [ ! -f "${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}" ]; then
+        wget -c --show-progress -nc ${ANDROID_COMMANDLINE_TOOLS_URL} -O ${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}.zip
+    fi
+    sudo tar zxfv ${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE} -C /opt/${ANDROID_HOME}/
+
+    sudo chown -R root:wheel /opt/${ANDROID_HOME}
+    sudo chmod -R u+rwX,go+rwX,o-w /opt/${ANDROID_HOME}
+
+    cat <<EOF | sudo tee /etc/profile.d/android-sdk.sh
+export ANDROID_HOME=/opt/android-sdk/
+export ANDROID_SDK_ROOT=\$ANDROID_HOME
+export ANDROID_NDK_ROOT=\$ANDROID_HOME/ndk/\$ANDROID_NDK_VERSION
+export ANDROID_NDK_HOME=\$ANDROID_NDK_ROOT
+export PATH=\$PATH:\$ANDROID_HOME/tools/:\$ANDROID_HOME/tools/bin/:\$ANDROID_HOME/platform-tools/
+EOF
+
+    source /etc/profile.d/android-sdk.sh
+
+    # Install baseline packages
+    # ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --list |
+    yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/  "cmdline-tools;latest"
+    yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
+    yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ \
+        "platform-tools" \
+        "build-tools" \
+        "platforms" \
+        "ndk" \
+        "emulator"
+
+    sudo dnf -y copr enable zeno/scrcpy
+    # rpmfusion_repo
+    # sudo dnf -y --allowerasing install ffmpeg-free
+    sudo dnf -y install scrcpy
+}
+
+
 function android-studio_package(){
     ANDROID_STUDIO_RELEASE=2026.1.1.10
     ANDROID_STUDIO_RELEASE_NAME=quail1-patch2
     ANDROID_NDK_VERSION=30.0.14904198
+
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
 
@@ -560,25 +607,8 @@ Terminal=false
 Categories=Development;IDE;
 EOF
 
-    sudo mkdir -p /opt/android-sdk
-    sudo chown -R root:wheel /opt/android-sdk
-    sudo chmod -R u+rwX,go+rwX,o-w /opt/android-sdk
-
-    cat <<EOF | sudo tee /etc/profile.d/android-sdk.sh
-export ANDROID_HOME=/opt/android-sdk/
-export ANDROID_SDK_ROOT=\$ANDROID_HOME
-export ANDROID_NDK_ROOT=\$ANDROID_HOME/ndk/\$ANDROID_NDK_VERSION
-export ANDROID_NDK_HOME=\$ANDROID_NDK_ROOT
-export PATH=\$PATH:\$ANDROID_HOME/platform-tools/
-EOF
-
     sudo cp /opt/android-studio/android-studio.desktop /usr/share/applications/android-studio.desktop
     source /etc/profile.d/android-sdk.sh
-
-    sudo dnf -y copr enable zeno/scrcpy
-    # rpmfusion_repo
-    # sudo dnf -y --allowerasing install ffmpeg-free
-    sudo dnf -y install scrcpy
 }
 
 function flutter-sdk_package() {
@@ -970,6 +1000,7 @@ function install_all_modules() {
     # antigravity_packages
     # kiro_package
 
+    # android-commandline_tools_package
     # android-studio_package
     # flutter-sdk_package
     # go_extra_packages

@@ -155,6 +155,14 @@ function create_app_cache() {
 	# ollama
 	mkdir -p ${CACHE}/ollama.cache
 	ln -sfn ${CACHE}/ollama.cache ~/.ollama
+
+	# pip
+	mkdir -p ${CACHE}/pip.cache
+	ln -sfn ${CACHE}/pip.cache ~/.cache/pip
+
+	# uv
+	mkdir -p ${CACHE}/uv.cache
+	ln -sfn ${CACHE}/uv.cache ~/.cache/uv
 }
 
 create_home_folders
