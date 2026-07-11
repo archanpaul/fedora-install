@@ -541,9 +541,15 @@ function git_user_conf() {
 
 function android-sdk_packages(){
     # https://developer.android.com/studio#command-line-tools-only
-    ANDROID_COMMANDLINE_TOOLS_RELEASE=14742923_latest
-    ANDROID_COMMANDLINE_TOOLS_PKG_FILE=commandlinetools-linux-${ANDROID_COMMANDLINE_TOOLS_RELEASE}.zip
+    ANDROID_COMMANDLINE_TOOLS_VERSION=14742923_latest
+    ANDROID_COMMANDLINE_TOOLS_PKG_FILE=commandlinetools-linux-${ANDROID_COMMANDLINE_TOOLS_VERSION}.zip
     ANDROID_COMMANDLINE_TOOLS_URL=https://dl.google.com/android/repository/${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}
+
+    ANDROID_SDK_API_RELEASE=37.0
+    ANDROID_SDK_BUILD_TOOLS_VERSION=${ANDROID_SDK_API_RELEASE}.0
+    ANDROID_SDK_PLATFORM_VERSION=${ANDROID_SDK_API_RELEASE}
+    ANDROID_NDK_VERSION=29.0.14206865
+
     ANDROID_HOME=/opt/android-sdk
 
     sudo rm -rf ${ANDROID_HOME}
@@ -573,13 +579,15 @@ EOF
     yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
     ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "platform-tools"
     yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
-    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "build-tools;37.0.0"
+    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "build-tools;${ANDROID_SDK_BUILD_TOOLS_VERSION}"
     yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
-    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "platforms;android-37.0"
+    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "platforms;android-${ANDROID_SDK_PLATFORM_VERSION}"
     yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
-    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "ndk;29.0.14206865"
+    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "ndk;${ANDROID_NDK_VERSION}"
     yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
     ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "emulator"
+    yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
+    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "system-images;android-${ANDROID_SDK_PLATFORM_VERSION};google_apis_playstore_ps16k;x86_64"
     yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
 
     sudo chown -R root:wheel ${ANDROID_HOME}
