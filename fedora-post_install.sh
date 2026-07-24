@@ -298,7 +298,7 @@ function lmstudio_packages() {
 }
 
 function ollama_packages() {
-    OLLAMA_VERSION=0.31.1
+    OLLAMA_VERSION=0.32
     OLLAMA_PKG=ollama-linux-amd64.tar.zst
     OLLAMA_URL=https://github.com/ollama/ollama/releases/download/v${OLLAMA_VERSION}/${OLLAMA_PKG}
     OLLAMA_INSTALL_FOLDER=/opt/ollama
@@ -350,7 +350,7 @@ EOF
 }
 
 function antigravity_packages() {
-    AG_VERSION="2.2.1-5287492581195776"
+    AG_VERSION="2.3.1-5358163105546240"
     AG_URL=https://storage.googleapis.com/antigravity-public/antigravity-hub/${AG_VERSION}/linux-x64/Antigravity.tar.gz
 
     AG_IDE_VERSION="2.1.1-6123990880747520"
@@ -506,7 +506,7 @@ function antigravity_ide_package_user_conf() {
 }
 
 function kiro_package() {
-    KIRO_VERSION="1.0.89"
+    KIRO_VERSION="1.0.182"
     KIRO_URL=https://prod.download.desktop.kiro.dev/releases/stable/linux-x64/signed/${KIRO_VERSION}/tar/kiro-ide-${KIRO_VERSION}-stable-linux-x64.tar.gz
 
     if [ ! -f "${CACHE}/kiro-ide-${KIRO_VERSION}-stable-linux-x64.tar.gz" ]; then
@@ -631,7 +631,7 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.44.3-stable"
+    FLUTTER_VERSION="3.44.8-stable"
 
     wget -q --show-progress -nc https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
