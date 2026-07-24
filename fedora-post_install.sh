@@ -541,7 +541,7 @@ function git_user_conf() {
 
 function android-sdk_packages(){
     # https://developer.android.com/studio#command-line-tools-only
-    ANDROID_COMMANDLINE_TOOLS_VERSION=14742923_latest
+    ANDROID_COMMANDLINE_TOOLS_VERSION=15859902_latest
     ANDROID_COMMANDLINE_TOOLS_PKG_FILE=commandlinetools-linux-${ANDROID_COMMANDLINE_TOOLS_VERSION}.zip
     ANDROID_COMMANDLINE_TOOLS_URL=https://dl.google.com/android/repository/${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}
 
@@ -601,8 +601,8 @@ EOF
 
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2026.1.1.10
-    ANDROID_STUDIO_RELEASE_NAME=quail1-patch2
+    ANDROID_STUDIO_RELEASE=2026.1.2.11
+    ANDROID_STUDIO_RELEASE_NAME=quail2-patch1
     ANDROID_NDK_VERSION=30.0.14904198
 
     sudo rm -rf /opt/android-studio
