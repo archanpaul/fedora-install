@@ -686,7 +686,6 @@ function python_virtualenv_packages() {
     pip install litellm && \
     pip install google-generativeai google-adk && \
     pip install google-antigravity && \
-    pip install genkit genkit-plugin-google-genai genkit-plugin-compat-openai && \
     deactivate
     set +e
 
@@ -712,7 +711,6 @@ function python_virtualenv_packages() {
     pip install litellm 'litellm[proxy]' && \
     pip install google-generativeai google-adk && \
     pip install google-antigravity && \
-    pip install genkit genkit-plugin-google-genai genkit-plugin-compat-openai && \
     deactivate
     set +e
 }
