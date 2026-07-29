@@ -664,6 +664,7 @@ function python_packages() {
     sudo dnf -y install python3-torch python3-torchdata python3-torchvision python3-torchaudio python3-torchtext
 
     sudo dnf -y install python3-devel
+    sudo dnf -y install uv
 }
 
 function python_virtualenv_packages() {
