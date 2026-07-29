@@ -359,13 +359,13 @@ function antigravity_packages() {
     AG_CLI_VERSION="974169037036"
 
     if [ ! -f "${CACHE}/antigravity-${AG_VERSION}.tar.gz" ]; then
-        wget -c --show-progress -nc ${AG_URL} -O ${CACHE}/antigravity-${AG_VERSION}.tar.gz
+        wget -c --show-progress -nc --inet4-only ${AG_URL} -O ${CACHE}/antigravity-${AG_VERSION}.tar.gz
     fi
     if [ ! -f "${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz" ]; then
-        wget -c --show-progress -nc ${AG_IDE_URL} -O ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz
+        wget -c --show-progress -nc --inet4-only ${AG_IDE_URL} -O ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz
     fi
     if [ ! -f "${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz" ]; then
-        wget -c --show-progress $(curl -s "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p') -O ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz
+        wget -c --show-progress -nc --inet4-only $(curl -s "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p') -O ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz
     fi
 
     sudo rm -rf /opt/antigravity
@@ -530,7 +530,7 @@ function android-sdk_packages(){
     sudo  mkdir -p ${ANDROID_HOME}
 
     if [ ! -f "${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}" ]; then
-        wget -c --show-progress -nc ${ANDROID_COMMANDLINE_TOOLS_URL} -O ${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}.zip
+        wget -c --show-progress -nc --inet4-only ${ANDROID_COMMANDLINE_TOOLS_URL} -O ${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}.zip
     fi
     sudo unzip ${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE} -d ${ANDROID_HOME}/
     sudo chown -R root:wheel ${ANDROID_HOME}
@@ -582,7 +582,7 @@ function android-studio_package(){
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
 
-    wget -q --show-progress -nc https://edgedl.me.gvt1.com/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz -P ${CACHE}
+    wget -q --show-progress -nc --inet4-only --tries=inf --waitretry=5 --retry-connrefused https://edgedl.me.gvt1.com/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz -P ${CACHE}
 
     sudo tar zxfv ${CACHE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz -C /opt/
     sudo chown -R root:wheel /opt/android-studio
