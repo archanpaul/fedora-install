@@ -298,7 +298,7 @@ function lmstudio_packages() {
 }
 
 function ollama_packages() {
-    OLLAMA_VERSION=0.32
+    OLLAMA_VERSION=0.32.5
     OLLAMA_PKG=ollama-linux-amd64.tar.zst
     OLLAMA_URL=https://github.com/ollama/ollama/releases/download/v${OLLAMA_VERSION}/${OLLAMA_PKG}
     OLLAMA_INSTALL_FOLDER=/opt/ollama
@@ -503,32 +503,6 @@ function antigravity_ide_package_user_conf() {
     antigravity-ide --install-extension ms-toolsai.jupyter-renderers
     antigravity-ide --install-extension ms-toolsai.vscode-jupyter-cell-tags
     antigravity-ide --install-extension ms-toolsai.vscode-jupyter-slideshow
-}
-
-function kiro_package() {
-    KIRO_VERSION="1.0.182"
-    KIRO_URL=https://prod.download.desktop.kiro.dev/releases/stable/linux-x64/signed/${KIRO_VERSION}/tar/kiro-ide-${KIRO_VERSION}-stable-linux-x64.tar.gz
-
-    if [ ! -f "${CACHE}/kiro-ide-${KIRO_VERSION}-stable-linux-x64.tar.gz" ]; then
-        wget -c --show-progress -nc ${KIRO_URL} -O ${CACHE}/kiro-ide-${KIRO_VERSION}-stable-linux-x64.tar.gz
-    fi
-
-    sudo rm -rf /opt/kiro
-    sudo mkdir -p /opt/kiro
-    sudo tar -zxf ${CACHE}/kiro-ide-${KIRO_VERSION}-stable-linux-x64.tar.gz -C /opt/kiro --strip-components=1
-
-    # kiro.desktop (Basic Launcher)
-    cat <<EOF | sudo tee /opt/kiro/resources/kiro.desktop
-[Desktop Entry]
-Type=Application
-Name=Kiro
-Icon=/opt/kiro/resources/app/resources/linux/code.png
-Exec=/opt/kiro/bin/kiro %F
-Terminal=false
-Categories=Development;IDE;
-MimeType=application/x-code-workspace;inode/directory;text/plain;
-EOF
-    sudo ln -sf /opt/kiro/resources/kiro.desktop /usr/share/applications/kiro.desktop
 }
 
 function git_user_conf() {
@@ -1001,7 +975,6 @@ function install_all_modules() {
     # markdown_packages
     # laptop_mode
     # thinkpad_packages
-    # network_extra_packages
 
     # httpd_service
     # firewall_services
@@ -1011,11 +984,11 @@ function install_all_modules() {
     # intel_packages
     # amd_packages
 
+    # network_extra_packages
     # lmstudio_packages
     # ollama_packages
     # claude_packages
     # antigravity_packages
-    # kiro_package
 
     # android-sdk_packages
     # android-studio_package
