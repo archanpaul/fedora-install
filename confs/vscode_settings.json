@@ -39,11 +39,10 @@
         "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true
     },
-    "amazonQ.telemetry": false,
     "breadcrumbs.enabled": true,
     "C_Cpp.clang_format_fallbackStyle": "\"{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}\"",
-    "colab.serverMounting": true,
-    "colab.uploading": true,
+    "continue.enableNextEdit": false,
+    "continue.enableTabAutocomplete": true,
     "continue.telemetryEnabled": false,
     "dart.checkForSdkUpdates": false,
     "dart.debugSdkLibraries": false,
@@ -61,6 +60,7 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
+    "editor.inlineSuggest.enabled": true,
     "editor.lineHeight": 1.5,
     "editor.minimap.autohide": "mouseover",
     "editor.minimap.enabled": true,
@@ -76,31 +76,8 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "geminicodeassist.codeGenerationPaneViewEnabled": true,
-    "geminicodeassist.enableTelemetry": false,
-    "geminicodeassist.inlineSuggestions.enableAuto": true,
-    "geminicodeassist.project": "local-voyager-kj1cz",
-    "geminicodeassist.updateChannel": "Default",
     "git-graph.maxDepthOfRepoSearch": 10,
     "git.repositoryScanMaxDepth": -1,
-    "github.copilot.chat.customEndpointModels": [
-        {
-            "description": "Local GPT OSS 20B model for chat completions.",
-            "displayName": "GPT OSS 20B (Local)",
-            "endpoint": "http://localhost:11434/v1/chat/completions",
-            "icon": "local",
-            "model": "gpt-oss:20b",
-            "provider": "openai"
-        }
-    ],
-    "github.copilot.enable": {
-        "*": false,
-        "json": false,
-        "markdown": false,
-        "plaintext": false,
-        "scminput": false
-    },
-    "github.copilot.nextEditSuggestions.enabled": false,
     "go.buildFlags": [
         "-v"
     ],
@@ -116,7 +93,6 @@
     "go.vetFlags": [
         "-composites=false"
     ],
-    "http.systemCertificatesNode": true,
     "json.maxItemsComputed": 200000,
     "jupyter.askForKernelRestart": false,
     "jupyter.exportWithOutputEnabled": true,
@@ -145,7 +121,6 @@
     "python.languageServer": "Default",
     "python.terminal.executeInFileDir": true,
     "redhat.telemetry.enabled": false,
-    "telemetry.editStats.enabled": false,
     "telemetry.feedback.enabled": false,
     "telemetry.telemetryLevel": "off",
     "terminal.integrated.copyOnSelection": true,
