@@ -293,60 +293,13 @@ function vscode_package_user_conf() {
     code --install-extension ms-vsliveshare.vsliveshare
 }
 
+function llama_cpp_packages() {
+    sudo dnf -y install mesa-vulkan-drivers vulkan-loader vulkan-tools
+    sudo dnf -y install llama-cpp 
+}
+
 function lmstudio_packages() {
     sudo flatpak install -y flathub ai.lmstudio.lm-studio
-}
-
-function ollama_packages() {
-    OLLAMA_VERSION=0.32.5
-    OLLAMA_PKG=ollama-linux-amd64.tar.zst
-    OLLAMA_URL=https://github.com/ollama/ollama/releases/download/v${OLLAMA_VERSION}/${OLLAMA_PKG}
-    OLLAMA_INSTALL_FOLDER=/opt/ollama
-
-    if [ ! -f "${CACHE}/ollama-${OLLAMA_VERSION}.tar.zst" ]; then
-        wget -c --show-progress -nc ${OLLAMA_URL} -O ${CACHE}/ollama-${OLLAMA_VERSION}.tar.zst
-    fi
-
-    sudo rm -rf ${OLLAMA_INSTALL_FOLDER}
-    sudo mkdir -p ${OLLAMA_INSTALL_FOLDER}
-
-    # curl -fsSL ${OLLAMA_URL} | sudo tar --zstd -x -C /opt/ollama
-    sudo tar xfv ${CACHE}/ollama-${OLLAMA_VERSION}.tar.zst  -C /opt/ollama/
-    sudo chown -R root:wheel ${OLLAMA_INSTALL_FOLDER}
-    sudo chmod -R u+rwX,go+rwX,o-w ${OLLAMA_INSTALL_FOLDER}
-
-    sudo ln -sf /opt/ollama/bin/ollama /usr/local/bin/ollama
-
-    # ollama serve --watch
-    # ollama pull gemma4:12b
-    # ollama pull gpt-oss:20b
-}
-
-function claude_packages() {
-    cat <<EOF | sudo tee /etc/yum.repos.d/claude-code.repo
-[claude-code]
-name=Claude Code
-baseurl=https://downloads.claude.ai/claude-code/rpm/stable
-enabled=1
-gpgcheck=1
-gpgkey=https://downloads.claude.ai/keys/claude-code.asc
-EOF
-
-    sudo dnf -y update
-    sudo dnf -y install claude-code
-
-    cat <<EOF | sudo tee litellm_config.yaml
-model_list:
-  - model_name: gemini-flash
-    litellm_params:
-      model: gemini/gemini-3.1-flash
-      api_key: "GEMINI_API_KEY"
-  - model_name: gemma
-    litellm_params:
-      model: gemini/gemini-3.1-flash
-      api_key: "GEMINI_API_KEY"
-
-EOF
 }
 
 function antigravity_packages() {
@@ -575,8 +528,8 @@ EOF
 
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2026.1.2.11
-    ANDROID_STUDIO_RELEASE_NAME=quail2-patch1
+    ANDROID_STUDIO_RELEASE=2026.1.3.7
+    ANDROID_STUDIO_RELEASE_NAME=quail3
     ANDROID_NDK_VERSION=30.0.14904198
 
     sudo rm -rf /opt/android-studio
@@ -764,7 +717,7 @@ function tex_pandoc_packages() {
     sudo dnf -y install texlive texlive-svg texlive-trimspaces
     sudo dnf -y install texlive-preprint texlive-algorithmicx texlive-mdwtools texlive-latexindent
     sudo dnf -y install texlive-nature texlive-threeparttable texlive-sttools texlive-appendix texlive-wrapfig texlive-multirow texlive-ncctools texlive-framed texlive-anyfontsize texlive-draftwatermark
-    sudo dnf -y install texlive-moreverb texlive-comment
+    sudo dnf -y install texlive-moreverb texlive-comment texlive-enumitem
     sudo dnf -y install latexmk
 
     # Convert epub to html
@@ -985,8 +938,7 @@ function install_all_modules() {
 
     # network_extra_packages
     # lmstudio_packages
-    # ollama_packages
-    # claude_packages
+    # llama_cpp_packages
     # antigravity_packages
 
     # android-sdk_packages
