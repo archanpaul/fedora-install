@@ -16,9 +16,6 @@
     },
     "[markdown]": {
         "editor.autoClosingBrackets": "always",
-        "editor.bracketPairColorization.enabled": true,
-        "editor.cursorBlinking": "phase",
-        "editor.fontFamily": "'Jetbrains Mono Medium', 'Fira Code Medium','Droid Sans Mono', 'monospace', monospace",
         "editor.fontSize": 15,
         "editor.guides.indentation": true,
         "editor.indentSize": "tabSize",
@@ -50,7 +47,7 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.bracketPairColorization.enabled": true,
     "editor.cursorBlinking": "phase",
-    "editor.fontFamily": "'Jetbrains Mono Medium', 'Fira Code Medium','Droid Sans Mono', 'monospace', monospace",
+    "editor.fontFamily": "'Jetbrains Mono Medium', 'Fira Code Medium', 'Droid Sans Mono', 'monospace', monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 16,
     "editor.fontWeight": 500,
@@ -74,7 +71,7 @@
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "git-graph.maxDepthOfRepoSearch": 10,
-    "git.repositoryScanMaxDepth": -1,
+    "git.repositoryScanMaxDepth": 2,
     "go.buildFlags": [
         "-v"
     ],
@@ -86,7 +83,6 @@
     ],
     "go.testTimeout": "5m",
     "go.toolsManagement.autoUpdate": true,
-    "go.useLanguageServer": true,
     "go.vetFlags": [
         "-composites=false"
     ],
@@ -97,7 +93,7 @@
         "%load_ext autoreload",
         "%autoreload 2"
     ],
-    "markdown.preview.fontFamily": "'Literata', 'Calibri','Fira Sans','Noto Sans','Droid Sans'",
+    "markdown.preview.fontFamily": "'Literata', 'Calibri', 'Fira Sans', 'Noto Sans', 'Droid Sans'",
     "markdown.preview.fontSize": 18,
     "markdown.preview.lineHeight": 1.5,
     "markdown.preview.typographer": true,
@@ -109,12 +105,11 @@
     "notebook.formatOnSave.enabled": true,
     "notebook.globalToolbarShowLabel": "dynamic",
     "notebook.lineNumbers": "on",
-    "notebook.markup.fontFamily": "'Literata', 'Calibri','Fira Sans','Noto Sans','Droid Sans'",
+    "notebook.markup.fontFamily": "'Literata', 'Calibri', 'Fira Sans', 'Noto Sans', 'Droid Sans'",
     "notebook.markup.fontSize": 18,
     "notebook.output.fontFamily": "'Jetbrains Mono Medium', 'Fira Mono Medium'",
     "notebook.output.wordWrap": true,
     "python.analysis.completeFunctionParens": true,
-    "python.languageServer": "Default",
     "python.terminal.executeInFileDir": true,
     "redhat.telemetry.enabled": false,
     "telemetry.feedback.enabled": false,
@@ -129,7 +124,9 @@
     "window.menuBarVisibility": "compact",
     "window.titleBarStyle": "custom",
     "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
-    "workbench.preferredLightColorTheme": "GitHub Light",
+    "workbench.preferredLightColorTheme": "GitHub Dark Dimmed",
     "workbench.sideBar.location": "left",
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "makefile.configureOnOpen": false,
+    "python.languageServer": "Default"
 }
