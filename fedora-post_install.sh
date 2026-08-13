@@ -295,7 +295,7 @@ function vscode_package_user_conf() {
 
 function llama_cpp_packages() {
     sudo dnf -y install mesa-vulkan-drivers vulkan-loader vulkan-tools
-    sudo dnf -y install llama-cpp 
+    sudo dnf -y install llama-cpp
 }
 
 function lmstudio_packages() {
@@ -303,10 +303,10 @@ function lmstudio_packages() {
 }
 
 function antigravity_packages() {
-    AG_VERSION="2.4.2-6711062033203200"
+    AG_VERSION="2.8.0-5810824271495168"
     AG_URL=https://storage.googleapis.com/antigravity-public/antigravity-hub/${AG_VERSION}/linux-x64/Antigravity.tar.gz
 
-    AG_IDE_VERSION="2.1.1-6123990880747520"
+    AG_IDE_VERSION="2.5.2-6697361355964416"
     AG_IDE_URL=https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/${AG_IDE_VERSION}/linux-x64/Antigravity%20IDE.tar.gz
 
     AG_CLI_VERSION="974169037036"
@@ -483,7 +483,7 @@ function android-sdk_packages(){
     sudo  mkdir -p ${ANDROID_HOME}
 
     if [ ! -f "${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}" ]; then
-        wget -c --show-progress -nc --inet4-only ${ANDROID_COMMANDLINE_TOOLS_URL} -O ${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}.zip
+        wget -c --show-progress -nc --inet4-only ${ANDROID_COMMANDLINE_TOOLS_URL} -O ${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}
     fi
     sudo unzip ${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE} -d ${ANDROID_HOME}/
     sudo chown -R root:wheel ${ANDROID_HOME}
@@ -528,8 +528,8 @@ EOF
 
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2026.1.3.7
-    ANDROID_STUDIO_RELEASE_NAME=quail3
+    ANDROID_STUDIO_RELEASE=2026.1.3.8
+    ANDROID_STUDIO_RELEASE_NAME=quail3-patch1
     ANDROID_NDK_VERSION=30.0.14904198
 
     sudo rm -rf /opt/android-studio
@@ -558,7 +558,8 @@ EOF
 function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
-    FLUTTER_VERSION="3.44.8-stable"
+    # https://docs.flutter.dev/install/archive
+    FLUTTER_VERSION="3.47.0-stable"
 
     wget -q --show-progress -nc https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk

@@ -3,10 +3,11 @@ default-profile-uuid='19fa9061b5d6862e79619f546a69aee8'
 font-name='Fira Code 12'
 profile-uuids=['19fa9061b5d6862e79619f546a69aee8']
 use-system-font=false
-window-size=(uint32 129, uint32 43)
+window-size=(uint32 147, uint32 54)
 
 [TextEditor]
 highlight-current-line=true
+last-save-directory='file:///home/arp/delme'
 show-line-numbers=true
 show-map=true
 show-right-margin=false
@@ -79,7 +80,7 @@ automatic-timezone=true
 
 [desktop/input-sources]
 current=uint32 0
-mru-sources=[('xkb', 'us')]
+mru-sources=[('xkb', 'us'), ('xkb', 'in+ben-kagapa')]
 sources=[('xkb', 'us'), ('xkb', 'in+ben-kagapa')]
 
 [desktop/interface]
@@ -174,8 +175,8 @@ current-tab='resources'
 maximized=false
 show-dependencies=false
 show-whose-processes='user'
-window-height=950
-window-width=983
+window-height=824
+window-width=871
 
 [gnome-system-monitor/proctree]
 col-26-visible=false
@@ -197,7 +198,7 @@ default-compression-format='tar.xz'
 default-zoom-level='small-plus'
 
 [nautilus/preferences]
-default-folder-viewer='icon-view'
+default-folder-viewer='list-view'
 migrated-gtk-settings=true
 
 [nautilus/window-state]
@@ -219,20 +220,23 @@ sidebar-page='links'
 sizing-mode='automatic'
 window-height=1610
 window-maximized=false
-window-width=1317
+window-width=1815
 zoom=1.875
 
 [portal/filechooser/code]
-last-folder-path='/home/arp/workspace/grokking.workspace/aditripaul_resume.git'
+last-folder-path='/home/arp/workspace/fedora-install.git'
 
 [portal/filechooser/com.google.Chrome]
-last-folder-path='/home/arp/workspace/grokking.workspace/aditripaul_resume.git'
+last-folder-path='/home/arp/workspace/grokking.workspace/climate_pulse.git/docs/patent'
 
 [portal/filechooser/md.obsidian.Obsidian]
 last-folder-path='/home/arp/workspace/edification.workspace/edification_workspace.git'
 
 [portal/filechooser/org.gnome.Settings]
 last-folder-path='/home/arp/Pictures/Wallpapers'
+
+[portal/filechooser/org.gnome.TextEditor]
+last-folder-path='/home/arp/delme'
 
 [settings-daemon/plugins/color]
 night-light-enabled=false
@@ -306,12 +310,13 @@ show-screenshot-ui=['<Shift><Super>s']
 locations=@av []
 
 [software]
-check-timestamp=int64 1785992153
+check-timestamp=int64 1786595040
 first-run=false
-flatpak-purge-timestamp=int64 1785999183
-install-timestamp=int64 1785422643
-packagekit-historical-updates-timestamp=uint64 1785422643
-update-notification-timestamp=int64 1785384327
+flatpak-purge-timestamp=int64 1786520302
+install-timestamp=int64 1786200509
+packagekit-historical-updates-timestamp=uint64 1786200509
+security-timestamp=int64 1786421586501401
+update-notification-timestamp=int64 1786164553
 
 [system/location]
 enabled=false
