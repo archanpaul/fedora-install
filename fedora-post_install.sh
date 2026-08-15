@@ -303,10 +303,10 @@ function lmstudio_packages() {
 }
 
 function antigravity_packages() {
-    AG_VERSION="2.8.0-5810824271495168"
+    AG_VERSION="2.8.1-6512087774658560"
     AG_URL=https://storage.googleapis.com/antigravity-public/antigravity-hub/${AG_VERSION}/linux-x64/Antigravity.tar.gz
 
-    AG_IDE_VERSION="2.5.2-6697361355964416"
+    AG_IDE_VERSION="2.5.5-4923483625488384"
     AG_IDE_URL=https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/${AG_IDE_VERSION}/linux-x64/Antigravity%20IDE.tar.gz
 
     AG_CLI_VERSION="974169037036"
