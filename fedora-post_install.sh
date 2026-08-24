@@ -303,7 +303,7 @@ function lmstudio_packages() {
 }
 
 function antigravity_packages() {
-    AG_VERSION="2.8.1-6512087774658560"
+    AG_VERSION="2.9.1-4871453687021568"
     AG_URL=https://storage.googleapis.com/antigravity-public/antigravity-hub/${AG_VERSION}/linux-x64/Antigravity.tar.gz
 
     AG_IDE_VERSION="2.5.5-4923483625488384"
@@ -559,7 +559,7 @@ function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
     # https://docs.flutter.dev/install/archive
-    FLUTTER_VERSION="3.47.0-stable"
+    FLUTTER_VERSION="3.47.1-stable"
 
     wget -q --show-progress -nc https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
@@ -717,7 +717,7 @@ function tex_pandoc_packages() {
     sudo dnf -y install pandoc pandoc-pdf
     sudo dnf -y install texlive texlive-svg texlive-trimspaces
     sudo dnf -y install texlive-preprint texlive-algorithmicx texlive-mdwtools texlive-latexindent
-    sudo dnf -y install texlive-nature texlive-threeparttable texlive-sttools texlive-appendix texlive-wrapfig texlive-multirow texlive-ncctools texlive-framed texlive-anyfontsize texlive-draftwatermark
+    sudo dnf -y install texlive-nature texlive-threeparttable texlive-sttools texlive-appendix texlive-wrapfig texlive-multirow texlive-ncctools texlive-framed texlive-anyfontsize texlive-draftwatermark texlive-breakurl
     sudo dnf -y install texlive-moreverb texlive-comment texlive-enumitem
     sudo dnf -y install latexmk
 
