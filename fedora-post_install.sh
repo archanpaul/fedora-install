@@ -100,7 +100,10 @@ function jdk_packages() {
 function container_packages() {
     sudo dnf -y install podman podman-compose podman-remote
     sudo dnf -y install podman-docker docker-compose
+    # systemctl --user enable --now podman.socket
+
     sudo dnf -y install virt-manager
+    sudo dnf -y install kind
 }
 
 function container_user_conf() {
