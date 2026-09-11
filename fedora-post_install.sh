@@ -103,7 +103,6 @@ function container_packages() {
     # systemctl --user enable --now podman.socket
 
     sudo dnf -y install virt-manager
-    sudo dnf -y install kind
 }
 
 function container_user_conf() {
@@ -149,6 +148,9 @@ function docker_packages() {
 
 function kubernetes_packages() {
     sudo dnf -y install kubernetes
+    sudo dnf -y install kustomize
+    sudo dnf -y install kind
+    sudo dnf -y install opentofu
 }
 
 function graphics_packages() {
