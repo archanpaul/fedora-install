@@ -148,7 +148,7 @@ function docker_packages() {
 
 function kubernetes_packages() {
     sudo dnf -y install kubernetes
-    sudo dnf -y install kustomize
+    sudo dnf -y install kustomize helm
     sudo dnf -y install kind
     sudo dnf -y install opentofu
 }
@@ -305,6 +305,21 @@ function llama_cpp_packages() {
 
 function lmstudio_packages() {
     sudo flatpak install -y flathub ai.lmstudio.lm-studio
+}
+
+function claudeai_packages() {
+    sudo dnf config-manager -y addrepo --from-repofile=https://pkg.claude-desktop-debian.dev/rpm/claude-desktop.repo --overwrite
+    sudo dnf -y install claude-desktop
+
+    sudo tee /etc/yum.repos.d/claude-code.repo <<'EOF'
+[claude-code]
+name=Claude Code
+baseurl=https://downloads.claude.ai/claude-code/rpm/stable
+enabled=1
+gpgcheck=1
+gpgkey=https://downloads.claude.ai/keys/claude-code.asc
+EOF
+    sudo dnf install claude-code
 }
 
 function antigravity_packages() {
@@ -945,6 +960,7 @@ function install_all_modules() {
     # network_extra_packages
     # lmstudio_packages
     # llama_cpp_packages
+    # claudeai_packages
     # antigravity_packages
 
     # android-sdk_packages
