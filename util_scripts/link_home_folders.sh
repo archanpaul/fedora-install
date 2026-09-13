@@ -142,6 +142,11 @@ function create_app_cache() {
 	ln -sfn ${CACHE}/antigravity.cache/config/antigravity ~/.config/Antigravity
 	ln -sfn ${CACHE}/antigravity.cache/config/antigravity-ide ~/.config/Antigravity\ IDE
 
+	# Claude
+	rm -rf ~/.claude
+	mkdir -p ${CACHE}/claude.cache
+	ln -sfn ${CACHE}/claude.cache ~/.claude
+
 	# obsidian
 	rm -rf ~/.var/app/md.obsidian.Obsidian
 	mkdir -p ~/.var/app ${CACHE}/obsidian.cache

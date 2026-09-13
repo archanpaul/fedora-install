@@ -323,7 +323,7 @@ EOF
 }
 
 function antigravity_packages() {
-    AG_VERSION="2.9.1-4871453687021568"
+    AG_VERSION="2.13.0-6362815968182272"
     AG_URL=https://storage.googleapis.com/antigravity-public/antigravity-hub/${AG_VERSION}/linux-x64/Antigravity.tar.gz
 
     AG_IDE_VERSION="2.5.5-4923483625488384"

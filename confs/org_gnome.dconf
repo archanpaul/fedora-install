@@ -1,9 +1,9 @@
 [Ptyxis]
 default-profile-uuid='131995a39dd97eccc587a6e96a8d252a'
-interface-style='light'
+interface-style='dark'
 profile-uuids=['131995a39dd97eccc587a6e96a8d252a']
 use-system-font=true
-window-size=(uint32 143, uint32 71)
+window-size=(uint32 137, uint32 58)
 
 [Ptyxis/Profiles/131995a39dd97eccc587a6e96a8d252a]
 palette='gnome'
@@ -31,10 +31,10 @@ source-units=['degree']
 target-units=['radian']
 unit-category='angle'
 window-maximized=false
-window-size=(360, 616)
+window-size=(431, 616)
 
 [control-center]
-last-panel='display'
+last-panel='universal-access'
 window-state=(1129, 908, false)
 
 [desktop/a11y/magnifier]
@@ -93,9 +93,10 @@ font-name='Adwaita Sans 12'
 gtk-enable-primary-paste=true
 monospace-font-name='Noto Sans Mono Medium 12.5 @wght=500'
 show-battery-percentage=true
+text-scaling-factor=1.0
 
 [desktop/notifications]
-application-children=['org-gnome-software', 'google-chrome', 'antigravity-ide', 'code', 'gnome-about-panel', 'org-gnome-ptyxis', 'gimp', 'gnome-power-panel', 'chrome-hnpfjngllnobngcgfapefoaidbinmjnm-profile-2', 'org-gnome-showtime', 'com-spotify-client']
+application-children=['org-gnome-software', 'google-chrome', 'antigravity-ide', 'code', 'gnome-about-panel', 'org-gnome-ptyxis', 'gimp', 'gnome-power-panel', 'chrome-hnpfjngllnobngcgfapefoaidbinmjnm-profile-2', 'org-gnome-showtime', 'com-spotify-client', 'claude-desktop-unofficial', 'org-mozilla-firefox']
 show-in-lock-screen=false
 
 [desktop/notifications/application/antigravity-ide]
@@ -103,6 +104,9 @@ application-id='antigravity-ide.desktop'
 
 [desktop/notifications/application/chrome-hnpfjngllnobngcgfapefoaidbinmjnm-profile-2]
 application-id='chrome-hnpfjngllnobngcgfapefoaidbinmjnm-Profile_2.desktop'
+
+[desktop/notifications/application/claude-desktop-unofficial]
+application-id='claude-desktop-unofficial.desktop'
 
 [desktop/notifications/application/code]
 application-id='code.desktop'
@@ -130,6 +134,9 @@ application-id='org.gnome.Showtime.desktop'
 
 [desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
+
+[desktop/notifications/application/org-mozilla-firefox]
+application-id='org.mozilla.firefox.desktop'
 
 [desktop/peripherals/mouse]
 speed=0.44398340248962653
@@ -215,8 +222,11 @@ window-maximized=false
 window-width=1853
 zoom=2.5146361007847791
 
+[portal/filechooser/antigravity]
+last-folder-path='/home/arp/workspace/aegiscore_cloud.workspace/aegiscorecloud_ics.workspace/aegiscorecloud_ics.git'
+
 [portal/filechooser/code]
-last-folder-path='/home/arp/workspace/grokking.workspace/hpe_agentic_failure_strategy'
+last-folder-path='/home/arp/workspace/fedora-install.git'
 
 [portal/filechooser/com.arputer.knowledge_hive]
 last-folder-path='/home/arp/Downloads/ebooks_arch'
@@ -252,9 +262,9 @@ name='Suspend'
 sleep-inactive-ac-timeout=1800
 
 [shell]
-app-picker-layout=[{'org.gnome.Connections.desktop': <{'position': <0>}>, 'org.gnome.clocks.desktop': <{'position': <1>}>, 'org.gnome.Software.desktop': <{'position': <2>}>, 'org.gnome.Loupe.desktop': <{'position': <3>}>, 'org.gnome.Showtime.desktop': <{'position': <4>}>, 'org.gnome.Decibels.desktop': <{'position': <5>}>, 'org.inkscape.Inkscape.desktop': <{'position': <6>}>, 'gimp.desktop': <{'position': <7>}>, 'calibre-gui.desktop': <{'position': <8>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <9>}>, 'org.gnome.Papers.desktop': <{'position': <10>}>, 'md.obsidian.Obsidian.desktop': <{'position': <11>}>, 'chromium-browser.desktop': <{'position': <12>}>, 'org.torproject.torbrowser-launcher.desktop': <{'position': <13>}>, 'android-studio.desktop': <{'position': <14>}>, 'antigravity.desktop': <{'position': <15>}>, 'antigravity-ide.desktop': <{'position': <16>}>, 'ai.lmstudio.lm-studio.desktop': <{'position': <17>}>, 'org.gnome.Boxes.desktop': <{'position': <18>}>, 'virt-manager.desktop': <{'position': <19>}>, 'chrome-hnpfjngllnobngcgfapefoaidbinmjnm-Profile_2.desktop': <{'position': <20>}>, 'com.spotify.Client.desktop': <{'position': <21>}>, 'chrome-agimnkijcaahngcdmfeangaknmldooml-Profile_2.desktop': <{'position': <22>}>, 'com.arputer.knowledge_hive.desktop': <{'position': <23>}>}, {'libreoffice-calc.desktop': <{'position': <0>}>, 'libreoffice-draw.desktop': <{'position': <1>}>, 'libreoffice-impress.desktop': <{'position': <2>}>, 'libreoffice-math.desktop': <{'position': <3>}>, 'libreoffice-writer.desktop': <{'position': <4>}>, 'org.gnome.font-viewer.desktop': <{'position': <5>}>, 'org.gnome.Characters.desktop': <{'position': <6>}>, 'org.gnome.SimpleScan.desktop': <{'position': <7>}>, 'org.fedoraproject.MediaWriter.desktop': <{'position': <8>}>, 'net.thunderbird.Thunderbird.desktop': <{'position': <9>}>, 'transmission-gtk.desktop': <{'position': <10>}>, 'com.obsproject.Studio.desktop': <{'position': <11>}>, 'org.gnome.Snapshot.desktop': <{'position': <12>}>, 'org.pitivi.Pitivi.desktop': <{'position': <13>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <14>}>, 'org.gnome.baobab.desktop': <{'position': <15>}>, 'org.gnome.DiskUtility.desktop': <{'position': <16>}>, 'scrcpy.desktop': <{'position': <17>}>, 'org.gnome.Settings.desktop': <{'position': <18>}>, 'org.gnome.tweaks.desktop': <{'position': <19>}>, 'org.gnome.Extensions.desktop': <{'position': <20>}>, 'org.gnome.Logs.desktop': <{'position': <21>}>, 'org.gnome.Firmware.desktop': <{'position': <22>}>, '40b54a41-e7c5-4768-a7c7-3c7d9806a0ba': <{'position': <23>}>}]
+app-picker-layout=[{'org.gnome.Connections.desktop': <{'position': <0>}>, 'org.gnome.clocks.desktop': <{'position': <1>}>, 'org.gnome.Software.desktop': <{'position': <2>}>, 'org.gnome.Loupe.desktop': <{'position': <3>}>, 'org.gnome.Showtime.desktop': <{'position': <4>}>, 'org.gnome.Decibels.desktop': <{'position': <5>}>, 'org.inkscape.Inkscape.desktop': <{'position': <6>}>, 'gimp.desktop': <{'position': <7>}>, 'calibre-gui.desktop': <{'position': <8>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <9>}>, 'org.gnome.Papers.desktop': <{'position': <10>}>, 'md.obsidian.Obsidian.desktop': <{'position': <11>}>, 'chromium-browser.desktop': <{'position': <12>}>, 'org.torproject.torbrowser-launcher.desktop': <{'position': <13>}>, 'android-studio.desktop': <{'position': <14>}>, 'ai.lmstudio.lm-studio.desktop': <{'position': <15>}>, 'antigravity.desktop': <{'position': <16>}>, 'claude-desktop-unofficial.desktop': <{'position': <17>}>, 'org.gnome.Boxes.desktop': <{'position': <18>}>, 'virt-manager.desktop': <{'position': <19>}>, 'chrome-hnpfjngllnobngcgfapefoaidbinmjnm-Profile_2.desktop': <{'position': <20>}>, 'com.spotify.Client.desktop': <{'position': <21>}>, 'chrome-agimnkijcaahngcdmfeangaknmldooml-Profile_2.desktop': <{'position': <22>}>, 'com.arputer.knowledge_hive.desktop': <{'position': <23>}>}, {'libreoffice-calc.desktop': <{'position': <0>}>, 'libreoffice-draw.desktop': <{'position': <1>}>, 'libreoffice-impress.desktop': <{'position': <2>}>, 'libreoffice-math.desktop': <{'position': <3>}>, 'libreoffice-writer.desktop': <{'position': <4>}>, 'org.gnome.font-viewer.desktop': <{'position': <5>}>, 'org.gnome.Characters.desktop': <{'position': <6>}>, 'org.gnome.SimpleScan.desktop': <{'position': <7>}>, 'org.fedoraproject.MediaWriter.desktop': <{'position': <8>}>, 'net.thunderbird.Thunderbird.desktop': <{'position': <9>}>, 'transmission-gtk.desktop': <{'position': <10>}>, 'com.obsproject.Studio.desktop': <{'position': <11>}>, 'org.gnome.Snapshot.desktop': <{'position': <12>}>, 'org.pitivi.Pitivi.desktop': <{'position': <13>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <14>}>, 'org.gnome.baobab.desktop': <{'position': <15>}>, 'org.gnome.DiskUtility.desktop': <{'position': <16>}>, 'scrcpy.desktop': <{'position': <17>}>, 'org.gnome.Settings.desktop': <{'position': <18>}>, 'org.gnome.tweaks.desktop': <{'position': <19>}>, 'org.gnome.Extensions.desktop': <{'position': <20>}>, 'org.gnome.Logs.desktop': <{'position': <21>}>, 'org.gnome.Firmware.desktop': <{'position': <22>}>, '40b54a41-e7c5-4768-a7c7-3c7d9806a0ba': <{'position': <23>}>}]
 enabled-extensions=['background-logo@fedorahosted.org', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com']
-favorite-apps=['org.gnome.SystemMonitor.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'org.mozilla.firefox.desktop', 'google-chrome.desktop', 'code.desktop', 'org.gnome.Ptyxis.desktop']
+favorite-apps=['org.gnome.SystemMonitor.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'org.mozilla.firefox.desktop', 'google-chrome.desktop', 'code.desktop', 'antigravity-ide.desktop', 'org.gnome.Ptyxis.desktop']
 last-selected-power-profile='power-saver'
 welcome-dialog-last-shown-version='50.4'
 
@@ -286,11 +296,12 @@ window-preview-title-position='TOP'
 show-screenshot-ui=['<Shift><Super>s']
 
 [software]
-check-timestamp=int64 1789095722
+check-timestamp=int64 1789273636
 first-run=false
-flatpak-purge-timestamp=int64 1789100056
+flatpak-purge-timestamp=int64 1789273556
 install-timestamp=int64 1787484104
 security-timestamp=int64 1789095724588945
+update-notification-timestamp=int64 1789176729
 
 [system/location]
 enabled=false
