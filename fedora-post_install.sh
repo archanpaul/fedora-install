@@ -149,8 +149,11 @@ function docker_packages() {
 function kubernetes_packages() {
     sudo dnf -y install kubernetes
     sudo dnf -y install kustomize helm
-    sudo dnf -y install kind
     sudo dnf -y install opentofu
+
+    # sudo sysctl -w fs.inotify.max_user_instances=1024
+    # echo 'fs.inotify.max_user_instances=1024' | sudo tee /etc/sysctl.d/99-kind-inotify.conf
+    sudo dnf -y install kind
 }
 
 function graphics_packages() {
@@ -579,7 +582,7 @@ function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
     # https://docs.flutter.dev/install/archive
-    FLUTTER_VERSION="3.47.1-stable"
+    FLUTTER_VERSION="3.47.4-stable"
 
     wget -q --show-progress -nc https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
@@ -882,10 +885,14 @@ function firewall_user_services() {
     sudo firewall-cmd --add-port=8080/tcp --zone=public
     sudo firewall-cmd --add-interface=tailscale0 --zone=public
     # sudo firewall-cmd --zone=public --add-port=3389/tcp --timeout=5m
+    sudo firewall-cmd --add-port=5555/tcp --zone=public
 
     sudo firewall-cmd --list-all --zone=public
 
     sudo firewall-cmd --runtime-to-permanent
+
+
+
 
     sudo firewall-cmd --reload
     sudo systemctl enable firewalld
