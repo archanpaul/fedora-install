@@ -326,10 +326,10 @@ EOF
 }
 
 function antigravity_packages() {
-    AG_VERSION="2.13.0-6362815968182272"
+    AG_VERSION="2.29.1-5241471524274176"
     AG_URL=https://storage.googleapis.com/antigravity-public/antigravity-hub/${AG_VERSION}/linux-x64/Antigravity.tar.gz
 
-    AG_IDE_VERSION="2.5.5-4923483625488384"
+    AG_IDE_VERSION="2.6.0-5526304964083712"
     AG_IDE_URL=https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/${AG_IDE_VERSION}/linux-x64/Antigravity%20IDE.tar.gz
 
     AG_CLI_VERSION="974169037036"
@@ -498,7 +498,7 @@ function android-sdk_packages(){
     ANDROID_SDK_API_RELEASE=37.0
     ANDROID_SDK_BUILD_TOOLS_VERSION=${ANDROID_SDK_API_RELEASE}.0
     ANDROID_SDK_PLATFORM_VERSION=${ANDROID_SDK_API_RELEASE}
-    ANDROID_NDK_VERSION=29.0.14206865
+    ANDROID_NDK_VERSION=30.0.14904198
 
     ANDROID_HOME=/opt/android-sdk
 
@@ -551,8 +551,8 @@ EOF
 
 
 function android-studio_package(){
-    ANDROID_STUDIO_RELEASE=2026.1.3.8
-    ANDROID_STUDIO_RELEASE_NAME=quail3-patch1
+    ANDROID_STUDIO_RELEASE=2026.2.2.9
+    ANDROID_STUDIO_RELEASE_NAME=rabbit2-patch1
     ANDROID_NDK_VERSION=30.0.14904198
 
     sudo rm -rf /opt/android-studio
@@ -582,7 +582,7 @@ function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
     # https://docs.flutter.dev/install/archive
-    FLUTTER_VERSION="3.47.4-stable"
+    FLUTTER_VERSION="3.47.9-stable"
 
     wget -q --show-progress -nc https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
     sudo rm -rf /opt/flutter-sdk
