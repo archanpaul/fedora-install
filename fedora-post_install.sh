@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # fedora-post_install.sh
 
 # Prompt the user for input
@@ -13,14 +14,30 @@ HOSTNAME="arpo"
 
 mkdir -p ${CACHE}
 
+# download URL DEST
+# Skips if DEST already exists. Otherwise downloads into DEST.part and renames
+# it only on success, so an interrupted download is resumed on the next run
+# instead of being treated as complete.
+function download() {
+    local url="$1" dest="$2"
+    [ -f "${dest}" ] && return 0
+    if [ -z "${url}" ]; then
+        echo "error: no download URL for ${dest}" >&2
+        return 1
+    fi
+    wget -c -q --show-progress --inet4-only --tries=20 --waitretry=5 --retry-connrefused "${url}" -O "${dest}.part" \
+        && mv "${dest}.part" "${dest}"
+}
+
 function update_hostname() {
-    hostnamectl set-hostname --static ${HOSTNAME}
+    sudo hostnamectl set-hostname --static ${HOSTNAME}
 }
 
 function dnf_conf_update() {
-    cat <<EOF | sudo tee -a /etc/dnf/dnf.conf
+    # Drop-in file: re-runs overwrite it instead of appending to dnf.conf.
+    cat <<EOF | sudo tee /etc/dnf/libdnf5.conf.d/20-post-install.conf
+[main]
 keepcache=False
-deltarpm=True
 # fastestmirror=True
 # skip_if_unavailable=True
 max_parallel_downloads=10
@@ -52,7 +69,7 @@ function systool_packages() {
     sudo dnf -y install gdisk
 
     # secure boot
-    sudo dnf -y install akmods modutil
+    sudo dnf -y install akmods nss-tools  # nss-tools provides modutil
 
     sudo dnf -y install cronie
     sudo systemctl enable crond.service
@@ -74,7 +91,7 @@ function systool_packages() {
 
 function devtool_packages() {
     sudo dnf -y install autoconf automake make cmake patch pkgconf libtool
-    sudo dnf -y install strace byacc elfutils ltrace strace valgrind
+    sudo dnf -y install strace byacc elfutils ltrace valgrind
 
     sudo dnf -y install binutils bison flex gcc gcc-c++ gdb
     sudo dnf -y install clang clang-tools-extra clang-devel
@@ -108,42 +125,12 @@ function container_packages() {
 function container_user_conf() {
     ## Fix podman-selinux permission issue for custom container storage folder.
     ## ref: https://access.redhat.com/solutions/7021610
+    sudo dnf -y install policycoreutils-python-utils   # provides semanage
     GRAPHROOT_PATH=`podman info | grep graphRoot | grep graphRoot: | awk '{print $2}'`
     if [ -n "${GRAPHROOT_PATH}" ]; then
-    	sudo semanage fcontext -a -e /var/lib/containers ${GRAPHROOT_PATH}
-	sudo restorecon -R -v ${GRAPHROOT_PATH}
+        sudo semanage fcontext -a -e /var/lib/containers ${GRAPHROOT_PATH}
+        sudo restorecon -R -v ${GRAPHROOT_PATH}
     fi
-}
-
-function docker_packages() {
-    sudo dnf -y install fuse-overlayfs iptables
-    sudo rpm --import https://download.docker.com/linux/fedora/gpg
-    sudo dnf config-manager addrepo --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo
-    sudo dnf -y remove docker \
-        docker-client \
-        docker-client-latest \
-        docker-common \
-        docker-latest \
-        docker-latest-logrotate \
-        docker-logrotate \
-        docker-selinux \
-        docker-engine-selinux \
-        docker-engine
-    sudo dnf -y install docker-ce docker-ce-cli docker-ce-rootless-extras containerd.io
-    sudo dnf -y install docker-compose
-    sudo usermod -a -G docker $(whoami)
-    newgrp docker
-
-    ## for dockerd-rootless-setuptool
-    # sudo systemctl disable --now docker.service docker.socket
-    # dockerd-rootless-setuptool.sh install
-
-    ## update vim ~/.bashrc
-    # echo 'export PATH=/usr/bin:\$PATH' | sudo tee -a ~/.bashrc
-    # echo 'export DOCKER_HOST=unix:///run/user/1000/docker.sock' | sudo tee -a ~/.bashrc
-
-    # systemctl --user start docker
-    # sudo loginctl enable-linger $(whoami)
 }
 
 function kubernetes_packages() {
@@ -154,6 +141,37 @@ function kubernetes_packages() {
     # sudo sysctl -w fs.inotify.max_user_instances=1024
     # echo 'fs.inotify.max_user_instances=1024' | sudo tee /etc/sysctl.d/99-kind-inotify.conf
     sudo dnf -y install kind
+}
+
+function gcloud_packages() {
+    # https://cloud.google.com/sdk/docs/install#rpm
+    # Google ships EL builds only; the el9 repo works on Fedora but its
+    # binaries link against libcrypt.so.1, provided by libxcrypt-compat.
+    sudo tee /etc/yum.repos.d/google-cloud-sdk.repo <<'EOF'
+[google-cloud-cli]
+name=Google Cloud CLI
+baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el9-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=0
+gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+    sudo dnf -y install libxcrypt-compat google-cloud-cli
+    # sudo dnf -y install google-cloud-cli-gke-gcloud-auth-plugin
+    # gcloud init
+}
+
+function firebase_packages() {
+    # https://firebase.google.com/docs/cli#install-cli-npm
+    # Installs the firebase CLI system-wide under /usr/local.
+    npm_packages
+    sudo npm install -g firebase-tools
+}
+
+function firebase_user_conf() {
+    # FlutterFire CLI (flutterfire configure); needs flutter-sdk_package.
+    dart pub global activate flutterfire_cli
+    # firebase login
 }
 
 function graphics_packages() {
@@ -199,9 +217,9 @@ function browser_packages() {
     sudo dnf -y install firefox
     sudo dnf -y install mozilla-noscript mozilla-ublock-origin
 
-    ## Google Chrome
+    ## Google Chrome (repo file comes from fedora-workstation-repositories)
+    sudo dnf -y install fedora-workstation-repositories
     sudo dnf config-manager setopt google-chrome.enabled=1
-    sudo dnf check-update
     sudo dnf -y install google-chrome-stable
     sudo dnf -y install chrome-remote-desktop
 
@@ -266,11 +284,10 @@ function npm_packages() {
 function vscode_package() {
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
     sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-    dnf check-update
     sudo dnf -y install code
 
-    sudo echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
-    sudo sysctl -p
+    echo "fs.inotify.max_user_watches=524288" | sudo tee /etc/sysctl.d/99-inotify-watches.conf
+    sudo sysctl --system
 }
 
 function vscode_package_user_conf() {
@@ -322,7 +339,7 @@ enabled=1
 gpgcheck=1
 gpgkey=https://downloads.claude.ai/keys/claude-code.asc
 EOF
-    sudo dnf install claude-code
+    sudo dnf -y install claude-code
 }
 
 function antigravity_packages() {
@@ -334,23 +351,21 @@ function antigravity_packages() {
 
     AG_CLI_VERSION="974169037036"
 
-    if [ ! -f "${CACHE}/antigravity-${AG_VERSION}.tar.gz" ]; then
-        wget -c --show-progress -nc --inet4-only ${AG_URL} -O ${CACHE}/antigravity-${AG_VERSION}.tar.gz
-    fi
-    if [ ! -f "${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz" ]; then
-        wget -c --show-progress -nc --inet4-only ${AG_IDE_URL} -O ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz
-    fi
+    download "${AG_URL}" "${CACHE}/antigravity-${AG_VERSION}.tar.gz" || return 1
+    download "${AG_IDE_URL}" "${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz" || return 1
     if [ ! -f "${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz" ]; then
-        wget -c --show-progress -nc --inet4-only $(curl -s "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p') -O ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz
+        AG_CLI_URL=$(curl -fsS "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p')
+        download "${AG_CLI_URL}" "${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz" || return 1
     fi
 
     sudo rm -rf /opt/antigravity
     sudo mkdir -p /opt/antigravity/bin /opt/antigravity/resources /opt/antigravity/antigravity /opt/antigravity/antigravity-ide /opt/antigravity/antigravity-cli
 
     sudo tar -zxf ${CACHE}/antigravity-${AG_VERSION}.tar.gz -C /opt/antigravity/antigravity/ --strip-components=1
+    npm_packages   # npx is needed to extract the icon below
     (
         cd /opt/antigravity/antigravity/resources/ || exit 1
-        sudo npx --yes @electron/asar extract-file /opt/antigravity/antigravity/resources/app.asar icon.png
+        sudo npx --yes @electron/asar@4.3.1 extract-file /opt/antigravity/antigravity/resources/app.asar icon.png
     )
 
     sudo tar -zxf ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz -C /opt/antigravity/antigravity-ide/ --strip-components=1
@@ -440,7 +455,7 @@ EOF
     # xdg-open "antigravity://oauth-success"
     # xdg-open "antigravity-ide://oauth-success"
 
-    sudo cat <<EOF | sudo tee /etc/profile.d/antigravity.sh
+    cat <<EOF | sudo tee /etc/profile.d/antigravity.sh
 export ANTIGRAVITY_ROOT=/opt/antigravity
 export PATH=\$PATH:\$ANTIGRAVITY_ROOT/bin
 EOF
@@ -502,22 +517,21 @@ function android-sdk_packages(){
 
     ANDROID_HOME=/opt/android-sdk
 
+    download "${ANDROID_COMMANDLINE_TOOLS_URL}" "${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}" || return 1
+
     sudo rm -rf ${ANDROID_HOME}
     sudo  mkdir -p ${ANDROID_HOME}
 
-    if [ ! -f "${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}" ]; then
-        wget -c --show-progress -nc --inet4-only ${ANDROID_COMMANDLINE_TOOLS_URL} -O ${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}
-    fi
     sudo unzip ${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE} -d ${ANDROID_HOME}/
     sudo chown -R root:wheel ${ANDROID_HOME}
     sudo chmod -R u+rwX,go+rwX,o-w ${ANDROID_HOME}
 
     cat <<EOF | sudo tee /etc/profile.d/android-sdk.sh
-export ANDROID_HOME=/opt/android-sdk/
+export ANDROID_HOME=/opt/android-sdk
 export ANDROID_SDK_ROOT=\$ANDROID_HOME
-export ANDROID_NDK_ROOT=\$ANDROID_HOME/ndk/\$ANDROID_NDK_VERSION
+export ANDROID_NDK_ROOT=\$ANDROID_HOME/ndk/${ANDROID_NDK_VERSION}
 export ANDROID_NDK_HOME=\$ANDROID_NDK_ROOT
-export PATH=\$PATH:\$ANDROID_HOME/tools/:\$ANDROID_HOME/tools/bin/:\$ANDROID_HOME/platform-tools/
+export PATH=\$PATH:\$ANDROID_HOME/cmdline-tools/latest/bin:\$ANDROID_HOME/platform-tools:\$ANDROID_HOME/emulator
 EOF
 
     source /etc/profile.d/android-sdk.sh
@@ -549,16 +563,14 @@ EOF
     sudo dnf -y install scrcpy
 }
 
-
 function android-studio_package(){
     ANDROID_STUDIO_RELEASE=2026.2.2.9
     ANDROID_STUDIO_RELEASE_NAME=rabbit2-patch1
-    ANDROID_NDK_VERSION=30.0.14904198
+
+    download https://edgedl.me.gvt1.com/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz "${CACHE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz" || return 1
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
-
-    wget -q --show-progress -nc --inet4-only --tries=inf --waitretry=5 --retry-connrefused https://edgedl.me.gvt1.com/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz -P ${CACHE}
 
     sudo tar zxfv ${CACHE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz -C /opt/
     sudo chown -R root:wheel /opt/android-studio
@@ -584,14 +596,14 @@ function flutter-sdk_package() {
     # https://docs.flutter.dev/install/archive
     FLUTTER_VERSION="3.47.9-stable"
 
-    wget -q --show-progress -nc https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz -P ${CACHE}
+    download https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz "${CACHE}/flutter_linux_${FLUTTER_VERSION}.tar.xz" || return 1
     sudo rm -rf /opt/flutter-sdk
     sudo mkdir -p /opt/flutter-sdk
 
     sudo tar -xf ${CACHE}/flutter_linux_${FLUTTER_VERSION}.tar.xz -C /opt/flutter-sdk/
     # sudo git clone -b main https://github.com/flutter/flutter.git /opt/flutter-sdk/ --depth=1
 
-    sudo mkdir /opt/flutter-sdk/pub_cache
+    sudo mkdir /opt/flutter-sdk/flutter/pub_cache
     sudo chown -R root:wheel /opt/flutter-sdk
     sudo chmod -R u+rwX,go+rwX,o-w /opt/flutter-sdk
 
@@ -616,7 +628,6 @@ function flutter-sdk_user_conf() {
 
     flutter doctor
     flutter doctor --android-licenses
-    flutter config --no-analytics
     flutter precache
     flutter config --enable-linux-desktop
     flutter config --enable-windows-desktop
@@ -657,15 +668,17 @@ function python_virtualenv_packages() {
 
     /usr/bin/python${PYTHON_VERSION} -m venv --system-site-packages --symlinks ${VENV_FOLDER}
 
-    set -e
-    source ${VENV_FOLDER}/bin/activate && \
-    pip install --upgrade pip && \
-    pip install black && \
-    pip install litellm && \
-    pip install google-generativeai google-adk && \
-    pip install google-antigravity && \
-    deactivate
-    set +e
+    if source ${VENV_FOLDER}/bin/activate; then
+        pip install --upgrade pip && \
+        pip install black && \
+        pip install litellm && \
+        pip install google-genai google-adk && \
+        pip install google-antigravity \
+            || echo "error: pip install into ${VENV_FOLDER} failed" >&2
+        deactivate
+    else
+        echo "error: could not activate ${VENV_FOLDER}" >&2
+    fi
 
     sudo dnf -y install python3.12
     PYTHON_VERSION=3.12
@@ -680,17 +693,19 @@ function python_virtualenv_packages() {
 
     /usr/bin/python${PYTHON_VERSION} -m venv ${VENV_FOLDER}
 
-    set -e
-    source ${VENV_FOLDER}/bin/activate && \
-    pip install --upgrade pip && \
-    pip install black ipykernel && \
-    pip install numpy pandas matplotlib scikit-learn && \
-    pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
-    pip install litellm 'litellm[proxy]' && \
-    pip install google-generativeai google-adk && \
-    pip install google-antigravity && \
-    deactivate
-    set +e
+    if source ${VENV_FOLDER}/bin/activate; then
+        pip install --upgrade pip && \
+        pip install black ipykernel && \
+        pip install numpy pandas matplotlib scikit-learn && \
+        pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
+        pip install litellm 'litellm[proxy]' && \
+        pip install google-genai google-adk && \
+        pip install google-antigravity \
+            || echo "error: pip install into ${VENV_FOLDER} failed" >&2
+        deactivate
+    else
+        echo "error: could not activate ${VENV_FOLDER}" >&2
+    fi
 }
 
 function python_user_conf() {
@@ -763,7 +778,6 @@ function font_packages() {
     sudo dnf -y install google-arimo-fonts
     sudo dnf -y install google-cousine-fonts
     sudo dnf -y install google-carlito-fonts
-    sudo dnf -y install google-arimo-fonts
     sudo dnf -y install google-go-fonts
     sudo dnf -y install google-go-mono-fonts
     sudo dnf -y install google-go-smallcaps-fonts
@@ -774,7 +788,6 @@ function font_packages() {
     sudo dnf -y install jetbrains-mono-fonts-all
     sudo dnf -y install ht-alegreya-fonts
     sudo dnf -y install ht-alegreya-sans-fonts
-    sudo dnf -y install liberation-fonts
     sudo dnf -y install vernnobile-nunito-fonts
     sudo dnf -y install vernnobile-oswald-fonts
     sudo dnf -y install vernnobile-muli-fonts
@@ -805,12 +818,32 @@ function database_packages() {
 }
 
 function httpd_service() {
+    sudo dnf -y install httpd policycoreutils-python-utils   # second package provides semanage
+
     sudo mkdir -p /home/public
-    sudo chmod 775 /home/public
-    sudo ln -s /home/public /var/www/html/public
-    sudo chcon -R --reference=/var/www/html /home/public
+    sudo chown root:wheel /home/public
+    sudo chmod 2775 /home/public   # setgid: new files keep the wheel group
+
+    # Persistent SELinux label (survives relabels, unlike chcon).
+    # -a adds the rule; on re-runs it already exists, so fall back to -m (modify).
+    sudo semanage fcontext -a -t httpd_sys_content_t '/home/public(/.*)?' 2>/dev/null \
+        || sudo semanage fcontext -m -t httpd_sys_content_t '/home/public(/.*)?'
+    sudo restorecon -R -v /home/public
+
+    # Serve it at http://<host>/public/ — no symlink into /var/www/html needed.
+    sudo rm -f /var/www/html/public   # remove the old symlink from earlier runs, if any
+    cat <<'EOF' | sudo tee /etc/httpd/conf.d/public.conf
+Alias /public /home/public
+<Directory /home/public>
+    Options Indexes
+    Require all granted
+</Directory>
+EOF
+    sudo httpd -t   # config syntax check
+
+    # Installed but not started at boot; start on demand.
     sudo systemctl disable httpd
-    # sudo systemctl restart httpd
+    # sudo systemctl start httpd
 }
 
 function laptop_mode() {
@@ -890,13 +923,8 @@ function firewall_user_services() {
     sudo firewall-cmd --list-all --zone=public
 
     sudo firewall-cmd --runtime-to-permanent
-
-
-
-
     sudo firewall-cmd --reload
     sudo systemctl enable firewalld
-    sudo systemctl restart firewalld
 }
 
 function misc_services() {
@@ -975,15 +1003,25 @@ function install_all_modules() {
     # flutter-sdk_package
     # go_extra_packages
     # python_virtualenv_packages
+    # gcloud_packages
+    # firebase_packages
 }
 
 function install_all_user_modules() {
     echo "install_all_user_modules"
 
+    # Pick up PATH/env for SDKs installed earlier in this run. install_all_modules
+    # ran in its own pipeline subshell, so its `source` calls didn't carry over.
+    local f
+    for f in /etc/profile.d/{go-packages,android-sdk,flutter-sdk,antigravity}.sh; do
+        [ -r "${f}" ] && source "${f}"
+    done
+
     # git_user_conf
     # vscode_package_user_conf
     # antigravity_ide_package_user_conf
     # flutter-sdk_user_conf
+    # firebase_user_conf
     # python_user_conf
     # container_user_conf
 }
@@ -991,4 +1029,7 @@ function install_all_user_modules() {
 install_all_modules 2>&1 | tee fedora_install.log
 install_all_user_modules 2>&1 | tee -a fedora_install.log
 
-grep err fedora_install.log
+# Show any problems and exit non-zero if there were some; exit 0 on a clean run.
+if grep -inE 'error|failed|no match' fedora_install.log; then
+    exit 1
+fi
