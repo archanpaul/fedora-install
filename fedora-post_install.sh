@@ -29,6 +29,36 @@ function download() {
         && mv "${dest}.part" "${dest}"
 }
 
+# page_sha256 PAGE FILENAME
+# Prints the SHA-256 that a download page lists right after FILENAME.
+function page_sha256() {
+    tr '\n' ' ' <<<"$1" | grep -oE "$2.{0,300}" | grep -oE '[0-9a-f]{64}' | head -1
+}
+
+# verify_sha256 FILE SHA256
+# Removes FILE and fails on a mismatch. An empty SHA256 skips the check.
+function verify_sha256() {
+    local file="$1" sha="$2"
+    if [ -z "${sha}" ]; then
+        echo "warning: no checksum available for ${file}, not verified" >&2
+        return 0
+    fi
+    if ! echo "${sha}  ${file}" | sha256sum -c --quiet -; then
+        echo "error: checksum mismatch for ${file}, removing it" >&2
+        rm -f "${file}"
+        return 1
+    fi
+}
+
+# sdk_latest REPO_XML PREFIX
+# Prints the highest numeric, non-preview version of the Android SDK package
+# PREFIX, e.g. "platforms;android-" -> 37.2. Codename platforms (UpsideDownCake)
+# and beta/rc/canary builds are skipped.
+function sdk_latest() {
+    sed -n "s/.*path=\"$2\([^\"]*\)\".*/\1/p" <<<"$1" \
+        | grep -E '^[0-9]+(\.[0-9]+)*$' | sort -V | tail -1
+}
+
 function update_hostname() {
     sudo hostnamectl set-hostname --static ${HOSTNAME}
 }
@@ -145,16 +175,18 @@ function kubernetes_packages() {
 
 function gcloud_packages() {
     # https://cloud.google.com/sdk/docs/install#rpm
-    # Google ships EL builds only; the el9 repo works on Fedora but its
-    # binaries link against libcrypt.so.1, provided by libxcrypt-compat.
+    # Google ships EL builds only; the el10 repo works on Fedora (RHEL 9 style
+    # builds are still published as el9). The el10 repo is signed with a
+    # different key (rpm-package-key-v10.gpg). The binaries link against
+    # libcrypt.so.1, provided by libxcrypt-compat.
     sudo tee /etc/yum.repos.d/google-cloud-sdk.repo <<'EOF'
 [google-cloud-cli]
 name=Google Cloud CLI
-baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el9-x86_64
+baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el10-x86_64
 enabled=1
 gpgcheck=1
 repo_gpgcheck=0
-gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key-v10.gpg
 EOF
     sudo dnf -y install libxcrypt-compat google-cloud-cli
     # sudo dnf -y install google-cloud-cli-gke-gcloud-auth-plugin
@@ -342,61 +374,93 @@ EOF
     sudo dnf -y install claude-code
 }
 
+# json_get KEY JSON
+# Prints the string value of KEY from a flat one-key-per-line JSON document.
+function json_get() {
+    sed -n "s/.*\"$1\"[[:space:]]*:[[:space:]]*\"\([^\"]*\)\".*/\1/p" <<<"$2"
+}
+
 function antigravity_packages() {
-    AG_VERSION="2.29.1-5241471524274176"
-    AG_URL=https://storage.googleapis.com/antigravity-public/antigravity-hub/${AG_VERSION}/linux-x64/Antigravity.tar.gz
+    local AG_ROOT=/opt/antigravity
+    # Pinned fallback versions, used only if the latest can't be read from the
+    # official download page below.
+    local AG_VERSION="2.29.1-5241471524274176"
+    local AG_URL=https://storage.googleapis.com/antigravity-public/antigravity-hub/${AG_VERSION}/linux-x64/Antigravity.tar.gz
+    local AG_IDE_VERSION="2.6.0-5526304964083712"
+    local AG_IDE_URL=https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/${AG_IDE_VERSION}/linux-x64/Antigravity%20IDE.tar.gz
 
-    AG_IDE_VERSION="2.6.0-5526304964083712"
-    AG_IDE_URL=https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/${AG_IDE_VERSION}/linux-x64/Antigravity%20IDE.tar.gz
+    # Latest hub and IDE tarball URLs, scraped from the official download page.
+    local page url
+    page=$(curl -fsSL https://antigravity.google/download || true)
+    url=$(grep -oE 'https://storage\.googleapis\.com/antigravity-public/antigravity-hub/[^/"]+/linux-x64/Antigravity\.tar\.gz' <<<"${page}" | head -1)
+    [ -n "${url}" ] && AG_URL=${url}
+    url=$(grep -oE 'https://edgedl\.me\.gvt1\.com/edgedl/release2/[^/]+/antigravity/stable/[^/"]+/linux-x64/Antigravity%20IDE\.tar\.gz' <<<"${page}" | head -1)
+    [ -n "${url}" ] && AG_IDE_URL=${url}
+    AG_VERSION=$(sed -E 's#.*/antigravity-hub/([^/]+)/.*#\1#' <<<"${AG_URL}")
+    AG_IDE_VERSION=$(sed -E 's#.*/stable/([^/]+)/.*#\1#' <<<"${AG_IDE_URL}")
+    echo "Antigravity hub ${AG_VERSION}, IDE ${AG_IDE_VERSION}"
 
-    AG_CLI_VERSION="974169037036"
+    local AG_CLI_BASE
+    AG_CLI_BASE=$(curl -fsSL https://antigravity.google/cli/install.sh \
+        | sed -n 's|^DOWNLOAD_BASE_URL="\(https://[^"]*\)".*|\1|p')
+    AG_CLI_BASE=${AG_CLI_BASE:-https://antigravity-cli-auto-updater-974169037036.us-central1.run.app}
 
-    download "${AG_URL}" "${CACHE}/antigravity-${AG_VERSION}.tar.gz" || return 1
-    download "${AG_IDE_URL}" "${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz" || return 1
-    if [ ! -f "${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz" ]; then
-        AG_CLI_URL=$(curl -fsS "https://antigravity-cli-auto-updater-${AG_CLI_VERSION}.us-central1.run.app/manifests/linux_amd64.json" | sed -n 's/.*"url"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p')
-        download "${AG_CLI_URL}" "${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz" || return 1
+    local AG_FILE="${CACHE}/antigravity-${AG_VERSION}.tar.gz"
+    local AG_IDE_FILE="${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz"
+    download "${AG_URL}" "${AG_FILE}" || return 1
+    download "${AG_IDE_URL}" "${AG_IDE_FILE}" || return 1
+
+    local manifest AG_CLI_FILE
+    manifest=$(curl -fsS "${AG_CLI_BASE}/manifests/linux_amd64.json") \
+        || { echo "error: could not fetch antigravity CLI manifest" >&2; return 1; }
+    AG_CLI_FILE="${CACHE}/antigravity-cli-$(json_get version "${manifest}").tar.gz"
+    download "$(json_get url "${manifest}")" "${AG_CLI_FILE}" || return 1
+    if ! echo "$(json_get sha512 "${manifest}")  ${AG_CLI_FILE}" | sha512sum -c --quiet -; then
+        echo "error: antigravity CLI checksum mismatch, removing ${AG_CLI_FILE}" >&2
+        rm -f "${AG_CLI_FILE}"
+        return 1
     fi
 
-    sudo rm -rf /opt/antigravity
-    sudo mkdir -p /opt/antigravity/bin /opt/antigravity/resources /opt/antigravity/antigravity /opt/antigravity/antigravity-ide /opt/antigravity/antigravity-cli
+    sudo rm -rf ${AG_ROOT}
+    sudo mkdir -p ${AG_ROOT}/{bin,resources,antigravity,antigravity-ide,antigravity-cli}
 
-    sudo tar -zxf ${CACHE}/antigravity-${AG_VERSION}.tar.gz -C /opt/antigravity/antigravity/ --strip-components=1
+    sudo tar -zxf "${AG_FILE}" -C ${AG_ROOT}/antigravity/ --strip-components=1
     npm_packages   # npx is needed to extract the icon below
     (
-        cd /opt/antigravity/antigravity/resources/ || exit 1
-        sudo npx --yes @electron/asar@4.3.1 extract-file /opt/antigravity/antigravity/resources/app.asar icon.png
+        cd ${AG_ROOT}/antigravity/resources/ || exit 1
+        sudo npx --yes @electron/asar@latest extract-file ${AG_ROOT}/antigravity/resources/app.asar icon.png
     )
 
-    sudo tar -zxf ${CACHE}/antigravity-ide-${AG_IDE_VERSION}.tar.gz -C /opt/antigravity/antigravity-ide/ --strip-components=1
-    sudo tar -zxf ${CACHE}/antigravity-cli-${AG_CLI_VERSION}.tar.gz -C /opt/antigravity/antigravity-cli/ && sudo mv /opt/antigravity/antigravity-cli/antigravity /opt/antigravity/antigravity-cli/antigravity-cli
+    sudo tar -zxf "${AG_IDE_FILE}" -C ${AG_ROOT}/antigravity-ide/ --strip-components=1
+    sudo tar -zxf "${AG_CLI_FILE}" -C ${AG_ROOT}/antigravity-cli/ || return 1
+    sudo mv ${AG_ROOT}/antigravity-cli/antigravity ${AG_ROOT}/antigravity-cli/antigravity-cli
 
-    sudo ln -sf /opt/antigravity/antigravity/antigravity /opt/antigravity/bin/antigravity
-    sudo ln -sf /opt/antigravity/antigravity-ide/bin/antigravity-ide /opt/antigravity/bin/antigravity-ide
-    sudo ln -sf /opt/antigravity/antigravity-cli/antigravity-cli /opt/antigravity/bin/antigravity-cli
-    sudo ln -sf /opt/antigravity/bin/antigravity-cli /opt/antigravity/bin/agy
+    sudo ln -sf ${AG_ROOT}/antigravity/antigravity ${AG_ROOT}/bin/antigravity
+    sudo ln -sf ${AG_ROOT}/antigravity-ide/bin/antigravity-ide ${AG_ROOT}/bin/antigravity-ide
+    sudo ln -sf ${AG_ROOT}/antigravity-cli/antigravity-cli ${AG_ROOT}/bin/antigravity-cli
+    sudo ln -sf ${AG_ROOT}/bin/antigravity-cli ${AG_ROOT}/bin/agy
 
     # antigravity.desktop (Basic Launcher)
-    cat <<EOF | sudo tee /opt/antigravity/resources/antigravity.desktop
+    cat <<EOF | sudo tee ${AG_ROOT}/resources/antigravity.desktop
 [Desktop Entry]
 Type=Application
 Name=Antigravity
-Icon=/opt/antigravity/antigravity/resources/icon.png
-Exec=/opt/antigravity/bin/antigravity %F
+Icon=${AG_ROOT}/antigravity/resources/icon.png
+Exec=${AG_ROOT}/bin/antigravity %F
 Terminal=false
 Categories=Development;IDE;
 MimeType=application/x-code-workspace;inode/directory;text/plain;
 EOF
-    sudo ln -sf /opt/antigravity/resources/antigravity.desktop /usr/share/applications/antigravity.desktop
+    sudo ln -sf ${AG_ROOT}/resources/antigravity.desktop /usr/share/applications/antigravity.desktop
 
     # antigravity-url-handler.desktop (Hidden Basic URL Handler)
-    cat <<EOF | sudo tee /opt/antigravity/resources/antigravity-url-handler.desktop
+    cat <<EOF | sudo tee ${AG_ROOT}/resources/antigravity-url-handler.desktop
 [Desktop Entry]
 Name=Antigravity - URL Handler
 Comment=Handle Antigravity custom URL protocols
 GenericName=Text Editor
-Exec=/opt/antigravity/bin/antigravity --open-url %U
-Icon=/opt/antigravity/antigravity/resources/icon.png
+Exec=${AG_ROOT}/bin/antigravity --open-url %U
+Icon=${AG_ROOT}/antigravity/resources/icon.png
 Type=Application
 NoDisplay=true
 StartupNotify=true
@@ -404,17 +468,17 @@ StartupWMClass=antigravity
 Categories=Development;IDE;
 MimeType=x-scheme-handler/antigravity;
 EOF
-    sudo ln -sf /opt/antigravity/resources/antigravity-url-handler.desktop /usr/share/applications/antigravity-url-handler.desktop
+    sudo ln -sf ${AG_ROOT}/resources/antigravity-url-handler.desktop /usr/share/applications/antigravity-url-handler.desktop
 
     # antigravity-ide.desktop (Full Featured IDE Launcher with Window Management)
-    cat <<EOF | sudo tee /opt/antigravity/resources/antigravity-ide.desktop
+    cat <<EOF | sudo tee ${AG_ROOT}/resources/antigravity-ide.desktop
 [Desktop Entry]
 Name=Antigravity IDE
 CommonName=Text Editor
 Comment=Code Editing. Redefined.
 GenericName=Text Editor
-Exec=/opt/antigravity/bin/antigravity-ide %F
-Icon=/opt/antigravity/antigravity-ide/resources/app/resources/linux/code.png
+Exec=${AG_ROOT}/bin/antigravity-ide %F
+Icon=${AG_ROOT}/antigravity-ide/resources/app/resources/linux/code.png
 Type=Application
 StartupNotify=true
 StartupWMClass=antigravity
@@ -425,19 +489,19 @@ Actions=new-empty-window;
 
 [Desktop Action new-empty-window]
 Name=New Empty Window
-Exec=/opt/antigravity/bin/antigravity-ide --new-window %F
-Icon=/opt/antigravity/antigravity-ide/resources/app/resources/linux/code.png
+Exec=${AG_ROOT}/bin/antigravity-ide --new-window %F
+Icon=${AG_ROOT}/antigravity-ide/resources/app/resources/linux/code.png
 EOF
-    sudo ln -sf /opt/antigravity/resources/antigravity-ide.desktop /usr/share/applications/antigravity-ide.desktop
+    sudo ln -sf ${AG_ROOT}/resources/antigravity-ide.desktop /usr/share/applications/antigravity-ide.desktop
 
     # antigravity-ide-url-handler.desktop (Hidden Full IDE URL Handler)
-    cat <<EOF | sudo tee /opt/antigravity/resources/antigravity-ide-url-handler.desktop
+    cat <<EOF | sudo tee ${AG_ROOT}/resources/antigravity-ide-url-handler.desktop
 [Desktop Entry]
 Name=Antigravity IDE - URL Handler
 Comment=Handle Antigravity custom URL protocols
 GenericName=Text Editor
-Exec=/opt/antigravity/bin/antigravity-ide --open-url %U
-Icon=/opt/antigravity/antigravity-ide/resources/app/resources/linux/code.png
+Exec=${AG_ROOT}/bin/antigravity-ide --open-url %U
+Icon=${AG_ROOT}/antigravity-ide/resources/app/resources/linux/code.png
 Type=Application
 NoDisplay=true
 StartupNotify=true
@@ -445,7 +509,7 @@ StartupWMClass=antigravity
 Categories=Development;IDE;
 MimeType=x-scheme-handler/antigravity;x-scheme-handler/antigravity-ide;
 EOF
-    sudo ln -sf /opt/antigravity/resources/antigravity-ide-url-handler.desktop /usr/share/applications/antigravity-ide-url-handler.desktop
+    sudo ln -sf ${AG_ROOT}/resources/antigravity-ide-url-handler.desktop /usr/share/applications/antigravity-ide-url-handler.desktop
 
     # Update the system-wide desktop database
     sudo update-desktop-database /usr/share/applications/
@@ -456,13 +520,13 @@ EOF
     # xdg-open "antigravity-ide://oauth-success"
 
     cat <<EOF | sudo tee /etc/profile.d/antigravity.sh
-export ANTIGRAVITY_ROOT=/opt/antigravity
+export ANTIGRAVITY_ROOT=${AG_ROOT}
 export PATH=\$PATH:\$ANTIGRAVITY_ROOT/bin
 EOF
     # source /etc/profile.d/antigravity.sh
 
-    sudo chown -R root:wheel /opt/antigravity
-    sudo chmod -R u+rwX,go+rwX,o-w /opt/antigravity
+    sudo chown -R root:wheel ${AG_ROOT}
+    sudo chmod -R u+rwX,go+rwX,o-w ${AG_ROOT}
 
     # Restrict Antigravity memory usage.
     # cat <<EOF | sudo tee /etc/systemd/system/antigravity-total.slice
@@ -506,18 +570,39 @@ function git_user_conf() {
 
 function android-sdk_packages(){
     # https://developer.android.com/studio#command-line-tools-only
+    # Pinned fallbacks, used only if the latest can't be read online below.
     ANDROID_COMMANDLINE_TOOLS_VERSION=15859902_latest
+    ANDROID_SDK_API_RELEASE=37.0
+    ANDROID_SDK_BUILD_TOOLS_VERSION=37.0.0
+    ANDROID_NDK_VERSION=30.0.14904198
+
+    local page repo sysimg_xml v ANDROID_COMMANDLINE_TOOLS_SHA256=""
+
+    # Latest command-line tools and their SHA-256, from the Android Studio download page.
+    page=$(curl -fsSL https://developer.android.com/studio || true)
+    v=$(grep -oE 'commandlinetools-linux-[0-9]+_latest\.zip' <<<"${page}" | head -1)
+    if [ -n "${v}" ]; then
+        ANDROID_COMMANDLINE_TOOLS_VERSION=${v#commandlinetools-linux-}
+        ANDROID_COMMANDLINE_TOOLS_VERSION=${ANDROID_COMMANDLINE_TOOLS_VERSION%.zip}
+        ANDROID_COMMANDLINE_TOOLS_SHA256=$(page_sha256 "${page}" "${v}")
+    fi
+
+    # Latest platform, build-tools and NDK, from Google's SDK repository. These
+    # versions are independent (build-tools don't follow the API level).
+    repo=$(curl -fsSL https://dl.google.com/android/repository/repository2-3.xml || true)
+    v=$(sdk_latest "${repo}" 'platforms;android-');  [ -n "${v}" ] && ANDROID_SDK_API_RELEASE=${v}
+    v=$(sdk_latest "${repo}" 'build-tools;');        [ -n "${v}" ] && ANDROID_SDK_BUILD_TOOLS_VERSION=${v}
+    v=$(sdk_latest "${repo}" 'ndk;');                [ -n "${v}" ] && ANDROID_NDK_VERSION=${v}
+
     ANDROID_COMMANDLINE_TOOLS_PKG_FILE=commandlinetools-linux-${ANDROID_COMMANDLINE_TOOLS_VERSION}.zip
     ANDROID_COMMANDLINE_TOOLS_URL=https://dl.google.com/android/repository/${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}
-
-    ANDROID_SDK_API_RELEASE=37.0
-    ANDROID_SDK_BUILD_TOOLS_VERSION=${ANDROID_SDK_API_RELEASE}.0
     ANDROID_SDK_PLATFORM_VERSION=${ANDROID_SDK_API_RELEASE}
-    ANDROID_NDK_VERSION=30.0.14904198
+    echo "Android: cmdline-tools ${ANDROID_COMMANDLINE_TOOLS_VERSION}, platform ${ANDROID_SDK_PLATFORM_VERSION}, build-tools ${ANDROID_SDK_BUILD_TOOLS_VERSION}, NDK ${ANDROID_NDK_VERSION}"
 
     ANDROID_HOME=/opt/android-sdk
 
     download "${ANDROID_COMMANDLINE_TOOLS_URL}" "${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}" || return 1
+    verify_sha256 "${CACHE}/android-${ANDROID_COMMANDLINE_TOOLS_PKG_FILE}" "${ANDROID_COMMANDLINE_TOOLS_SHA256}" || return 1
 
     sudo rm -rf ${ANDROID_HOME}
     sudo  mkdir -p ${ANDROID_HOME}
@@ -551,8 +636,16 @@ EOF
     yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
     ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "emulator"
     yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
-    ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "system-images;android-${ANDROID_SDK_PLATFORM_VERSION};google_apis_playstore_ps16k;x86_64"
-    yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
+    # Emulator image: skip with a warning if none exists yet for this API level
+    # (images are published separately from platforms).
+    local sysimg="system-images;android-${ANDROID_SDK_PLATFORM_VERSION};google_apis_playstore_ps16k;x86_64"
+    sysimg_xml=$(curl -fsSL https://dl.google.com/android/repository/sys-img/google_apis_playstore/sys-img2-4.xml || true)
+    if [ -z "${sysimg_xml}" ] || grep -qF "path=\"${sysimg}\"" <<<"${sysimg_xml}"; then
+        ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ "${sysimg}"
+        yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/ --licenses
+    else
+        echo "warning: no ${sysimg} available, skipping emulator image" >&2
+    fi
 
     sudo chown -R root:wheel ${ANDROID_HOME}
     sudo chmod -R u+rwX,go+rwX,o-w ${ANDROID_HOME}
@@ -564,15 +657,29 @@ EOF
 }
 
 function android-studio_package(){
+    # Pinned fallback, used only if the latest can't be read from the download page.
     ANDROID_STUDIO_RELEASE=2026.2.2.9
     ANDROID_STUDIO_RELEASE_NAME=rabbit2-patch1
 
-    download https://edgedl.me.gvt1.com/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz "${CACHE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz" || return 1
+    # Latest Android Studio link and its SHA-256, from the download page.
+    local page url ANDROID_STUDIO_SHA256=""
+    page=$(curl -fsSL https://developer.android.com/studio || true)
+    url=$(grep -oE 'https://[^"<> ]*/ide-zips/[^/"<> ]+/android-studio-[^/"<> ]*-linux\.tar\.gz' <<<"${page}" | head -1)
+    if [ -n "${url}" ]; then
+        ANDROID_STUDIO_RELEASE=$(sed -E 's#.*/ide-zips/([^/]+)/.*#\1#' <<<"${url}")
+        ANDROID_STUDIO_RELEASE_NAME=$(sed -E 's#.*/android-studio-(.*)-linux\.tar\.gz#\1#' <<<"${url}")
+        ANDROID_STUDIO_SHA256=$(page_sha256 "${page}" "android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz")
+    fi
+    echo "Android Studio ${ANDROID_STUDIO_RELEASE} (${ANDROID_STUDIO_RELEASE_NAME})"
+
+    local studio_file="${CACHE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz"
+    download https://edgedl.me.gvt1.com/android/studio/ide-zips/${ANDROID_STUDIO_RELEASE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz "${studio_file}" || return 1
+    verify_sha256 "${studio_file}" "${ANDROID_STUDIO_SHA256}" || return 1
 
     sudo rm -rf /opt/android-studio
     sudo  mkdir -p /opt/android-studio
 
-    sudo tar zxfv ${CACHE}/android-studio-${ANDROID_STUDIO_RELEASE_NAME}-linux.tar.gz -C /opt/
+    sudo tar zxfv "${studio_file}" -C /opt/
     sudo chown -R root:wheel /opt/android-studio
     sudo chmod -R u+rwX,go+rwX,o-w /opt/android-studio
 
@@ -594,9 +701,28 @@ function flutter-sdk_package() {
     #sudo dnf -y install libstdc++.i686
 
     # https://docs.flutter.dev/install/archive
-    FLUTTER_VERSION="3.47.9-stable"
+    # Pinned fallback, used only if the latest can't be read from the release feed.
+    FLUTTER_VERSION="3.50.0-stable"
+
+    # Latest stable release and its SHA-256, from Flutter's release feed.
+    local feed v FLUTTER_SHA256=""
+    feed=$(curl -fsSL https://storage.googleapis.com/flutter_infra_release/releases/releases_linux.json || true)
+    v=$(python3 -I -c '
+import json, sys
+d = json.load(sys.stdin)
+h = d["current_release"]["stable"]
+r = next(r for r in d["releases"] if r["hash"] == h and r["channel"] == "stable")
+print(r["archive"], r["sha256"])
+' <<<"${feed}" 2>/dev/null)
+    if [ -n "${v}" ]; then
+        FLUTTER_SHA256=${v#* }
+        FLUTTER_VERSION=$(basename "${v% *}" .tar.xz)
+        FLUTTER_VERSION=${FLUTTER_VERSION#flutter_linux_}
+    fi
+    echo "Flutter ${FLUTTER_VERSION}"
 
     download https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz "${CACHE}/flutter_linux_${FLUTTER_VERSION}.tar.xz" || return 1
+    verify_sha256 "${CACHE}/flutter_linux_${FLUTTER_VERSION}.tar.xz" "${FLUTTER_SHA256}" || return 1
     sudo rm -rf /opt/flutter-sdk
     sudo mkdir -p /opt/flutter-sdk
 
