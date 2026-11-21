@@ -253,7 +253,6 @@ function browser_packages() {
     sudo dnf -y install fedora-workstation-repositories
     sudo dnf config-manager setopt google-chrome.enabled=1
     sudo dnf -y install google-chrome-stable
-    sudo dnf -y install chrome-remote-desktop
 
     sudo dnf -y install torbrowser-launcher
 
@@ -908,8 +907,6 @@ function font_packages() {
     sudo dnf -y install google-go-mono-fonts
     sudo dnf -y install google-go-smallcaps-fonts
     sudo dnf -y install google-tinos-fonts
-    sudo dnf -y install mozilla-fira-sans-fonts
-    sudo dnf -y install mozilla-fira-mono-fonts
     sudo dnf -y install fira-code-fonts
     sudo dnf -y install jetbrains-mono-fonts-all
     sudo dnf -y install ht-alegreya-fonts
@@ -918,9 +915,8 @@ function font_packages() {
     sudo dnf -y install vernnobile-oswald-fonts
     sudo dnf -y install vernnobile-muli-fonts
     sudo dnf -y install typetogether-literata-fonts
-    sudo dnf -y install gfs-baskerville
-    sudo dnf -y install sorkintype-merriweather-fonts
-
+    sudo dnf -y install fira-code-fonts
+    sudo dnf -y install sorkintype-merriweather-fonts sorkintype-merriweather-sans-fonts
 }
 
 function libreoffice_packages() {
