@@ -781,8 +781,8 @@ function python_packages() {
 }
 
 function python_virtualenv_packages() {
-    PYTHON_VERSION=3.14
-    VENV=pyvenv_314
+    PYTHON_VERSION=3.15
+    VENV=pyvenv_315
     VENV_FOLDER=/opt/python_venv/${VENV}
 
     ## virtualenvs
